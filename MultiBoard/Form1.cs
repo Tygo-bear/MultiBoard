@@ -121,36 +121,40 @@ namespace MultiBoard
                 new System.IO.StreamReader(MAIN_DIRECTORY + @"\keyboards.inf");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine(line);
                 boards[counter] = line;
                 counter++;
             }
 
             file.Close();
-            System.Console.WriteLine("There were {0} lines.", counter);
 
             //add boards to form
             //=================================
 
             for (int i = 0; i < boards.Length; i++)
             {
+                if (boards[i] == "" || boards[i] == null)
+                {
 
-                string[] splits = boards[i].Split('|');
+                }
+                else
+                {
+                    string[] splits = boards[i].Split('|');
 
-                KeyBoard obj = new KeyBoard();
-                obj.Location = new Point(31, 31);
-                obj.Visible = false;
-                this.Controls.Add(obj);
+                    KeyBoard obj = new KeyBoard();
+                    obj.Location = new Point(31, 31);
+                    obj.Visible = false;
+                    this.Controls.Add(obj);
 
-                obj.setKeyBoardName(splits[1]);
-                obj.setKeyboardUUID(splits[0]);
-                obj.setComPort(splits[2]);
+                    obj.setKeyBoardName(splits[1]);
+                    obj.setKeyboardUUID(splits[0]);
+                    obj.setComPort(splits[2]);
 
-                ListkeyboardElement.addItem(splits[1], splits[0], splits[2]);
+                    ListkeyboardElement.addItem(splits[1], splits[0], splits[2]);
 
-                obj.loadKeys(MAIN_DIRECTORY);
+                    obj.loadKeys(MAIN_DIRECTORY);
 
-                keyboardList.Add(obj);
+                    keyboardList.Add(obj);
+                }
             }
         }
 
