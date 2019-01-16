@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MultiBoard
+{
+    public partial class addKeyboard : UserControl
+    {
+        private bool refreshing = false;
+        private List<string> IDs;
+        private List<string> ports;
+
+        private List<string> IDsBlackList;
+
+
+        public addKeyboard()
+        {
+            InitializeComponent();
+
+            //start scanner
+            //==============
+            refreshing = true;
+            AUTO_ADD_LABEL.Text = "Searching...";
+            refreshKeyboards();
+            REFRESH_BUTTON.Enabled = true;
+        }
+
+        private void REFRESH_BUTTON_Click(object sender, EventArgs e)
+        {
+            if(refreshing == false)
+            {
+                refreshing = true;
+                AUTO_ADD_LABEL.Text = "Searching...";
+                REFRESH_BUTTON.Enabled = false;
+                refreshKeyboards();
+                REFRESH_BUTTON.Enabled = true;
+                if(IDs.Count() > 0)
+                {
+                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards foud";
+                }
+                else
+                {
+                    AUTO_ADD_LABEL.Text = "No keyboards foud";
+                }
+
+            }
+            else
+            {
+                REFRESH_BUTTON.Enabled = false;
+            }
+        }
+
+        private void refreshKeyboards()
+        {
+            KeyboardScanner kbs = new KeyboardScanner();
+            kbs.loadList(115200);
+
+            filterKeyboards(kbs.ports, kbs.uuid);
+            refreshing = false;
+        }
+
+        public void idBlackListUpdate(List<string> blackIDs)
+        {
+            IDsBlackList = blackIDs;
+        }
+
+        private void filterKeyboards(List<string> AllPorts, List<string> AllIds)
+        {
+            int index = 0;
+            foreach(string s in AllIds)
+            {
+                bool newKB = true;
+                foreach(string bs in IDsBlackList)
+                {
+                    if(s == bs)
+                    {
+                        newKB = false;
+                    }
+                }
+
+                if(newKB == true)
+                {
+                    IDs.Add(s);
+                    int indexP = 0;
+                    foreach(string p in AllPorts)
+                    {
+                        if(index == indexP)
+                        {
+                            ports.Add(p);
+                        }
+                        indexP++;
+                    }
+                }
+
+                index++;
+            }
+        }
+
+        private void CANCEL_PANEL_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void AUTO_ADD_PANEL_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MANUAL_ADD_PANEL_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
