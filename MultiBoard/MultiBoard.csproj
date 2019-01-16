@@ -100,6 +100,12 @@
     </Compile>
     <Compile Include="KeyboardScanner.cs" />
     <Compile Include="KeySpace.cs" />
+    <Compile Include="ManuallyAddKeyboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManuallyAddKeyboard.Designer.cs">
+      <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="addKeyboard.resx">
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardList.resx">
       <DependentUpon>KeyboardList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManuallyAddKeyboard.resx">
+      <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

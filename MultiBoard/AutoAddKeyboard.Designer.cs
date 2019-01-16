@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.MANUAL_ADD_PANEL = new System.Windows.Forms.Panel();
-            this.SELECT_KEYBOARD_COMBOX = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.SELECT_KEYBOARD_COMBOX = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.NAME_TEXT_BOX = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.ADD_BUTTON = new System.Windows.Forms.Button();
             this.BAKC_BUTTON = new System.Windows.Forms.Button();
             this.MANUAL_ADD_PANEL.SuspendLayout();
@@ -50,16 +50,6 @@
             this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(367, 72);
             this.MANUAL_ADD_PANEL.TabIndex = 2;
             // 
-            // SELECT_KEYBOARD_COMBOX
-            // 
-            this.SELECT_KEYBOARD_COMBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SELECT_KEYBOARD_COMBOX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SELECT_KEYBOARD_COMBOX.FormattingEnabled = true;
-            this.SELECT_KEYBOARD_COMBOX.Location = new System.Drawing.Point(23, 33);
-            this.SELECT_KEYBOARD_COMBOX.Name = "SELECT_KEYBOARD_COMBOX";
-            this.SELECT_KEYBOARD_COMBOX.Size = new System.Drawing.Size(330, 21);
-            this.SELECT_KEYBOARD_COMBOX.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -72,6 +62,16 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Selected keyboard";
             // 
+            // SELECT_KEYBOARD_COMBOX
+            // 
+            this.SELECT_KEYBOARD_COMBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SELECT_KEYBOARD_COMBOX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SELECT_KEYBOARD_COMBOX.FormattingEnabled = true;
+            this.SELECT_KEYBOARD_COMBOX.Location = new System.Drawing.Point(23, 33);
+            this.SELECT_KEYBOARD_COMBOX.Name = "SELECT_KEYBOARD_COMBOX";
+            this.SELECT_KEYBOARD_COMBOX.Size = new System.Drawing.Size(330, 21);
+            this.SELECT_KEYBOARD_COMBOX.TabIndex = 0;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -81,6 +81,14 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(367, 72);
             this.panel2.TabIndex = 5;
+            // 
+            // NAME_TEXT_BOX
+            // 
+            this.NAME_TEXT_BOX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NAME_TEXT_BOX.Location = new System.Drawing.Point(23, 33);
+            this.NAME_TEXT_BOX.Name = "NAME_TEXT_BOX";
+            this.NAME_TEXT_BOX.Size = new System.Drawing.Size(330, 20);
+            this.NAME_TEXT_BOX.TabIndex = 5;
             // 
             // label4
             // 
@@ -93,14 +101,6 @@
             this.label4.Size = new System.Drawing.Size(134, 18);
             this.label4.TabIndex = 4;
             this.label4.Text = "Keyboard name";
-            // 
-            // NAME_TEXT_BOX
-            // 
-            this.NAME_TEXT_BOX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NAME_TEXT_BOX.Location = new System.Drawing.Point(23, 33);
-            this.NAME_TEXT_BOX.Name = "NAME_TEXT_BOX";
-            this.NAME_TEXT_BOX.Size = new System.Drawing.Size(330, 20);
-            this.NAME_TEXT_BOX.TabIndex = 5;
             // 
             // ADD_BUTTON
             // 

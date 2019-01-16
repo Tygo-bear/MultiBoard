@@ -17,6 +17,7 @@ namespace MultiBoard
         private List<string> ports = new List<string>();
 
         private AutoAddKeyboard aakb;
+        private ManuallyAddKeyboard makb;
 
         private List<string> IDsBlackList;
 
@@ -133,7 +134,10 @@ namespace MultiBoard
 
         private void MANUAL_ADD_PANEL_Click(object sender, EventArgs e)
         {
-
+            makb = new ManuallyAddKeyboard();
+            makb.Location = new Point(0, 0);
+            this.Controls.Add(makb);
+            makb.BringToFront();
         }
     }
 }
