@@ -122,14 +122,17 @@
             // 
             // REFRESH_BUTTON
             // 
+            this.REFRESH_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.REFRESH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("REFRESH_BUTTON.BackgroundImage")));
             this.REFRESH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.REFRESH_BUTTON.FlatAppearance.BorderSize = 0;
+            this.REFRESH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.REFRESH_BUTTON.ForeColor = System.Drawing.SystemColors.ControlText;
             this.REFRESH_BUTTON.Location = new System.Drawing.Point(426, 23);
             this.REFRESH_BUTTON.Name = "REFRESH_BUTTON";
             this.REFRESH_BUTTON.Size = new System.Drawing.Size(90, 90);
             this.REFRESH_BUTTON.TabIndex = 1;
-            this.REFRESH_BUTTON.UseVisualStyleBackColor = true;
+            this.REFRESH_BUTTON.UseVisualStyleBackColor = false;
             this.REFRESH_BUTTON.Click += new System.EventHandler(this.REFRESH_BUTTON_Click);
             // 
             // addKeyboard

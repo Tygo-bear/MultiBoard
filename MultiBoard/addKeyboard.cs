@@ -16,8 +16,9 @@ namespace MultiBoard
         private List<string> IDs = new List<string>();
         private List<string> ports = new List<string>();
 
-        private List<string> IDsBlackList;
+        private AutoAddKeyboard aakb;
 
+        private List<string> IDsBlackList;
 
         public addKeyboard()
         {
@@ -54,11 +55,11 @@ namespace MultiBoard
         {
             if (IDs.Count() > 0)
             {
-                AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards foud";
+                AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards found";
             }
             else
             {
-                AUTO_ADD_LABEL.Text = "No keyboards foud";
+                AUTO_ADD_LABEL.Text = "No keyboards found";
             }
         }
 
@@ -118,7 +119,16 @@ namespace MultiBoard
 
         private void AUTO_ADD_PANEL_Click(object sender, EventArgs e)
         {
-
+            if (IDs.Count() > -1)
+            {
+                aakb = new AutoAddKeyboard();
+                aakb.Location = new Point(0, 0);
+                aakb.IDs = IDs;
+                aakb.Ports = ports;
+                aakb.loadKbList();
+                this.Controls.Add(aakb);
+                aakb.BringToFront();
+            }
         }
 
         private void MANUAL_ADD_PANEL_Click(object sender, EventArgs e)
