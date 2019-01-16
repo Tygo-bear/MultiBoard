@@ -13,8 +13,8 @@ namespace MultiBoard
     public partial class addKeyboard : UserControl
     {
         private bool refreshing = false;
-        private List<string> IDs;
-        private List<string> ports;
+        private List<string> IDs = new List<string>();
+        private List<string> ports = new List<string>();
 
         private List<string> IDsBlackList;
 
@@ -29,6 +29,7 @@ namespace MultiBoard
             AUTO_ADD_LABEL.Text = "Searching...";
             refreshKeyboards();
             REFRESH_BUTTON.Enabled = true;
+            displayKeyboardCount();
         }
 
         private void REFRESH_BUTTON_Click(object sender, EventArgs e)
@@ -40,19 +41,24 @@ namespace MultiBoard
                 REFRESH_BUTTON.Enabled = false;
                 refreshKeyboards();
                 REFRESH_BUTTON.Enabled = true;
-                if(IDs.Count() > 0)
-                {
-                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards foud";
-                }
-                else
-                {
-                    AUTO_ADD_LABEL.Text = "No keyboards foud";
-                }
+                displayKeyboardCount();
 
             }
             else
             {
                 REFRESH_BUTTON.Enabled = false;
+            }
+        }
+
+        private void displayKeyboardCount()
+        {
+            if (IDs.Count() > 0)
+            {
+                AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards foud";
+            }
+            else
+            {
+                AUTO_ADD_LABEL.Text = "No keyboards foud";
             }
         }
 
@@ -72,6 +78,9 @@ namespace MultiBoard
 
         private void filterKeyboards(List<string> AllPorts, List<string> AllIds)
         {
+            IDs.Clear();
+            ports.Clear();
+
             int index = 0;
             foreach(string s in AllIds)
             {

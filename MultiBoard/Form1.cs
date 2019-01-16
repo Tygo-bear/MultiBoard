@@ -129,6 +129,7 @@ namespace MultiBoard
 
             //add boards to form
             //=================================
+            int count = 0;
 
             for (int i = 0; i < boards.Length; i++)
             {
@@ -154,8 +155,19 @@ namespace MultiBoard
                     obj.loadKeys(MAIN_DIRECTORY);
 
                     keyboardList.Add(obj);
+
+                    counter++;
                 }
             }
+
+            if(count == 0)
+            {
+                ListkeyboardElement.Visible = false;
+                addKeyboard kb = new addKeyboard();
+                kb.Location = new Point(31, 31); ;
+                this.Controls.Add(kb);
+            }
+
         }
 
         void onKeyDown(object sender, KeyEventArgs e)
