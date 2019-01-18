@@ -40,10 +40,10 @@
             this.KEYBOARD_B = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
+            this.WARRNING_BUTTON = new System.Windows.Forms.Button();
             this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.WARRNING_BUTTON = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
@@ -202,6 +202,24 @@
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(858, 34);
             this.BOTTEM_PANEL.TabIndex = 3;
             // 
+            // WARRNING_BUTTON
+            // 
+            this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.WARRNING_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("WARRNING_BUTTON.BackgroundImage")));
+            this.WARRNING_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.WARRNING_BUTTON.FlatAppearance.BorderSize = 0;
+            this.WARRNING_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.WARRNING_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.WARRNING_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WARRNING_BUTTON.Location = new System.Drawing.Point(826, 0);
+            this.WARRNING_BUTTON.Name = "WARRNING_BUTTON";
+            this.WARRNING_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.WARRNING_BUTTON.TabIndex = 7;
+            this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
+            this.WARRNING_BUTTON.Visible = false;
+            // 
             // TOGGLE_B
             // 
             this.TOGGLE_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -231,24 +249,6 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // WARRNING_BUTTON
-            // 
-            this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Transparent;
-            this.WARRNING_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("WARRNING_BUTTON.BackgroundImage")));
-            this.WARRNING_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.WARRNING_BUTTON.FlatAppearance.BorderSize = 0;
-            this.WARRNING_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.WARRNING_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WARRNING_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WARRNING_BUTTON.Location = new System.Drawing.Point(826, 0);
-            this.WARRNING_BUTTON.Name = "WARRNING_BUTTON";
-            this.WARRNING_BUTTON.Size = new System.Drawing.Size(32, 34);
-            this.WARRNING_BUTTON.TabIndex = 7;
-            this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
-            this.WARRNING_BUTTON.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,6 +258,7 @@
             this.Controls.Add(this.BOTTEM_PANEL);
             this.Controls.Add(this.TOP_PANEL);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.TOP_PANEL.ResumeLayout(false);
