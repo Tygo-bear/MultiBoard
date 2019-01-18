@@ -87,15 +87,18 @@ namespace MultiBoard
             foreach(string s in AllIds)
             {
                 bool newKB = true;
-                foreach(string bs in IDsBlackList)
+                if (IDsBlackList != null)
                 {
-                    if(s == bs)
+                    foreach (string bs in IDsBlackList)
                     {
-                        newKB = false;
+                        if (s == bs)
+                        {
+                            newKB = false;
+                        }
                     }
                 }
 
-                if(newKB == true)
+                if(newKB == true && s != "NONE")
                 {
                     IDs.Add(s);
                     int indexP = 0;
