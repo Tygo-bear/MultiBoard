@@ -31,6 +31,8 @@ namespace MultiBoard
         private string KeyTag;
         private string ExecuteLocation;
 
+        public List<string> nameAllKeys = new List<string>();
+
         //events
         //=========================
         public event EventHandler UpdatedData;
@@ -44,7 +46,7 @@ namespace MultiBoard
         public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc)
         {
             keyName = name;
-            KEY_NAME_LABEL.Text = name;
+            KEY_NAME_TEXTBOX.Text = name;
 
             if(eventState == 1)
             {
@@ -280,7 +282,15 @@ namespace MultiBoard
 
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
-            OnUpdatedData();
+            if (checkKeyName(keyName))
+            {
+                KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
+                OnUpdatedData();
+            }
+            else
+            {
+                KEY_NAME_TEXTBOX.BackColor = Color.Red;
+            }
         }
 
         protected virtual void OnDeleteKey()
@@ -288,10 +298,29 @@ namespace MultiBoard
             DeleteKey(this, new objKeyEventArgs() { objKey = this });
         }
 
+        private void KEY_NAME_TEXTBOX_TextChanged(object sender, EventArgs e)
+        {
+            keyName = KEY_NAME_TEXTBOX.Text;
+        }
+
+        private bool checkKeyName(string s)
+        {
+            foreach(string n in nameAllKeys)
+            {
+                if(n == s)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     public class objKeyEventArgs : EventArgs
     {
         public Key objKey { get; set; }
     }
+
+    
 }

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Key));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
-            this.KEY_NAME_LABEL = new System.Windows.Forms.Label();
+            this.KEY_NAME_TEXTBOX = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             // TOP_PANEL
             // 
             this.TOP_PANEL.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.TOP_PANEL.Controls.Add(this.KEY_NAME_LABEL);
+            this.TOP_PANEL.Controls.Add(this.KEY_NAME_TEXTBOX);
             this.TOP_PANEL.Controls.Add(this.pictureBox1);
             this.TOP_PANEL.Dock = System.Windows.Forms.DockStyle.Top;
             this.TOP_PANEL.Location = new System.Drawing.Point(0, 0);
@@ -74,14 +74,15 @@
             this.TOP_PANEL.Size = new System.Drawing.Size(660, 35);
             this.TOP_PANEL.TabIndex = 0;
             // 
-            // KEY_NAME_LABEL
+            // KEY_NAME_TEXTBOX
             // 
-            this.KEY_NAME_LABEL.AutoSize = true;
-            this.KEY_NAME_LABEL.Location = new System.Drawing.Point(41, 12);
-            this.KEY_NAME_LABEL.Name = "KEY_NAME_LABEL";
-            this.KEY_NAME_LABEL.Size = new System.Drawing.Size(68, 13);
-            this.KEY_NAME_LABEL.TabIndex = 1;
-            this.KEY_NAME_LABEL.Text = "[KEY NAME]";
+            this.KEY_NAME_TEXTBOX.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.KEY_NAME_TEXTBOX.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.KEY_NAME_TEXTBOX.Location = new System.Drawing.Point(42, 9);
+            this.KEY_NAME_TEXTBOX.Name = "KEY_NAME_TEXTBOX";
+            this.KEY_NAME_TEXTBOX.Size = new System.Drawing.Size(237, 13);
+            this.KEY_NAME_TEXTBOX.TabIndex = 0;
+            this.KEY_NAME_TEXTBOX.TextChanged += new System.EventHandler(this.KEY_NAME_TEXTBOX_TextChanged);
             // 
             // pictureBox1
             // 
@@ -349,7 +350,6 @@
         private System.Windows.Forms.Panel TOP_PANEL;
         private System.Windows.Forms.Panel BOTTEM_PANEL;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label KEY_NAME_LABEL;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox KEY_PRESSED_p;
         private System.Windows.Forms.PictureBox KEY_UP_P;
@@ -369,5 +369,6 @@
         private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
         private System.Windows.Forms.Button DELETE_BUTTON;
         private System.Windows.Forms.Button SAVE_BUTTON;
+        private System.Windows.Forms.TextBox KEY_NAME_TEXTBOX;
     }
 }

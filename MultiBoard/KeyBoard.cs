@@ -22,6 +22,7 @@ namespace MultiBoard
         private int numberOfKeys = 0;
 
         private List<Key> keyList = new List<Key>();
+        private List<string> KeyNameList = new List<string>();
 
         public void createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
         {
@@ -118,6 +119,7 @@ namespace MultiBoard
             }
 
             file.Close();
+            updateKeyNameList();
         }
 
         public void keyDown(string KEY, bool allEnebled)
@@ -209,6 +211,7 @@ namespace MultiBoard
             System.IO.File.WriteAllLines(saveFile, splits);
 
             loadListVieuw();
+            updateKeyNameList();
         }
 
         void onDeleteKey(object sender, objKeyEventArgs e)
@@ -218,6 +221,20 @@ namespace MultiBoard
 
             onUpdatedKey(sender, EventArgs.Empty);
             loadListVieuw();
+        }
+
+        private void updateKeyNameList()
+        {
+            KeyNameList.Clear();
+            foreach(Key k in keyList)
+            {
+                KeyNameList.Add(k.getName());
+            }
+
+            foreach (Key k in keyList)
+            {
+                k.nameAllKeys = KeyNameList;
+            }
         }
     }
 }
