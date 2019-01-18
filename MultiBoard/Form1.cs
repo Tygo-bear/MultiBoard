@@ -156,7 +156,7 @@ namespace MultiBoard
 
                     keyboardList.Add(obj);
 
-                    counter++;
+                    count++;
                 }
             }
 
