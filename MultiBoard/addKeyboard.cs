@@ -123,7 +123,7 @@ namespace MultiBoard
 
         private void AUTO_ADD_PANEL_Click(object sender, EventArgs e)
         {
-            if (IDs.Count() > -1)
+            if (IDs.Count() > 0)
             {
                 aakb = new AutoAddKeyboard();
                 aakb.Location = new Point(0, 0);
