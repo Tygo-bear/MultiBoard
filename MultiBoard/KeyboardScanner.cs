@@ -30,12 +30,19 @@ namespace MultiBoard
 
             foreach(string s in avaiblePorts)
             {
-                SerialPort comPort = new SerialPort(s, BRate);
-                ports.Add(s);
-                comPort.Open();
-                comPort.Write("?");
+                try
+                {
+                    SerialPort comPort = new SerialPort(s, BRate);
+                    ports.Add(s);
+                    comPort.Open();
+                    comPort.Write("?");
 
-                openSerials.Add(comPort);
+                    openSerials.Add(comPort);
+                }
+                catch(UnauthorizedAccessException unauthorizedAccessException)
+                {
+
+                }
             }
 
             System.Threading.Thread.Sleep(1000);

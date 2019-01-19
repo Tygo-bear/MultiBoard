@@ -22,6 +22,7 @@ namespace MultiBoard
         private List<connector> connectorList = new List<connector>();
         KeyboardList ListkeyboardElement;
         KeyboardScanner scanner = new KeyboardScanner();
+        addKeyboard AddKeyboardContr;
 
         //resouces images
         //===============================
@@ -51,6 +52,10 @@ namespace MultiBoard
 
             loadingBoards();
             backgroundWorker1.RunWorkerAsync();
+
+            AddKeyboardContr = new addKeyboard();
+            AddKeyboardContr.Location = new Point(31, 31); ;
+            this.Controls.Add(AddKeyboardContr);
         }
 
         private void MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -163,9 +168,7 @@ namespace MultiBoard
             if(count == 0)
             {
                 ListkeyboardElement.Visible = false;
-                addKeyboard kb = new addKeyboard();
-                kb.Location = new Point(31, 31); ;
-                this.Controls.Add(kb);
+                AddKeyboardContr.Visible = true;
             }
 
         }
@@ -261,6 +264,12 @@ namespace MultiBoard
             }
 
             return null;
+        }
+
+        private void ADD_KEYBOARD_BUTTON_Click(object sender, EventArgs e)
+        {
+            AddKeyboardContr.Visible = true;
+            AddKeyboardContr.BringToFront();
         }
     }
 }

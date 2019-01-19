@@ -35,7 +35,7 @@
             this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
             this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.LEFT_PENEL = new System.Windows.Forms.Panel();
-            this.MANAGE_EYBOARDS_BUTTON = new System.Windows.Forms.Button();
+            this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.KEYBOARD_B = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -119,7 +119,7 @@
             // LEFT_PENEL
             // 
             this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.LEFT_PENEL.Controls.Add(this.MANAGE_EYBOARDS_BUTTON);
+            this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.panel1);
             this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
             this.LEFT_PENEL.Controls.Add(this.button2);
@@ -129,22 +129,23 @@
             this.LEFT_PENEL.Size = new System.Drawing.Size(32, 542);
             this.LEFT_PENEL.TabIndex = 2;
             // 
-            // MANAGE_EYBOARDS_BUTTON
+            // ADD_KEYBOARD_BUTTON
             // 
-            this.MANAGE_EYBOARDS_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ADD_KEYBOARD_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MANAGE_EYBOARDS_BUTTON.BackColor = System.Drawing.Color.Transparent;
-            this.MANAGE_EYBOARDS_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MANAGE_EYBOARDS_BUTTON.BackgroundImage")));
-            this.MANAGE_EYBOARDS_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.MANAGE_EYBOARDS_BUTTON.FlatAppearance.BorderSize = 0;
-            this.MANAGE_EYBOARDS_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.MANAGE_EYBOARDS_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.MANAGE_EYBOARDS_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MANAGE_EYBOARDS_BUTTON.Location = new System.Drawing.Point(0, 40);
-            this.MANAGE_EYBOARDS_BUTTON.Name = "MANAGE_EYBOARDS_BUTTON";
-            this.MANAGE_EYBOARDS_BUTTON.Size = new System.Drawing.Size(32, 34);
-            this.MANAGE_EYBOARDS_BUTTON.TabIndex = 6;
-            this.MANAGE_EYBOARDS_BUTTON.UseVisualStyleBackColor = false;
+            this.ADD_KEYBOARD_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.ADD_KEYBOARD_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ADD_KEYBOARD_BUTTON.BackgroundImage")));
+            this.ADD_KEYBOARD_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.BorderSize = 0;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ADD_KEYBOARD_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ADD_KEYBOARD_BUTTON.Location = new System.Drawing.Point(0, 40);
+            this.ADD_KEYBOARD_BUTTON.Name = "ADD_KEYBOARD_BUTTON";
+            this.ADD_KEYBOARD_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.ADD_KEYBOARD_BUTTON.TabIndex = 6;
+            this.ADD_KEYBOARD_BUTTON.UseVisualStyleBackColor = false;
+            this.ADD_KEYBOARD_BUTTON.Click += new System.EventHandler(this.ADD_KEYBOARD_BUTTON_Click);
             // 
             // panel1
             // 
@@ -285,7 +286,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel MAIN_PANEL;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button MANAGE_EYBOARDS_BUTTON;
+        private System.Windows.Forms.Button ADD_KEYBOARD_BUTTON;
         private System.Windows.Forms.Button WARRNING_BUTTON;
     }
 }

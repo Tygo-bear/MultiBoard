@@ -118,7 +118,7 @@ namespace MultiBoard
 
         private void CANCEL_PANEL_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Visible = false;
         }
 
         private void AUTO_ADD_PANEL_Click(object sender, EventArgs e)
