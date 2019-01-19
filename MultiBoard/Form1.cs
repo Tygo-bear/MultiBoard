@@ -50,12 +50,14 @@ namespace MultiBoard
 
             scanner.loadList(115200);
 
-            loadingBoards();
-            backgroundWorker1.RunWorkerAsync();
-
             AddKeyboardContr = new addKeyboard();
             AddKeyboardContr.Location = new Point(31, 31); ;
             this.Controls.Add(AddKeyboardContr);
+
+            loadingBoards();
+            backgroundWorker1.RunWorkerAsync();
+
+            
         }
 
         private void MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
