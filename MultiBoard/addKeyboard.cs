@@ -19,19 +19,27 @@ namespace MultiBoard
         private AutoAddKeyboard aakb;
         private ManuallyAddKeyboard makb;
 
+        public event EventHandler AddKeyboarde;
+        public string kbName;
+        public string kbId;
+        public string kbPort;
+
         private List<string> IDsBlackList;
 
         public addKeyboard()
         {
             InitializeComponent();
 
+
             //start scanner
             //==============
+            /*
             refreshing = true;
             AUTO_ADD_LABEL.Text = "Searching...";
             refreshKeyboards();
             REFRESH_BUTTON.Enabled = true;
             displayKeyboardCount();
+            */
         }
 
         private void REFRESH_BUTTON_Click(object sender, EventArgs e)
@@ -56,7 +64,14 @@ namespace MultiBoard
         {
             if (IDs.Count() > 0)
             {
-                AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards found";
+                if (IDs.Count() > 1)
+                {
+                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards found";
+                }
+                else
+                {
+                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboard found";
+                }
             }
             else
             {
@@ -126,6 +141,7 @@ namespace MultiBoard
             if (IDs.Count() > 0)
             {
                 aakb = new AutoAddKeyboard();
+                aakb.AddClicked += AutoAddKeyboardEvent;
                 aakb.Location = new Point(0, 0);
                 aakb.IDs = IDs;
                 aakb.Ports = ports;
@@ -141,6 +157,22 @@ namespace MultiBoard
             makb.Location = new Point(0, 0);
             this.Controls.Add(makb);
             makb.BringToFront();
+        }
+
+        protected virtual void OnAddKeyboarde()
+        {
+            if (AddKeyboarde != null)
+            {
+                AddKeyboarde(this, EventArgs.Empty);
+            }
+        }
+
+        private void AutoAddKeyboardEvent(object sender, EventArgs e)
+        {
+            kbName = aakb.kbName;
+            kbId = aakb.kbUUID;
+            kbPort = aakb.kbPort;
+            OnAddKeyboarde();
         }
     }
 }

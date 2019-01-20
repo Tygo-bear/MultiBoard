@@ -43,6 +43,7 @@ namespace MultiBoard
         {
             InitializeComponent();
 
+
             ListkeyboardElement = new KeyboardList();
             ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
             ListkeyboardElement.Location = new Point(31, 31);
@@ -53,12 +54,48 @@ namespace MultiBoard
             AddKeyboardContr = new addKeyboard();
             AddKeyboardContr.Location = new Point(31, 31); ;
             this.Controls.Add(AddKeyboardContr);
+            AddKeyboardContr.AddKeyboarde += keyboardAdded;
 
             loadingBoards();
             backgroundWorker1.RunWorkerAsync();
 
             
         }
+
+        private void keyboardAdded(object sender, EventArgs e)
+        {
+            Console.WriteLine("keyboard add clicked");
+            string[] allLines = File.ReadAllLines(MAIN_DIRECTORY + @"\keyboards.inf");
+            List<string> sstring = allLines.ToList();
+
+            string name = AddKeyboardContr.kbName;
+            string uuid = AddKeyboardContr.kbId;
+            string port = AddKeyboardContr.kbPort;
+            
+            sstring.Add(AddKeyboardContr.kbId + "|" + AddKeyboardContr.kbName + "|" + AddKeyboardContr.kbPort + "\n");
+            string[] writeAll = sstring.ToArray();
+
+            File.WriteAllLines(MAIN_DIRECTORY + @"\keyboards.inf", writeAll, Encoding.UTF8);
+
+            KeyBoard obj = new KeyBoard();
+            obj.Location = new Point(31, 31);
+            obj.Visible = false;
+            this.Controls.Add(obj);
+
+            obj.setKeyBoardName(name);
+            obj.setKeyboardUUID(uuid);
+            obj.setComPort(port);
+
+            ListkeyboardElement.addItem(name, uuid, port);
+
+            obj.loadKeys(MAIN_DIRECTORY);
+
+            keyboardList.Add(obj);
+
+            backgroundWorker1.CancelAsync();
+            backgroundWorker1.RunWorkerAsync();
+        }
+
 
         private void MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -120,7 +157,8 @@ namespace MultiBoard
 
             int counter = 0;
             string line;
-            string[] boards = { "" };
+            List<string> temp = new List<string>();
+            string[] boards;
 
             // read main file
             //============================
@@ -128,9 +166,14 @@ namespace MultiBoard
                 new System.IO.StreamReader(MAIN_DIRECTORY + @"\keyboards.inf");
             while ((line = file.ReadLine()) != null)
             {
-                boards[counter] = line;
-                counter++;
+                if (line != "")
+                {
+                    temp.Add(line);
+                    counter++;
+                }
             }
+
+            boards = temp.ToArray();
 
             file.Close();
 
@@ -223,6 +266,7 @@ namespace MultiBoard
             }
 
             ListkeyboardElement.Visible = true;
+            ListkeyboardElement.BringToFront();
         }
 
         private void UserSelectedKeyboard(object sender, itemName e)
@@ -232,11 +276,13 @@ namespace MultiBoard
                 if(aKeyboard.getKeyboardName() == e.name)
                 {
                     aKeyboard.Visible = true;
+                    aKeyboard.BringToFront();
                     ListkeyboardElement.Visible = false;
                 }
                 else
                 {
                     aKeyboard.Visible = false;
+
                 }
             }
         }
@@ -272,6 +318,7 @@ namespace MultiBoard
         {
             AddKeyboardContr.Visible = true;
             AddKeyboardContr.BringToFront();
+
         }
     }
 }

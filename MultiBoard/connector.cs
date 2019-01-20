@@ -41,7 +41,7 @@ namespace MultiBoard
 
         private void comPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            Console.WriteLine("error: " + e);
+            //Console.WriteLine("error: " + e);
         }
 
         public void openPort()
@@ -59,7 +59,7 @@ namespace MultiBoard
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string s = comPort.ReadExisting();
-            Console.WriteLine("Data: " + s);
+            //Console.WriteLine("Data: " + s);
 
             if (s.Split('<')[0] != s)
             {
@@ -128,7 +128,7 @@ namespace MultiBoard
                     //MultiBoard valid
                     dynamicID = input.Split('&')[2];
                     connectioValid = true;
-                    Console.WriteLine("valid connection!");
+                    //Console.WriteLine("valid connection!");
                     OnConnected(dynamicID);
                 }
             }

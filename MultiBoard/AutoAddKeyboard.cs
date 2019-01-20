@@ -19,6 +19,8 @@ namespace MultiBoard
         public string kbUUID;
         public string kbPort;
 
+        public event EventHandler AddClicked;
+
         public AutoAddKeyboard()
         {
             InitializeComponent();
@@ -43,7 +45,10 @@ namespace MultiBoard
         {
             if(checkName(NAME_TEXT_BOX.Text))
             {
-                //true
+                //add keyboard to list
+                kbName = NAME_TEXT_BOX.Text;
+                kbUUID = SELECT_KEYBOARD_COMBOX.SelectedItem.ToString();
+                OnAddClicked();
             }
             else
             {
@@ -53,12 +58,21 @@ namespace MultiBoard
 
         private bool checkName(string NAME)
         {
+            //TODO make it better
             if(NAME == "" || NAME == null)
             {
                 return false;
             }
 
             return true;
+        }
+
+        protected virtual void OnAddClicked()
+        {
+            if (AddClicked != null)
+            {
+                AddClicked(this, EventArgs.Empty);
+            }
         }
     }
 }
