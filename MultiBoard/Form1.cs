@@ -244,7 +244,7 @@ namespace MultiBoard
                 string comport = getPortFromID(kb.getKeyboardUUID());
                 if(comport == null)
                 {
-                    WARRNING_BUTTON.Visible = true;
+                    this.Invoke(new Action(() => { WARRNING_BUTTON.Visible = true; }));
                 }
                 else
                 {
