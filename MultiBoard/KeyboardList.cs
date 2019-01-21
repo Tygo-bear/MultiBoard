@@ -13,7 +13,8 @@ namespace MultiBoard
     public partial class KeyboardList : UserControl
     {
         public event EventHandler<itemName> SelectedItem;
-        public event EventHandler<itemName> SettingsSelectedItem;
+
+        private Point NextPoint = new Point(31, 31);
 
         private List<KeyboardListPanel> kblp = new List<KeyboardListPanel>();
 
@@ -29,22 +30,28 @@ namespace MultiBoard
             foreach (string aItem in items)
             {
                 string[] splits = aItem.Split('|');
-                ListViewItem item = new ListViewItem(splits[1]);
-                item.SubItems.Add(splits[0]);
-
-                //listView1.Items.Add(item);
-                
+                addItem(splits[0], splits[1], "");
             }
         }
 
         public void addItem(string itemName, string uuidItem, string comportItem)
         {
             KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem);
-            obj.Location = new Point(30,30);
+            obj.Location = NextPoint;
             obj.Visible = true;
             MAIN_PANEL.Controls.Add(obj);
 
             kblp.Add(obj);
+
+            if(NextPoint.X == 31)
+            {
+                NextPoint.X = NextPoint.X + obj.Width + 31;
+            }
+            else
+            {
+                NextPoint.X = 31;
+                NextPoint.Y = NextPoint.Y + obj.Height + 31;
+            }
         }
 
     }
