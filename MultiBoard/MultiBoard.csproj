@@ -101,6 +101,12 @@
     <Compile Include="KeyboardList.Designer.cs">
       <DependentUpon>KeyboardList.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyboardListPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KeyboardListPanel.Designer.cs">
+      <DependentUpon>KeyboardListPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeyboardScanner.cs" />
     <Compile Include="KeySpace.cs" />
     <Compile Include="ManuallyAddKeyboard.cs">
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardList.resx">
       <DependentUpon>KeyboardList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyboardListPanel.resx">
+      <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManuallyAddKeyboard.resx">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
