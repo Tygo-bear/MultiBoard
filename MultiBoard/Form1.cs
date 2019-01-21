@@ -46,13 +46,13 @@ namespace MultiBoard
 
             ListkeyboardElement = new KeyboardList();
             ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
-            ListkeyboardElement.Location = new Point(31, 31);
+            ListkeyboardElement.Location = new Point(32, 31);
             this.Controls.Add(ListkeyboardElement);
 
             scanner.loadList(115200);
 
             AddKeyboardContr = new addKeyboard();
-            AddKeyboardContr.Location = new Point(31, 31); ;
+            AddKeyboardContr.Location = new Point(32, 31); ;
             this.Controls.Add(AddKeyboardContr);
             AddKeyboardContr.AddKeyboarde += keyboardAdded;
 
@@ -78,7 +78,7 @@ namespace MultiBoard
             File.WriteAllLines(MAIN_DIRECTORY + @"\keyboards.inf", writeAll, Encoding.UTF8);
 
             KeyBoard obj = new KeyBoard();
-            obj.Location = new Point(31, 31);
+            obj.Location = new Point(32, 31);
             obj.Visible = true;
             this.Controls.Add(obj);
             obj.BringToFront();
@@ -193,7 +193,7 @@ namespace MultiBoard
                     string[] splits = boards[i].Split('|');
 
                     KeyBoard obj = new KeyBoard();
-                    obj.Location = new Point(31, 31);
+                    obj.Location = new Point(32, 31);
                     obj.Visible = false;
                     this.Controls.Add(obj);
 
