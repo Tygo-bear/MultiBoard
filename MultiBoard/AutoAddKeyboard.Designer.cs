@@ -36,6 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.ADD_BUTTON = new System.Windows.Forms.Button();
             this.BAKC_BUTTON = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.MANUAL_ADD_PANEL.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -132,10 +133,20 @@
             this.BAKC_BUTTON.UseVisualStyleBackColor = false;
             this.BAKC_BUTTON.Click += new System.EventHandler(this.BAKC_BUTTON_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(268, 391);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(327, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "All active keyboards have to restart when a new keyboard is added!";
+            // 
             // AutoAddKeyboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BAKC_BUTTON);
             this.Controls.Add(this.ADD_BUTTON);
             this.Controls.Add(this.panel2);
@@ -147,6 +158,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,5 +172,6 @@
         private System.Windows.Forms.TextBox NAME_TEXT_BOX;
         private System.Windows.Forms.Button ADD_BUTTON;
         private System.Windows.Forms.Button BAKC_BUTTON;
+        private System.Windows.Forms.Label label1;
     }
 }
