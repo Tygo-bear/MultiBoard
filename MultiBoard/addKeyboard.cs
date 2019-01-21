@@ -49,10 +49,8 @@ namespace MultiBoard
                 refreshing = true;
                 AUTO_ADD_LABEL.Text = "Searching...";
                 REFRESH_BUTTON.Enabled = false;
-                refreshKeyboards();
-                REFRESH_BUTTON.Enabled = true;
-                displayKeyboardCount();
 
+                refreshKeyboards();
             }
             else
             {
@@ -81,11 +79,7 @@ namespace MultiBoard
 
         private void refreshKeyboards()
         {
-            KeyboardScanner kbs = new KeyboardScanner();
-            kbs.loadList(115200);
-
-            filterKeyboards(kbs.ports, kbs.uuid);
-            refreshing = false;
+            BACKGROUND_SCANNER.RunWorkerAsync();
         }
 
         public void idBlackListUpdate(List<string> blackIDs)
@@ -173,6 +167,21 @@ namespace MultiBoard
             kbId = aakb.kbUUID;
             kbPort = aakb.kbPort;
             OnAddKeyboarde();
+        }
+
+        private void BACKGROUND_SCANNER_DoWork(object sender, DoWorkEventArgs e)
+        {
+            KeyboardScanner kbs = new KeyboardScanner();
+            kbs.loadList(115200);
+
+            filterKeyboards(kbs.ports, kbs.uuid);
+            refreshing = false;
+
+            this.Invoke(new Action(() => {
+                REFRESH_BUTTON.Enabled = true;
+                displayKeyboardCount();
+            }));
+            
         }
     }
 }

@@ -37,6 +37,7 @@
             this.CANCEL_PANEL = new System.Windows.Forms.Panel();
             this.CANCEL_LABEL = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.BACKGROUND_SCANNER = new System.ComponentModel.BackgroundWorker();
             this.AUTO_ADD_PANEL.SuspendLayout();
             this.MANUAL_ADD_PANEL.SuspendLayout();
             this.CANCEL_PANEL.SuspendLayout();
@@ -137,6 +138,10 @@
             this.panel4.Size = new System.Drawing.Size(854, 506);
             this.panel4.TabIndex = 2;
             // 
+            // BACKGROUND_SCANNER
+            // 
+            this.BACKGROUND_SCANNER.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BACKGROUND_SCANNER_DoWork);
+            // 
             // addKeyboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,5 +170,6 @@
         private System.Windows.Forms.Panel CANCEL_PANEL;
         private System.Windows.Forms.Label CANCEL_LABEL;
         private System.Windows.Forms.Panel panel4;
+        private System.ComponentModel.BackgroundWorker BACKGROUND_SCANNER;
     }
 }
