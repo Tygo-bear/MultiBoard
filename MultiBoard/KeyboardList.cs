@@ -13,6 +13,9 @@ namespace MultiBoard
     public partial class KeyboardList : UserControl
     {
         public event EventHandler<itemName> SelectedItem;
+        public event EventHandler<itemName> SettingsSelectedItem;
+
+        private List<KeyboardListPanel> kblp = new List<KeyboardListPanel>();
 
         public KeyboardList()
         {
@@ -21,7 +24,7 @@ namespace MultiBoard
 
         public void loaditems(string[] items)
         {
-            listView1.Clear();
+            kblp.Clear();
 
             foreach (string aItem in items)
             {
@@ -29,27 +32,21 @@ namespace MultiBoard
                 ListViewItem item = new ListViewItem(splits[1]);
                 item.SubItems.Add(splits[0]);
 
-                listView1.Items.Add(item);
+                //listView1.Items.Add(item);
                 
             }
         }
 
         public void addItem(string itemName, string uuidItem, string comportItem)
         {
-            ListViewItem item = new ListViewItem(itemName);
-            item.SubItems.Add(uuidItem);
+            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem);
+            obj.Location = new Point(30,30);
+            obj.Visible = true;
+            MAIN_PANEL.Controls.Add(obj);
 
-            listView1.Items.Add(item);
+            kblp.Add(obj);
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                SelectedItem(this, new itemName() { name = listView1.SelectedItems[0].Text});
-            }
-
-        }
     }
 
     public class itemName : EventArgs
