@@ -39,6 +39,8 @@ namespace MultiBoard
             KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem);
             obj.Location = NextPoint;
             obj.Visible = true;
+            obj.BoardSettingsClicked += BSclikced;
+            obj.OpenBoardClicked += OBclicked;
             MAIN_PANEL.Controls.Add(obj);
 
             kblp.Add(obj);
@@ -54,6 +56,22 @@ namespace MultiBoard
             }
         }
 
+        private void OBclicked(object sender, EventArgs e)
+        {
+            foreach(KeyboardListPanel k in kblp)
+            {
+                if(k == sender)
+                {
+                    SelectedItem(this, new itemName() { name = k.kbname });
+                }
+            }
+            
+        }
+
+        private void BSclikced(object sender, EventArgs e)
+        {
+            
+        }
     }
 
     public class itemName : EventArgs

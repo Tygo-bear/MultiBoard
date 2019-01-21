@@ -19,6 +19,8 @@ namespace MultiBoard
 
             NAME_LABEL.Text = name;
             UUID_LABEL.Text = uuid;
+            kbname = name;
+            kbUUID = uuid;
         }
 
         public event EventHandler OpenBoardClicked;
@@ -58,7 +60,7 @@ namespace MultiBoard
         {
             if(OpenBoardClicked != null)
             {
-                OpenBoardClicked(sender, e);
+                OpenBoardClicked(this, e);
             }
         }
 
@@ -66,7 +68,7 @@ namespace MultiBoard
         {
             if(BoardSettingsClicked != null)
             {
-                BoardSettingsClicked(sender, e);
+                BoardSettingsClicked(this, e);
             }
         }
     }
