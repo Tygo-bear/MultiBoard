@@ -49,6 +49,7 @@ namespace MultiBoard
                 kbName = NAME_TEXT_BOX.Text;
                 kbUUID = SELECT_KEYBOARD_COMBOX.SelectedItem.ToString();
                 OnAddClicked();
+                this.Dispose();
             }
             else
             {

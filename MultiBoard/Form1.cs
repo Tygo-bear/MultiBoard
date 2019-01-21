@@ -79,8 +79,9 @@ namespace MultiBoard
 
             KeyBoard obj = new KeyBoard();
             obj.Location = new Point(31, 31);
-            obj.Visible = false;
+            obj.Visible = true;
             this.Controls.Add(obj);
+            obj.BringToFront();
 
             obj.setKeyBoardName(name);
             obj.setKeyboardUUID(uuid);
