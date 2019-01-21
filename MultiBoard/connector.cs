@@ -123,13 +123,16 @@ namespace MultiBoard
         {
             if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && connectioValid == false)
             {
-                if(input.Split('&')[1] == staticID)
+                if (input.Split('&').Length > 2)
                 {
-                    //MultiBoard valid
-                    dynamicID = input.Split('&')[2];
-                    connectioValid = true;
-                    //Console.WriteLine("valid connection!");
-                    OnConnected(dynamicID);
+                    if (input.Split('&')[1] == staticID)
+                    {
+                        //MultiBoard valid
+                        dynamicID = input.Split('&')[2];
+                        connectioValid = true;
+                        //Console.WriteLine("valid connection!");
+                        OnConnected(dynamicID);
+                    }
                 }
             }
         }
