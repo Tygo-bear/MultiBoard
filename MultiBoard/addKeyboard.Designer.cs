@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addKeyboard));
             this.AUTO_ADD_PANEL = new System.Windows.Forms.Panel();
-            this.MANUAL_ADD_PANEL = new System.Windows.Forms.Panel();
-            this.CANCEL_PANEL = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.AUTO_ADD_LABEL = new System.Windows.Forms.Label();
-            this.MANUALY_ADD_LABEL = new System.Windows.Forms.Label();
-            this.CANCEL_LABEL = new System.Windows.Forms.Label();
             this.REFRESH_BUTTON = new System.Windows.Forms.Button();
+            this.AUTO_ADD_LABEL = new System.Windows.Forms.Label();
+            this.MANUAL_ADD_PANEL = new System.Windows.Forms.Panel();
+            this.MANUALY_ADD_LABEL = new System.Windows.Forms.Label();
+            this.CANCEL_PANEL = new System.Windows.Forms.Panel();
+            this.CANCEL_LABEL = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.AUTO_ADD_PANEL.SuspendLayout();
             this.MANUAL_ADD_PANEL.SuspendLayout();
             this.CANCEL_PANEL.SuspendLayout();
@@ -54,36 +54,21 @@
             this.AUTO_ADD_PANEL.TabIndex = 0;
             this.AUTO_ADD_PANEL.Click += new System.EventHandler(this.AUTO_ADD_PANEL_Click);
             // 
-            // MANUAL_ADD_PANEL
+            // REFRESH_BUTTON
             // 
-            this.MANUAL_ADD_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.MANUAL_ADD_PANEL.Controls.Add(this.MANUALY_ADD_LABEL);
-            this.MANUAL_ADD_PANEL.Location = new System.Drawing.Point(258, 192);
-            this.MANUAL_ADD_PANEL.Name = "MANUAL_ADD_PANEL";
-            this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(353, 72);
-            this.MANUAL_ADD_PANEL.TabIndex = 1;
-            this.MANUAL_ADD_PANEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
-            // 
-            // CANCEL_PANEL
-            // 
-            this.CANCEL_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.CANCEL_PANEL.Controls.Add(this.CANCEL_LABEL);
-            this.CANCEL_PANEL.Location = new System.Drawing.Point(343, 324);
-            this.CANCEL_PANEL.Name = "CANCEL_PANEL";
-            this.CANCEL_PANEL.Size = new System.Drawing.Size(185, 56);
-            this.CANCEL_PANEL.TabIndex = 1;
-            this.CANCEL_PANEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.CANCEL_PANEL);
-            this.panel4.Controls.Add(this.AUTO_ADD_PANEL);
-            this.panel4.Controls.Add(this.MANUAL_ADD_PANEL);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(854, 506);
-            this.panel4.TabIndex = 2;
+            this.REFRESH_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.REFRESH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("REFRESH_BUTTON.BackgroundImage")));
+            this.REFRESH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.REFRESH_BUTTON.FlatAppearance.BorderSize = 0;
+            this.REFRESH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.REFRESH_BUTTON.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.REFRESH_BUTTON.Location = new System.Drawing.Point(288, 12);
+            this.REFRESH_BUTTON.Margin = new System.Windows.Forms.Padding(0);
+            this.REFRESH_BUTTON.Name = "REFRESH_BUTTON";
+            this.REFRESH_BUTTON.Size = new System.Drawing.Size(50, 50);
+            this.REFRESH_BUTTON.TabIndex = 1;
+            this.REFRESH_BUTTON.UseVisualStyleBackColor = false;
+            this.REFRESH_BUTTON.Click += new System.EventHandler(this.REFRESH_BUTTON_Click);
             // 
             // AUTO_ADD_LABEL
             // 
@@ -97,6 +82,16 @@
             this.AUTO_ADD_LABEL.Text = "No keyboards detected";
             this.AUTO_ADD_LABEL.Click += new System.EventHandler(this.AUTO_ADD_PANEL_Click);
             // 
+            // MANUAL_ADD_PANEL
+            // 
+            this.MANUAL_ADD_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.MANUAL_ADD_PANEL.Controls.Add(this.MANUALY_ADD_LABEL);
+            this.MANUAL_ADD_PANEL.Location = new System.Drawing.Point(258, 192);
+            this.MANUAL_ADD_PANEL.Name = "MANUAL_ADD_PANEL";
+            this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(353, 72);
+            this.MANUAL_ADD_PANEL.TabIndex = 1;
+            this.MANUAL_ADD_PANEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
+            // 
             // MANUALY_ADD_LABEL
             // 
             this.MANUALY_ADD_LABEL.AutoSize = true;
@@ -108,6 +103,16 @@
             this.MANUALY_ADD_LABEL.TabIndex = 1;
             this.MANUALY_ADD_LABEL.Text = "Add keyboard manually";
             this.MANUALY_ADD_LABEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
+            // 
+            // CANCEL_PANEL
+            // 
+            this.CANCEL_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.CANCEL_PANEL.Controls.Add(this.CANCEL_LABEL);
+            this.CANCEL_PANEL.Location = new System.Drawing.Point(343, 324);
+            this.CANCEL_PANEL.Name = "CANCEL_PANEL";
+            this.CANCEL_PANEL.Size = new System.Drawing.Size(185, 56);
+            this.CANCEL_PANEL.TabIndex = 1;
+            this.CANCEL_PANEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
             // 
             // CANCEL_LABEL
             // 
@@ -121,21 +126,16 @@
             this.CANCEL_LABEL.Text = "Cancel";
             this.CANCEL_LABEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
             // 
-            // REFRESH_BUTTON
+            // panel4
             // 
-            this.REFRESH_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.REFRESH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("REFRESH_BUTTON.BackgroundImage")));
-            this.REFRESH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.REFRESH_BUTTON.FlatAppearance.BorderSize = 0;
-            this.REFRESH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.REFRESH_BUTTON.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.REFRESH_BUTTON.Location = new System.Drawing.Point(288, 12);
-            this.REFRESH_BUTTON.Margin = new System.Windows.Forms.Padding(0);
-            this.REFRESH_BUTTON.Name = "REFRESH_BUTTON";
-            this.REFRESH_BUTTON.Size = new System.Drawing.Size(50, 50);
-            this.REFRESH_BUTTON.TabIndex = 1;
-            this.REFRESH_BUTTON.UseVisualStyleBackColor = false;
-            this.REFRESH_BUTTON.Click += new System.EventHandler(this.REFRESH_BUTTON_Click);
+            this.panel4.Controls.Add(this.CANCEL_PANEL);
+            this.panel4.Controls.Add(this.AUTO_ADD_PANEL);
+            this.panel4.Controls.Add(this.MANUAL_ADD_PANEL);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(854, 506);
+            this.panel4.TabIndex = 2;
             // 
             // addKeyboard
             // 
