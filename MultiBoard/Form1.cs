@@ -109,7 +109,7 @@ namespace MultiBoard
 
         private void CLOSE_B_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Visible = false;
         }
 
         private void MINIMIZE_B_Click(object sender, EventArgs e)
@@ -320,6 +320,25 @@ namespace MultiBoard
             AddKeyboardContr.Visible = true;
             AddKeyboardContr.BringToFront();
 
+        }
+
+        private void NOTIFY_ICO_Click(object sender, EventArgs e)
+        {
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void NOTIFY_ICO_CONTENT_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if(e.ClickedItem.Text == "Close")
+            {
+                this.Close();
+            }
+            else if(e.ClickedItem.Text == "Open")
+            {
+                this.Visible = true;
+                this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.MINIMIZE_B = new System.Windows.Forms.Button();
@@ -44,10 +45,15 @@
             this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.NOTIFY_ICO = new System.Windows.Forms.NotifyIcon(this.components);
+            this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TOP_PANEL.SuspendLayout();
             this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
             this.BOTTEM_PANEL.SuspendLayout();
+            this.NOTIFY_ICO_CONTENT.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -251,6 +257,37 @@
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
+            // NOTIFY_ICO
+            // 
+            this.NOTIFY_ICO.ContextMenuStrip = this.NOTIFY_ICO_CONTENT;
+            this.NOTIFY_ICO.Icon = ((System.Drawing.Icon)(resources.GetObject("NOTIFY_ICO.Icon")));
+            this.NOTIFY_ICO.Text = "MultiBoard";
+            this.NOTIFY_ICO.Visible = true;
+            this.NOTIFY_ICO.Click += new System.EventHandler(this.NOTIFY_ICO_Click);
+            // 
+            // NOTIFY_ICO_CONTENT
+            // 
+            this.NOTIFY_ICO_CONTENT.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.openToolStripMenuItem});
+            this.NOTIFY_ICO_CONTENT.Name = "NOTIFY_ICO_CONTENT";
+            this.NOTIFY_ICO_CONTENT.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.NOTIFY_ICO_CONTENT.ShowImageMargin = false;
+            this.NOTIFY_ICO_CONTENT.Size = new System.Drawing.Size(156, 70);
+            this.NOTIFY_ICO_CONTENT.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.NOTIFY_ICO_CONTENT_ItemClicked);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +305,7 @@
             this.LEFT_PENEL.ResumeLayout(false);
             this.BOTTEM_PANEL.ResumeLayout(false);
             this.BOTTEM_PANEL.PerformLayout();
+            this.NOTIFY_ICO_CONTENT.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -289,6 +327,10 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button ADD_KEYBOARD_BUTTON;
         private System.Windows.Forms.Button WARRNING_BUTTON;
+        private System.Windows.Forms.NotifyIcon NOTIFY_ICO;
+        private System.Windows.Forms.ContextMenuStrip NOTIFY_ICO_CONTENT;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 
