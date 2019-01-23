@@ -41,6 +41,7 @@
             this.KEYBOARD_B = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
+            this.ERROR_LABEL = new System.Windows.Forms.Label();
             this.WARRNING_BUTTON = new System.Windows.Forms.Button();
             this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,7 +50,7 @@
             this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ERROR_LABEL = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.TOP_PANEL.SuspendLayout();
             this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
@@ -60,6 +61,7 @@
             // TOP_PANEL
             // 
             this.TOP_PANEL.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.TOP_PANEL.Controls.Add(this.label2);
             this.TOP_PANEL.Controls.Add(this.MINIMIZE_B);
             this.TOP_PANEL.Controls.Add(this.CLOSE_B);
             this.TOP_PANEL.Controls.Add(this.TOP_ICON_PANEL);
@@ -211,6 +213,14 @@
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(858, 34);
             this.BOTTEM_PANEL.TabIndex = 3;
             // 
+            // ERROR_LABEL
+            // 
+            this.ERROR_LABEL.AutoSize = true;
+            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
+            this.ERROR_LABEL.Name = "ERROR_LABEL";
+            this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
+            this.ERROR_LABEL.TabIndex = 8;
+            // 
             // WARRNING_BUTTON
             // 
             this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -290,13 +300,16 @@
             this.openToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
-            // ERROR_LABEL
+            // label2
             // 
-            this.ERROR_LABEL.AutoSize = true;
-            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
-            this.ERROR_LABEL.Name = "ERROR_LABEL";
-            this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
-            this.ERROR_LABEL.TabIndex = 8;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label2.Location = new System.Drawing.Point(38, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "V1.0.0.0";
             // 
             // Form1
             // 
@@ -311,6 +324,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.TOP_PANEL.ResumeLayout(false);
+            this.TOP_PANEL.PerformLayout();
             this.TOP_ICON_PANEL.ResumeLayout(false);
             this.LEFT_PENEL.ResumeLayout(false);
             this.BOTTEM_PANEL.ResumeLayout(false);
@@ -342,6 +356,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Label ERROR_LABEL;
+        private System.Windows.Forms.Label label2;
     }
 }
 
