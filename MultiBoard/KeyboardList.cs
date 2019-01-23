@@ -36,7 +36,7 @@ namespace MultiBoard
 
         public void addItem(string itemName, string uuidItem, string comportItem)
         {
-            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem);
+            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem);
             obj.Location = NextPoint;
             obj.Visible = true;
             obj.BoardSettingsClicked += BSclikced;
@@ -70,7 +70,13 @@ namespace MultiBoard
 
         private void BSclikced(object sender, EventArgs e)
         {
-            
+            KeyboardListPanel k = sender as KeyboardListPanel;
+            KeyboardSettings obj = new KeyboardSettings(k.kbname, k.kbuuid, k.kbport);
+            obj.Location = new Point(0, 0);
+            obj.Visible = true;
+            this.Controls.Add(obj);
+            obj.BringToFront();
+
         }
     }
 

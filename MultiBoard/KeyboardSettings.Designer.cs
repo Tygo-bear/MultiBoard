@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.KEYBOARD_NAME_TEXTBOX = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.KEYBOARD_UUID_TEXTBOX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.KEYBOARD_COMP_TEXTBOX = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.BAKC_BUTTON = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BACK_BUTTON = new System.Windows.Forms.Button();
+            this.DELETE_BUTTON = new System.Windows.Forms.Button();
+            this.SAVE_BUTTON = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -55,6 +55,13 @@
             this.panel1.Size = new System.Drawing.Size(370, 62);
             this.panel1.TabIndex = 0;
             // 
+            // KEYBOARD_NAME_TEXTBOX
+            // 
+            this.KEYBOARD_NAME_TEXTBOX.Location = new System.Drawing.Point(16, 29);
+            this.KEYBOARD_NAME_TEXTBOX.Name = "KEYBOARD_NAME_TEXTBOX";
+            this.KEYBOARD_NAME_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_NAME_TEXTBOX.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -66,29 +73,22 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
-            // KEYBOARD_NAME_TEXTBOX
-            // 
-            this.KEYBOARD_NAME_TEXTBOX.Location = new System.Drawing.Point(16, 29);
-            this.KEYBOARD_NAME_TEXTBOX.Name = "KEYBOARD_NAME_TEXTBOX";
-            this.KEYBOARD_NAME_TEXTBOX.Size = new System.Drawing.Size(351, 20);
-            this.KEYBOARD_NAME_TEXTBOX.TabIndex = 1;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.KEYBOARD_UUID_TEXTBOX);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(240, 187);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(370, 62);
             this.panel2.TabIndex = 2;
             // 
-            // textBox1
+            // KEYBOARD_UUID_TEXTBOX
             // 
-            this.textBox1.Location = new System.Drawing.Point(16, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(351, 20);
-            this.textBox1.TabIndex = 1;
+            this.KEYBOARD_UUID_TEXTBOX.Location = new System.Drawing.Point(16, 29);
+            this.KEYBOARD_UUID_TEXTBOX.Name = "KEYBOARD_UUID_TEXTBOX";
+            this.KEYBOARD_UUID_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_UUID_TEXTBOX.TabIndex = 1;
             // 
             // label2
             // 
@@ -104,19 +104,19 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.KEYBOARD_COMP_TEXTBOX);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(240, 270);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(370, 62);
             this.panel3.TabIndex = 3;
             // 
-            // textBox2
+            // KEYBOARD_COMP_TEXTBOX
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(351, 20);
-            this.textBox2.TabIndex = 1;
+            this.KEYBOARD_COMP_TEXTBOX.Location = new System.Drawing.Point(16, 29);
+            this.KEYBOARD_COMP_TEXTBOX.Name = "KEYBOARD_COMP_TEXTBOX";
+            this.KEYBOARD_COMP_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_COMP_TEXTBOX.TabIndex = 1;
             // 
             // label3
             // 
@@ -129,60 +129,63 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "COM port";
             // 
-            // BAKC_BUTTON
+            // BACK_BUTTON
             // 
-            this.BAKC_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.BAKC_BUTTON.FlatAppearance.BorderSize = 0;
-            this.BAKC_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BAKC_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BAKC_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.BAKC_BUTTON.Location = new System.Drawing.Point(3, 517);
-            this.BAKC_BUTTON.Name = "BAKC_BUTTON";
-            this.BAKC_BUTTON.Size = new System.Drawing.Size(119, 53);
-            this.BAKC_BUTTON.TabIndex = 8;
-            this.BAKC_BUTTON.Text = "< BACK";
-            this.BAKC_BUTTON.UseVisualStyleBackColor = false;
+            this.BACK_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BACK_BUTTON.FlatAppearance.BorderSize = 0;
+            this.BACK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BACK_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BACK_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.BACK_BUTTON.Location = new System.Drawing.Point(3, 452);
+            this.BACK_BUTTON.Name = "BACK_BUTTON";
+            this.BACK_BUTTON.Size = new System.Drawing.Size(119, 53);
+            this.BACK_BUTTON.TabIndex = 8;
+            this.BACK_BUTTON.Text = "< BACK";
+            this.BACK_BUTTON.UseVisualStyleBackColor = false;
+            this.BACK_BUTTON.Click += new System.EventHandler(this.BACK_BUTTON_Click);
             // 
-            // button2
+            // DELETE_BUTTON
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(240, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 53);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "DELETE";
-            this.button2.UseVisualStyleBackColor = false;
+            this.DELETE_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.DELETE_BUTTON.FlatAppearance.BorderSize = 0;
+            this.DELETE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DELETE_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DELETE_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.DELETE_BUTTON.Location = new System.Drawing.Point(240, 352);
+            this.DELETE_BUTTON.Name = "DELETE_BUTTON";
+            this.DELETE_BUTTON.Size = new System.Drawing.Size(137, 53);
+            this.DELETE_BUTTON.TabIndex = 9;
+            this.DELETE_BUTTON.Text = "DELETE";
+            this.DELETE_BUTTON.UseVisualStyleBackColor = false;
+            this.DELETE_BUTTON.Click += new System.EventHandler(this.DELETE_BUTTON_Click);
             // 
-            // button1
+            // SAVE_BUTTON
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(383, 352);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 53);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "SAVE";
-            this.button1.UseVisualStyleBackColor = false;
+            this.SAVE_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.SAVE_BUTTON.FlatAppearance.BorderSize = 0;
+            this.SAVE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SAVE_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SAVE_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.SAVE_BUTTON.Location = new System.Drawing.Point(383, 352);
+            this.SAVE_BUTTON.Name = "SAVE_BUTTON";
+            this.SAVE_BUTTON.Size = new System.Drawing.Size(227, 53);
+            this.SAVE_BUTTON.TabIndex = 10;
+            this.SAVE_BUTTON.Text = "SAVE";
+            this.SAVE_BUTTON.UseVisualStyleBackColor = false;
+            this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
             // KeyboardSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.BAKC_BUTTON);
+            this.Controls.Add(this.SAVE_BUTTON);
+            this.Controls.Add(this.DELETE_BUTTON);
+            this.Controls.Add(this.BACK_BUTTON);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "KeyboardSettings";
-            this.Size = new System.Drawing.Size(889, 573);
+            this.Size = new System.Drawing.Size(889, 508);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -199,13 +202,13 @@
         private System.Windows.Forms.TextBox KEYBOARD_NAME_TEXTBOX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox KEYBOARD_UUID_TEXTBOX;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox KEYBOARD_COMP_TEXTBOX;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button BAKC_BUTTON;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BACK_BUTTON;
+        private System.Windows.Forms.Button DELETE_BUTTON;
+        private System.Windows.Forms.Button SAVE_BUTTON;
     }
 }

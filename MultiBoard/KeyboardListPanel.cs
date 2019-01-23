@@ -13,7 +13,7 @@ namespace MultiBoard
     public partial class KeyboardListPanel : UserControl
     {
 
-        public KeyboardListPanel(string name, string uuid)
+        public KeyboardListPanel(string name, string uuid, string port)
         {
             InitializeComponent();
 
@@ -21,6 +21,7 @@ namespace MultiBoard
             UUID_LABEL.Text = uuid;
             kbname = name;
             kbUUID = uuid;
+            kbPort = port;
         }
 
         public event EventHandler OpenBoardClicked;
@@ -29,6 +30,7 @@ namespace MultiBoard
 
         private string kbName;
         private string kbUUID;
+        private string kbPort;
 
         public string kbname
         {
@@ -53,6 +55,18 @@ namespace MultiBoard
             {
                 kbUUID = value;
                 UUID_LABEL.Text = kbUUID;
+            }
+        }
+
+        public string kbport
+        {
+            get
+            {
+                return kbPort;
+            }
+            set
+            {
+                kbPort = value;
             }
         }
 
