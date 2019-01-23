@@ -343,5 +343,6 @@ namespace MultiBoard
                 this.WindowState = FormWindowState.Normal;
             }
         }
+
     }
 }
