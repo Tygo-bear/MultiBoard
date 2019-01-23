@@ -49,6 +49,7 @@
             this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ERROR_LABEL = new System.Windows.Forms.Label();
             this.TOP_PANEL.SuspendLayout();
             this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
@@ -200,6 +201,7 @@
             // 
             this.BOTTEM_PANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BOTTEM_PANEL.BackColor = System.Drawing.Color.Linen;
+            this.BOTTEM_PANEL.Controls.Add(this.ERROR_LABEL);
             this.BOTTEM_PANEL.Controls.Add(this.WARRNING_BUTTON);
             this.BOTTEM_PANEL.Controls.Add(this.TOGGLE_B);
             this.BOTTEM_PANEL.Controls.Add(this.label1);
@@ -273,20 +275,28 @@
             this.NOTIFY_ICO_CONTENT.Name = "NOTIFY_ICO_CONTENT";
             this.NOTIFY_ICO_CONTENT.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.NOTIFY_ICO_CONTENT.ShowImageMargin = false;
-            this.NOTIFY_ICO_CONTENT.Size = new System.Drawing.Size(156, 70);
+            this.NOTIFY_ICO_CONTENT.Size = new System.Drawing.Size(79, 48);
             this.NOTIFY_ICO_CONTENT.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.NOTIFY_ICO_CONTENT_ItemClicked);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
             this.openToolStripMenuItem.Text = "Open";
+            // 
+            // ERROR_LABEL
+            // 
+            this.ERROR_LABEL.AutoSize = true;
+            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
+            this.ERROR_LABEL.Name = "ERROR_LABEL";
+            this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
+            this.ERROR_LABEL.TabIndex = 8;
             // 
             // Form1
             // 
@@ -331,6 +341,7 @@
         private System.Windows.Forms.ContextMenuStrip NOTIFY_ICO_CONTENT;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.Label ERROR_LABEL;
     }
 }
 

@@ -244,7 +244,10 @@ namespace MultiBoard
                 string comport = getPortFromID(kb.getKeyboardUUID());
                 if(comport == null)
                 {
-                    this.Invoke(new Action(() => { WARRNING_BUTTON.Visible = true; }));
+                    this.Invoke(new Action(() => {
+                        WARRNING_BUTTON.Visible = true;
+                        ERROR_LABEL.Text = kb.getKeyboardName() + " --> not found!";
+                    }));
                 }
                 else
                 {
