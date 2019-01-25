@@ -149,6 +149,7 @@
             this.Controls.Add(this.IGNORE_PANEL);
             this.Name = "ErrorOptions";
             this.Size = new System.Drawing.Size(212, 163);
+            this.Leave += new System.EventHandler(this.ErrorOptions_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.IGNORE_PBOX)).EndInit();
             this.IGNORE_PANEL.ResumeLayout(false);
             this.IGNORE_PANEL.PerformLayout();

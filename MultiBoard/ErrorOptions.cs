@@ -35,5 +35,10 @@ namespace MultiBoard
         {
             reloadClicked(this, EventArgs.Empty);
         }
+
+        private void ErrorOptions_Leave(object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
     }
 }

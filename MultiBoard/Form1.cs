@@ -23,6 +23,7 @@ namespace MultiBoard
         KeyboardList ListkeyboardElement;
         KeyboardScanner scanner = new KeyboardScanner();
         addKeyboard AddKeyboardContr;
+        ErrorOptions errorContr = new ErrorOptions();
 
         //resouces images
         //===============================
@@ -49,6 +50,19 @@ namespace MultiBoard
             ListkeyboardElement.Location = new Point(32, 31);
             this.Controls.Add(ListkeyboardElement);
 
+            //errorcontr
+            errorContr.ignoreClicked += errorIgnore;
+            errorContr.reloadClicked += errorReload;
+            errorContr.viewClicked += errorView;
+
+            Point p = new Point();
+            p.X = this.Width - errorContr.Width;
+            p.Y = this.Height - errorContr.Height - 34;
+            errorContr.Location = p;
+
+            errorContr.Visible = false;
+            this.Controls.Add(errorContr);
+
             scanner.loadList(115200);
 
             AddKeyboardContr = new addKeyboard();
@@ -60,6 +74,21 @@ namespace MultiBoard
             backgroundWorker1.RunWorkerAsync();
 
             
+        }
+
+        private void errorView(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void errorReload(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void errorIgnore(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void keyboardAdded(object sender, EventArgs e)
@@ -349,5 +378,10 @@ namespace MultiBoard
             }
         }
 
+        private void WARRNING_BUTTON_Click(object sender, EventArgs e)
+        {
+            errorContr.Visible = true;
+            errorContr.BringToFront();
+        }
     }
 }
