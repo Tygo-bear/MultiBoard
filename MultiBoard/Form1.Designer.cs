@@ -236,7 +236,7 @@
             // 
             this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Linen;
             this.WARRNING_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("WARRNING_BUTTON.BackgroundImage")));
             this.WARRNING_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.WARRNING_BUTTON.FlatAppearance.BorderSize = 0;
