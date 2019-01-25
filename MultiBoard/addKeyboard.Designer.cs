@@ -135,7 +135,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(889, 573);
+            this.panel4.Size = new System.Drawing.Size(857, 508);
             this.panel4.TabIndex = 2;
             // 
             // BACKGROUND_SCANNER
@@ -148,7 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel4);
             this.Name = "addKeyboard";
-            this.Size = new System.Drawing.Size(889, 573);
+            this.Size = new System.Drawing.Size(857, 508);
             this.AUTO_ADD_PANEL.ResumeLayout(false);
             this.AUTO_ADD_PANEL.PerformLayout();
             this.MANUAL_ADD_PANEL.ResumeLayout(false);
