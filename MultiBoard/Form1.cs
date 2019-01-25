@@ -327,8 +327,13 @@ namespace MultiBoard
 
         private void NOTIFY_ICO_Click(object sender, EventArgs e)
         {
-            this.Visible = true;
-            this.WindowState = FormWindowState.Normal;
+            MouseEventArgs me = (MouseEventArgs)e;
+            if (me.Button == MouseButtons.Left)
+            {
+                this.Visible = true;
+                this.WindowState = FormWindowState.Normal;
+            }
+
         }
 
         private void NOTIFY_ICO_CONTENT_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
