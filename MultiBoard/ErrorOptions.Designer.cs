@@ -55,6 +55,7 @@
             this.IGNORE_PBOX.Size = new System.Drawing.Size(50, 50);
             this.IGNORE_PBOX.TabIndex = 0;
             this.IGNORE_PBOX.TabStop = false;
+            this.IGNORE_PBOX.Click += new System.EventHandler(this.IGNORE_PANEL_Click);
             // 
             // IGNORE_PANEL
             // 
@@ -76,6 +77,7 @@
             this.IGNORE_LABEL.Size = new System.Drawing.Size(86, 16);
             this.IGNORE_LABEL.TabIndex = 1;
             this.IGNORE_LABEL.Text = "Ignore error";
+            this.IGNORE_LABEL.Click += new System.EventHandler(this.IGNORE_PANEL_Click);
             // 
             // RELOAD_PAENEL
             // 
@@ -97,6 +99,7 @@
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Reload boards";
+            this.label1.Click += new System.EventHandler(this.RELOAD_PAENEL_Click);
             // 
             // pictureBox1
             // 
@@ -107,6 +110,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(50, 50);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.RELOAD_PAENEL_Click);
             // 
             // VIEW_PANEL
             // 
@@ -128,6 +132,7 @@
             this.label2.Size = new System.Drawing.Size(75, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "View error";
+            this.label2.Click += new System.EventHandler(this.VIEW_PANEL_Click);
             // 
             // pictureBox2
             // 
@@ -138,6 +143,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(50, 50);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.VIEW_PANEL_Click);
             // 
             // ErrorOptions
             // 

@@ -56,8 +56,8 @@ namespace MultiBoard
             errorContr.viewClicked += errorView;
 
             Point p = new Point();
-            p.X = this.Width - errorContr.Width;
-            p.Y = this.Height - errorContr.Height - 34;
+            p.X = this.Width - errorContr.Width - 5;
+            p.Y = this.Height - errorContr.Height - 34 - 5;
             errorContr.Location = p;
 
             errorContr.Visible = false;
@@ -380,8 +380,15 @@ namespace MultiBoard
 
         private void WARRNING_BUTTON_Click(object sender, EventArgs e)
         {
-            errorContr.Visible = true;
-            errorContr.BringToFront();
+            if (errorContr.Visible == false)
+            {
+                errorContr.Visible = true;
+                errorContr.BringToFront();
+            }
+            else
+            {
+                errorContr.Visible = false;
+            }
         }
     }
 }
