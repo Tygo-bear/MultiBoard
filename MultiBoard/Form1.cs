@@ -83,12 +83,47 @@ namespace MultiBoard
 
         private void errorReload(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
+            ERROR_LABEL.Text = "";
+            errorContr.Hide();
+            WARRNING_BUTTON.Visible = false;
+
+            //unloading
+            foreach(connector c in connectorList)
+            {
+                c.closePort();
+            }
+            connectorList.Clear();
+
+            foreach(KeyBoard k in keyboardList)
+            {
+                k.Dispose();
+            }
+            keyboardList.Clear();
+
+
+            ListkeyboardElement.Dispose();
+            ListkeyboardElement = new KeyboardList();
+            ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
+            ListkeyboardElement.Location = new Point(32, 31);
+            this.Controls.Add(ListkeyboardElement);
+
+
+            //loading
+            scanner.loadList(115200);
+
+            loadingBoards();
+            backgroundWorker1.CancelAsync();
+            backgroundWorker1.RunWorkerAsync();
+
+
         }
 
         private void errorIgnore(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ERROR_LABEL.Text = "";
+            errorContr.Hide();
+            WARRNING_BUTTON.Visible = false;
         }
 
         private void keyboardAdded(object sender, EventArgs e)
