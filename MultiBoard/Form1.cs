@@ -77,7 +77,7 @@ namespace MultiBoard
 
         private void errorView(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void errorReload(object sender, EventArgs e)
