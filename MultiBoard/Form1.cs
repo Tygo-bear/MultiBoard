@@ -44,7 +44,6 @@ namespace MultiBoard
         {
             InitializeComponent();
 
-
             ListkeyboardElement = new KeyboardList();
             ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
             ListkeyboardElement.Location = new Point(32, 31);
