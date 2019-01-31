@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,20 @@ namespace MultiBoard
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form1());
+            }
+        }
+
+        [DllImport("USER32.DLL")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        static private void ThreadFormVisable(Form frm)
+        {
+            if (frm != null)
+            {
+                // display the form and bring to foreground.
+                frm.Visible = true;
+                frm.WindowState = FormWindowState.Normal;
+                frm.Show();
+                SetForegroundWindow(frm.Handle);
             }
         }
     }
