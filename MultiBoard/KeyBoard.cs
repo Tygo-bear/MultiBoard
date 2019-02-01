@@ -122,21 +122,25 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
-        public void keyDown(string KEY, bool allEnebled)
+        public void keyDown(string KEY,string keyboardUUID, bool allEnebled)
         {
-            Console.WriteLine("Recieved: " + KEY);
-            foreach(Key aKey in keyList)
+            if (keyboardUUID == ID)
             {
-                aKey.keyDown(KEY, allEnebled);
+                foreach (Key aKey in keyList)
+                {
+                    aKey.keyDown(KEY, allEnebled);
+                }
             }
         }
 
-        public void keyUp(string KEY, bool allEnebled)
+        public void keyUp(string KEY, string keyboardUUID , bool allEnebled)
         {
-            Console.WriteLine("Recieved: " + KEY);
-            foreach (Key aKey in keyList)
+            if (keyboardUUID == ID)
             {
-                aKey.keyUp(KEY, allEnebled);
+                foreach (Key aKey in keyList)
+                {
+                    aKey.keyUp(KEY, allEnebled);
+                }
             }
         }
 

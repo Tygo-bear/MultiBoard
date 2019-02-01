@@ -128,7 +128,7 @@ namespace MultiBoard
                     if (input.Split('&')[1] == staticID)
                     {
                         //MultiBoard valid
-                        dynamicID = input.Split('&')[2];
+                        dynamicID = input.Split('&')[2].Replace("\r\n", string.Empty);
                         connectioValid = true;
                         //Console.WriteLine("valid connection!");
                         OnConnected(dynamicID);

@@ -291,17 +291,20 @@ namespace MultiBoard
 
         void onKeyDown(object sender, KeyEventArgs e)
         {
+            connector c = sender as connector;
+
             foreach(KeyBoard aKeyBoard in keyboardList)
             {
-                aKeyBoard.keyDown(e.key, toggleB);
+                aKeyBoard.keyDown(e.key,c.dynamicID, toggleB);
             }
         }
 
         void onKeyUp(object sender, KeyEventArgs e)
         {
+            connector c = sender as connector;
             foreach (KeyBoard aKeyBoard in keyboardList)
             {
-                aKeyBoard.keyUp(e.key, toggleB);
+                aKeyBoard.keyUp(e.key, c.dynamicID, toggleB);
             }
         }
 
@@ -322,6 +325,7 @@ namespace MultiBoard
                 else
                 {
                     connector conect1 = new connector();
+                    conect1.dynamicID = kb.getKeyboardUUID();
                     conect1.setup(comport, 115200);
                     conect1.openPort();
                     conect1.KeyDown += onKeyDown;
