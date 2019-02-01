@@ -127,7 +127,6 @@ namespace MultiBoard
 
         private void keyboardAdded(object sender, EventArgs e)
         {
-            Console.WriteLine("keyboard add clicked");
             string[] allLines = File.ReadAllLines(MAIN_DIRECTORY + @"\keyboards.inf");
             List<string> sstring = allLines.ToList();
 
@@ -156,6 +155,14 @@ namespace MultiBoard
 
             keyboardList.Add(obj);
 
+            //unloading
+            foreach (connector c in connectorList)
+            {
+                c.closePort();
+            }
+            connectorList.Clear();
+
+            //loading
             backgroundWorker1.CancelAsync();
             backgroundWorker1.RunWorkerAsync();
         }
