@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MultiBoard.connector">
+    <Position X="5" Y="1.5" Width="2.25" />
+    <Members>
+      <Method Name="comPort_DataReceived" Hidden="true" />
+      <Method Name="comPort_ErrorReceived" Hidden="true" />
+      <Method Name="OnConnected" Hidden="true" />
+      <Method Name="OnConnectionLost" Hidden="true" />
+      <Method Name="OnError" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnKeyPressed" Hidden="true" />
+      <Method Name="OnKeyUp" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAIgAGgwQkAgAgCAAAAIAIgAiIAAAAAAQBACAA=</HashCode>
+      <FileName>connector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="KeyBoard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MultiBoard.KeyBoard">
+    <Position X="8.25" Y="1.25" Width="2.75" />
+    <Members>
+      <Field Name="ADD_ITEM_P" Hidden="true" />
+      <Method Name="addNewKeyClicked" Hidden="true" />
+      <Field Name="BOTTEM_PANEL" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="KEY_LIST" Hidden="true" />
+      <Method Name="KEY_LIST_SelectedIndexChanged" Hidden="true" />
+      <Method Name="KeyBoard" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="LEFT_PANEL" Hidden="true" />
+      <Field Name="NAME_LABEL" Hidden="true" />
+      <Method Name="onDeleteKey" Hidden="true" />
+      <Method Name="onUpdatedKey" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="TOP_PANEL" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICACCAAAACIgiBQCAICAACAiDAQEhAAoEQBgKABAAQA=</HashCode>
+      <FileName>KeyBoard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Key" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MultiBoard.Key">
+    <Position X="12" Y="1.25" Width="2.5" />
+    <Members>
+      <Field Name="BOTTEM_PANEL" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="DELETE_BUTTON" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="ENABLE_BUTTON" Hidden="true" />
+      <Method Name="ENABLE_BUTTON_CLICK" Hidden="true" />
+      <Field Name="groupBox1" Hidden="true" />
+      <Field Name="groupBox2" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="Key" Hidden="true" />
+      <Field Name="KEY_DOWN_P" Hidden="true" />
+      <Field Name="KEY_LABEL" Hidden="true" />
+      <Field Name="KEY_NAME_TEXTBOX" Hidden="true" />
+      <Method Name="KEY_NAME_TEXTBOX_TextChanged" Hidden="true" />
+      <Field Name="KEY_PRESSED_p" Hidden="true" />
+      <Field Name="KEY_RECORD_PANEL" Hidden="true" />
+      <Field Name="KEY_UP_P" Hidden="true" />
+      <Method Name="keyDownClicked" Hidden="true" />
+      <Method Name="keyPressedClicked" Hidden="true" />
+      <Method Name="keyUpClicked" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="LOCATION_TEXTBOX" Hidden="true" />
+      <Method Name="OnDeleteKey" Hidden="true" />
+      <Method Name="OnUpdatedData" Hidden="true" />
+      <Field Name="OPEN_FILE_BUTTON" Hidden="true" />
+      <Method Name="OPEN_FILE_CLICKED" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="RECORD_KEY_BUTTON" Hidden="true" />
+      <Field Name="SAVE_BUTTON" Hidden="true" />
+      <Method Name="SAVE_BUTTON_Click" Hidden="true" />
+      <Method Name="settings" Hidden="true" />
+      <Method Name="StartRecordingClicked" Hidden="true" />
+      <Field Name="TOGGLE_OFF" Hidden="true" />
+      <Field Name="TOGGLE_ON" Hidden="true" />
+      <Field Name="TOP_PANEL" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>JBQJAAABACABTJARkIDAkgMKKBCAgMACHCBECDBBAEA=</HashCode>
+      <FileName>Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

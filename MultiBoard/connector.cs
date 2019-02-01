@@ -203,6 +203,14 @@ namespace MultiBoard
                 KeyPressed(this, new KeyEventArgs() { key = KEY });
             }
         }
+
+        public KeyBoard KeyBoard
+        {
+            get => default(KeyBoard);
+            set
+            {
+            }
+        }
     }
 
     

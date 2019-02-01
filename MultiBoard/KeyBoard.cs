@@ -236,5 +236,13 @@ namespace MultiBoard
                 k.nameAllKeys = KeyNameList;
             }
         }
+
+        public Key Key
+        {
+            get => default(Key);
+            set
+            {
+            }
+        }
     }
 }
