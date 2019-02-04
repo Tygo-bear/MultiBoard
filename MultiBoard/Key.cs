@@ -30,6 +30,7 @@ namespace MultiBoard
         private bool enabled = true;
         private string KeyTag;
         private string ExecuteLocation;
+        private string oldName;
 
         public List<string> nameAllKeys = new List<string>();
 
@@ -46,6 +47,7 @@ namespace MultiBoard
         public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc)
         {
             keyName = name;
+            oldName = keyName;
             KEY_NAME_TEXTBOX.Text = name;
 
             if(eventState == 1)
@@ -305,6 +307,11 @@ namespace MultiBoard
 
         private bool checkKeyName(string s)
         {
+            if(s == oldName)
+            {
+                return true;
+            }
+
             foreach(string n in nameAllKeys)
             {
                 if(n == s)

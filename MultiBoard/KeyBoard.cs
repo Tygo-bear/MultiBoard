@@ -39,7 +39,19 @@ namespace MultiBoard
             this.Controls.Add(obj);
 
             loadListVieuw();
+            updateKeyNameList();
+        }
 
+        private bool checkName(string s)
+        {
+            foreach(string n in KeyNameList)
+            {
+                if(n == s)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public KeyBoard()
@@ -55,7 +67,14 @@ namespace MultiBoard
                 akey.Visible = false;
             }
 
-            createKey("KEY " + (numberOfKeys + 1), 1, "NONE", true, "");
+            string kname;
+            do
+            {
+                kname = "KEY " + (++numberOfKeys);
+            }
+            while (!checkName(kname));
+
+            createKey(kname, 1, "NONE", true, "");
 
         }
 
