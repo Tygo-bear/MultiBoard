@@ -59,7 +59,7 @@
             // 
             this.KEYBOARD_NAME_TEXTBOX.Location = new System.Drawing.Point(16, 29);
             this.KEYBOARD_NAME_TEXTBOX.Name = "KEYBOARD_NAME_TEXTBOX";
-            this.KEYBOARD_NAME_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_NAME_TEXTBOX.Size = new System.Drawing.Size(342, 20);
             this.KEYBOARD_NAME_TEXTBOX.TabIndex = 1;
             // 
             // label1
@@ -87,7 +87,7 @@
             // 
             this.KEYBOARD_UUID_TEXTBOX.Location = new System.Drawing.Point(16, 29);
             this.KEYBOARD_UUID_TEXTBOX.Name = "KEYBOARD_UUID_TEXTBOX";
-            this.KEYBOARD_UUID_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_UUID_TEXTBOX.Size = new System.Drawing.Size(342, 20);
             this.KEYBOARD_UUID_TEXTBOX.TabIndex = 1;
             // 
             // label2
@@ -115,7 +115,7 @@
             // 
             this.KEYBOARD_COMP_TEXTBOX.Location = new System.Drawing.Point(16, 29);
             this.KEYBOARD_COMP_TEXTBOX.Name = "KEYBOARD_COMP_TEXTBOX";
-            this.KEYBOARD_COMP_TEXTBOX.Size = new System.Drawing.Size(351, 20);
+            this.KEYBOARD_COMP_TEXTBOX.Size = new System.Drawing.Size(342, 20);
             this.KEYBOARD_COMP_TEXTBOX.TabIndex = 1;
             // 
             // label3
