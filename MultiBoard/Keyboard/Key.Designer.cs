@@ -219,6 +219,7 @@
             this.KEY_RECORD_PANEL.Name = "KEY_RECORD_PANEL";
             this.KEY_RECORD_PANEL.Size = new System.Drawing.Size(269, 30);
             this.KEY_RECORD_PANEL.TabIndex = 3;
+            this.KEY_RECORD_PANEL.Leave += new System.EventHandler(this.KEY_RECORD_PANEL_Leave);
             // 
             // KEY_LABEL
             // 

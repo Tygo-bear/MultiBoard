@@ -64,16 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addKeyboard.cs">
+    <Compile Include="add keyboard\addKeyboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="addKeyboard.Designer.cs">
+    <Compile Include="add keyboard\addKeyboard.Designer.cs">
       <DependentUpon>addKeyboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoAddKeyboard.cs">
+    <Compile Include="add keyboard\AutoAddKeyboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AutoAddKeyboard.Designer.cs">
+    <Compile Include="add keyboard\AutoAddKeyboard.Designer.cs">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="connector.cs" />
@@ -89,50 +89,50 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Key.cs">
+    <Compile Include="Keyboard\Key.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Key.Designer.cs">
+    <Compile Include="Keyboard\Key.Designer.cs">
       <DependentUpon>Key.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyBoard.cs">
+    <Compile Include="Keyboard\KeyBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyBoard.Designer.cs">
+    <Compile Include="Keyboard\KeyBoard.Designer.cs">
       <DependentUpon>KeyBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardList.cs">
+    <Compile Include="Keyboard\KeyboardList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyboardList.Designer.cs">
+    <Compile Include="Keyboard\KeyboardList.Designer.cs">
       <DependentUpon>KeyboardList.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardListPanel.cs">
+    <Compile Include="Keyboard\KeyboardListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyboardListPanel.Designer.cs">
+    <Compile Include="Keyboard\KeyboardListPanel.Designer.cs">
       <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardScanner.cs" />
-    <Compile Include="KeyboardSettings.cs">
+    <Compile Include="Keyboard\KeyboardScanner.cs" />
+    <Compile Include="Keyboard\KeyboardSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyboardSettings.Designer.cs">
+    <Compile Include="Keyboard\KeyboardSettings.Designer.cs">
       <DependentUpon>KeyboardSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="KeySpace.cs" />
-    <Compile Include="ManuallyAddKeyboard.cs">
+    <Compile Include="add keyboard\ManuallyAddKeyboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ManuallyAddKeyboard.Designer.cs">
+    <Compile Include="add keyboard\ManuallyAddKeyboard.Designer.cs">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="addKeyboard.resx">
+    <EmbeddedResource Include="add keyboard\addKeyboard.resx">
       <DependentUpon>addKeyboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AutoAddKeyboard.resx">
+    <EmbeddedResource Include="add keyboard\AutoAddKeyboard.resx">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorOptions.resx">
@@ -141,22 +141,22 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Key.resx">
+    <EmbeddedResource Include="Keyboard\Key.resx">
       <DependentUpon>Key.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyBoard.resx">
+    <EmbeddedResource Include="Keyboard\KeyBoard.resx">
       <DependentUpon>KeyBoard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardList.resx">
+    <EmbeddedResource Include="Keyboard\KeyboardList.resx">
       <DependentUpon>KeyboardList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardListPanel.resx">
+    <EmbeddedResource Include="Keyboard\KeyboardListPanel.resx">
       <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardSettings.resx">
+    <EmbeddedResource Include="Keyboard\KeyboardSettings.resx">
       <DependentUpon>KeyboardSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManuallyAddKeyboard.resx">
+    <EmbeddedResource Include="add keyboard\ManuallyAddKeyboard.resx">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

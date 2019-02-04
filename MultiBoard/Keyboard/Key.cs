@@ -322,6 +322,13 @@ namespace MultiBoard
 
             return true;
         }
+
+        private void KEY_RECORD_PANEL_Leave(object sender, EventArgs e)
+        {
+            recordingKey = false;
+            RECORD_KEY_BUTTON.Text = "Start recording";
+            KEY_RECORD_PANEL.BackColor = groupBox1.BackColor;
+        }
     }
 
     public class objKeyEventArgs : EventArgs
