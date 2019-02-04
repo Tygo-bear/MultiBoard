@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MultiBoard"
-#define MyAppVersion "1.0.0.1"
+#define MyAppVersion "1.0.0.2"
 #define MyAppPublisher "Tygo, Inc."
 #define MyAppExeName "MultiBoard.exe"
 
@@ -18,7 +18,7 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=C:\Users\Gebruiker\Desktop\DevProjects\2de toetsenbord\MultiBoard
-OutputBaseFilename=setup
+OutputBaseFilename=MultiBoard_setup
 SetupIconFile=C:\Users\Gebruiker\Desktop\DevProjects\2de toetsenbord\icons\logo\MultiBoard.ico
 Compression=lzma
 SolidCompression=yes
