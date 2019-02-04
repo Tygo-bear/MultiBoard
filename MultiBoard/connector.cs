@@ -180,7 +180,7 @@ namespace MultiBoard
 
             if (KeyDown != null)
             {
-                //KSpace.keyDown(KEY);
+                KSpace.keyDown(KEY);
                 KeyDown(this, new KeyEventArgs() { key = KEY });
             }
         }
@@ -191,7 +191,7 @@ namespace MultiBoard
 
             if (KeyUp != null)
             {
-                //KSpace.keyUp(KEY);
+                KSpace.keyUp(KEY);
                 KeyUp(this, new KeyEventArgs() { key = KEY });
             }
         }

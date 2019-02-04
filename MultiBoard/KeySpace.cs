@@ -8,41 +8,45 @@ namespace MultiBoard
 {
     class KeySpace
     {
-        public string[] keys;
-        public bool[] state;
+        public List<string> keys = new List<string>();
+        public List<bool> state = new List<bool>();
 
         public void keyDown(string key)
         {
-            for(int i =0; i < keys.Length; i++)
+            int teller = 0;
+            foreach(string k in keys)
             {
-                if(keys[i] == key)
+                if(k == key)
                 {
-                    state[i] = true;
+                    state[teller] = true;
                     return;
                 }
+                teller++;
             }
-            keys[keys.Length] = key;
-            state[keys.Length] = true;
+            keys.Add(key);
+            state.Add(true);
         }
 
         public void keyUp(string key)
         {
-            for (int i = 0; i < keys.Length; i++)
+            int teller = 0;
+            foreach (string k in keys)
             {
-                if (keys[i] == key)
+                if (k == key)
                 {
-                    state[i] = false;
+                    state[teller] = false;
                     return;
                 }
+                teller++;
             }
-            keys[keys.Length] = key;
-            state[keys.Length] = false;
+            keys.Add(key);
+            state.Add(false);
         }
 
         public void emtySpace()
         {
-            keys = null;
-            state = null;
+            keys.Clear();
+            state.Clear();
         }
 
     }
