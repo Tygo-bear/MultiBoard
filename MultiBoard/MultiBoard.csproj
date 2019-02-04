@@ -127,6 +127,12 @@
     <Compile Include="add keyboard\ManuallyAddKeyboard.Designer.cs">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="overlays\SavedOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\SavedOverlay.Designer.cs">
+      <DependentUpon>SavedOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="add keyboard\addKeyboard.resx">
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="add keyboard\ManuallyAddKeyboard.resx">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="overlays\SavedOverlay.resx">
+      <DependentUpon>SavedOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

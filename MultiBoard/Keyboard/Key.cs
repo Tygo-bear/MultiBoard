@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MultiBoard.overlays;
 
 namespace MultiBoard
 {
@@ -288,6 +289,11 @@ namespace MultiBoard
             {
                 KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
                 OnUpdatedData();
+
+                SavedOverlay ol = new SavedOverlay();
+                ol.Location = new Point(0, 0);
+                this.Controls.Add(ol);
+                ol.BringToFront();
             }
             else
             {
