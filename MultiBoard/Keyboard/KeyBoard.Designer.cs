@@ -127,6 +127,8 @@
             // 
             this.KEYLIST_PANEL.AutoScroll = true;
             this.KEYLIST_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.KEYLIST_PANEL.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEYLIST_PANEL.BackgroundImage")));
+            this.KEYLIST_PANEL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.KEYLIST_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KEYLIST_PANEL.Location = new System.Drawing.Point(0, 35);
             this.KEYLIST_PANEL.Margin = new System.Windows.Forms.Padding(0);

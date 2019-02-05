@@ -30,6 +30,8 @@ namespace MultiBoard
 
         public void createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
         {
+            KEYLIST_PANEL.BackgroundImage = null;
+
             Key obj = new Key();
             obj.Location = new Point(194, 0);
 
