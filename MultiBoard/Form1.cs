@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MultiBoard
 {
-    public partial class Form1 : Form
+    public partial class MultiBoard : Form
     {
         //variables
         //==================================
@@ -40,7 +40,7 @@ namespace MultiBoard
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Form1()
+        public MultiBoard()
         {
             InitializeComponent();
 
@@ -293,14 +293,15 @@ namespace MultiBoard
         {
             connector c = sender as connector;
 
-            foreach(KeyBoard aKeyBoard in keyboardList)
+            foreach (KeyBoard aKeyBoard in keyboardList)
             {
-                aKeyBoard.keyDown(e.key,c.dynamicID, toggleB);
+                aKeyBoard.keyDown(e.key, c.dynamicID, toggleB);
             }
         }
 
         void onKeyUp(object sender, KeyEventArgs e)
         {
+
             connector c = sender as connector;
             foreach (KeyBoard aKeyBoard in keyboardList)
             {

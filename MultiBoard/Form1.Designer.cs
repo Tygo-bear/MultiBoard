@@ -1,6 +1,6 @@
 ﻿namespace MultiBoard
 {
-    partial class Form1
+    partial class MultiBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.MINIMIZE_B = new System.Windows.Forms.Button();
@@ -81,7 +81,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.0.2";
+            this.label2.Text = "Beta V1.0.0.3";
             // 
             // MINIMIZE_B
             // 
@@ -312,7 +312,7 @@
             this.openToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
-            // Form1
+            // MultiBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -322,7 +322,7 @@
             this.Controls.Add(this.TOP_PANEL);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MultiBoard";
             this.Text = "Form1";
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
