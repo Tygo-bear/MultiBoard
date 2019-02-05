@@ -313,20 +313,6 @@ namespace MultiBoard
 
         private bool checkKeyName(string s)
         {
-            /*
-            if(s == oldName)
-            {
-                return true;
-            }
-
-            foreach(string n in nameAllKeys)
-            {
-                if(n == s)
-                {
-                    return false;
-                }
-            }
-            */
             return true;
         }
 

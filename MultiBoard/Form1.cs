@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiBoard.overlays;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,7 @@ namespace MultiBoard
         KeyboardScanner scanner = new KeyboardScanner();
         addKeyboard AddKeyboardContr;
         ErrorOptions errorContr = new ErrorOptions();
+        LoadingMainOverlay LoadOverlay = new LoadingMainOverlay();
 
         //resouces images
         //===============================
@@ -43,7 +45,13 @@ namespace MultiBoard
         public MultiBoard()
         {
             InitializeComponent();
+            
+            //loadOverlay control
+            LoadOverlay.Location = new Point(0, 0);
+            this.Controls.Add(LoadOverlay);
+            LoadOverlay.BringToFront();
 
+            //keyboard list control
             ListkeyboardElement = new KeyboardList();
             ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
             ListkeyboardElement.Location = new Point(32, 31);
@@ -62,17 +70,14 @@ namespace MultiBoard
             errorContr.Visible = false;
             this.Controls.Add(errorContr);
 
-            scanner.loadList(115200);
-
+            //addkeyboard control
             AddKeyboardContr = new addKeyboard();
             AddKeyboardContr.Location = new Point(32, 31); ;
             this.Controls.Add(AddKeyboardContr);
             AddKeyboardContr.AddKeyboarde += keyboardAdded;
 
-            loadingBoards();
-            backgroundWorker1.RunWorkerAsync();
-
-            
+            //loading keyboards
+            backgroundWorker2.RunWorkerAsync();
         }
 
         private void errorView(object sender, EventArgs e)
@@ -82,40 +87,7 @@ namespace MultiBoard
 
         private void errorReload(object sender, EventArgs e)
         {
-
-            ERROR_LABEL.Text = "";
-            errorContr.Hide();
-            WARRNING_BUTTON.Visible = false;
-
-            //unloading
-            foreach(connector c in connectorList)
-            {
-                c.closePort();
-            }
-            connectorList.Clear();
-
-            foreach(KeyBoard k in keyboardList)
-            {
-                k.Dispose();
-            }
-            keyboardList.Clear();
-
-
-            ListkeyboardElement.Dispose();
-            ListkeyboardElement = new KeyboardList();
-            ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
-            ListkeyboardElement.Location = new Point(32, 31);
-            this.Controls.Add(ListkeyboardElement);
-
-
-            //loading
-            scanner.loadList(115200);
-
-            loadingBoards();
-            backgroundWorker1.CancelAsync();
-            backgroundWorker1.RunWorkerAsync();
-
-
+            reloadKeyboards();
         }
 
         private void errorIgnore(object sender, EventArgs e)
@@ -435,6 +407,61 @@ namespace MultiBoard
             {
                 errorContr.Visible = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //scanning boards
+            scanner.loadList(115200);
+            this.Invoke(new Action(() =>
+            {
+                loadingBoards();
+                backgroundWorker1.RunWorkerAsync();
+                LoadOverlay.Hide();
+            }));
+        }
+
+        private void reloadKeyboards()
+        {
+            //LoadOverlay
+            LoadOverlay.Show();
+            LoadOverlay.BringToFront();
+
+            //resetting
+            ERROR_LABEL.Text = "";
+            errorContr.Hide();
+            WARRNING_BUTTON.Visible = false;
+
+            //unloading
+            foreach (connector c in connectorList)
+            {
+                c.closePort();
+            }
+            connectorList.Clear();
+
+            foreach (KeyBoard k in keyboardList)
+            {
+                k.Dispose();
+            }
+            keyboardList.Clear();
+
+
+            ListkeyboardElement.Dispose();
+            ListkeyboardElement = new KeyboardList();
+            ListkeyboardElement.SelectedItem += UserSelectedKeyboard;
+            ListkeyboardElement.Location = new Point(32, 31);
+            this.Controls.Add(ListkeyboardElement);
+
+            //loading
+            backgroundWorker1.CancelAsync();
+            backgroundWorker2.RunWorkerAsync();
+
         }
     }
 }

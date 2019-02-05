@@ -73,6 +73,26 @@ namespace MultiBoard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eyes_1 {
+            get {
+                object obj = ResourceManager.GetObject("eyes_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eyes_2 {
+            get {
+                object obj = ResourceManager.GetObject("eyes_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap key {
             get {
                 object obj = ResourceManager.GetObject("key", resourceCulture);
