@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MultiBoard.Keyboard;
 
 namespace MultiBoard
 {
@@ -23,6 +24,9 @@ namespace MultiBoard
 
         private List<Key> keyList = new List<Key>();
         private List<string> KeyNameList = new List<string>();
+
+        private List<KeyListPanel> keyPanelList = new List<KeyListPanel>();
+        private Point nextKeyListPoint = new Point(3, 3);
 
         public void createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
         {
@@ -165,54 +169,40 @@ namespace MultiBoard
 
         public void loadListVieuw()
         {
-            KEY_LIST.Clear();
-
-            ImageList imageListSmall = new ImageList();
-            ImageList imageListLarge = new ImageList();
-
-            imageListSmall.ImageSize = new Size(50, 50);
-            imageListLarge.ImageSize = new Size(50, 50);
-
-            Image normal_key = Properties.Resources.key;
-            Image dark_key = Properties.Resources.dark_key;
-
-            imageListSmall.Images.Add(dark_key);
-            imageListSmall.Images.Add(normal_key);
-
-            imageListLarge.Images.Add(dark_key);
-            imageListLarge.Images.Add(normal_key);
-
-            KEY_LIST.SmallImageList = imageListSmall;
-            KEY_LIST.LargeImageList = imageListLarge;
+            clearKeyList();
+            nextKeyListPoint.X = 3;
+            nextKeyListPoint.Y = 3;
 
             foreach (Key aKey in keyList)
             {
-                ListViewItem item = new ListViewItem(aKey.getName(), aKey.getEnebled() ? 1 : 0);
+                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled());
 
-                item.SubItems.Add(aKey.getKeytag());
+                item.Location = nextKeyListPoint;
+                nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 3;
+                item.ClickedKey += userSelectedKey;
 
-                KEY_LIST.Items.Add(item);
+                KEYLIST_PANEL.Controls.Add(item);
+                item.BringToFront();
+
+                keyPanelList.Add(item);
             }
         }
 
-        private void KEY_LIST_SelectedIndexChanged(object sender, EventArgs e)
+        private void userSelectedKey(object sender, EventArgs e)
         {
-            if (KEY_LIST.SelectedItems.Count > 0)
+            KeyListPanel k = sender as KeyListPanel;
+            string searchName = k.kname;
+
+            foreach(Key aKey in keyList)
             {
-
-                string searh = KEY_LIST.SelectedItems[0].Text;
-
-                foreach (Key aKey in keyList)
+                if(aKey.getName() == searchName)
                 {
-
-                    if (aKey.getName() == searh)
-                    {
-                        aKey.Visible = true;
-                    }
-                    else
-                    {
-                        aKey.Visible = false;
-                    }
+                    aKey.Visible = true;
+                    aKey.BringToFront();
+                }
+                else
+                {
+                    aKey.Hide();
                 }
             }
         }
@@ -266,6 +256,15 @@ namespace MultiBoard
             set
             {
             }
+        }
+
+        public void clearKeyList()
+        {
+            foreach(KeyListPanel k in keyPanelList)
+            {
+                k.Dispose();
+            }
+            keyPanelList.Clear();
         }
     }
 }

@@ -35,8 +35,8 @@
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.ADD_ITEM_P = new System.Windows.Forms.PictureBox();
-            this.KEY_LIST = new System.Windows.Forms.ListView();
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
+            this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -112,25 +112,9 @@
             this.ADD_ITEM_P.TabStop = false;
             this.ADD_ITEM_P.Click += new System.EventHandler(this.addNewKeyClicked);
             // 
-            // KEY_LIST
-            // 
-            this.KEY_LIST.AutoArrange = false;
-            this.KEY_LIST.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.KEY_LIST.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KEY_LIST.Location = new System.Drawing.Point(0, 34);
-            this.KEY_LIST.MultiSelect = false;
-            this.KEY_LIST.Name = "KEY_LIST";
-            this.KEY_LIST.ShowGroups = false;
-            this.KEY_LIST.Size = new System.Drawing.Size(198, 436);
-            this.KEY_LIST.TabIndex = 2;
-            this.KEY_LIST.TileSize = new System.Drawing.Size(168, 60);
-            this.KEY_LIST.UseCompatibleStateImageBehavior = false;
-            this.KEY_LIST.View = System.Windows.Forms.View.List;
-            this.KEY_LIST.SelectedIndexChanged += new System.EventHandler(this.KEY_LIST_SelectedIndexChanged);
-            // 
             // LEFT_PANEL
             // 
-            this.LEFT_PANEL.Controls.Add(this.KEY_LIST);
+            this.LEFT_PANEL.Controls.Add(this.KEYLIST_PANEL);
             this.LEFT_PANEL.Controls.Add(this.TOP_PANEL);
             this.LEFT_PANEL.Controls.Add(this.BOTTEM_PANEL);
             this.LEFT_PANEL.Dock = System.Windows.Forms.DockStyle.Left;
@@ -138,6 +122,17 @@
             this.LEFT_PANEL.Name = "LEFT_PANEL";
             this.LEFT_PANEL.Size = new System.Drawing.Size(198, 506);
             this.LEFT_PANEL.TabIndex = 3;
+            // 
+            // KEYLIST_PANEL
+            // 
+            this.KEYLIST_PANEL.AutoScroll = true;
+            this.KEYLIST_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.KEYLIST_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KEYLIST_PANEL.Location = new System.Drawing.Point(0, 35);
+            this.KEYLIST_PANEL.Margin = new System.Windows.Forms.Padding(0);
+            this.KEYLIST_PANEL.Name = "KEYLIST_PANEL";
+            this.KEYLIST_PANEL.Size = new System.Drawing.Size(198, 436);
+            this.KEYLIST_PANEL.TabIndex = 2;
             // 
             // KeyBoard
             // 
@@ -165,7 +160,7 @@
         private System.Windows.Forms.Panel BOTTEM_PANEL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox ADD_ITEM_P;
-        private System.Windows.Forms.ListView KEY_LIST;
         private System.Windows.Forms.Panel LEFT_PANEL;
+        private System.Windows.Forms.Panel KEYLIST_PANEL;
     }
 }
