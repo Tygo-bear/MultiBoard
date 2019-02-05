@@ -14,19 +14,21 @@ namespace MultiBoard.Keyboard
     {
         private bool stateEnebled;
         private string kName;
+        private Key connectedKey;
 
         private Image normal_key = Properties.Resources.key;
         private Image dark_key = Properties.Resources.dark_key;
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state)
+        public KeyListPanel(string name, bool state, Key cKey)
         {
             InitializeComponent();
 
             kName = name;
             KEY_NAME_LABEL.Text = name;
             setState(state);
+            connectedKey = cKey;
         }
 
         public bool state_enebled
@@ -51,6 +53,18 @@ namespace MultiBoard.Keyboard
             {
                 kName = value;
                 KEY_NAME_LABEL.Text = value;
+            }
+        }
+
+        public Key connected_key
+        {
+            get
+            {
+                return connectedKey;
+            }
+            set
+            {
+                connectedKey = value;
             }
         }
 

@@ -313,6 +313,7 @@ namespace MultiBoard
 
         private bool checkKeyName(string s)
         {
+            /*
             if(s == oldName)
             {
                 return true;
@@ -325,7 +326,7 @@ namespace MultiBoard
                     return false;
                 }
             }
-
+            */
             return true;
         }
 

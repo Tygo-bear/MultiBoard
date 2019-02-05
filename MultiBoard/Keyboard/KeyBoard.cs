@@ -175,7 +175,7 @@ namespace MultiBoard
 
             foreach (Key aKey in keyList)
             {
-                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled());
+                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), aKey);
 
                 item.Location = nextKeyListPoint;
                 nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 3;
@@ -191,11 +191,10 @@ namespace MultiBoard
         private void userSelectedKey(object sender, EventArgs e)
         {
             KeyListPanel k = sender as KeyListPanel;
-            string searchName = k.kname;
 
             foreach(Key aKey in keyList)
             {
-                if(aKey.getName() == searchName)
+                if(aKey == k.connected_key)
                 {
                     aKey.Visible = true;
                     aKey.BringToFront();
