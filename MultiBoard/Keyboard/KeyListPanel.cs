@@ -21,7 +21,7 @@ namespace MultiBoard.Keyboard
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state, Key cKey)
+        public KeyListPanel(string name, bool state, ref Key cKey)
         {
             InitializeComponent();
 

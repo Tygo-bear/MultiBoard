@@ -175,9 +175,12 @@ namespace MultiBoard
             nextKeyListPoint.X = 3;
             nextKeyListPoint.Y = 3;
 
-            foreach (Key aKey in keyList)
+            for(int i = 0; i < keyList.Count;i++)
             {
-                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), aKey);
+                Key aKey = keyList[i];
+                ref Key refKey = ref aKey;
+
+                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), ref refKey);
 
                 item.Location = nextKeyListPoint;
                 nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 3;
