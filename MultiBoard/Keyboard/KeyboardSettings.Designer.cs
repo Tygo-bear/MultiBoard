@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyboardSettings));
             this.panel1 = new System.Windows.Forms.Panel();
             this.KEYBOARD_NAME_TEXTBOX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,9 +41,14 @@
             this.BACK_BUTTON = new System.Windows.Forms.Button();
             this.DELETE_BUTTON = new System.Windows.Forms.Button();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.LOCK_1_PICTURE = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LOCK_1_PICTURE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,6 +82,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Controls.Add(this.LOCK_1_PICTURE);
             this.panel2.Controls.Add(this.KEYBOARD_UUID_TEXTBOX);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(240, 187);
@@ -174,10 +181,48 @@
             this.SAVE_BUTTON.UseVisualStyleBackColor = false;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(836, 438);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 67);
+            this.button1.TabIndex = 11;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // LOCK_1_PICTURE
+            // 
+            this.LOCK_1_PICTURE.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LOCK_1_PICTURE.BackgroundImage")));
+            this.LOCK_1_PICTURE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LOCK_1_PICTURE.Location = new System.Drawing.Point(337, 3);
+            this.LOCK_1_PICTURE.Name = "LOCK_1_PICTURE";
+            this.LOCK_1_PICTURE.Size = new System.Drawing.Size(21, 22);
+            this.LOCK_1_PICTURE.TabIndex = 12;
+            this.LOCK_1_PICTURE.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(356, 383);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 22);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // KeyboardSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.SAVE_BUTTON);
             this.Controls.Add(this.DELETE_BUTTON);
             this.Controls.Add(this.BACK_BUTTON);
@@ -192,6 +237,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LOCK_1_PICTURE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,5 +257,8 @@
         private System.Windows.Forms.Button BACK_BUTTON;
         private System.Windows.Forms.Button DELETE_BUTTON;
         private System.Windows.Forms.Button SAVE_BUTTON;
+        private System.Windows.Forms.PictureBox LOCK_1_PICTURE;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
