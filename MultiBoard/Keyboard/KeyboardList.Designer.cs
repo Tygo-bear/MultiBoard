@@ -33,10 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MAIN_PANEL = new System.Windows.Forms.Panel();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.MAIN_PANEL.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -47,7 +45,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(857, 32);
+            this.panel2.Size = new System.Drawing.Size(854, 32);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -72,20 +70,12 @@
             // 
             // MAIN_PANEL
             // 
-            this.MAIN_PANEL.Controls.Add(this.vScrollBar1);
+            this.MAIN_PANEL.AutoScroll = true;
             this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MAIN_PANEL.Location = new System.Drawing.Point(0, 32);
             this.MAIN_PANEL.Name = "MAIN_PANEL";
-            this.MAIN_PANEL.Size = new System.Drawing.Size(857, 476);
+            this.MAIN_PANEL.Size = new System.Drawing.Size(854, 474);
             this.MAIN_PANEL.TabIndex = 1;
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(842, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(15, 476);
-            this.vScrollBar1.TabIndex = 0;
-            this.vScrollBar1.Visible = false;
             // 
             // KeyboardList
             // 
@@ -94,11 +84,10 @@
             this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.panel2);
             this.Name = "KeyboardList";
-            this.Size = new System.Drawing.Size(857, 508);
+            this.Size = new System.Drawing.Size(854, 506);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.MAIN_PANEL.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -108,6 +97,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel MAIN_PANEL;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }
