@@ -139,7 +139,6 @@ namespace MultiBoard
             backgroundWorker1.RunWorkerAsync();
         }
 
-
         private void MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
