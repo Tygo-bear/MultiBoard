@@ -133,6 +133,7 @@
     <Compile Include="add keyboard\ManuallyAddKeyboard.Designer.cs">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="overlays\LoadingMainOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
