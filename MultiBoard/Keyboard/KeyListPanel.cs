@@ -103,7 +103,7 @@ namespace MultiBoard.Keyboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.BackColor = Color.Transparent;
+            this.BackColor = Color.LightGray;
         }
     }
 }

@@ -69,10 +69,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.KEY_NAME_LABEL);
             this.Controls.Add(this.KEY_PICTURE);
             this.Name = "KeyListPanel";
-            this.Size = new System.Drawing.Size(169, 50);
+            this.Size = new System.Drawing.Size(170, 50);
             this.Click += new System.EventHandler(this.KeyListPanel_Click);
             this.MouseEnter += new System.EventHandler(this.KeyListPanel_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.KeyListPanel_MouseLeave);

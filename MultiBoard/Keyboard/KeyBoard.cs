@@ -174,7 +174,7 @@ namespace MultiBoard
         public void loadListVieuw()
         {
             clearKeyList();
-            nextKeyListPoint.X = 3;
+            nextKeyListPoint.X = 5;
             nextKeyListPoint.Y = 3;
 
             for(int i = 0; i < keyList.Count;i++)
@@ -185,7 +185,7 @@ namespace MultiBoard
                 KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), ref refKey);
 
                 item.Location = nextKeyListPoint;
-                nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 3;
+                nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 5;
                 item.ClickedKey += userSelectedKey;
 
                 KEYLIST_PANEL.Controls.Add(item);
