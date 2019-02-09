@@ -74,11 +74,13 @@ namespace MultiBoard
             }
 
             string kname;
-            do
+            kname = "KEY " + (numberOfKeys);
+
+            while (!checkName(kname))
             {
-                kname = "KEY " + (++numberOfKeys);
+                numberOfKeys++;
+                kname = "KEY " + (numberOfKeys);
             }
-            while (!checkName(kname));
 
             createKey(kname, 1, "NONE", true, "");
 
