@@ -28,7 +28,7 @@ namespace MultiBoard
         private List<KeyListPanel> keyPanelList = new List<KeyListPanel>();
         private Point nextKeyListPoint = new Point(3, 3);
 
-        public void createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
+        public Key createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
         {
             KEYLIST_PANEL.BackgroundImage = null;
 
@@ -44,8 +44,9 @@ namespace MultiBoard
             keyList.Add(obj);
             this.Controls.Add(obj);
 
-            loadListVieuw();
-            updateKeyNameList();
+            //updateKeyNameList();
+
+            return obj;
         }
 
         private bool checkName(string s)
@@ -83,7 +84,7 @@ namespace MultiBoard
             }
 
             createKey(kname, 1, "NONE", true, "");
-
+            loadListVieuw();
         }
 
         public void setKeyBoardName(string NAME)
@@ -139,14 +140,24 @@ namespace MultiBoard
                 {
                     string[] splits = line.Split('|');
 
-                    createKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
+                    Key k = createKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
+
+                    if(counter == 0)
+                    {
+                        k.Visible = true;
+                    }
+                    else
+                    {
+                        k.Visible = false;
+                    }
 
                     counter++;
                 }
             }
 
             file.Close();
-            updateKeyNameList();
+            loadListVieuw();
+            //updateKeyNameList();
         }
 
         public void keyDown(string KEY,string keyboardUUID, bool allEnebled)
@@ -173,11 +184,13 @@ namespace MultiBoard
 
         public void loadListVieuw()
         {
+
             clearKeyList();
+
             nextKeyListPoint.X = 5;
             nextKeyListPoint.Y = 3;
 
-            for(int i = 0; i < keyList.Count;i++)
+            for(int i = 0; i < keyList.Count; i++)
             {
                 Key aKey = keyList[i];
                 ref Key refKey = ref aKey;
@@ -230,7 +243,7 @@ namespace MultiBoard
             System.IO.File.WriteAllLines(saveFile, splits);
 
             loadListVieuw();
-            updateKeyNameList();
+            //updateKeyNameList();
         }
 
         void onDeleteKey(object sender, objKeyEventArgs e)
@@ -262,6 +275,7 @@ namespace MultiBoard
             {
                 k.Dispose();
             }
+
             keyPanelList.Clear();
         }
     }

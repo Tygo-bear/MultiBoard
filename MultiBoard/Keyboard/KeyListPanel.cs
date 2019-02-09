@@ -13,6 +13,7 @@ namespace MultiBoard.Keyboard
     public partial class KeyListPanel : UserControl
     {
         private bool stateEnebled;
+        private bool focus;
         private string kName;
         private Key connectedKey;
 
@@ -29,6 +30,23 @@ namespace MultiBoard.Keyboard
             KEY_NAME_LABEL.Text = name;
             setState(state);
             connectedKey = cKey;
+
+            cKey.VisibleChanged += keyVisableChange;
+        }
+
+        private void keyVisableChange(object sender, EventArgs e)
+        {
+            if(connectedKey.Visible == true)
+            {
+                this.BackColor = Color.FromArgb(252, 163, 17);
+                focus = true;
+                timer1.Stop();
+            }
+            else
+            {
+                focus = false;
+                timer1.Start();
+            }
         }
 
         public bool state_enebled
@@ -98,7 +116,10 @@ namespace MultiBoard.Keyboard
 
         private void KeyListPanel_MouseLeave(object sender, EventArgs e)
         {
-            timer1.Start();
+            if (focus == false)
+            {
+                timer1.Start();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
