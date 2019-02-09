@@ -82,9 +82,11 @@ namespace MultiBoard
             }
 
             Key k = createKey(kname, 1, "NONE", true, "");
-            k.Visible = true;
+            k.Visible = false;
 
-            loadListVieuw();
+            addKeyToListVieuw(k);
+
+            k.Visible = true;
             updateKeyNameList();
         }
 
@@ -207,6 +209,38 @@ namespace MultiBoard
 
                 keyPanelList.Add(item);
             }
+
+        }
+
+        public void addKeyToListVieuw(Key k)
+        {
+            Key aKey = k;
+            ref Key refKey = ref aKey;
+
+            KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), ref refKey);
+
+            //item.Location = nextKeyListPoint;
+            item.Location = new Point(5, keyPanelList[keyPanelList.Count - 1].Location.Y + item.Height + 5);
+            nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 5;
+            item.ClickedKey += userSelectedKey;
+
+            KEYLIST_PANEL.Controls.Add(item);
+            item.BringToFront();
+
+            keyPanelList.Add(item);
+            updateKeyNameList();
+        }
+
+        public void updateListView()
+        {
+            foreach(KeyListPanel klp in keyPanelList)
+            {
+                Key k = klp.connectedkey;
+                klp.kname = k.getName();
+                klp.setState(k.getEnebled());
+            }
+
+            updateKeyNameList();
         }
 
         private void userSelectedKey(object sender, EventArgs e)
@@ -243,7 +277,7 @@ namespace MultiBoard
 
             System.IO.File.WriteAllLines(saveFile, splits);
 
-            loadListVieuw();
+            updateListView();
             updateKeyNameList();
         }
 

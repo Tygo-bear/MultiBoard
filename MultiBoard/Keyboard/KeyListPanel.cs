@@ -49,6 +49,18 @@ namespace MultiBoard.Keyboard
             }
         }
 
+        public Key connectedkey
+        {
+            get
+            {
+                return connectedKey;
+            }
+            set
+            {
+                connectedKey = value;
+            }
+        }
+
         public bool state_enebled
         {
             get
