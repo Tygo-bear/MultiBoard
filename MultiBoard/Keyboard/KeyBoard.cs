@@ -44,8 +44,6 @@ namespace MultiBoard
             keyList.Add(obj);
             this.Controls.Add(obj);
 
-            //updateKeyNameList();
-
             return obj;
         }
 
@@ -157,7 +155,7 @@ namespace MultiBoard
 
             file.Close();
             loadListVieuw();
-            //updateKeyNameList();
+            updateKeyNameList();
         }
 
         public void keyDown(string KEY,string keyboardUUID, bool allEnebled)
@@ -243,7 +241,7 @@ namespace MultiBoard
             System.IO.File.WriteAllLines(saveFile, splits);
 
             loadListVieuw();
-            //updateKeyNameList();
+            updateKeyNameList();
         }
 
         void onDeleteKey(object sender, objKeyEventArgs e)
@@ -262,11 +260,11 @@ namespace MultiBoard
             {
                 KeyNameList.Add(k.getName());
             }
-
-            foreach (Key k in keyList)
-            {
-                k.nameAllKeys = KeyNameList;
-            }
+            
+            //foreach (Key k in keyList)
+            //{
+            //    k.nameAllKeys = KeyNameList;
+            //}
         }
 
         public void clearKeyList()
