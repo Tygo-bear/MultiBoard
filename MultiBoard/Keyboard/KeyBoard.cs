@@ -24,8 +24,8 @@ namespace MultiBoard
 
         private List<Key> keyList = new List<Key>();
         private List<string> KeyNameList = new List<string>();
-
         private List<KeyListPanel> keyPanelList = new List<KeyListPanel>();
+
         private Point nextKeyListPoint = new Point(3, 3);
 
         public Key createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
@@ -81,8 +81,11 @@ namespace MultiBoard
                 kname = "KEY " + (numberOfKeys);
             }
 
-            createKey(kname, 1, "NONE", true, "");
+            Key k = createKey(kname, 1, "NONE", true, "");
+            k.Visible = true;
+
             loadListVieuw();
+            updateKeyNameList();
         }
 
         public void setKeyBoardName(string NAME)
