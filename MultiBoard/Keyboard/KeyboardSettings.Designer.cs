@@ -104,6 +104,7 @@
             // 
             this.KEYBOARD_UUID_TEXTBOX.Location = new System.Drawing.Point(16, 29);
             this.KEYBOARD_UUID_TEXTBOX.Name = "KEYBOARD_UUID_TEXTBOX";
+            this.KEYBOARD_UUID_TEXTBOX.ReadOnly = true;
             this.KEYBOARD_UUID_TEXTBOX.Size = new System.Drawing.Size(342, 20);
             this.KEYBOARD_UUID_TEXTBOX.TabIndex = 1;
             // 
@@ -164,6 +165,7 @@
             // DELETE_BUTTON
             // 
             this.DELETE_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.DELETE_BUTTON.Enabled = false;
             this.DELETE_BUTTON.FlatAppearance.BorderSize = 0;
             this.DELETE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DELETE_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

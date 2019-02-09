@@ -256,14 +256,6 @@ namespace MultiBoard
             }
         }
 
-        public Key Key
-        {
-            get => default(Key);
-            set
-            {
-            }
-        }
-
         public void clearKeyList()
         {
             foreach(KeyListPanel k in keyPanelList)
