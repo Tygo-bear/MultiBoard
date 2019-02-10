@@ -212,6 +212,24 @@ namespace MultiBoard
 
         }
 
+        public void drawListView(List<KeyListPanel> lp)
+        {
+            foreach(KeyListPanel k in keyPanelList)
+            {
+                k.Hide();
+            }
+
+            nextKeyListPoint.X = 5;
+            nextKeyListPoint.Y = 3;
+
+            foreach (KeyListPanel k in lp)
+            {
+                k.Location = nextKeyListPoint;
+                nextKeyListPoint.Y = nextKeyListPoint.Y + k.Height + 5;
+                k.Show();
+            }
+        }
+
         public void addKeyToListVieuw(Key k)
         {
             Key aKey = k;
@@ -284,10 +302,20 @@ namespace MultiBoard
         void onDeleteKey(object sender, objKeyEventArgs e)
         {
             keyList.Remove(e.objKey);
+            foreach(KeyListPanel k in keyPanelList)
+            {
+                if(k.connectedkey == e.objKey)
+                {
+                    keyPanelList.Remove(k);
+                    k.Dispose();
+                    break;
+                }
+            }
+
             e.objKey.Dispose();
 
             onUpdatedKey(sender, EventArgs.Empty);
-            loadListVieuw();
+            drawListView(keyPanelList);
         }
 
         private void updateKeyNameList()
