@@ -1,6 +1,6 @@
 ﻿namespace MultiBoard
 {
-    partial class Key
+    partial class KeyGUI
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Key));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyGUI));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.KEY_NAME_TEXTBOX = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();

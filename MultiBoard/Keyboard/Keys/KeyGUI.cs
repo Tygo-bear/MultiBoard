@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MultiBoard.overlays;
+using MultiBoard.Keyboard.Key;
 
 namespace MultiBoard
 {
 
-    public partial class Key : UserControl
+    public partial class KeyGUI : UserControl
     {
         //resouces
         //===============================
@@ -31,6 +32,8 @@ namespace MultiBoard
         private bool enabled = true;
         private string KeyTag;
         private string ExecuteLocation;
+        private Key connectedKey;
+
         private string oldName;
 
         public List<string> nameAllKeys = new List<string>();
@@ -40,16 +43,17 @@ namespace MultiBoard
         public event EventHandler UpdatedData;
         public event EventHandler<objKeyEventArgs> DeleteKey;
 
-        public Key()
+        public KeyGUI()
         {
             InitializeComponent();
         }
 
-        public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc)
+        public void Settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
         {
             keyName = name;
             oldName = keyName;
             KEY_NAME_TEXTBOX.Text = name;
+            connectedKey = connectKey;
 
             if(eventState == 1)
             {
@@ -303,7 +307,7 @@ namespace MultiBoard
 
         protected virtual void OnDeleteKey()
         {
-            DeleteKey(this, new objKeyEventArgs() { objKey = this });
+            DeleteKey(this, new objKeyEventArgs() { objKey = connectedKey });
         }
 
         private void KEY_NAME_TEXTBOX_TextChanged(object sender, EventArgs e)

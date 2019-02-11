@@ -22,42 +22,26 @@ namespace MultiBoard.Keyboard
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state, ref Key cKey)
+        public KeyListPanel(string name, bool state, Key cKey)
         {
             InitializeComponent();
 
             kName = name;
             KEY_NAME_LABEL.Text = name;
             setState(state);
-            connectedKey = cKey;
-
-            cKey.VisibleChanged += keyVisableChange;
-        }
-
-        private void keyVisableChange(object sender, EventArgs e)
-        {
-            if(connectedKey.Visible == true)
-            {
-                this.BackColor = Color.FromArgb(252, 163, 17);
-                focus = true;
-                timer1.Stop();
-            }
-            else
-            {
-                focus = false;
-                timer1.Start();
-            }
+            ConnectedKey = cKey;
+            
         }
 
         public Key connectedkey
         {
             get
             {
-                return connectedKey;
+                return ConnectedKey;
             }
             set
             {
-                connectedKey = value;
+                ConnectedKey = value;
             }
         }
 
@@ -90,13 +74,15 @@ namespace MultiBoard.Keyboard
         {
             get
             {
-                return connectedKey;
+                return ConnectedKey;
             }
             set
             {
-                connectedKey = value;
+                ConnectedKey = value;
             }
         }
+
+        public Key ConnectedKey { get => connectedKey; set => connectedKey = value; }
 
         private void KeyListPanel_Click(object sender, EventArgs e)
         {

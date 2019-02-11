@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiBoard.Keyboard.Key
 {
-    class Key
+    public class Key
     {
         //variables
         //===============================

@@ -89,11 +89,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keyboard\Key\Key.cs" />
-    <Compile Include="Keyboard\Key\KeyGUI.cs">
+    <Compile Include="Keyboard\Keys\Key.cs" />
+    <Compile Include="Keyboard\Keys\KeyGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Keyboard\Key\KeyGUI.Designer.cs">
+    <Compile Include="Keyboard\Keys\KeyGUI.Designer.cs">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Keyboard\KeyBoard.cs">
@@ -121,10 +121,10 @@
     <Compile Include="Keyboard\KeyboardSettings.Designer.cs">
       <DependentUpon>KeyboardSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keyboard\Key\KeyListPanel.cs">
+    <Compile Include="Keyboard\Keys\KeyListPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Keyboard\Key\KeyListPanel.Designer.cs">
+    <Compile Include="Keyboard\Keys\KeyListPanel.Designer.cs">
       <DependentUpon>KeyListPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="KeySpace.cs" />
@@ -161,7 +161,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Keyboard\Key\KeyGUI.resx">
+    <EmbeddedResource Include="Keyboard\Keys\KeyGUI.resx">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Keyboard\KeyBoard.resx">
@@ -179,7 +179,7 @@
     <EmbeddedResource Include="add keyboard\ManuallyAddKeyboard.resx">
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Keyboard\Key\KeyListPanel.resx">
+    <EmbeddedResource Include="Keyboard\Keys\KeyListPanel.resx">
       <DependentUpon>KeyListPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\LoadingMainOverlay.resx">

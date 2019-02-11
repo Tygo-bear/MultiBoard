@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MultiBoard.Keyboard;
+using MultiBoard.Keyboard.Key;
 
 namespace MultiBoard
 {
@@ -19,8 +20,8 @@ namespace MultiBoard
         private string comPort;
 
         private string saveFile;
-
         private int numberOfKeys = 0;
+        private KeyGUI keyGui = new KeyGUI();
 
         private List<Key> keyList = new List<Key>();
         private List<string> KeyNameList = new List<string>();
@@ -32,17 +33,10 @@ namespace MultiBoard
         {
             KEYLIST_PANEL.BackgroundImage = null;
 
-            Key obj = new Key();
-            obj.Location = new Point(194, 0);
+            Key obj = new Key(namekey, eventState, keytag, keyEnebled, exeLoc);
 
-            obj.UpdatedData += onUpdatedKey;
-            obj.DeleteKey += onDeleteKey;
-
-            obj.settings(namekey, eventState, keytag, keyEnebled, exeLoc);
             numberOfKeys++;
-
             keyList.Add(obj);
-            this.Controls.Add(obj);
 
             return obj;
         }
@@ -62,16 +56,14 @@ namespace MultiBoard
         public KeyBoard()
         {
             InitializeComponent();
+            keyGui.Location = new Point(194, 0);
+            this.Controls.Add(keyGui);
+            keyGui.Hide();
         }
 
         private void addNewKeyClicked(object sender, EventArgs e)
         {
             //add key clicked
-            foreach(Key akey in keyList)
-            {
-                akey.Visible = false;
-            }
-
             string kname;
             kname = "KEY " + (numberOfKeys);
 
@@ -82,12 +74,12 @@ namespace MultiBoard
             }
 
             Key k = createKey(kname, 1, "NONE", true, "");
-            k.Visible = false;
+            keyGui.Settings(kname, 1, "NONE", true, "", k);
 
             addKeyToListVieuw(k);
-
-            k.Visible = true;
             updateKeyNameList();
+
+            keyGui.Show();
         }
 
         public void setKeyBoardName(string NAME)
@@ -123,6 +115,8 @@ namespace MultiBoard
 
         public void loadKeys(string mainDirecory)
         {
+            keyList.Clear();
+
             if(!File.Exists(mainDirecory + @"\" + name + ".inf"))
             {
                 File.Create(mainDirecory + @"\" + name + ".inf").Close();
@@ -144,15 +138,14 @@ namespace MultiBoard
                     string[] splits = line.Split('|');
 
                     Key k = createKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
+                    keyList.Add(k);
 
                     if(counter == 0)
                     {
-                        k.Visible = true;
+                        keyGui.Settings(k.key_name, k.eventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
+                        keyGui.Show();
                     }
-                    else
-                    {
-                        k.Visible = false;
-                    }
+                    
 
                     counter++;
                 }
@@ -196,9 +189,8 @@ namespace MultiBoard
             for(int i = 0; i < keyList.Count; i++)
             {
                 Key aKey = keyList[i];
-                ref Key refKey = ref aKey;
 
-                KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), ref refKey);
+                KeyListPanel item = new KeyListPanel(aKey.key_name, aKey.keyEnebled, aKey);
 
                 item.Location = nextKeyListPoint;
                 nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 5;
@@ -232,10 +224,8 @@ namespace MultiBoard
 
         public void addKeyToListVieuw(Key k)
         {
-            Key aKey = k;
-            ref Key refKey = ref aKey;
 
-            KeyListPanel item = new KeyListPanel(aKey.getName(), aKey.getEnebled(), ref refKey);
+            KeyListPanel item = new KeyListPanel(k.key_name, k.keyEnebled, k);
 
             //item.Location = nextKeyListPoint;
             item.Location = new Point(5, keyPanelList[keyPanelList.Count - 1].Location.Y + item.Height + 5);
@@ -253,7 +243,7 @@ namespace MultiBoard
         {
             foreach(KeyListPanel klp in keyPanelList)
             {
-                Key k = klp.connectedkey;
+                KeyGUI k = klp.connectedkey;
                 klp.kname = k.getName();
                 klp.setState(k.getEnebled());
             }
@@ -269,12 +259,7 @@ namespace MultiBoard
             {
                 if(aKey == k.connected_key)
                 {
-                    aKey.Visible = true;
-                    aKey.BringToFront();
-                }
-                else
-                {
-                    aKey.Hide();
+                    keyGui.settings(aKey.key_name, aKey.eventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, akey);
                 }
             }
         }
@@ -285,11 +270,11 @@ namespace MultiBoard
 
             foreach (Key aKey in keyList)
             {
-                lines += aKey.getName() + "|";
-                lines += aKey.getEvent() + "|";
-                lines += aKey.getKeytag() + "|";
-                lines += aKey.getEnebled() + "|";
-                lines += aKey.getExecuteLocation() + "\n";
+                lines += aKey.key_name + "|";
+                lines += aKey.eventState + "|";
+                lines += aKey.keyTag + "|";
+                lines += aKey.keyEnebled + "|";
+                lines += aKey.executeLoc + "\n";
             }
             string[] splits = lines.Split('\n');
 
@@ -312,8 +297,6 @@ namespace MultiBoard
                 }
             }
 
-            e.objKey.Dispose();
-
             onUpdatedKey(sender, EventArgs.Empty);
             drawListView(keyPanelList);
         }
@@ -321,7 +304,7 @@ namespace MultiBoard
         private void updateKeyNameList()
         {
             KeyNameList.Clear();
-            foreach(Key k in keyList)
+            foreach(KeyGUI k in keyList)
             {
                 KeyNameList.Add(k.getName());
             }
