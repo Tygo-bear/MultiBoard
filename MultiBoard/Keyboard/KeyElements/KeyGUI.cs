@@ -292,12 +292,21 @@ namespace MultiBoard
             if (checkKeyName(keyName))
             {
                 KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
+
+                connectedKey.key_name = keyName;
+                connectedKey.keyEnebled = enabled;
+                connectedKey.eventState = getEvent();
+                connectedKey.executeLoc = ExecuteLocation;
+                connectedKey.keyTag = KeyTag;
+
                 OnUpdatedData();
 
                 SavedOverlay ol = new SavedOverlay();
                 ol.Location = new Point(0, 0);
                 this.Controls.Add(ol);
                 ol.BringToFront();
+
+                
             }
             else
             {
