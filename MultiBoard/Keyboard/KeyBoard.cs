@@ -56,6 +56,10 @@ namespace MultiBoard
         public KeyBoard()
         {
             InitializeComponent();
+
+            keyGui.UpdatedData += onUpdatedKey;
+            keyGui.DeleteKey += onDeleteKey;
+
             keyGui.Location = new Point(194, 0);
             this.Controls.Add(keyGui);
             keyGui.Hide();
@@ -138,7 +142,7 @@ namespace MultiBoard
                     string[] splits = line.Split('|');
 
                     Key k = createKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
-                    keyList.Add(k);
+                    
 
                     if(counter == 0)
                     {
