@@ -74,7 +74,7 @@ namespace MultiBoard
             }
 
             Key k = createKey(kname, 1, "NONE", true, "");
-            keyGui.Settings(kname, 1, "NONE", true, "", k);
+            keyGui.settings(kname, 1, "NONE", true, "", k);
 
             addKeyToListVieuw(k);
             updateKeyNameList();
@@ -142,7 +142,7 @@ namespace MultiBoard
 
                     if(counter == 0)
                     {
-                        keyGui.Settings(k.key_name, k.eventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
+                        keyGui.settings(k.key_name, k.eventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
                         keyGui.Show();
                     }
                     
@@ -243,9 +243,9 @@ namespace MultiBoard
         {
             foreach(KeyListPanel klp in keyPanelList)
             {
-                KeyGUI k = klp.connectedkey;
-                klp.kname = k.getName();
-                klp.setState(k.getEnebled());
+                Key k = klp.connected_key;
+                klp.kname = k.key_name;
+                klp.setState(k.keyEnebled);
             }
 
             updateKeyNameList();
@@ -259,7 +259,7 @@ namespace MultiBoard
             {
                 if(aKey == k.connected_key)
                 {
-                    keyGui.settings(aKey.key_name, aKey.eventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, akey);
+                    keyGui.settings(aKey.key_name, aKey.eventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, aKey);
                 }
             }
         }
@@ -289,7 +289,7 @@ namespace MultiBoard
             keyList.Remove(e.objKey);
             foreach(KeyListPanel k in keyPanelList)
             {
-                if(k.connectedkey == e.objKey)
+                if(k.connected_key == e.objKey)
                 {
                     keyPanelList.Remove(k);
                     k.Dispose();
@@ -304,9 +304,9 @@ namespace MultiBoard
         private void updateKeyNameList()
         {
             KeyNameList.Clear();
-            foreach(KeyGUI k in keyList)
+            foreach(Key k in keyList)
             {
-                KeyNameList.Add(k.getName());
+                KeyNameList.Add(k.key_name);
             }
             
             //foreach (Key k in keyList)

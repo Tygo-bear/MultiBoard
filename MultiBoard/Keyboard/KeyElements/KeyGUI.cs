@@ -48,7 +48,7 @@ namespace MultiBoard
             InitializeComponent();
         }
 
-        public void Settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
+        public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
         {
             keyName = name;
             oldName = keyName;

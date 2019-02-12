@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MultiBoard.Keyboard.Key;
 
 namespace MultiBoard.Keyboard
 {
@@ -15,14 +16,14 @@ namespace MultiBoard.Keyboard
         private bool stateEnebled;
         private bool focus;
         private string kName;
-        private Key connectedKey;
+        private Key.Key connectedKey;
 
         private Image normal_key = Properties.Resources.key;
         private Image dark_key = Properties.Resources.dark_key;
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state, Key cKey)
+        public KeyListPanel(string name, bool state, Key.Key cKey)
         {
             InitializeComponent();
 
@@ -31,18 +32,6 @@ namespace MultiBoard.Keyboard
             setState(state);
             ConnectedKey = cKey;
             
-        }
-
-        public Key connectedkey
-        {
-            get
-            {
-                return ConnectedKey;
-            }
-            set
-            {
-                ConnectedKey = value;
-            }
         }
 
         public bool state_enebled
@@ -70,7 +59,7 @@ namespace MultiBoard.Keyboard
             }
         }
 
-        public Key connected_key
+        public Key.Key connected_key
         {
             get
             {
@@ -82,7 +71,7 @@ namespace MultiBoard.Keyboard
             }
         }
 
-        public Key ConnectedKey { get => connectedKey; set => connectedKey = value; }
+        public Key.Key ConnectedKey { get => connectedKey; set => connectedKey = value; }
 
         private void KeyListPanel_Click(object sender, EventArgs e)
         {
