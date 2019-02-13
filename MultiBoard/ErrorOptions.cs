@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard
@@ -17,23 +10,23 @@ namespace MultiBoard
             InitializeComponent();
         }
 
-        public event EventHandler ignoreClicked;
-        public event EventHandler reloadClicked;
-        public event EventHandler viewClicked;
+        public event EventHandler IgnoreClicked;
+        public event EventHandler ReloadClicked;
+        public event EventHandler ViewClicked;
 
         private void IGNORE_PANEL_Click(object sender, EventArgs e)
         {
-            ignoreClicked(this, EventArgs.Empty);
+            if (IgnoreClicked != null) IgnoreClicked(this, EventArgs.Empty);
         }
 
         private void VIEW_PANEL_Click(object sender, EventArgs e)
         {
-            viewClicked(this, EventArgs.Empty);
+            if (ViewClicked != null) ViewClicked(this, EventArgs.Empty);
         }
 
         private void RELOAD_PAENEL_Click(object sender, EventArgs e)
         {
-            reloadClicked(this, EventArgs.Empty);
+            if (ReloadClicked != null) ReloadClicked(this, EventArgs.Empty);
         }
 
         private void ErrorOptions_Leave(object sender, EventArgs e)

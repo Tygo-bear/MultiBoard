@@ -71,7 +71,7 @@
             this.TOP_PANEL.Name = "TOP_PANEL";
             this.TOP_PANEL.Size = new System.Drawing.Size(889, 31);
             this.TOP_PANEL.TabIndex = 0;
-            this.TOP_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.TOP_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // label2
             // 
@@ -304,7 +304,7 @@
             this.TOP_ICON_PANEL.Name = "TOP_ICON_PANEL";
             this.TOP_ICON_PANEL.Size = new System.Drawing.Size(32, 31);
             this.TOP_ICON_PANEL.TabIndex = 1;
-            this.TOP_ICON_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.TOP_ICON_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // MAIN_PANEL
             // 

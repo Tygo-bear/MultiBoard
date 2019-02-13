@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiBoard
+namespace MultiBoard.Keyboard
 {
     public partial class KeyboardListPanel : UserControl
     {
@@ -19,54 +12,54 @@ namespace MultiBoard
 
             NAME_LABEL.Text = name;
             UUID_LABEL.Text = uuid;
-            kbname = name;
-            kbUUID = uuid;
-            kbPort = port;
+            KbName = name;
+            _kbUuid = uuid;
+            _kbPort = port;
         }
 
         public event EventHandler OpenBoardClicked;
         public event EventHandler BoardSettingsClicked;
 
 
-        private string kbName;
-        private string kbUUID;
-        private string kbPort;
+        private string _kbName;
+        private string _kbUuid;
+        private string _kbPort;
 
-        public string kbname
+        public string KbName
         {
             get
             {
-                return kbName;
+                return _kbName;
             }
             set
             {
-                kbName = value;
-                NAME_LABEL.Text = kbName;
+                _kbName = value;
+                NAME_LABEL.Text = _kbName;
             }
         }
 
-        public string kbuuid
+        public string KbUuid
         {
             get
             {
-                return kbUUID;
+                return _kbUuid;
             }
             set
             {
-                kbUUID = value;
-                UUID_LABEL.Text = kbUUID;
+                _kbUuid = value;
+                UUID_LABEL.Text = _kbUuid;
             }
         }
 
-        public string kbport
+        public string KbPort
         {
             get
             {
-                return kbPort;
+                return _kbPort;
             }
             set
             {
-                kbPort = value;
+                _kbPort = value;
             }
         }
 

@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MultiBoard.Keyboard;
-using MultiBoard.Keyboard.Key;
+using MultiBoard.Keyboard.KeyElements;
 
 namespace MultiBoard
 {
     public partial class KeyBoard : UserControl
     {
-        private string ID;
-        private string name;
-        private string comPort;
+        private string _id;
+        private string _name;
+        private string _comPort;
 
-        private string saveFile;
-        private int numberOfKeys = 0;
-        private KeyGUI keyGui = new KeyGUI();
+        private string _saveFile;
+        private int _numberOfKeys = 0;
+        private KeyGui _keyGui = new KeyGui();
 
-        private List<Key> keyList = new List<Key>();
-        private List<string> KeyNameList = new List<string>();
-        private List<KeyListPanel> keyPanelList = new List<KeyListPanel>();
+        private List<Key> _keyList = new List<Key>();
+        private List<string> _keyNameList = new List<string>();
+        private List<KeyListPanel> _keyPanelList = new List<KeyListPanel>();
 
-        private Point nextKeyListPoint = new Point(3, 3);
+        private Point _nextKeyListPoint = new Point(3, 3);
 
         public Key createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
         {
@@ -35,15 +35,15 @@ namespace MultiBoard
 
             Key obj = new Key(namekey, eventState, keytag, keyEnebled, exeLoc);
 
-            numberOfKeys++;
-            keyList.Add(obj);
+            _numberOfKeys++;
+            _keyList.Add(obj);
 
             return obj;
         }
 
         private bool checkName(string s)
         {
-            foreach(string n in KeyNameList)
+            foreach(string n in _keyNameList)
             {
                 if(n == s)
                 {
@@ -57,84 +57,84 @@ namespace MultiBoard
         {
             InitializeComponent();
 
-            keyGui.UpdatedData += onUpdatedKey;
-            keyGui.DeleteKey += onDeleteKey;
+            _keyGui.UpdatedData += onUpdatedKey;
+            _keyGui.DeleteKey += onDeleteKey;
 
-            keyGui.Location = new Point(194, 0);
-            this.Controls.Add(keyGui);
-            keyGui.Hide();
+            _keyGui.Location = new Point(194, 0);
+            this.Controls.Add(_keyGui);
+            _keyGui.Hide();
         }
 
         private void addNewKeyClicked(object sender, EventArgs e)
         {
             //add key clicked
             string kname;
-            kname = "KEY " + (numberOfKeys);
+            kname = "KEY " + (_numberOfKeys);
 
             while (!checkName(kname))
             {
-                numberOfKeys++;
-                kname = "KEY " + (numberOfKeys);
+                _numberOfKeys++;
+                kname = "KEY " + (_numberOfKeys);
             }
 
             Key k = createKey(kname, 1, "NONE", true, "");
-            keyGui.settings(kname, 1, "NONE", true, "", k);
+            _keyGui.settings(kname, 1, "NONE", true, "", k);
 
             addKeyToListVieuw(k);
             updateKeyNameList();
 
-            keyGui.Show();
+            _keyGui.Show();
         }
 
-        public void setKeyBoardName(string NAME)
+        public void setKeyBoardName(string name)
         {
-            name = NAME;
-            NAME_LABEL.Text = name;
+            _name = name;
+            NAME_LABEL.Text = _name;
         }
 
         public string getKeyboardName()
         {
-            return name;
+            return _name;
         }
 
-        public void setKeyboardUUID(string UUID)
+        public void setKeyboardUuid(string uuid)
         {
-            ID = UUID;
+            _id = uuid;
         }
 
-        public string getKeyboardUUID()
+        public string getKeyboardUuid()
         {
-            return ID;
+            return _id;
         }
 
         public void setComPort(string port)
         {
-            comPort = port;
+            _comPort = port;
         }
 
         public string getComPort()
         {
-            return comPort;
+            return _comPort;
         }
 
         public void loadKeys(string mainDirecory)
         {
-            keyList.Clear();
+            _keyList.Clear();
 
-            if(!File.Exists(mainDirecory + @"\" + name + ".inf"))
+            if(!File.Exists(mainDirecory + @"\" + _name + ".inf"))
             {
-                File.Create(mainDirecory + @"\" + name + ".inf").Close();
+                File.Create(mainDirecory + @"\" + _name + ".inf").Close();
             }
 
-            saveFile = mainDirecory + @"\" + name + ".inf";
+            _saveFile = mainDirecory + @"\" + _name + ".inf";
 
             //read keys
             //============================
             string line;
-            int counter = 0;
+            var counter = 0;
 
             System.IO.StreamReader file =
-                new System.IO.StreamReader(mainDirecory + @"\" + name + ".inf");
+                new System.IO.StreamReader(mainDirecory + @"\" + _name + ".inf");
             while ((line = file.ReadLine()) != null)
             {
                 if (line != "")
@@ -146,8 +146,8 @@ namespace MultiBoard
 
                     if(counter == 0)
                     {
-                        keyGui.settings(k.key_name, k.eventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
-                        keyGui.Show();
+                        _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
+                        _keyGui.Show();
                     }
                     
 
@@ -160,24 +160,24 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
-        public void keyDown(string KEY,string keyboardUUID, bool allEnebled)
+        public void keyDown(string key,string keyboardUuid, bool allEnebled)
         {
-            if (keyboardUUID == ID)
+            if (keyboardUuid == _id)
             {
-                foreach (Key aKey in keyList)
+                foreach (Key aKey in _keyList)
                 {
-                    aKey.keyDown(KEY, allEnebled);
+                    aKey.keyDown(key, allEnebled);
                 }
             }
         }
 
-        public void keyUp(string KEY, string keyboardUUID , bool allEnebled)
+        public void keyUp(string key, string keyboardUuid , bool allEnebled)
         {
-            if (keyboardUUID == ID)
+            if (keyboardUuid == _id)
             {
-                foreach (Key aKey in keyList)
+                foreach (Key aKey in _keyList)
                 {
-                    aKey.keyUp(KEY, allEnebled);
+                    aKey.keyUp(key, allEnebled);
                 }
             }
         }
@@ -187,41 +187,41 @@ namespace MultiBoard
 
             clearKeyList();
 
-            nextKeyListPoint.X = 5;
-            nextKeyListPoint.Y = 3;
+            _nextKeyListPoint.X = 5;
+            _nextKeyListPoint.Y = 3;
 
-            for(int i = 0; i < keyList.Count; i++)
+            for(int i = 0; i < _keyList.Count; i++)
             {
-                Key aKey = keyList[i];
+                Key aKey = _keyList[i];
 
                 KeyListPanel item = new KeyListPanel(aKey.key_name, aKey.keyEnebled, aKey);
 
-                item.Location = nextKeyListPoint;
-                nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 5;
+                item.Location = _nextKeyListPoint;
+                _nextKeyListPoint.Y = _nextKeyListPoint.Y + item.Height + 5;
                 item.ClickedKey += userSelectedKey;
 
                 KEYLIST_PANEL.Controls.Add(item);
                 item.BringToFront();
 
-                keyPanelList.Add(item);
+                _keyPanelList.Add(item);
             }
 
         }
 
         public void drawListView(List<KeyListPanel> lp)
         {
-            foreach(KeyListPanel k in keyPanelList)
+            foreach(KeyListPanel k in _keyPanelList)
             {
                 k.Hide();
             }
 
-            nextKeyListPoint.X = 5;
-            nextKeyListPoint.Y = 3;
+            _nextKeyListPoint.X = 5;
+            _nextKeyListPoint.Y = 3;
 
             foreach (KeyListPanel k in lp)
             {
-                k.Location = nextKeyListPoint;
-                nextKeyListPoint.Y = nextKeyListPoint.Y + k.Height + 5;
+                k.Location = _nextKeyListPoint;
+                _nextKeyListPoint.Y = _nextKeyListPoint.Y + k.Height + 5;
                 k.Show();
             }
         }
@@ -232,23 +232,23 @@ namespace MultiBoard
             KeyListPanel item = new KeyListPanel(k.key_name, k.keyEnebled, k);
 
             //item.Location = nextKeyListPoint;
-            item.Location = new Point(5, keyPanelList[keyPanelList.Count - 1].Location.Y + item.Height + 5);
-            nextKeyListPoint.Y = nextKeyListPoint.Y + item.Height + 5;
+            item.Location = new Point(5, _keyPanelList[_keyPanelList.Count - 1].Location.Y + item.Height + 5);
+            _nextKeyListPoint.Y = _nextKeyListPoint.Y + item.Height + 5;
             item.ClickedKey += userSelectedKey;
 
             KEYLIST_PANEL.Controls.Add(item);
             item.BringToFront();
 
-            keyPanelList.Add(item);
+            _keyPanelList.Add(item);
             updateKeyNameList();
         }
 
         public void updateListView()
         {
-            foreach(KeyListPanel klp in keyPanelList)
+            foreach(KeyListPanel klp in _keyPanelList)
             {
                 Key k = klp.connected_key;
-                klp.kname = k.key_name;
+                klp.Kname = k.key_name;
                 klp.setState(k.keyEnebled);
             }
 
@@ -259,11 +259,11 @@ namespace MultiBoard
         {
             KeyListPanel k = sender as KeyListPanel;
 
-            foreach(Key aKey in keyList)
+            foreach(Key aKey in _keyList)
             {
                 if(aKey == k.connected_key)
                 {
-                    keyGui.settings(aKey.key_name, aKey.eventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, aKey);
+                    _keyGui.settings(aKey.key_name, aKey.EventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, aKey);
                 }
             }
         }
@@ -272,45 +272,45 @@ namespace MultiBoard
         {
             string lines = "";
 
-            foreach (Key aKey in keyList)
+            foreach (Key aKey in _keyList)
             {
                 lines += aKey.key_name + "|";
-                lines += aKey.eventState + "|";
+                lines += aKey.EventState + "|";
                 lines += aKey.keyTag + "|";
                 lines += aKey.keyEnebled + "|";
                 lines += aKey.executeLoc + "\n";
             }
             string[] splits = lines.Split('\n');
 
-            System.IO.File.WriteAllLines(saveFile, splits);
+            System.IO.File.WriteAllLines(_saveFile, splits);
 
             updateListView();
             updateKeyNameList();
         }
 
-        void onDeleteKey(object sender, objKeyEventArgs e)
+        void onDeleteKey(object sender, ObjKeyEventArgs e)
         {
-            keyList.Remove(e.objKey);
-            foreach(KeyListPanel k in keyPanelList)
+            _keyList.Remove(e.ObjKey);
+            foreach(KeyListPanel k in _keyPanelList)
             {
-                if(k.connected_key == e.objKey)
+                if(k.connected_key == e.ObjKey)
                 {
-                    keyPanelList.Remove(k);
+                    _keyPanelList.Remove(k);
                     k.Dispose();
                     break;
                 }
             }
 
             onUpdatedKey(sender, EventArgs.Empty);
-            drawListView(keyPanelList);
+            drawListView(_keyPanelList);
         }
 
         private void updateKeyNameList()
         {
-            KeyNameList.Clear();
-            foreach(Key k in keyList)
+            _keyNameList.Clear();
+            foreach(Key k in _keyList)
             {
-                KeyNameList.Add(k.key_name);
+                _keyNameList.Add(k.key_name);
             }
             
             //foreach (Key k in keyList)
@@ -321,12 +321,12 @@ namespace MultiBoard
 
         public void clearKeyList()
         {
-            foreach(KeyListPanel k in keyPanelList)
+            foreach(KeyListPanel k in _keyPanelList)
             {
                 k.Dispose();
             }
 
-            keyPanelList.Clear();
+            _keyPanelList.Clear();
         }
     }
 }

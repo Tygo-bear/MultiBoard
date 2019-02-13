@@ -1,42 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO.Ports;
 
 namespace MultiBoard
 {
-    public class uuidEventArgs : EventArgs
+    public class UuidEventArgs : EventArgs
     {
-        public string uuid { get; set; }
+        public string Uuid { get; set; }
     }
 
     public class ErrorEventArgs : EventArgs
     {
-        public string error { get; set; }
+        public string Error { get; set; }
     }
 
     public class KeyEventArgs : EventArgs
     {
-        public string key { get; set; }
+        public string Key { get; set; }
     }
 
-    class connector
+    class Connector
     {
-        private SerialPort comPort;
+        private SerialPort _comPort;
 
-        private bool connectioValid = false;
-        private string staticID = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
-        public string dynamicID; 
+        private bool _connectioValid = false;
+        private readonly string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
+        public string DynamicId; 
 
-        KeySpace KSpace = new KeySpace();
+        KeySpace _kSpace = new KeySpace();
 
-        public void setup(string com, int BRate)
+        public void setup(string com, int bRate)
         {
-            comPort = new SerialPort(com, BRate);
-            comPort.DataReceived += new SerialDataReceivedEventHandler(comPort_DataReceived);
-            comPort.ErrorReceived += new SerialErrorReceivedEventHandler(comPort_ErrorReceived);
+            _comPort = new SerialPort(com, bRate);
+            _comPort.DataReceived += new SerialDataReceivedEventHandler(comPort_DataReceived);
+            _comPort.ErrorReceived += new SerialErrorReceivedEventHandler(comPort_ErrorReceived);
         }
 
         private void comPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
@@ -46,19 +42,19 @@ namespace MultiBoard
 
         public void openPort()
         {
-            comPort.Open();
-            comPort.Write("?");
+            _comPort.Open();
+            _comPort.Write("?");
         }
 
         public void closePort()
         {
-            comPort.Close();
-            KSpace.emtySpace();
+            _comPort.Close();
+            _kSpace.emtySpace();
         }
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string s = comPort.ReadExisting();
+            string s = _comPort.ReadExisting();
             //Console.WriteLine("Data: " + s);
 
             if (s.Split('<')[0] != s)
@@ -82,14 +78,14 @@ namespace MultiBoard
                 //down key
                 string key = extractKey(input);
                 //Console.WriteLine("Key DN: " + key);
-                OnKeyDown(key);
+                onKeyDown(key);
             }
             else if (input.Split(new string[] { "UP" }, StringSplitOptions.None)[0] != input)
             {
                 //up key
                 string key = extractKey(input);
                 //Console.WriteLine("Key UP: " + key);
-                OnKeyUp(key);
+                onKeyUp(key);
             }
             else
             {
@@ -110,36 +106,36 @@ namespace MultiBoard
             if(input.Split('_')[0] == "0")
             {
                 //alt key down
-                OnKeyDown(input.Split('_')[1]);
+                onKeyDown(input.Split('_')[1]);
             }
             else
             {
                 //alt key up
-                OnKeyUp(input.Split('_')[0]);
+                onKeyUp(input.Split('_')[0]);
             }
         }
 
         private void altInput(string input)
         {
-            if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && connectioValid == false)
+            if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && _connectioValid == false)
             {
                 if (input.Split('&').Length > 2)
                 {
-                    if (input.Split('&')[1] == staticID)
+                    if (input.Split('&')[1] == _staticId)
                     {
                         //MultiBoard valid
-                        dynamicID = input.Split('&')[2].Replace("\r\n", string.Empty);
-                        connectioValid = true;
+                        DynamicId = input.Split('&')[2].Replace("\r\n", string.Empty);
+                        _connectioValid = true;
                         //Console.WriteLine("valid connection!");
-                        OnConnected(dynamicID);
+                        onConnected(DynamicId);
                     }
                 }
             }
         }
 
         //connection event handlers
-        public event EventHandler<uuidEventArgs> Connected;
-        public event EventHandler<uuidEventArgs> ConnectionLost;
+        public event EventHandler<UuidEventArgs> Connected;
+        public event EventHandler<UuidEventArgs> ConnectionLost;
         public event EventHandler<ErrorEventArgs> Error;
          
         //key event hanlders
@@ -149,68 +145,61 @@ namespace MultiBoard
 
         //events
         //connection events
-        protected virtual void OnConnected(string UUID)
+        protected virtual void onConnected(string uuid)
         {
             if(Connected != null)
             {
-                Connected(this, new uuidEventArgs() { uuid = UUID });
+                Connected(this, new UuidEventArgs() { Uuid = uuid });
             }
         }
 
-        protected virtual void OnConnectionLost(string UUID)
+        protected virtual void onConnectionLost(string uuid)
         {
             if(ConnectionLost != null)
             {
-                ConnectionLost(this, new uuidEventArgs() { uuid = UUID });
+                ConnectionLost(this, new UuidEventArgs() { Uuid = uuid });
             }
         }
 
-        protected virtual void OnError(string ERROR)
+        protected virtual void onError(string error)
         {
             if (Error != null)
             {
-                Error(this, new ErrorEventArgs() { error = ERROR });
+                Error(this, new ErrorEventArgs() { Error = error });
             }
         }
 
         //key events
-        protected virtual void OnKeyDown(string KEY)
+        protected virtual void onKeyDown(string key)
         {
             //Console.WriteLine("KEY: " + KEY);
             
             if (KeyDown != null)
             {
-                KSpace.keyDown(KEY);
-                KeyDown(this, new KeyEventArgs() { key = KEY });
+                _kSpace.keyDown(key);
+                KeyDown(this, new KeyEventArgs() { Key = key });
             }
         }
 
-        protected virtual void OnKeyUp(string KEY)
+        protected virtual void onKeyUp(string key)
         {
             //Console.WriteLine("KEY: " + KEY);
 
             if (KeyUp != null)
             {
-                KSpace.keyUp(KEY);
-                KeyUp(this, new KeyEventArgs() { key = KEY });
+                _kSpace.keyUp(key);
+                KeyUp(this, new KeyEventArgs() { Key = key });
             }
         }
 
-        protected virtual void OnKeyPressed(string KEY)
+        protected virtual void onKeyPressed(string key)
         {
             if (KeyPressed != null)
             {
-                KeyPressed(this, new KeyEventArgs() { key = KEY });
+                KeyPressed(this, new KeyEventArgs() { Key = key });
             }
         }
 
-        public KeyBoard KeyBoard
-        {
-            get => default(KeyBoard);
-            set
-            {
-            }
-        }
     }
 
     

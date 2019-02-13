@@ -1,60 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
-namespace MultiBoard.Keyboard.Key
+namespace MultiBoard.Keyboard.KeyElements
 {
     public class Key
     {
         //variables
         //===============================
-        private bool OnKeyDownSelected = false;
-        private bool OnKeyUpSelected = false;
-        private bool OnKeyPressedSelected = false;
+        private bool _onKeyDownSelected = false;
+        private bool _onKeyUpSelected = false;
+        private bool _onKeyPressedSelected = false;
 
-        private string keyName;
-        private bool recordingKey = false;
-        private bool enabled = true;
-        private string KeyTag;
-        private string ExecuteLocation;
+        private string _keyName;
+        private bool _recordingKey = false;
+        private bool _enabled = true;
+        private string _keyTag;
+        private string _executeLocation;
 
         public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
         {
-            keyName = name;
-            eventState = eventStateAr;
-            KeyTag = key;
-            enabled = enabledKey;
-            ExecuteLocation = executeLoc;
+            _keyName = name;
+            EventState = eventStateAr;
+            _keyTag = key;
+            _enabled = enabledKey;
+            _executeLocation = executeLoc;
         }
 
         public string key_name
         {
             get
             {
-                return keyName;
+                return _keyName;
             }
             set
             {
-                keyName = value;
+                _keyName = value;
             }
         }
 
-        public int eventState
+        public int EventState
         {
             get
             {
-                if(OnKeyDownSelected == true)
+                if(_onKeyDownSelected == true)
                 {
                     return 1;
                 }
-                else if(OnKeyUpSelected == true)
+                else if(_onKeyUpSelected == true)
                 {
                     return 2;
                 }
-                else if(OnKeyPressedSelected == true)
+                else if(_onKeyPressedSelected == true)
                 {
                     return 3;
                 }
@@ -65,21 +60,21 @@ namespace MultiBoard.Keyboard.Key
             {
                 if(value == 1)
                 {
-                    OnKeyDownSelected = true;
-                    OnKeyUpSelected = false;
-                    OnKeyPressedSelected = false;
+                    _onKeyDownSelected = true;
+                    _onKeyUpSelected = false;
+                    _onKeyPressedSelected = false;
                 }
                 else if(value == 2)
                 {
-                    OnKeyDownSelected = false;
-                    OnKeyUpSelected = true;
-                    OnKeyPressedSelected = false;
+                    _onKeyDownSelected = false;
+                    _onKeyUpSelected = true;
+                    _onKeyPressedSelected = false;
                 }
                 else
                 {
-                    OnKeyDownSelected = false;
-                    OnKeyUpSelected = false;
-                    OnKeyPressedSelected = true;
+                    _onKeyDownSelected = false;
+                    _onKeyUpSelected = false;
+                    _onKeyPressedSelected = true;
                 }
             }
         }
@@ -88,11 +83,11 @@ namespace MultiBoard.Keyboard.Key
         {
             get
             {
-                return enabled;
+                return _enabled;
             }
             set
             {
-                enabled = value;
+                _enabled = value;
             }
         }
 
@@ -100,11 +95,11 @@ namespace MultiBoard.Keyboard.Key
         {
             get
             {
-                return KeyTag;
+                return _keyTag;
             }
             set
             {
-                KeyTag = value;
+                _keyTag = value;
             }
         }
 
@@ -112,34 +107,34 @@ namespace MultiBoard.Keyboard.Key
         {
             get
             {
-                return ExecuteLocation;
+                return _executeLocation;
             }
             set
             {
-                ExecuteLocation = value;
+                _executeLocation = value;
             }
         }
 
-        public void keyDown(string KEY, bool allEnebled)
+        public void keyDown(string key, bool allEnebled)
         {
-            if (recordingKey == false)
+            if (_recordingKey == false)
             {
-                if (KeyTag == KEY && enabled == true && OnKeyDownSelected && File.Exists(ExecuteLocation) && allEnebled)
+                if (_keyTag == key && _enabled == true && _onKeyDownSelected && File.Exists(_executeLocation) && allEnebled)
                 {
                     //execute
-                    System.Diagnostics.Process.Start(ExecuteLocation);
+                    System.Diagnostics.Process.Start(_executeLocation);
                 }
             }
         }
 
-        public void keyUp(string KEY, bool allEnebled)
+        public void keyUp(string key, bool allEnebled)
         {
-            if (recordingKey == false)
+            if (_recordingKey == false)
             {
-                if (KeyTag == KEY && enabled == true && OnKeyUpSelected && File.Exists(ExecuteLocation) && allEnebled)
+                if (_keyTag == key && _enabled == true && _onKeyUpSelected && File.Exists(_executeLocation) && allEnebled)
                 {
                     //execute
-                    System.Diagnostics.Process.Start(ExecuteLocation);
+                    System.Diagnostics.Process.Start(_executeLocation);
                 }
 
             }

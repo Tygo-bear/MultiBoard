@@ -1,44 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MultiBoard.Keyboard.Key;
+using MultiBoard.Keyboard.KeyElements;
 
 namespace MultiBoard.Keyboard
 {
     public partial class KeyListPanel : UserControl
     {
-        private bool stateEnebled;
-        private bool focus;
-        private string kName;
-        private Key.Key connectedKey;
+        private bool _stateEnebled;
+        private bool _focus;
+        private string _kName;
+        private Key _connectedKey;
 
         private Image normal_key = Properties.Resources.key;
         private Image dark_key = Properties.Resources.dark_key;
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state, Key.Key cKey)
+        public KeyListPanel(string name, bool state, Key cKey)
         {
             InitializeComponent();
 
-            kName = name;
+            _kName = name;
             KEY_NAME_LABEL.Text = name;
             setState(state);
             ConnectedKey = cKey;
             
         }
 
-        public bool state_enebled
+        public bool StateEnebled
         {
             get
             {
-                return stateEnebled;
+                return _stateEnebled;
             }
             set
             {
@@ -46,20 +40,20 @@ namespace MultiBoard.Keyboard
             }
         }
 
-        public string kname
+        public string Kname
         {
             get
             {
-                return kName;
+                return _kName;
             }
             set
             {
-                kName = value;
+                _kName = value;
                 KEY_NAME_LABEL.Text = value;
             }
         }
 
-        public Key.Key connected_key
+        public Key connected_key
         {
             get
             {
@@ -71,7 +65,7 @@ namespace MultiBoard.Keyboard
             }
         }
 
-        public Key.Key ConnectedKey { get => connectedKey; set => connectedKey = value; }
+        public Key ConnectedKey { get => _connectedKey; set => _connectedKey = value; }
 
         private void KeyListPanel_Click(object sender, EventArgs e)
         {
@@ -85,12 +79,12 @@ namespace MultiBoard.Keyboard
         {
             if(state == true)
             {
-                stateEnebled = true;
+                _stateEnebled = true;
                 KEY_PICTURE.BackgroundImage = normal_key;
             }
             else
             {
-                stateEnebled = false;
+                _stateEnebled = false;
                 KEY_PICTURE.BackgroundImage = dark_key;
             }
         }
@@ -103,7 +97,7 @@ namespace MultiBoard.Keyboard
 
         private void KeyListPanel_MouseLeave(object sender, EventArgs e)
         {
-            if (focus == false)
+            if (_focus == false)
             {
                 timer1.Start();
             }

@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace MultiBoard
+namespace MultiBoard.Keyboard
 {
     class KeyboardScanner
     {
-        public List<string> ports = new List<string>();
-        public List<string> uuid = new List<string>();
+        public List<string> Ports = new List<string>();
+        public List<string> Uuid = new List<string>();
 
         private List<SerialPort> openSerials = new List<SerialPort>();
-        private string staticID = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
+        private string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
 
-        public bool loadList(int BRate)
+        public bool loadList(int bRate)
         {
-            ports.Clear();
-            uuid.Clear();
+            Ports.Clear();
+            Uuid.Clear();
             openSerials.Clear();
 
             List<string> avaiblePorts = new List<string>();
@@ -32,8 +28,8 @@ namespace MultiBoard
             {
                 try
                 {
-                    SerialPort comPort = new SerialPort(s, BRate);
-                    ports.Add(s);
+                    SerialPort comPort = new SerialPort(s, bRate);
+                    Ports.Add(s);
                     comPort.Open();
                     comPort.Write("?");
 
@@ -62,20 +58,19 @@ namespace MultiBoard
 
                 if (input.Split('&').Length == 3)
                 {
-                    if (input.Split('&')[1] == staticID)
+                    if (input.Split('&')[1] == _staticId)
                     {
                         //MultiBoard valid
-                        uuid.Add(input.Split('&')[2].Replace("\r\n", string.Empty));
-                        Console.Write("Found: " + input.Split('&')[2]);
+                        Uuid.Add(input.Split('&')[2].Replace("\r\n", string.Empty));
                     }
                     else
                     {
-                        uuid.Add("NONE");
+                        Uuid.Add("NONE");
                     }
                 }
                 else
                 {
-                    uuid.Add("NONE");
+                    Uuid.Add("NONE");
                 }
 
                 s.Close();

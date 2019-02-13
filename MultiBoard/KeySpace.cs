@@ -1,52 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MultiBoard
 {
     class KeySpace
     {
-        public List<string> keys = new List<string>();
-        public List<bool> state = new List<bool>();
+        public List<string> Keys = new List<string>();
+        public List<bool> State = new List<bool>();
 
         public void keyDown(string key)
         {
             int teller = 0;
-            foreach(string k in keys)
+            foreach(string k in Keys)
             {
                 if(k == key)
                 {
-                    state[teller] = true;
+                    State[teller] = true;
                     return;
                 }
                 teller++;
             }
-            keys.Add(key);
-            state.Add(true);
+            Keys.Add(key);
+            State.Add(true);
         }
 
         public void keyUp(string key)
         {
             int teller = 0;
-            foreach (string k in keys)
+            foreach (string k in Keys)
             {
                 if (k == key)
                 {
-                    state[teller] = false;
+                    State[teller] = false;
                     return;
                 }
                 teller++;
             }
-            keys.Add(key);
-            state.Add(false);
+            Keys.Add(key);
+            State.Add(false);
         }
 
         public void emtySpace()
         {
-            keys.Clear();
-            state.Clear();
+            Keys.Clear();
+            State.Clear();
         }
 
     }

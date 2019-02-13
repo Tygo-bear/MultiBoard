@@ -1,31 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MultiBoard.Keyboard;
 
 namespace MultiBoard
 {
     public partial class KeyboardList : UserControl
     {
-        public event EventHandler<itemName> SelectedItem;
+        public event EventHandler<ItemName> SelectedItem;
 
         private Point NextPoint = new Point(31, 31);
 
-        private List<KeyboardListPanel> kblp = new List<KeyboardListPanel>();
+        private List<KeyboardListPanel> _kblp = new List<KeyboardListPanel>();
 
         public KeyboardList()
         {
             InitializeComponent();
         }
 
-        public void loaditems(string[] items)
+        public void loadItems(string[] items)
         {
-            kblp.Clear();
+            _kblp.Clear();
 
             foreach (string aItem in items)
             {
@@ -39,11 +35,11 @@ namespace MultiBoard
             KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem);
             obj.Location = NextPoint;
             obj.Visible = true;
-            obj.BoardSettingsClicked += BSclikced;
-            obj.OpenBoardClicked += OBclicked;
+            obj.BoardSettingsClicked += bsClikced;
+            obj.OpenBoardClicked += obClicked;
             MAIN_PANEL.Controls.Add(obj);
 
-            kblp.Add(obj);
+            _kblp.Add(obj);
 
             if(NextPoint.X == 31)
             {
@@ -56,22 +52,22 @@ namespace MultiBoard
             }
         }
 
-        private void OBclicked(object sender, EventArgs e)
+        private void obClicked(object sender, EventArgs e)
         {
-            foreach(KeyboardListPanel k in kblp)
+            foreach(KeyboardListPanel k in _kblp)
             {
                 if(k == sender)
                 {
-                    SelectedItem(this, new itemName() { name = k.kbname });
+                    SelectedItem(this, new ItemName() { Name = k.KbName });
                 }
             }
             
         }
 
-        private void BSclikced(object sender, EventArgs e)
+        private void bsClikced(object sender, EventArgs e)
         {
             KeyboardListPanel k = sender as KeyboardListPanel;
-            KeyboardSettings obj = new KeyboardSettings(k.kbname, k.kbuuid, k.kbport);
+            KeyboardSettings obj = new KeyboardSettings(k.KbName, k.KbUuid, k.KbPort);
             obj.Location = new Point(0, 0);
             obj.Visible = true;
             this.Controls.Add(obj);
@@ -80,8 +76,8 @@ namespace MultiBoard
         }
     }
 
-    public class itemName : EventArgs
+    public class ItemName : EventArgs
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 }

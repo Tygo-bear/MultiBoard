@@ -1,37 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiBoard
+namespace MultiBoard.Keyboard
 {
     public partial class KeyboardSettings : UserControl
     {
-        public string kbName;
-        public string kbUUID;
-        public string kbPort;
+        public string KbName;
+        public string KbUuid;
+        public string KbPort;
 
-        public KeyboardSettings(string kname, string kId, string kCOM)
+        public KeyboardSettings(string kname, string kId, string kCom)
         {
             InitializeComponent();
 
-            kbName = kname;
-            kbUUID = kId;
-            kbPort = kCOM;
+            KbName = kname;
+            KbUuid = kId;
+            KbPort = kCom;
 
             KEYBOARD_NAME_TEXTBOX.Text = kname;
             KEYBOARD_UUID_TEXTBOX.Text = kId;
-            KEYBOARD_COMP_TEXTBOX.Text = kCOM;
+            KEYBOARD_COMP_TEXTBOX.Text = kCom;
 
         }
 
-        public event EventHandler save;
-        public event EventHandler delete;
+        public event EventHandler Save;
+        public event EventHandler Delete;
 
         private void BACK_BUTTON_Click(object sender, EventArgs e)
         {
@@ -49,7 +42,7 @@ namespace MultiBoard
             //save
         }
 
-        private bool CheckInput()
+        private bool checkInput()
         {
             if(KEYBOARD_COMP_TEXTBOX.Text != "" && KEYBOARD_UUID_TEXTBOX.Text != "" 
                 && KEYBOARD_NAME_TEXTBOX.Text != "")
