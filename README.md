@@ -1,7 +1,13 @@
 # MultiBoard
-Use a second keyboard as additional input on a computer(windows).
+Gives the user the possibility to connect a second keyboard to a Windows computer and reprogramme the input of the keyboard.
+(Arduino Uno and usb host shield required)
 
 # Install
-COMMING SOON
+1) Buy a Arduino uno and connect a usb Host Shield
+  * https://bit.ly/2DEJsYc (Arduino uno)
+  * https://bit.ly/2BxyQKs (USB host shield)
 
-heavy development state.
+2) Flash the arduino whith te Arduino IDE
+
+3) install MultiBoard
+  * https://github.com/Tygo-bear/MultiBoard/releases
