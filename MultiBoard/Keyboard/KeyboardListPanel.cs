@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MultiBoard.Keyboard
@@ -24,6 +25,7 @@ namespace MultiBoard.Keyboard
         private string _kbName;
         private string _kbUuid;
         private string _kbPort;
+        private bool _infocus = false;
 
         public string KbName
         {
@@ -77,6 +79,35 @@ namespace MultiBoard.Keyboard
             {
                 BoardSettingsClicked(this, e);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (_infocus == true)
+            {
+                this.BackColor = Color.DarkGray;
+                this.Location = new Point(this.Location.X + 4, this.Location.Y + 4);
+                this.Size = new Size(this.Size.Width - 8, this.Size.Height - 8);
+                timer1.Stop();
+                _infocus = false;
+            }
+        }
+
+        private void KeyboardListPanel_MouseEnter(object sender, EventArgs e)
+        {
+            this.timer1.Stop();
+            if (_infocus == false)
+            {
+                this.BackColor = Color.CornflowerBlue;
+                this.Location = new Point(this.Location.X - 4, this.Location.Y - 4);
+                this.Size = new Size(this.Size.Width + 8, this.Size.Height + 8);
+                _infocus = true;
+            }
+        }
+
+        private void KeyboardListPanel_MouseLeave(object sender, EventArgs e)
+        {
+            this.timer1.Start();
         }
     }
 }

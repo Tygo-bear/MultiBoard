@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MultiBoard.Keyboard.KeyElements;
 
-namespace MultiBoard.Keyboard
+namespace MultiBoard.Keyboard.KeyElements
 {
     public partial class KeyListPanel : UserControl
     {
@@ -106,6 +105,20 @@ namespace MultiBoard.Keyboard
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.BackColor = Color.LightGray;
+        }
+
+        public void inFocus(bool b)
+        {
+            if (b == true)
+            {
+                timer1.Stop();
+                _focus = true;
+            }
+            else
+            {
+                timer1.Start();
+                _focus = false;
+            }
         }
     }
 }

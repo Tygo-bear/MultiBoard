@@ -259,6 +259,12 @@ namespace MultiBoard
         {
             KeyListPanel k = sender as KeyListPanel;
 
+            foreach (KeyListPanel p in _keyPanelList)
+            {
+                p.inFocus(false);
+            }
+            k.inFocus(true);
+
             foreach(Key aKey in _keyList)
             {
                 if(aKey == k.connected_key)

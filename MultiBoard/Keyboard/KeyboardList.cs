@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MultiBoard.Keyboard;
 
-namespace MultiBoard
+namespace MultiBoard.Keyboard
 {
     public partial class KeyboardList : UserControl
     {

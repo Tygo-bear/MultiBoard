@@ -16,7 +16,7 @@ namespace MultiBoard
         //variables
         //==================================
         public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MultiBoard";
-        public bool toggleB = true;
+        public bool ToggleB = true;
         private List<KeyBoard> _keyboardList = new List<KeyBoard>();
         private List<Connector> _connectorList = new List<Connector>();
         KeyboardList _listkeyboardElement;
@@ -158,7 +158,7 @@ namespace MultiBoard
 
         private void TOGGLE_B_Click(object sender, EventArgs e)
         {
-            if (toggleB == true)
+            if (ToggleB == true)
             {
                 //disble
                 disableB();
@@ -173,13 +173,13 @@ namespace MultiBoard
         private void disableB()
         {
             TOGGLE_B.BackgroundImage = TOGGLE_OFF;
-            toggleB = false;
+            ToggleB = false;
         }
 
         private void enableB()
         {
             TOGGLE_B.BackgroundImage = TOGGLE_ON;
-            toggleB = true;
+            ToggleB = true;
         }
 
         private void loadingBoards()
@@ -264,7 +264,7 @@ namespace MultiBoard
 
             foreach (KeyBoard aKeyBoard in _keyboardList)
             {
-                aKeyBoard.keyDown(e.Key, c.DynamicId, toggleB);
+                aKeyBoard.keyDown(e.Key, c.DynamicId, ToggleB);
             }
         }
 
@@ -274,7 +274,7 @@ namespace MultiBoard
             Connector c = sender as Connector;
             foreach (KeyBoard aKeyBoard in _keyboardList)
             {
-                aKeyBoard.keyUp(e.Key, c.DynamicId, toggleB);
+                aKeyBoard.keyUp(e.Key, c.DynamicId, ToggleB);
             }
         }
 

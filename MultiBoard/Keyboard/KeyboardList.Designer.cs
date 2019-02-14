@@ -1,4 +1,4 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.Keyboard
 {
     partial class KeyboardList
     {
