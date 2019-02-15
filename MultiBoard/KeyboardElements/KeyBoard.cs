@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using MultiBoard.Keyboard;
 using MultiBoard.Keyboard.KeyElements;
+using MultiBoard.KeyboardElements.KeyElements;
 
 namespace MultiBoard
 {
@@ -168,6 +169,8 @@ namespace MultiBoard
                 {
                     aKey.keyDown(key, allEnebled);
                 }
+
+                _keyGui.keyDown(key, allEnebled);
             }
         }
 
@@ -289,7 +292,7 @@ namespace MultiBoard
             {
                 lines += aKey.key_name + "|";
                 lines += aKey.EventState + "|";
-                lines += aKey.keyTag + "|";
+                lines += aKey.keyTag.Trim('\n') + "|";
                 lines += aKey.keyEnebled + "|";
                 lines += aKey.executeLoc + "\n";
             }

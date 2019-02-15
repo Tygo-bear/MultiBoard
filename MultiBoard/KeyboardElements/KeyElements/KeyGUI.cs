@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MultiBoard.Keyboard.KeyElements;
 using MultiBoard.overlays;
 
-namespace MultiBoard.Keyboard.KeyElements
+namespace MultiBoard.KeyboardElements.KeyElements
 {
 
     public partial class KeyGui : UserControl
@@ -149,24 +150,8 @@ namespace MultiBoard.Keyboard.KeyElements
 
                 _keyTag = key;
             }
-            else
-            {
-                if(_keyTag == key && _enabled == true && _onKeyDownSelected  && File.Exists(_executeLocation) && allEnebled)
-                {
-                    //execute
-                    System.Diagnostics.Process.Start(_executeLocation);
-                }
-            }
         }
 
-        public void keyUp(string key, bool allEnebled)
-        {
-            if (_keyTag == key && _enabled == true && _onKeyUpSelected && File.Exists(_executeLocation) && allEnebled)
-            {
-                //execute
-                System.Diagnostics.Process.Start(_executeLocation);
-            }
-        }
 
         private void startRecordingClicked(object sender, EventArgs e)
         {
