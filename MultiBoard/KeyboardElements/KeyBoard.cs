@@ -231,8 +231,15 @@ namespace MultiBoard
 
             KeyListPanel item = new KeyListPanel(k.key_name, k.keyEnebled, k);
 
-            //item.Location = nextKeyListPoint;
-            item.Location = new Point(5, _keyPanelList[_keyPanelList.Count - 1].Location.Y + item.Height + 5);
+            if (_keyPanelList.Count == 0)
+            {
+                item.Location = _nextKeyListPoint;
+            }
+            else
+            {
+                item.Location = new Point(5, _keyPanelList[_keyPanelList.Count - 1].Location.Y + item.Height + 5);
+            }
+
             _nextKeyListPoint.Y = _nextKeyListPoint.Y + item.Height + 5;
             item.ClickedKey += userSelectedKey;
 

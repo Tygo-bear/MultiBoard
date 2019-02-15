@@ -50,8 +50,9 @@ namespace MultiBoard
             _loadOverlay.BringToFront();
 
             //keyboard list control
-            _listkeyboardElement = new KeyboardList();
+            _listkeyboardElement = new KeyboardList(MainDirectory);
             _listkeyboardElement.SelectedItem += userSelectedKeyboard;
+            _listkeyboardElement.UpdateKeyboards += SaveKeyboardsEvent;
             _listkeyboardElement.Location = new Point(32, 31);
             this.Controls.Add(_listkeyboardElement);
 
@@ -76,6 +77,11 @@ namespace MultiBoard
 
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
+        }
+
+        private void SaveKeyboardsEvent(object sender, EventArgs e)
+        {
+            saveBoards();
         }
 
         private void errorView(object sender, EventArgs e)
@@ -135,6 +141,23 @@ namespace MultiBoard
             //loading
             backgroundWorker1.CancelAsync();
             backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void saveBoards()
+        {
+            List<string> sstring = new List<string>();
+
+            foreach (KeyBoard kb in _keyboardList)
+            {
+                string name = kb.getKeyboardName();
+                string uuid = kb.getKeyboardUuid();
+                string port = kb.getComPort();
+
+                sstring.Add(_addKeyboardContr.kbId + "|" + _addKeyboardContr.kbName + "|" + _addKeyboardContr.kbPort + "\n");
+            }
+            string[] writeAll = sstring.ToArray();
+
+            File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);
         }
 
         private void mouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -450,7 +473,7 @@ namespace MultiBoard
 
 
             _listkeyboardElement.Dispose();
-            _listkeyboardElement = new KeyboardList();
+            _listkeyboardElement = new KeyboardList(MainDirectory);
             _listkeyboardElement.SelectedItem += userSelectedKeyboard;
             _listkeyboardElement.Location = new Point(32, 31);
             this.Controls.Add(_listkeyboardElement);

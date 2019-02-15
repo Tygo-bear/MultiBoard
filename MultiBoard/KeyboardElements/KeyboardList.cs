@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MultiBoard.Keyboard
@@ -8,14 +9,17 @@ namespace MultiBoard.Keyboard
     public partial class KeyboardList : UserControl
     {
         public event EventHandler<ItemName> SelectedItem;
+        public event EventHandler UpdateKeyboards;
 
         private Point NextPoint = new Point(31, 31);
-
         private List<KeyboardListPanel> _kblp = new List<KeyboardListPanel>();
 
-        public KeyboardList()
+        private string _mainDirectory;
+
+        public KeyboardList(string mainDire)
         {
             InitializeComponent();
+            _mainDirectory = mainDire;
         }
 
         public void addItem(string itemName, string uuidItem, string comportItem, KeyBoard board)
@@ -72,13 +76,24 @@ namespace MultiBoard.Keyboard
             KeyboardSettings k = sender as KeyboardSettings;
             KeyBoard b = k.connectedKeyboard;
 
-            //TODO save to file
+            //TODO error naming
             throw new NotImplementedException();
+
+            if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
+            {
+                File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf", _mainDirectory + @"\" + k.KbName + ".inf");
+            }
+            else
+            {
+                Console.WriteLine("File rename error");
+            }
+
 
             b.setKeyBoardName(k.KbName);
             b.setKeyboardUuid(k.KbUuid);
             b.setComPort(k.KbPort);
 
+            UpdateKeyboards(this, EventArgs.Empty);
         }
 
         private void keyboardDelete(object sender, EventArgs e)
