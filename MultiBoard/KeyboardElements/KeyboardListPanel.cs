@@ -7,7 +7,7 @@ namespace MultiBoard.Keyboard
     public partial class KeyboardListPanel : UserControl
     {
 
-        public KeyboardListPanel(string name, string uuid, string port)
+        public KeyboardListPanel(string name, string uuid, string port, KeyBoard board)
         {
             InitializeComponent();
 
@@ -16,6 +16,7 @@ namespace MultiBoard.Keyboard
             KbName = name;
             _kbUuid = uuid;
             _kbPort = port;
+            _connectedBoard = board;
         }
 
         public event EventHandler OpenBoardClicked;
@@ -26,6 +27,20 @@ namespace MultiBoard.Keyboard
         private string _kbUuid;
         private string _kbPort;
         private bool _infocus = false;
+        private KeyBoard _connectedBoard;
+
+        public KeyBoard connectedBoard
+        {
+            get
+            {
+                return _connectedBoard;
+            }
+            set
+            {
+                _connectedBoard = value;
+            }
+        }
+
 
         public string KbName
         {

@@ -18,20 +18,9 @@ namespace MultiBoard.Keyboard
             InitializeComponent();
         }
 
-        public void loadItems(string[] items)
+        public void addItem(string itemName, string uuidItem, string comportItem, KeyBoard board)
         {
-            _kblp.Clear();
-
-            foreach (string aItem in items)
-            {
-                string[] splits = aItem.Split('|');
-                addItem(splits[0], splits[1], "");
-            }
-        }
-
-        public void addItem(string itemName, string uuidItem, string comportItem)
-        {
-            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem);
+            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, board);
             obj.Location = NextPoint;
             obj.Visible = true;
             obj.BoardSettingsClicked += bsClikced;
@@ -66,12 +55,35 @@ namespace MultiBoard.Keyboard
         private void bsClikced(object sender, EventArgs e)
         {
             KeyboardListPanel k = sender as KeyboardListPanel;
-            KeyboardSettings obj = new KeyboardSettings(k.KbName, k.KbUuid, k.KbPort);
+            KeyboardSettings obj = new KeyboardSettings(k.KbName, k.KbUuid, k.KbPort, k.connectedBoard);
+
+            obj.Save += keyboardSave;
+            obj.Delete += keyboardDelete;
+
             obj.Location = new Point(0, 0);
             obj.Visible = true;
             this.Controls.Add(obj);
             obj.BringToFront();
 
+        }
+
+        private void keyboardSave(object sender, EventArgs e)
+        {
+            KeyboardSettings k = sender as KeyboardSettings;
+            KeyBoard b = k.connectedKeyboard;
+
+            //TODO save to file
+            throw new NotImplementedException();
+
+            b.setKeyBoardName(k.KbName);
+            b.setKeyboardUuid(k.KbUuid);
+            b.setComPort(k.KbPort);
+
+        }
+
+        private void keyboardDelete(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 

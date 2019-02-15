@@ -119,7 +119,7 @@ namespace MultiBoard
             obj.setKeyboardUuid(uuid);
             obj.setComPort(port);
 
-            _listkeyboardElement.addItem(name, uuid, port);
+            _listkeyboardElement.addItem(name, uuid, port, obj);
 
             obj.loadKeys(MainDirectory);
 
@@ -240,7 +240,7 @@ namespace MultiBoard
                     obj.setKeyboardUuid(splits[0]);
                     obj.setComPort(splits[2]);
 
-                    _listkeyboardElement.addItem(splits[1], splits[0], splits[2]);
+                    _listkeyboardElement.addItem(splits[1], splits[0], splits[2], obj);
 
                     obj.loadKeys(MainDirectory);
 
