@@ -32,31 +32,31 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.MINIMIZE_B = new System.Windows.Forms.Button();
+            this.CLOSE_B = new System.Windows.Forms.Button();
+            this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
+            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.LEFT_PENEL = new System.Windows.Forms.Panel();
+            this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.KEYBOARD_B = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.ERROR_LABEL = new System.Windows.Forms.Label();
+            this.WARRNING_BUTTON = new System.Windows.Forms.Button();
+            this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.NOTIFY_ICO = new System.Windows.Forms.NotifyIcon(this.components);
             this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
-            this.KEYBOARD_B = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.WARRNING_BUTTON = new System.Windows.Forms.Button();
-            this.TOGGLE_B = new System.Windows.Forms.Button();
-            this.MINIMIZE_B = new System.Windows.Forms.Button();
-            this.CLOSE_B = new System.Windows.Forms.Button();
-            this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
-            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.TOP_PANEL.SuspendLayout();
+            this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
             this.BOTTEM_PANEL.SuspendLayout();
             this.NOTIFY_ICO_CONTENT.SuspendLayout();
-            this.TOP_ICON_PANEL.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -82,184 +82,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.0.4";
-            // 
-            // LEFT_PENEL
-            // 
-            this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
-            this.LEFT_PENEL.Controls.Add(this.panel1);
-            this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
-            this.LEFT_PENEL.Controls.Add(this.button2);
-            this.LEFT_PENEL.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LEFT_PENEL.Location = new System.Drawing.Point(0, 31);
-            this.LEFT_PENEL.Name = "LEFT_PENEL";
-            this.LEFT_PENEL.Size = new System.Drawing.Size(32, 542);
-            this.LEFT_PENEL.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(0, 80);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(32, 1);
-            this.panel1.TabIndex = 4;
-            // 
-            // BOTTEM_PANEL
-            // 
-            this.BOTTEM_PANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BOTTEM_PANEL.BackColor = System.Drawing.Color.Linen;
-            this.BOTTEM_PANEL.Controls.Add(this.ERROR_LABEL);
-            this.BOTTEM_PANEL.Controls.Add(this.WARRNING_BUTTON);
-            this.BOTTEM_PANEL.Controls.Add(this.TOGGLE_B);
-            this.BOTTEM_PANEL.Controls.Add(this.label1);
-            this.BOTTEM_PANEL.Location = new System.Drawing.Point(31, 539);
-            this.BOTTEM_PANEL.Margin = new System.Windows.Forms.Padding(0);
-            this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
-            this.BOTTEM_PANEL.Size = new System.Drawing.Size(858, 34);
-            this.BOTTEM_PANEL.TabIndex = 3;
-            // 
-            // ERROR_LABEL
-            // 
-            this.ERROR_LABEL.AutoSize = true;
-            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
-            this.ERROR_LABEL.Name = "ERROR_LABEL";
-            this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
-            this.ERROR_LABEL.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Off/On";
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
-            // NOTIFY_ICO
-            // 
-            this.NOTIFY_ICO.ContextMenuStrip = this.NOTIFY_ICO_CONTENT;
-            this.NOTIFY_ICO.Icon = ((System.Drawing.Icon)(resources.GetObject("NOTIFY_ICO.Icon")));
-            this.NOTIFY_ICO.Text = "MultiBoard";
-            this.NOTIFY_ICO.Visible = true;
-            this.NOTIFY_ICO.Click += new System.EventHandler(this.NOTIFY_ICO_Click);
-            // 
-            // NOTIFY_ICO_CONTENT
-            // 
-            this.NOTIFY_ICO_CONTENT.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem,
-            this.openToolStripMenuItem});
-            this.NOTIFY_ICO_CONTENT.Name = "NOTIFY_ICO_CONTENT";
-            this.NOTIFY_ICO_CONTENT.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.NOTIFY_ICO_CONTENT.ShowImageMargin = false;
-            this.NOTIFY_ICO_CONTENT.Size = new System.Drawing.Size(79, 48);
-            this.NOTIFY_ICO_CONTENT.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.NOTIFY_ICO_CONTENT_ItemClicked);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            // 
-            // ADD_KEYBOARD_BUTTON
-            // 
-            this.ADD_KEYBOARD_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ADD_KEYBOARD_BUTTON.BackColor = System.Drawing.Color.Transparent;
-            this.ADD_KEYBOARD_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ADD_KEYBOARD_BUTTON.BackgroundImage")));
-            this.ADD_KEYBOARD_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ADD_KEYBOARD_BUTTON.FlatAppearance.BorderSize = 0;
-            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ADD_KEYBOARD_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ADD_KEYBOARD_BUTTON.Location = new System.Drawing.Point(0, 40);
-            this.ADD_KEYBOARD_BUTTON.Name = "ADD_KEYBOARD_BUTTON";
-            this.ADD_KEYBOARD_BUTTON.Size = new System.Drawing.Size(32, 34);
-            this.ADD_KEYBOARD_BUTTON.TabIndex = 6;
-            this.ADD_KEYBOARD_BUTTON.UseVisualStyleBackColor = false;
-            this.ADD_KEYBOARD_BUTTON.Click += new System.EventHandler(this.ADD_KEYBOARD_BUTTON_Click);
-            // 
-            // KEYBOARD_B
-            // 
-            this.KEYBOARD_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.KEYBOARD_B.BackColor = System.Drawing.Color.Transparent;
-            this.KEYBOARD_B.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEYBOARD_B.BackgroundImage")));
-            this.KEYBOARD_B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.KEYBOARD_B.FlatAppearance.BorderSize = 0;
-            this.KEYBOARD_B.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.KEYBOARD_B.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.KEYBOARD_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KEYBOARD_B.Location = new System.Drawing.Point(0, 0);
-            this.KEYBOARD_B.Name = "KEYBOARD_B";
-            this.KEYBOARD_B.Size = new System.Drawing.Size(32, 34);
-            this.KEYBOARD_B.TabIndex = 5;
-            this.KEYBOARD_B.UseVisualStyleBackColor = false;
-            this.KEYBOARD_B.Click += new System.EventHandler(this.KEYBOARD_LIST_CLICKED);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 508);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 34);
-            this.button2.TabIndex = 4;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // WARRNING_BUTTON
-            // 
-            this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Linen;
-            this.WARRNING_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("WARRNING_BUTTON.BackgroundImage")));
-            this.WARRNING_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.WARRNING_BUTTON.FlatAppearance.BorderSize = 0;
-            this.WARRNING_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.WARRNING_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.WARRNING_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WARRNING_BUTTON.Location = new System.Drawing.Point(826, 0);
-            this.WARRNING_BUTTON.Name = "WARRNING_BUTTON";
-            this.WARRNING_BUTTON.Size = new System.Drawing.Size(32, 34);
-            this.WARRNING_BUTTON.TabIndex = 7;
-            this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
-            this.WARRNING_BUTTON.Visible = false;
-            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARRNING_BUTTON_Click);
-            // 
-            // TOGGLE_B
-            // 
-            this.TOGGLE_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.TOGGLE_B.BackColor = System.Drawing.Color.Transparent;
-            this.TOGGLE_B.BackgroundImage = global::MultiBoard.Properties.Resources.TOGGLE_ON;
-            this.TOGGLE_B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.TOGGLE_B.FlatAppearance.BorderSize = 0;
-            this.TOGGLE_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TOGGLE_B.Location = new System.Drawing.Point(54, 0);
-            this.TOGGLE_B.Name = "TOGGLE_B";
-            this.TOGGLE_B.Size = new System.Drawing.Size(45, 34);
-            this.TOGGLE_B.TabIndex = 4;
-            this.TOGGLE_B.UseVisualStyleBackColor = false;
-            this.TOGGLE_B.Click += new System.EventHandler(this.TOGGLE_B_Click);
+            this.label2.Text = "Beta V1.0.0.5";
             // 
             // MINIMIZE_B
             // 
@@ -314,6 +137,183 @@
             this.MAIN_PANEL.Size = new System.Drawing.Size(858, 508);
             this.MAIN_PANEL.TabIndex = 4;
             // 
+            // LEFT_PENEL
+            // 
+            this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
+            this.LEFT_PENEL.Controls.Add(this.panel1);
+            this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
+            this.LEFT_PENEL.Controls.Add(this.button2);
+            this.LEFT_PENEL.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LEFT_PENEL.Location = new System.Drawing.Point(0, 31);
+            this.LEFT_PENEL.Name = "LEFT_PENEL";
+            this.LEFT_PENEL.Size = new System.Drawing.Size(32, 542);
+            this.LEFT_PENEL.TabIndex = 2;
+            // 
+            // ADD_KEYBOARD_BUTTON
+            // 
+            this.ADD_KEYBOARD_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ADD_KEYBOARD_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.ADD_KEYBOARD_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ADD_KEYBOARD_BUTTON.BackgroundImage")));
+            this.ADD_KEYBOARD_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.BorderSize = 0;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ADD_KEYBOARD_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ADD_KEYBOARD_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ADD_KEYBOARD_BUTTON.Location = new System.Drawing.Point(0, 40);
+            this.ADD_KEYBOARD_BUTTON.Name = "ADD_KEYBOARD_BUTTON";
+            this.ADD_KEYBOARD_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.ADD_KEYBOARD_BUTTON.TabIndex = 6;
+            this.ADD_KEYBOARD_BUTTON.UseVisualStyleBackColor = false;
+            this.ADD_KEYBOARD_BUTTON.Click += new System.EventHandler(this.ADD_KEYBOARD_BUTTON_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(0, 80);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(32, 1);
+            this.panel1.TabIndex = 4;
+            // 
+            // KEYBOARD_B
+            // 
+            this.KEYBOARD_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KEYBOARD_B.BackColor = System.Drawing.Color.Transparent;
+            this.KEYBOARD_B.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEYBOARD_B.BackgroundImage")));
+            this.KEYBOARD_B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.KEYBOARD_B.FlatAppearance.BorderSize = 0;
+            this.KEYBOARD_B.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.KEYBOARD_B.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.KEYBOARD_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KEYBOARD_B.Location = new System.Drawing.Point(0, 0);
+            this.KEYBOARD_B.Name = "KEYBOARD_B";
+            this.KEYBOARD_B.Size = new System.Drawing.Size(32, 34);
+            this.KEYBOARD_B.TabIndex = 5;
+            this.KEYBOARD_B.UseVisualStyleBackColor = false;
+            this.KEYBOARD_B.Click += new System.EventHandler(this.KEYBOARD_LIST_CLICKED);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(0, 508);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 34);
+            this.button2.TabIndex = 4;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // BOTTEM_PANEL
+            // 
+            this.BOTTEM_PANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BOTTEM_PANEL.BackColor = System.Drawing.Color.Linen;
+            this.BOTTEM_PANEL.Controls.Add(this.ERROR_LABEL);
+            this.BOTTEM_PANEL.Controls.Add(this.WARRNING_BUTTON);
+            this.BOTTEM_PANEL.Controls.Add(this.TOGGLE_B);
+            this.BOTTEM_PANEL.Controls.Add(this.label1);
+            this.BOTTEM_PANEL.Location = new System.Drawing.Point(31, 539);
+            this.BOTTEM_PANEL.Margin = new System.Windows.Forms.Padding(0);
+            this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
+            this.BOTTEM_PANEL.Size = new System.Drawing.Size(858, 34);
+            this.BOTTEM_PANEL.TabIndex = 3;
+            // 
+            // ERROR_LABEL
+            // 
+            this.ERROR_LABEL.AutoSize = true;
+            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
+            this.ERROR_LABEL.Name = "ERROR_LABEL";
+            this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
+            this.ERROR_LABEL.TabIndex = 8;
+            // 
+            // WARRNING_BUTTON
+            // 
+            this.WARRNING_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.WARRNING_BUTTON.BackColor = System.Drawing.Color.Linen;
+            this.WARRNING_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("WARRNING_BUTTON.BackgroundImage")));
+            this.WARRNING_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.WARRNING_BUTTON.FlatAppearance.BorderSize = 0;
+            this.WARRNING_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.WARRNING_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.WARRNING_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WARRNING_BUTTON.Location = new System.Drawing.Point(826, 0);
+            this.WARRNING_BUTTON.Name = "WARRNING_BUTTON";
+            this.WARRNING_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.WARRNING_BUTTON.TabIndex = 7;
+            this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
+            this.WARRNING_BUTTON.Visible = false;
+            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARRNING_BUTTON_Click);
+            // 
+            // TOGGLE_B
+            // 
+            this.TOGGLE_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.TOGGLE_B.BackColor = System.Drawing.Color.Transparent;
+            this.TOGGLE_B.BackgroundImage = global::MultiBoard.Properties.Resources.TOGGLE_ON;
+            this.TOGGLE_B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.TOGGLE_B.FlatAppearance.BorderSize = 0;
+            this.TOGGLE_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TOGGLE_B.Location = new System.Drawing.Point(54, 0);
+            this.TOGGLE_B.Name = "TOGGLE_B";
+            this.TOGGLE_B.Size = new System.Drawing.Size(45, 34);
+            this.TOGGLE_B.TabIndex = 4;
+            this.TOGGLE_B.UseVisualStyleBackColor = false;
+            this.TOGGLE_B.Click += new System.EventHandler(this.TOGGLE_B_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Off/On";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // NOTIFY_ICO
+            // 
+            this.NOTIFY_ICO.ContextMenuStrip = this.NOTIFY_ICO_CONTENT;
+            this.NOTIFY_ICO.Icon = ((System.Drawing.Icon)(resources.GetObject("NOTIFY_ICO.Icon")));
+            this.NOTIFY_ICO.Text = "MultiBoard";
+            this.NOTIFY_ICO.Visible = true;
+            this.NOTIFY_ICO.Click += new System.EventHandler(this.NOTIFY_ICO_Click);
+            // 
+            // NOTIFY_ICO_CONTENT
+            // 
+            this.NOTIFY_ICO_CONTENT.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.openToolStripMenuItem});
+            this.NOTIFY_ICO_CONTENT.Name = "NOTIFY_ICO_CONTENT";
+            this.NOTIFY_ICO_CONTENT.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.NOTIFY_ICO_CONTENT.ShowImageMargin = false;
+            this.NOTIFY_ICO_CONTENT.Size = new System.Drawing.Size(79, 48);
+            this.NOTIFY_ICO_CONTENT.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.NOTIFY_ICO_CONTENT_ItemClicked);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(78, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
             // backgroundWorker2
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
@@ -332,11 +332,11 @@
             this.Text = "Form1";
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
+            this.TOP_ICON_PANEL.ResumeLayout(false);
             this.LEFT_PENEL.ResumeLayout(false);
             this.BOTTEM_PANEL.ResumeLayout(false);
             this.BOTTEM_PANEL.PerformLayout();
             this.NOTIFY_ICO_CONTENT.ResumeLayout(false);
-            this.TOP_ICON_PANEL.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
