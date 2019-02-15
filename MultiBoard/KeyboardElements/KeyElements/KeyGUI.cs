@@ -1,61 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
+using MultiBoard.Keyboard.KeyElements;
 using MultiBoard.overlays;
 
-namespace MultiBoard
+namespace MultiBoard.KeyboardElements.KeyElements
 {
 
-    public partial class Key : UserControl
+    public partial class KeyGui : UserControl
     {
         //resouces
         //===============================
-        Image TOGGLE_ON = Properties.Resources.TOGGLE_ON;
-        Image TOGGLE_OFF = Properties.Resources.TOGGLE_OFF;
+        Image _toggleOn = Properties.Resources.TOGGLE_ON;
+        Image _toggleOff = Properties.Resources.TOGGLE_OFF;
 
         //variables
         //===============================
-        private bool OnKeyDownSelected = false;
-        private bool OnKeyUpSelected = false;
-        private bool OnKeyPressedSelected = false;
+        private bool _onKeyDownSelected = false;
+        private bool _onKeyUpSelected = false;
+        private bool _onKeyPressedSelected = false;
 
-        private string keyName;
-        private bool recordingKey = false;
-        private bool enabled = true;
-        private string KeyTag;
-        private string ExecuteLocation;
-        private string oldName;
+        private string _keyName;
+        private bool _recordingKey = false;
+        private bool _enabled = true;
+        private string _keyTag;
+        private string _executeLocation;
+        private Key _connectedKey;
 
-        public List<string> nameAllKeys = new List<string>();
+        private string _oldName;
+
+        public List<string> NameAllKeys = new List<string>();
 
         //events
         //=========================
         public event EventHandler UpdatedData;
-        public event EventHandler<objKeyEventArgs> DeleteKey;
+        public event EventHandler<ObjKeyEventArgs> DeleteKey;
 
-        public Key()
+        public KeyGui()
         {
             InitializeComponent();
         }
 
-        public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc)
+        public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
         {
-            keyName = name;
-            oldName = keyName;
+            _keyName = name;
+            _oldName = _keyName;
             KEY_NAME_TEXTBOX.Text = name;
+            _connectedKey = connectKey;
 
             if(eventState == 1)
             {
-                OnKeyDownSelected = true;
-                OnKeyUpSelected = false;
-                OnKeyPressedSelected = false;
+                _onKeyDownSelected = true;
+                _onKeyUpSelected = false;
+                _onKeyPressedSelected = false;
 
                 KEY_DOWN_P.BackColor = Color.DimGray;
                 KEY_UP_P.BackColor = groupBox1.BackColor;
@@ -63,9 +62,9 @@ namespace MultiBoard
             }
             else if(eventState == 2)
             {
-                OnKeyDownSelected = true;
-                OnKeyUpSelected = false;
-                OnKeyPressedSelected = false;
+                _onKeyDownSelected = true;
+                _onKeyUpSelected = false;
+                _onKeyPressedSelected = false;
 
                 KEY_DOWN_P.BackColor = groupBox1.BackColor;
                 KEY_UP_P.BackColor = Color.DimGray;
@@ -74,9 +73,9 @@ namespace MultiBoard
             }
             else if(eventState == 3)
             {
-                OnKeyDownSelected = false;
-                OnKeyUpSelected = false;
-                OnKeyPressedSelected = true;
+                _onKeyDownSelected = false;
+                _onKeyUpSelected = false;
+                _onKeyPressedSelected = true;
 
                 KEY_DOWN_P.BackColor = groupBox1.BackColor;
                 KEY_UP_P.BackColor = groupBox1.BackColor;
@@ -85,29 +84,29 @@ namespace MultiBoard
             }
 
             KEY_LABEL.Text = key;
-            KeyTag = key;
+            _keyTag = key;
 
 
             if (enabledKey != true)
             {
-                enabled = false;
-                ENABLE_BUTTON.BackgroundImage = TOGGLE_OFF;
+                _enabled = false;
+                ENABLE_BUTTON.BackgroundImage = _toggleOff;
             }
             else
             {
-                enabled = true;
-                ENABLE_BUTTON.BackgroundImage = TOGGLE_ON;
+                _enabled = true;
+                ENABLE_BUTTON.BackgroundImage = _toggleOn;
             }
 
-            ExecuteLocation = executeLoc;
+            _executeLocation = executeLoc;
             LOCATION_TEXTBOX.Text = executeLoc;
         }
 
         private void keyDownClicked(object sender, EventArgs e)
         {
-            OnKeyDownSelected = true;
-            OnKeyUpSelected = false;
-            OnKeyPressedSelected = false;
+            _onKeyDownSelected = true;
+            _onKeyUpSelected = false;
+            _onKeyPressedSelected = false;
 
             KEY_DOWN_P.BackColor = Color.DimGray;
             KEY_UP_P.BackColor = groupBox1.BackColor;
@@ -116,9 +115,9 @@ namespace MultiBoard
 
         private void keyUpClicked(object sender, EventArgs e)
         {
-            OnKeyDownSelected = false;
-            OnKeyUpSelected = true;
-            OnKeyPressedSelected = false;
+            _onKeyDownSelected = false;
+            _onKeyUpSelected = true;
+            _onKeyPressedSelected = false;
 
             KEY_DOWN_P.BackColor = groupBox1.BackColor;
             KEY_UP_P.BackColor = Color.DimGray;
@@ -127,60 +126,44 @@ namespace MultiBoard
 
         private void keyPressedClicked(object sender, EventArgs e)
         {
-            OnKeyDownSelected = false;
-            OnKeyUpSelected = false;
-            OnKeyPressedSelected = true;
+            _onKeyDownSelected = false;
+            _onKeyUpSelected = false;
+            _onKeyPressedSelected = true;
 
             KEY_DOWN_P.BackColor = groupBox1.BackColor;
             KEY_UP_P.BackColor = groupBox1.BackColor;
             KEY_PRESSED_p.BackColor = Color.DimGray;
         }
 
-        public void keyDown(string KEY, bool allEnebled)
+        public void keyDown(string key, bool allEnebled)
         {
-            if(recordingKey == true)
+            if(_recordingKey == true)
             {
                 if (KEY_LABEL.InvokeRequired)
                 {
-                    KEY_LABEL.Invoke(new Action(() => { KEY_LABEL.Text = KEY; }));
+                    KEY_LABEL.Invoke(new Action(() => { KEY_LABEL.Text = key; }));
                 }
                 else
                 {
-                    KEY_LABEL.Text = KEY;
+                    KEY_LABEL.Text = key;
                 }
 
-                KeyTag = KEY;
-            }
-            else
-            {
-                if(KeyTag == KEY && enabled == true && OnKeyDownSelected  && File.Exists(ExecuteLocation) && allEnebled)
-                {
-                    //execute
-                    System.Diagnostics.Process.Start(ExecuteLocation);
-                }
+                _keyTag = key;
             }
         }
 
-        public void keyUp(string KEY, bool allEnebled)
-        {
-            if (KeyTag == KEY && enabled == true && OnKeyUpSelected && File.Exists(ExecuteLocation) && allEnebled)
-            {
-                //execute
-                System.Diagnostics.Process.Start(ExecuteLocation);
-            }
-        }
 
-        private void StartRecordingClicked(object sender, EventArgs e)
+        private void startRecordingClicked(object sender, EventArgs e)
         {
-            if(recordingKey == true)
+            if(_recordingKey == true)
             {
-                recordingKey = false;
+                _recordingKey = false;
                 RECORD_KEY_BUTTON.Text = "Start recording";
                 KEY_RECORD_PANEL.BackColor = groupBox1.BackColor;
             }
             else
             {
-                recordingKey = true;
+                _recordingKey = true;
                 RECORD_KEY_BUTTON.Text = "Stop recording";
                 KEY_RECORD_PANEL.BackColor = Color.OrangeRed;
             }
@@ -188,15 +171,15 @@ namespace MultiBoard
 
         private void ENABLE_BUTTON_CLICK(object sender, EventArgs e)
         {
-            if(enabled == true)
+            if(_enabled == true)
             {
-                enabled = false;
-                ENABLE_BUTTON.BackgroundImage = TOGGLE_OFF;
+                _enabled = false;
+                ENABLE_BUTTON.BackgroundImage = _toggleOff;
             }
             else
             {
-                enabled = true;
-                ENABLE_BUTTON.BackgroundImage = TOGGLE_ON;
+                _enabled = true;
+                ENABLE_BUTTON.BackgroundImage = _toggleOn;
             }
         }
 
@@ -217,13 +200,13 @@ namespace MultiBoard
                         using (myStream)
                         {
                             //file exists
-                            ExecuteLocation = theDialog.FileName;
+                            _executeLocation = theDialog.FileName;
                             LOCATION_TEXTBOX.Text = theDialog.FileName;
 
                             //save to "FileOpenLastLocation"
-                            string[] splits = ExecuteLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
                             string remove = splits[splits.Length - 1];
-                            Properties.Settings.Default.FileOpen_LastLocation = ExecuteLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
                         }
                     }
                 }
@@ -236,16 +219,16 @@ namespace MultiBoard
 
         public string getName()
         {
-            return keyName;
+            return _keyName;
         }
 
         public int getEvent()
         {
-            if(OnKeyDownSelected)
+            if(_onKeyDownSelected)
             {
                 return 1;
             }
-            else if(OnKeyUpSelected)
+            else if(_onKeyUpSelected)
             {
                 return 2;
             }
@@ -257,20 +240,20 @@ namespace MultiBoard
 
         public string getKeytag()
         {
-            return KeyTag;
+            return _keyTag;
         }
 
         public bool getEnebled()
         {
-            return enabled;
+            return _enabled;
         }
 
         public string getExecuteLocation()
         {
-            return ExecuteLocation;
+            return _executeLocation;
         }
 
-        protected virtual void OnUpdatedData()
+        protected virtual void onUpdatedData()
         {
             if(UpdatedData != null)
             {
@@ -280,20 +263,29 @@ namespace MultiBoard
 
         private void DELETE_BUTTON_Click(object sender, EventArgs e)
         {
-            OnDeleteKey();
+            onDeleteKey();
         }
 
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
-            if (checkKeyName(keyName))
+            if (checkKeyName(_keyName))
             {
                 KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
-                OnUpdatedData();
+
+                _connectedKey.key_name = _keyName;
+                _connectedKey.keyEnebled = _enabled;
+                _connectedKey.EventState = getEvent();
+                _connectedKey.executeLoc = _executeLocation;
+                _connectedKey.keyTag = _keyTag;
+
+                onUpdatedData();
 
                 SavedOverlay ol = new SavedOverlay();
                 ol.Location = new Point(0, 0);
                 this.Controls.Add(ol);
                 ol.BringToFront();
+
+                
             }
             else
             {
@@ -301,14 +293,14 @@ namespace MultiBoard
             }
         }
 
-        protected virtual void OnDeleteKey()
+        protected virtual void onDeleteKey()
         {
-            DeleteKey(this, new objKeyEventArgs() { objKey = this });
+            if (DeleteKey != null) DeleteKey(this, new ObjKeyEventArgs() {ObjKey = _connectedKey});
         }
 
         private void KEY_NAME_TEXTBOX_TextChanged(object sender, EventArgs e)
         {
-            keyName = KEY_NAME_TEXTBOX.Text;
+            _keyName = KEY_NAME_TEXTBOX.Text;
         }
 
         private bool checkKeyName(string s)
@@ -318,15 +310,15 @@ namespace MultiBoard
 
         private void KEY_RECORD_PANEL_Leave(object sender, EventArgs e)
         {
-            recordingKey = false;
+            _recordingKey = false;
             RECORD_KEY_BUTTON.Text = "Start recording";
             KEY_RECORD_PANEL.BackColor = groupBox1.BackColor;
         }
     }
 
-    public class objKeyEventArgs : EventArgs
+    public class ObjKeyEventArgs : EventArgs
     {
-        public Key objKey { get; set; }
+        public Key ObjKey { get; set; }
     }
 
     

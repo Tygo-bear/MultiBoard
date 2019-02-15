@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MultiBoard.Keyboard;
 
 namespace MultiBoard
 {
@@ -174,7 +175,7 @@ namespace MultiBoard
             KeyboardScanner kbs = new KeyboardScanner();
             kbs.loadList(115200);
 
-            filterKeyboards(kbs.ports, kbs.uuid);
+            filterKeyboards(kbs.Ports, kbs.Uuid);
             refreshing = false;
 
             this.Invoke(new Action(() => {

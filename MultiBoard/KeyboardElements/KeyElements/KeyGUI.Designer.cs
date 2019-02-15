@@ -1,6 +1,6 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.KeyboardElements.KeyElements
 {
-    partial class Key
+    partial class KeyGui
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Key));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyGui));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.KEY_NAME_TEXTBOX = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -238,7 +238,7 @@
             this.RECORD_KEY_BUTTON.TabIndex = 0;
             this.RECORD_KEY_BUTTON.Text = "Start recording";
             this.RECORD_KEY_BUTTON.UseVisualStyleBackColor = true;
-            this.RECORD_KEY_BUTTON.Click += new System.EventHandler(this.StartRecordingClicked);
+            this.RECORD_KEY_BUTTON.Click += new System.EventHandler(this.startRecordingClicked);
             // 
             // label4
             // 

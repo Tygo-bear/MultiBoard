@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard
@@ -26,8 +22,8 @@ namespace MultiBoard
                 // send our Win32 message to make the currently running instance
                 // jump on top of all the other windows
                 NativeMethods.PostMessage(
-                    (IntPtr)NativeMethods.HWND_BROADCAST,
-                    NativeMethods.WM_SHOWME,
+                    (IntPtr)NativeMethods.HwndBroadcast,
+                    NativeMethods.WmShowme,
                     IntPtr.Zero,
                     IntPtr.Zero);
             }

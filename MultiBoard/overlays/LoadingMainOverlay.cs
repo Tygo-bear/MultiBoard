@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard.overlays
@@ -17,18 +11,18 @@ namespace MultiBoard.overlays
             InitializeComponent();
         }
 
-        Image EYE_1 = Properties.Resources.eyes_1;
-        Image EYE_2 = Properties.Resources.eyes_2;
+        readonly Image _eye1 = Properties.Resources.eyes_1;
+        readonly Image _eye2 = Properties.Resources.eyes_2;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(LOADING_PICTURE.BackgroundImage == EYE_1)
+            if(LOADING_PICTURE.BackgroundImage == _eye1)
             {
-                LOADING_PICTURE.BackgroundImage = EYE_2;
+                LOADING_PICTURE.BackgroundImage = _eye2;
             }
             else
             {
-                LOADING_PICTURE.BackgroundImage = EYE_1;
+                LOADING_PICTURE.BackgroundImage = _eye1;
             }
         }
     }

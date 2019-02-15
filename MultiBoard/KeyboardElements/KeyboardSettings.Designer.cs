@@ -1,4 +1,4 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.Keyboard
 {
     partial class KeyboardSettings
     {
@@ -42,13 +42,13 @@
             this.BACK_BUTTON = new System.Windows.Forms.Button();
             this.DELETE_BUTTON = new System.Windows.Forms.Button();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LOCK_BUTTON = new System.Windows.Forms.Button();
+            this.LOCK_2_PICTURE = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOCK_1_PICTURE)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LOCK_2_PICTURE)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -193,38 +193,39 @@
             this.SAVE_BUTTON.UseVisualStyleBackColor = false;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
-            // button1
+            // LOCK_BUTTON
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(801, 436);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 67);
-            this.button1.TabIndex = 11;
-            this.button1.UseVisualStyleBackColor = false;
+            this.LOCK_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.LOCK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LOCK_BUTTON.BackgroundImage")));
+            this.LOCK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LOCK_BUTTON.FlatAppearance.BorderSize = 0;
+            this.LOCK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LOCK_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LOCK_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.LOCK_BUTTON.Location = new System.Drawing.Point(801, 436);
+            this.LOCK_BUTTON.Name = "LOCK_BUTTON";
+            this.LOCK_BUTTON.Size = new System.Drawing.Size(50, 67);
+            this.LOCK_BUTTON.TabIndex = 11;
+            this.LOCK_BUTTON.UseVisualStyleBackColor = false;
+            this.LOCK_BUTTON.Click += new System.EventHandler(this.LOCK_BUTTON_Click);
             // 
-            // pictureBox1
+            // LOCK_2_PICTURE
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(356, 383);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 22);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.LOCK_2_PICTURE.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.LOCK_2_PICTURE.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LOCK_2_PICTURE.BackgroundImage")));
+            this.LOCK_2_PICTURE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LOCK_2_PICTURE.Location = new System.Drawing.Point(356, 383);
+            this.LOCK_2_PICTURE.Name = "LOCK_2_PICTURE";
+            this.LOCK_2_PICTURE.Size = new System.Drawing.Size(21, 22);
+            this.LOCK_2_PICTURE.TabIndex = 13;
+            this.LOCK_2_PICTURE.TabStop = false;
             // 
             // KeyboardSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LOCK_2_PICTURE);
+            this.Controls.Add(this.LOCK_BUTTON);
             this.Controls.Add(this.SAVE_BUTTON);
             this.Controls.Add(this.DELETE_BUTTON);
             this.Controls.Add(this.BACK_BUTTON);
@@ -240,7 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.LOCK_1_PICTURE)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LOCK_2_PICTURE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,7 +261,7 @@
         private System.Windows.Forms.Button DELETE_BUTTON;
         private System.Windows.Forms.Button SAVE_BUTTON;
         private System.Windows.Forms.PictureBox LOCK_1_PICTURE;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button LOCK_BUTTON;
+        private System.Windows.Forms.PictureBox LOCK_2_PICTURE;
     }
 }

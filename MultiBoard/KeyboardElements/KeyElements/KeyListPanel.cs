@@ -1,71 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiBoard.Keyboard
+namespace MultiBoard.Keyboard.KeyElements
 {
     public partial class KeyListPanel : UserControl
     {
-        private bool stateEnebled;
-        private bool focus;
-        private string kName;
-        private Key connectedKey;
+        private bool _stateEnebled;
+        private bool _focus;
+        private string _kName;
+        private Key _connectedKey;
 
         private Image normal_key = Properties.Resources.key;
         private Image dark_key = Properties.Resources.dark_key;
 
         public event EventHandler ClickedKey;
 
-        public KeyListPanel(string name, bool state, ref Key cKey)
+        public KeyListPanel(string name, bool state, Key cKey)
         {
             InitializeComponent();
 
-            kName = name;
+            _kName = name;
             KEY_NAME_LABEL.Text = name;
             setState(state);
-            connectedKey = cKey;
-
-            cKey.VisibleChanged += keyVisableChange;
+            ConnectedKey = cKey;
+            
         }
 
-        private void keyVisableChange(object sender, EventArgs e)
-        {
-            if(connectedKey.Visible == true)
-            {
-                this.BackColor = Color.FromArgb(252, 163, 17);
-                focus = true;
-                timer1.Stop();
-            }
-            else
-            {
-                focus = false;
-                timer1.Start();
-            }
-        }
-
-        public Key connectedkey
+        public bool StateEnebled
         {
             get
             {
-                return connectedKey;
-            }
-            set
-            {
-                connectedKey = value;
-            }
-        }
-
-        public bool state_enebled
-        {
-            get
-            {
-                return stateEnebled;
+                return _stateEnebled;
             }
             set
             {
@@ -73,15 +39,15 @@ namespace MultiBoard.Keyboard
             }
         }
 
-        public string kname
+        public string Kname
         {
             get
             {
-                return kName;
+                return _kName;
             }
             set
             {
-                kName = value;
+                _kName = value;
                 KEY_NAME_LABEL.Text = value;
             }
         }
@@ -90,13 +56,15 @@ namespace MultiBoard.Keyboard
         {
             get
             {
-                return connectedKey;
+                return ConnectedKey;
             }
             set
             {
-                connectedKey = value;
+                ConnectedKey = value;
             }
         }
+
+        public Key ConnectedKey { get => _connectedKey; set => _connectedKey = value; }
 
         private void KeyListPanel_Click(object sender, EventArgs e)
         {
@@ -110,12 +78,12 @@ namespace MultiBoard.Keyboard
         {
             if(state == true)
             {
-                stateEnebled = true;
+                _stateEnebled = true;
                 KEY_PICTURE.BackgroundImage = normal_key;
             }
             else
             {
-                stateEnebled = false;
+                _stateEnebled = false;
                 KEY_PICTURE.BackgroundImage = dark_key;
             }
         }
@@ -128,7 +96,7 @@ namespace MultiBoard.Keyboard
 
         private void KeyListPanel_MouseLeave(object sender, EventArgs e)
         {
-            if (focus == false)
+            if (_focus == false)
             {
                 timer1.Start();
             }
@@ -137,6 +105,20 @@ namespace MultiBoard.Keyboard
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.BackColor = Color.LightGray;
+        }
+
+        public void inFocus(bool b)
+        {
+            if (b == true)
+            {
+                timer1.Stop();
+                _focus = true;
+            }
+            else
+            {
+                timer1.Start();
+                _focus = false;
+            }
         }
     }
 }
