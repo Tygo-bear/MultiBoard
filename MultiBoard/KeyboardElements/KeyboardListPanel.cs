@@ -101,8 +101,8 @@ namespace MultiBoard.Keyboard
             if (_infocus == true)
             {
                 this.BackColor = Color.DarkGray;
-                this.Location = new Point(this.Location.X + 4, this.Location.Y + 4);
-                this.Size = new Size(this.Size.Width - 8, this.Size.Height - 8);
+                this.Location = new Point(this.Location.X + 2, this.Location.Y + 2);
+                this.Size = new Size(this.Size.Width - 4, this.Size.Height - 4);
                 timer1.Stop();
                 _infocus = false;
             }
@@ -114,8 +114,8 @@ namespace MultiBoard.Keyboard
             if (_infocus == false)
             {
                 this.BackColor = Color.CornflowerBlue;
-                this.Location = new Point(this.Location.X - 4, this.Location.Y - 4);
-                this.Size = new Size(this.Size.Width + 8, this.Size.Height + 8);
+                this.Location = new Point(this.Location.X - 2, this.Location.Y - 2);
+                this.Size = new Size(this.Size.Width + 4, this.Size.Height + 4);
                 _infocus = true;
             }
         }
