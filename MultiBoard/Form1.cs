@@ -209,7 +209,7 @@ namespace MultiBoard
         {
             if (!File.Exists(MainDirectory + @"\keyboards.inf"))
             {
-                //greate file
+                //create file
                 if (!Directory.Exists(MainDirectory))
                 {
                     Directory.CreateDirectory(MainDirectory);
