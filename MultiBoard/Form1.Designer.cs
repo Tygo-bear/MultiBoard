@@ -80,9 +80,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label2.Location = new System.Drawing.Point(38, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(142, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.0.5";
+            this.label2.Text = "Beta V1.0.0.5-speed test 2.0";
             // 
             // MINIMIZE_B
             // 

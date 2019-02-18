@@ -54,6 +54,9 @@ namespace MultiBoard
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Highest;
+            System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.RealTime;
+
             string s = _comPort.ReadExisting();
             //Console.WriteLine("Data: " + s);
 
