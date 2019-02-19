@@ -12,6 +12,7 @@ namespace MultiBoard.ErrorSystem
 {
     public partial class ErrorMangePanel : UserControl
     {
+
         public ErrorMangePanel()
         {
             InitializeComponent();

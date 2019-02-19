@@ -29,6 +29,7 @@ namespace MultiBoard
         ErrorOptions _errorContr = new ErrorOptions();
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
         ErrorMangePanel _errorManagePanel = new ErrorMangePanel();
+        Errors _errorDatabase = new Errors();
 
         //resouces images
         //===============================
