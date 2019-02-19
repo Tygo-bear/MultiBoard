@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.NAME_LABEL = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
             this.ADD_ITEM_P = new System.Windows.Forms.PictureBox();
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -87,6 +89,8 @@
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(198, 35);
             this.BOTTEM_PANEL.TabIndex = 1;
             this.BOTTEM_PANEL.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.BOTTEM_PANEL.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
+            this.BOTTEM_PANEL.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
             // label1
             // 
@@ -99,6 +103,8 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Add new key";
             this.label1.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.label1.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
+            this.label1.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
             // ADD_ITEM_P
             // 
@@ -111,6 +117,8 @@
             this.ADD_ITEM_P.TabIndex = 1;
             this.ADD_ITEM_P.TabStop = false;
             this.ADD_ITEM_P.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.ADD_ITEM_P.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
+            this.ADD_ITEM_P.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
             // LEFT_PANEL
             // 
@@ -135,6 +143,11 @@
             this.KEYLIST_PANEL.Name = "KEYLIST_PANEL";
             this.KEYLIST_PANEL.Size = new System.Drawing.Size(198, 436);
             this.KEYLIST_PANEL.TabIndex = 2;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // KeyBoard
             // 
@@ -164,5 +177,6 @@
         private System.Windows.Forms.PictureBox ADD_ITEM_P;
         private System.Windows.Forms.Panel LEFT_PANEL;
         private System.Windows.Forms.Panel KEYLIST_PANEL;
+        private System.Windows.Forms.Timer timer1;
     }
 }

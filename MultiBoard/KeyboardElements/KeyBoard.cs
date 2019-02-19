@@ -344,5 +344,22 @@ namespace MultiBoard
 
             _keyPanelList.Clear();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            BOTTEM_PANEL.BackColor = Color.FromArgb(252, 163, 17);
+            timer1.Stop();
+        }
+
+        private void BOTTEM_PANEL_MouseEnter(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            BOTTEM_PANEL.BackColor = Color.DarkOrange;
+        }
+
+        private void BOTTEM_PANEL_MouseLeave(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
     }
 }
