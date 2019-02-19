@@ -52,6 +52,8 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.PERF_MODE_BUTTON = new System.Windows.Forms.Button();
+            this.ERROR_MANAGE_BUTTON = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
@@ -140,6 +142,8 @@
             // LEFT_PENEL
             // 
             this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.LEFT_PENEL.Controls.Add(this.ERROR_MANAGE_BUTTON);
+            this.LEFT_PENEL.Controls.Add(this.PERF_MODE_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.panel1);
             this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
@@ -318,6 +322,42 @@
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
             // 
+            // PERF_MODE_BUTTON
+            // 
+            this.PERF_MODE_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PERF_MODE_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.PERF_MODE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PERF_MODE_BUTTON.BackgroundImage")));
+            this.PERF_MODE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PERF_MODE_BUTTON.FlatAppearance.BorderSize = 0;
+            this.PERF_MODE_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.PERF_MODE_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PERF_MODE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PERF_MODE_BUTTON.Location = new System.Drawing.Point(0, 83);
+            this.PERF_MODE_BUTTON.Name = "PERF_MODE_BUTTON";
+            this.PERF_MODE_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.PERF_MODE_BUTTON.TabIndex = 7;
+            this.PERF_MODE_BUTTON.UseVisualStyleBackColor = false;
+            this.PERF_MODE_BUTTON.Click += new System.EventHandler(this.PERF_MODE_BUTTON_Click);
+            // 
+            // ERROR_MANAGE_BUTTON
+            // 
+            this.ERROR_MANAGE_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ERROR_MANAGE_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.ERROR_MANAGE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ERROR_MANAGE_BUTTON.BackgroundImage")));
+            this.ERROR_MANAGE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ERROR_MANAGE_BUTTON.FlatAppearance.BorderSize = 0;
+            this.ERROR_MANAGE_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ERROR_MANAGE_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ERROR_MANAGE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ERROR_MANAGE_BUTTON.Location = new System.Drawing.Point(0, 468);
+            this.ERROR_MANAGE_BUTTON.Name = "ERROR_MANAGE_BUTTON";
+            this.ERROR_MANAGE_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.ERROR_MANAGE_BUTTON.TabIndex = 8;
+            this.ERROR_MANAGE_BUTTON.UseVisualStyleBackColor = false;
+            this.ERROR_MANAGE_BUTTON.Click += new System.EventHandler(this.ERROR_MANAGE_BUTTON_Click);
+            // 
             // MultiBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +405,8 @@
         private System.Windows.Forms.Label ERROR_LABEL;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.Button PERF_MODE_BUTTON;
+        private System.Windows.Forms.Button ERROR_MANAGE_BUTTON;
     }
 }
 

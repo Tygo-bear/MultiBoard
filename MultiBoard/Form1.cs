@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MultiBoard.Keyboard;
+using MultiBoard.ErrorSystem;
 
 namespace MultiBoard
 {
@@ -19,11 +20,15 @@ namespace MultiBoard
         public bool ToggleB = true;
         private List<KeyBoard> _keyboardList = new List<KeyBoard>();
         private List<Connector> _connectorList = new List<Connector>();
+
+        //classes and user controls
+        //====================================
         KeyboardList _listkeyboardElement;
         KeyboardScanner _scanner = new KeyboardScanner();
         addKeyboard _addKeyboardContr;
         ErrorOptions _errorContr = new ErrorOptions();
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
+        ErrorMangePanel _errorManagePanel = new ErrorMangePanel();
 
         //resouces images
         //===============================
@@ -69,6 +74,11 @@ namespace MultiBoard
             _errorContr.Visible = false;
             this.Controls.Add(_errorContr);
 
+            //errorManagePanel
+            _errorManagePanel.Location = new Point(32, 31);
+            _errorManagePanel.Hide();
+            this.Controls.Add(_errorManagePanel);
+            
             //addkeyboard control
             _addKeyboardContr = new addKeyboard();
             _addKeyboardContr.Location = new Point(32, 31);
@@ -506,6 +516,17 @@ namespace MultiBoard
             TopMost = true;
             // set it back to whatever it was
             TopMost = top;
+        }
+
+        private void PERF_MODE_BUTTON_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ERROR_MANAGE_BUTTON_Click(object sender, EventArgs e)
+        {
+            _errorManagePanel.Show();
+            _errorManagePanel.BringToFront();
         }
     }
 }
