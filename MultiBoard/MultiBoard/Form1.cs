@@ -167,6 +167,7 @@ namespace MultiBoard
 
                 sstring.Add(uuid + "|" + name + "|" + port + "\n");
             }
+
             string[] writeAll = sstring.ToArray();
 
             File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);

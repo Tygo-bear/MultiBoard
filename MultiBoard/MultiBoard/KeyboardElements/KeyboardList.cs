@@ -98,7 +98,29 @@ namespace MultiBoard.Keyboard
 
         private void keyboardDelete(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            KeyboardSettings k = sender as KeyboardSettings;
+            KeyBoard b = k.connectedKeyboard;
+
+            if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
+            {
+                File.Delete(_mainDirectory + @"\" + b.getKeyboardName() + ".inf");
+            }
+            else
+            {
+                Console.WriteLine("File delete error");
+            }
+
+            foreach (KeyboardListPanel p in _kblp)
+            {
+                if (p.connectedBoard == b)
+                {
+                    p.Dispose();
+                }
+            }
+
+            b.Dispose();
+            k.Dispose();
+            UpdateKeyboards(this, EventArgs.Empty);
         }
     }
 

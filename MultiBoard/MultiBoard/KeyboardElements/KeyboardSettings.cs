@@ -47,6 +47,11 @@ namespace MultiBoard.Keyboard
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
             //save
+            KbName = KEYBOARD_NAME_TEXTBOX.Text;
+            KbUuid = KEYBOARD_UUID_TEXTBOX.Text;
+            KbPort = KEYBOARD_COMP_TEXTBOX.Text;
+
+
             if(Save != null)
             {
                 Save(this, EventArgs.Empty);
