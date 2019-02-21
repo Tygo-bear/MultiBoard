@@ -157,6 +157,7 @@ namespace MultiBoard
         private void saveBoards()
         {
             List<string> sstring = new List<string>();
+            //TODO FIX!!!
 
             foreach (KeyBoard kb in _keyboardList)
             {
@@ -164,7 +165,7 @@ namespace MultiBoard
                 string uuid = kb.getKeyboardUuid();
                 string port = kb.getComPort();
 
-                sstring.Add(_addKeyboardContr.kbId + "|" + _addKeyboardContr.kbName + "|" + _addKeyboardContr.kbPort + "\n");
+                sstring.Add(uuid + "|" + name + "|" + port + "\n");
             }
             string[] writeAll = sstring.ToArray();
 

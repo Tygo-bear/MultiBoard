@@ -77,7 +77,7 @@ namespace MultiBoard.Keyboard
             KeyBoard b = k.connectedKeyboard;
 
             //TODO error naming
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
             if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
             {
