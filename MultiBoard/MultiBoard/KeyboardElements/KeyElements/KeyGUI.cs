@@ -57,8 +57,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 _onKeyPressedSelected = false;
 
                 KEY_DOWN_P.BackColor = Color.DimGray;
-                KEY_UP_P.BackColor = groupBox1.BackColor;
-                KEY_PRESSED_p.BackColor = groupBox1.BackColor;
+                KEY_UP_P.BackColor = EVENT_PANEL.BackColor;
+                KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
             }
             else if(eventState == 2)
             {
@@ -66,9 +66,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 _onKeyUpSelected = false;
                 _onKeyPressedSelected = false;
 
-                KEY_DOWN_P.BackColor = groupBox1.BackColor;
+                KEY_DOWN_P.BackColor = EVENT_PANEL.BackColor;
                 KEY_UP_P.BackColor = Color.DimGray;
-                KEY_PRESSED_p.BackColor = groupBox1.BackColor;
+                KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
 
             }
             else if(eventState == 3)
@@ -77,8 +77,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 _onKeyUpSelected = false;
                 _onKeyPressedSelected = true;
 
-                KEY_DOWN_P.BackColor = groupBox1.BackColor;
-                KEY_UP_P.BackColor = groupBox1.BackColor;
+                KEY_DOWN_P.BackColor = EVENT_PANEL.BackColor;
+                KEY_UP_P.BackColor = EVENT_PANEL.BackColor;
                 KEY_PRESSED_p.BackColor = Color.DimGray;
 
             }
@@ -109,8 +109,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _onKeyPressedSelected = false;
 
             KEY_DOWN_P.BackColor = Color.DimGray;
-            KEY_UP_P.BackColor = groupBox1.BackColor;
-            KEY_PRESSED_p.BackColor = groupBox1.BackColor;
+            KEY_UP_P.BackColor = EVENT_PANEL.BackColor;
+            KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
         }
 
         private void keyUpClicked(object sender, EventArgs e)
@@ -119,9 +119,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _onKeyUpSelected = true;
             _onKeyPressedSelected = false;
 
-            KEY_DOWN_P.BackColor = groupBox1.BackColor;
+            KEY_DOWN_P.BackColor = EVENT_PANEL.BackColor;
             KEY_UP_P.BackColor = Color.DimGray;
-            KEY_PRESSED_p.BackColor = groupBox1.BackColor;
+            KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
         }
 
         private void keyPressedClicked(object sender, EventArgs e)
@@ -130,8 +130,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _onKeyUpSelected = false;
             _onKeyPressedSelected = true;
 
-            KEY_DOWN_P.BackColor = groupBox1.BackColor;
-            KEY_UP_P.BackColor = groupBox1.BackColor;
+            KEY_DOWN_P.BackColor = EVENT_PANEL.BackColor;
+            KEY_UP_P.BackColor = EVENT_PANEL.BackColor;
             KEY_PRESSED_p.BackColor = Color.DimGray;
         }
 
@@ -159,7 +159,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             {
                 _recordingKey = false;
                 RECORD_KEY_BUTTON.Text = "Start recording";
-                KEY_RECORD_PANEL.BackColor = groupBox1.BackColor;
+                KEY_RECORD_PANEL.BackColor = EVENT_PANEL.BackColor;
             }
             else
             {
@@ -312,7 +312,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             _recordingKey = false;
             RECORD_KEY_BUTTON.Text = "Start recording";
-            KEY_RECORD_PANEL.BackColor = groupBox1.BackColor;
+            KEY_RECORD_PANEL.BackColor = EVENT_PANEL.BackColor;
         }
     }
 

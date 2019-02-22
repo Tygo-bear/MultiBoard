@@ -35,32 +35,37 @@
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
             this.DELETE_BUTTON = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.KEY_PRESSED_p = new System.Windows.Forms.PictureBox();
-            this.KEY_UP_P = new System.Windows.Forms.PictureBox();
-            this.KEY_DOWN_P = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.KEY_RECORD_PANEL = new System.Windows.Forms.Panel();
             this.KEY_LABEL = new System.Windows.Forms.Label();
             this.RECORD_KEY_BUTTON = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.ENABLE_BUTTON = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.EVENT_PANEL = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.KEY_PRESSED_p = new System.Windows.Forms.PictureBox();
+            this.KEY_UP_P = new System.Windows.Forms.PictureBox();
+            this.KEY_DOWN_P = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.OPEN_FILE_BUTTON = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.LOCATION_TEXTBOX = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.KEY_RECORD_PANEL.SuspendLayout();
+            this.EVENT_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_PRESSED_p)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_UP_P)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).BeginInit();
-            this.KEY_RECORD_PANEL.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -132,90 +137,12 @@
             this.DELETE_BUTTON.UseVisualStyleBackColor = true;
             this.DELETE_BUTTON.Click += new System.EventHandler(this.DELETE_BUTTON_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.KEY_PRESSED_p);
-            this.groupBox1.Controls.Add(this.KEY_UP_P);
-            this.groupBox1.Controls.Add(this.KEY_DOWN_P);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(10, 48);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(640, 131);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Do on";
-            // 
-            // KEY_PRESSED_p
-            // 
-            this.KEY_PRESSED_p.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_PRESSED_p.BackgroundImage")));
-            this.KEY_PRESSED_p.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.KEY_PRESSED_p.Location = new System.Drawing.Point(464, 46);
-            this.KEY_PRESSED_p.Name = "KEY_PRESSED_p";
-            this.KEY_PRESSED_p.Size = new System.Drawing.Size(78, 79);
-            this.KEY_PRESSED_p.TabIndex = 5;
-            this.KEY_PRESSED_p.TabStop = false;
-            this.KEY_PRESSED_p.Click += new System.EventHandler(this.keyPressedClicked);
-            // 
-            // KEY_UP_P
-            // 
-            this.KEY_UP_P.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_UP_P.BackgroundImage")));
-            this.KEY_UP_P.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.KEY_UP_P.Location = new System.Drawing.Point(278, 46);
-            this.KEY_UP_P.Name = "KEY_UP_P";
-            this.KEY_UP_P.Size = new System.Drawing.Size(76, 79);
-            this.KEY_UP_P.TabIndex = 4;
-            this.KEY_UP_P.TabStop = false;
-            this.KEY_UP_P.Click += new System.EventHandler(this.keyUpClicked);
-            // 
-            // KEY_DOWN_P
-            // 
-            this.KEY_DOWN_P.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_DOWN_P.BackgroundImage")));
-            this.KEY_DOWN_P.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.KEY_DOWN_P.Location = new System.Drawing.Point(92, 46);
-            this.KEY_DOWN_P.Name = "KEY_DOWN_P";
-            this.KEY_DOWN_P.Size = new System.Drawing.Size(81, 79);
-            this.KEY_DOWN_P.TabIndex = 3;
-            this.KEY_DOWN_P.TabStop = false;
-            this.KEY_DOWN_P.Click += new System.EventHandler(this.keyDownClicked);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(461, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "On key pressed";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(275, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "On key up";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "On key down";
-            // 
             // KEY_RECORD_PANEL
             // 
             this.KEY_RECORD_PANEL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.KEY_RECORD_PANEL.Controls.Add(this.KEY_LABEL);
             this.KEY_RECORD_PANEL.Controls.Add(this.RECORD_KEY_BUTTON);
-            this.KEY_RECORD_PANEL.Location = new System.Drawing.Point(10, 205);
+            this.KEY_RECORD_PANEL.Location = new System.Drawing.Point(10, 21);
             this.KEY_RECORD_PANEL.Name = "KEY_RECORD_PANEL";
             this.KEY_RECORD_PANEL.Size = new System.Drawing.Size(269, 30);
             this.KEY_RECORD_PANEL.TabIndex = 3;
@@ -243,7 +170,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 189);
+            this.label4.Location = new System.Drawing.Point(7, 5);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(25, 13);
             this.label4.TabIndex = 4;
@@ -252,7 +179,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 389);
+            this.label5.Location = new System.Drawing.Point(14, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 11;
@@ -264,24 +191,115 @@
             this.ENABLE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ENABLE_BUTTON.FlatAppearance.BorderSize = 0;
             this.ENABLE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ENABLE_BUTTON.Location = new System.Drawing.Point(19, 405);
+            this.ENABLE_BUTTON.Location = new System.Drawing.Point(68, 3);
             this.ENABLE_BUTTON.Name = "ENABLE_BUTTON";
             this.ENABLE_BUTTON.Size = new System.Drawing.Size(46, 43);
             this.ENABLE_BUTTON.TabIndex = 10;
             this.ENABLE_BUTTON.UseVisualStyleBackColor = true;
             this.ENABLE_BUTTON.Click += new System.EventHandler(this.ENABLE_BUTTON_CLICK);
             // 
-            // groupBox2
+            // EVENT_PANEL
             // 
-            this.groupBox2.Controls.Add(this.OPEN_FILE_BUTTON);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.LOCATION_TEXTBOX);
-            this.groupBox2.Location = new System.Drawing.Point(10, 241);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(632, 141);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "execute";
+            this.EVENT_PANEL.BackColor = System.Drawing.Color.Gainsboro;
+            this.EVENT_PANEL.Controls.Add(this.label7);
+            this.EVENT_PANEL.Controls.Add(this.KEY_PRESSED_p);
+            this.EVENT_PANEL.Controls.Add(this.KEY_UP_P);
+            this.EVENT_PANEL.Controls.Add(this.KEY_DOWN_P);
+            this.EVENT_PANEL.Controls.Add(this.label3);
+            this.EVENT_PANEL.Controls.Add(this.label2);
+            this.EVENT_PANEL.Controls.Add(this.label1);
+            this.EVENT_PANEL.Location = new System.Drawing.Point(14, 45);
+            this.EVENT_PANEL.Name = "EVENT_PANEL";
+            this.EVENT_PANEL.Size = new System.Drawing.Size(632, 131);
+            this.EVENT_PANEL.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(7, 10);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 14);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Event";
+            // 
+            // KEY_PRESSED_p
+            // 
+            this.KEY_PRESSED_p.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_PRESSED_p.BackgroundImage")));
+            this.KEY_PRESSED_p.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.KEY_PRESSED_p.Location = new System.Drawing.Point(458, 30);
+            this.KEY_PRESSED_p.Name = "KEY_PRESSED_p";
+            this.KEY_PRESSED_p.Size = new System.Drawing.Size(78, 79);
+            this.KEY_PRESSED_p.TabIndex = 11;
+            this.KEY_PRESSED_p.TabStop = false;
+            // 
+            // KEY_UP_P
+            // 
+            this.KEY_UP_P.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_UP_P.BackgroundImage")));
+            this.KEY_UP_P.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.KEY_UP_P.Location = new System.Drawing.Point(272, 30);
+            this.KEY_UP_P.Name = "KEY_UP_P";
+            this.KEY_UP_P.Size = new System.Drawing.Size(76, 79);
+            this.KEY_UP_P.TabIndex = 10;
+            this.KEY_UP_P.TabStop = false;
+            // 
+            // KEY_DOWN_P
+            // 
+            this.KEY_DOWN_P.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_DOWN_P.BackgroundImage")));
+            this.KEY_DOWN_P.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.KEY_DOWN_P.Location = new System.Drawing.Point(86, 30);
+            this.KEY_DOWN_P.Name = "KEY_DOWN_P";
+            this.KEY_DOWN_P.Size = new System.Drawing.Size(81, 79);
+            this.KEY_DOWN_P.TabIndex = 9;
+            this.KEY_DOWN_P.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(455, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "On key pressed";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(269, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "On key up";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(83, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "On key down";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Controls.Add(this.KEY_RECORD_PANEL);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(14, 185);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(632, 57);
+            this.panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.LOCATION_TEXTBOX);
+            this.panel2.Location = new System.Drawing.Point(14, 252);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(632, 120);
+            this.panel2.TabIndex = 14;
             // 
             // OPEN_FILE_BUTTON
             // 
@@ -289,60 +307,70 @@
             this.OPEN_FILE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.OPEN_FILE_BUTTON.FlatAppearance.BorderSize = 0;
             this.OPEN_FILE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(10, 63);
+            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(10, 54);
             this.OPEN_FILE_BUTTON.Name = "OPEN_FILE_BUTTON";
             this.OPEN_FILE_BUTTON.Size = new System.Drawing.Size(76, 58);
-            this.OPEN_FILE_BUTTON.TabIndex = 2;
+            this.OPEN_FILE_BUTTON.TabIndex = 5;
             this.OPEN_FILE_BUTTON.UseVisualStyleBackColor = true;
-            this.OPEN_FILE_BUTTON.Click += new System.EventHandler(this.OPEN_FILE_CLICKED);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 20);
+            this.label6.Location = new System.Drawing.Point(7, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 13);
-            this.label6.TabIndex = 1;
+            this.label6.TabIndex = 4;
             this.label6.Text = "Location";
             // 
             // LOCATION_TEXTBOX
             // 
-            this.LOCATION_TEXTBOX.Location = new System.Drawing.Point(6, 36);
+            this.LOCATION_TEXTBOX.Location = new System.Drawing.Point(6, 27);
             this.LOCATION_TEXTBOX.Name = "LOCATION_TEXTBOX";
             this.LOCATION_TEXTBOX.ReadOnly = true;
             this.LOCATION_TEXTBOX.Size = new System.Drawing.Size(611, 20);
-            this.LOCATION_TEXTBOX.TabIndex = 0;
+            this.LOCATION_TEXTBOX.TabIndex = 3;
             // 
-            // Key
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.ENABLE_BUTTON);
+            this.panel3.Location = new System.Drawing.Point(14, 382);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(153, 51);
+            this.panel3.TabIndex = 15;
+            // 
+            // KeyGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.ENABLE_BUTTON);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.KEY_RECORD_PANEL);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.EVENT_PANEL);
             this.Controls.Add(this.BOTTEM_PANEL);
             this.Controls.Add(this.TOP_PANEL);
-            this.Name = "Key";
+            this.Name = "KeyGui";
             this.Size = new System.Drawing.Size(660, 506);
             this.Click += new System.EventHandler(this.keyDownClicked);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.BOTTEM_PANEL.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.KEY_RECORD_PANEL.ResumeLayout(false);
+            this.KEY_RECORD_PANEL.PerformLayout();
+            this.EVENT_PANEL.ResumeLayout(false);
+            this.EVENT_PANEL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_PRESSED_p)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_UP_P)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).EndInit();
-            this.KEY_RECORD_PANEL.ResumeLayout(false);
-            this.KEY_RECORD_PANEL.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -351,25 +379,28 @@
         private System.Windows.Forms.Panel TOP_PANEL;
         private System.Windows.Forms.Panel BOTTEM_PANEL;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox KEY_PRESSED_p;
-        private System.Windows.Forms.PictureBox KEY_UP_P;
-        private System.Windows.Forms.PictureBox KEY_DOWN_P;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel KEY_RECORD_PANEL;
         private System.Windows.Forms.Label KEY_LABEL;
         private System.Windows.Forms.Button RECORD_KEY_BUTTON;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button ENABLE_BUTTON;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button OPEN_FILE_BUTTON;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
         private System.Windows.Forms.Button DELETE_BUTTON;
         private System.Windows.Forms.Button SAVE_BUTTON;
         private System.Windows.Forms.TextBox KEY_NAME_TEXTBOX;
+        private System.Windows.Forms.Panel EVENT_PANEL;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox KEY_PRESSED_p;
+        private System.Windows.Forms.PictureBox KEY_UP_P;
+        private System.Windows.Forms.PictureBox KEY_DOWN_P;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button OPEN_FILE_BUTTON;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
+        private System.Windows.Forms.Panel panel3;
     }
 }
