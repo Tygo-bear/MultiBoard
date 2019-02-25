@@ -9,7 +9,7 @@ namespace MultiBoard.Keyboard
     public partial class KeyboardList : UserControl
     {
         public event EventHandler<ItemName> SelectedItem;
-        public event EventHandler UpdateKeyboards;
+        public event EventHandler<KeyboardToArgs> UpdateKeyboards;
 
         private Point NextPoint = new Point(31, 31);
         private List<KeyboardListPanel> _kblp = new List<KeyboardListPanel>();
@@ -93,7 +93,7 @@ namespace MultiBoard.Keyboard
             b.setKeyboardUuid(k.KbUuid);
             b.setComPort(k.KbPort);
 
-            UpdateKeyboards(this, EventArgs.Empty);
+            UpdateKeyboards(this, new KeyboardToArgs() { keybo = null });
         }
 
         private void keyboardDelete(object sender, EventArgs e)
@@ -118,14 +118,18 @@ namespace MultiBoard.Keyboard
                 }
             }
 
-            b.Dispose();
             k.Dispose();
-            UpdateKeyboards(this, EventArgs.Empty);
+            UpdateKeyboards(this, new KeyboardToArgs() {keybo = b});
         }
     }
 
     public class ItemName : EventArgs
     {
         public string Name { get; set; }
+    }
+
+    public class KeyboardToArgs : EventArgs
+    {
+        public KeyBoard keybo { get; set; }
     }
 }

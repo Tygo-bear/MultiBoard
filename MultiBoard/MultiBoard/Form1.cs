@@ -90,8 +90,13 @@ namespace MultiBoard
             backgroundWorker2.RunWorkerAsync();
         }
 
-        private void SaveKeyboardsEvent(object sender, EventArgs e)
+        private void SaveKeyboardsEvent(object sender, KeyboardToArgs e)
         {
+            if(e != EventArgs.Empty)
+            {
+                _keyboardList.Remove(e.keybo);
+                e.keybo.Dispose();
+            }
             saveBoards();
         }
 
