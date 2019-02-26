@@ -232,6 +232,7 @@
             this.KEY_PRESSED_p.Size = new System.Drawing.Size(78, 79);
             this.KEY_PRESSED_p.TabIndex = 11;
             this.KEY_PRESSED_p.TabStop = false;
+            this.KEY_PRESSED_p.Click += new System.EventHandler(this.keyPressedClicked);
             // 
             // KEY_UP_P
             // 
@@ -242,6 +243,7 @@
             this.KEY_UP_P.Size = new System.Drawing.Size(76, 79);
             this.KEY_UP_P.TabIndex = 10;
             this.KEY_UP_P.TabStop = false;
+            this.KEY_UP_P.Click += new System.EventHandler(this.keyUpClicked);
             // 
             // KEY_DOWN_P
             // 
@@ -252,6 +254,7 @@
             this.KEY_DOWN_P.Size = new System.Drawing.Size(81, 79);
             this.KEY_DOWN_P.TabIndex = 9;
             this.KEY_DOWN_P.TabStop = false;
+            this.KEY_DOWN_P.Click += new System.EventHandler(this.keyDownClicked);
             // 
             // label3
             // 
