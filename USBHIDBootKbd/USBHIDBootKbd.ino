@@ -7,6 +7,9 @@
 #endif
 #include <SPI.h>
 
+//change to your keyboard ID!!!!!!
+const String dynamicID = "7fba9a6d-61d1-4973-a68e-41a26309b48e";
+
 class KbdRptParser : public KeyboardReportParser
 {
     void PrintKey(uint8_t mod, uint8_t key);
@@ -132,7 +135,7 @@ void serialEvent()
   {
   //static ID: 86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1
   //dynamic ID: 1288ead0-ccd4-49ab-9891-9d3af0256ac8
-  Serial.println("ID:&86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1&7fba9a6d-61d1-4973-a68e-41a26309b48e");
+  Serial.println("ID:&86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1&" + dynamicID);
   }
 }
 
