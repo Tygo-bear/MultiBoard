@@ -102,6 +102,9 @@ namespace MultiBoard
 
         private void errorReload(object sender, EventArgs e)
         {
+            ERROR_LABEL.Text = "";
+            _errorContr.Hide();
+            WARRNING_BUTTON.Visible = false;
             reloadKeyboards();
         }
 

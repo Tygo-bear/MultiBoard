@@ -31,7 +31,9 @@ namespace MultiBoard.Keyboard
                     SerialPort comPort = new SerialPort(s, bRate);
                     Ports.Add(s);
                     comPort.Open();
+                    System.Threading.Thread.Sleep(500);
                     comPort.Write("?");
+                    Console.WriteLine("send ?");
 
                     openSerials.Add(comPort);
                 }
@@ -45,18 +47,24 @@ namespace MultiBoard.Keyboard
 
             foreach(SerialPort s in openSerials)
             {
-                System.Threading.Thread.Sleep(1000);
-
+                Console.WriteLine("   new board\n-------------");
+                Console.WriteLine(s.PortName);
                 int count = 0;
                 string input = s.ReadExisting();
-                while (input == "" && count < 10)
+                Console.WriteLine("recevied: " + input);
+                while (input == "" && count < 5)
                 {
+                    s.Write("?");
+                    System.Threading.Thread.Sleep(1000);
                     input = s.ReadExisting();
+                    s.Close();
+                    s.Open();
+                    Console.WriteLine("recevied: " + input);
                     count++;
                 }
                 
 
-                if (input.Split('&').Length == 3)
+                if (input.Replace("ID:", String.Empty).Split('&').Length == 3)
                 {
                     if (input.Split('&')[1] == _staticId)
                     {
