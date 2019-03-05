@@ -315,6 +315,7 @@
             this.OPEN_FILE_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.OPEN_FILE_BUTTON.TabIndex = 5;
             this.OPEN_FILE_BUTTON.UseVisualStyleBackColor = true;
+            this.OPEN_FILE_BUTTON.Click += new System.EventHandler(this.OPEN_FILE_CLICKED);
             // 
             // label6
             // 
