@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
 
-namespace MultiBoard.Keyboard.KeyElements
+namespace MultiBoard.KeyboardElements.KeyElements
 {
     public class Key
     {
@@ -16,6 +18,8 @@ namespace MultiBoard.Keyboard.KeyElements
         private string _keyTag;
         private string _executeLocation;
 
+        private System.Windows.Forms.Timer _timer = new Timer();
+
         public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
         {
             _keyName = name;
@@ -23,6 +27,25 @@ namespace MultiBoard.Keyboard.KeyElements
             _keyTag = key;
             _enabled = enabledKey;
             _executeLocation = executeLoc;
+
+            _timer.Interval = 500;
+            _timer.Tick += Timer_Tick;
+            _timer.Stop();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (_timer.Interval == 500)
+            {
+                _timer.Interval = 200;
+            }
+
+            if (File.Exists(_executeLocation))
+            {
+                //execute
+                System.Diagnostics.Process.Start(_executeLocation);
+            }
+
         }
 
         public string key_name
@@ -58,6 +81,7 @@ namespace MultiBoard.Keyboard.KeyElements
 
             set
             {
+                _timer.Stop();
                 if(value == 1)
                 {
                     _onKeyDownSelected = true;
@@ -124,6 +148,10 @@ namespace MultiBoard.Keyboard.KeyElements
                     //execute
                     System.Diagnostics.Process.Start(_executeLocation);
                 }
+                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
+                {
+                    _timer.Start();
+                }
             }
         }
 
@@ -136,7 +164,10 @@ namespace MultiBoard.Keyboard.KeyElements
                     //execute
                     System.Diagnostics.Process.Start(_executeLocation);
                 }
-
+                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
+                {
+                    _timer.Stop();
+                }
             }
         }
     }

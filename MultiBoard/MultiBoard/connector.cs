@@ -186,7 +186,7 @@ namespace MultiBoard
 
         protected virtual void onKeyUp(string key)
         {
-            //Console.WriteLine("KEY: " + KEY);
+            //Console.WriteLine("KEY: " + key);
 
             if (KeyUp != null)
             {

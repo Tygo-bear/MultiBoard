@@ -343,6 +343,7 @@ namespace MultiBoard
                     conect1.setup(comport, 115200);
                     conect1.openPort();
                     conect1.KeyDown += onKeyDown;
+                    conect1.KeyUp += onKeyUp;
 
                     _connectorList.Add(conect1);
                 }
