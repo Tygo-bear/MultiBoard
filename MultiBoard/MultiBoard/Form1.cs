@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using MultiBoard.Keyboard;
 using MultiBoard.ErrorSystem;
@@ -204,7 +205,7 @@ namespace MultiBoard
         {
             if (ToggleB == true)
             {
-                //disble
+                //disable
                 disableB();
             }
             else
@@ -308,7 +309,8 @@ namespace MultiBoard
 
             foreach (KeyBoard aKeyBoard in _keyboardList)
             {
-                aKeyBoard.keyDown(e.Key, c.DynamicId, ToggleB);
+                Thread t = new Thread(() => aKeyBoard.keyDown(e.Key, c.DynamicId, ToggleB));
+                t.Start();
             }
         }
 
@@ -318,7 +320,8 @@ namespace MultiBoard
             Connector c = sender as Connector;
             foreach (KeyBoard aKeyBoard in _keyboardList)
             {
-                aKeyBoard.keyUp(e.Key, c.DynamicId, ToggleB);
+                Thread t = new Thread(() => aKeyBoard.keyUp(e.Key, c.DynamicId, ToggleB));
+                t.Start();
             }
         }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 using MultiBoard.Keyboard;
 using MultiBoard.Keyboard.KeyElements;
 using MultiBoard.KeyboardElements.KeyElements;
@@ -157,7 +158,7 @@ namespace MultiBoard
             }
 
             file.Close();
-            loadListVieuw();
+            loadListView();
             updateKeyNameList();
         }
 
@@ -167,7 +168,8 @@ namespace MultiBoard
             {
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyDown(key, allEnebled);
+                    Thread t = new Thread(() => aKey.keyDown(key, allEnebled));
+                    t.Start();
                 }
 
                 _keyGui.keyDown(key, allEnebled);
@@ -180,12 +182,13 @@ namespace MultiBoard
             {
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyUp(key, allEnebled);
+                    Thread t = new Thread(() => aKey.keyUp(key, allEnebled));
+                    t.Start();
                 }
             }
         }
 
-        public void loadListVieuw()
+        public void loadListView()
         {
 
             clearKeyList();
