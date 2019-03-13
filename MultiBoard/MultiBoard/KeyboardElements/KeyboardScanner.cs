@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using MultiBoard.Properties;
 
-namespace MultiBoard.Keyboard
+namespace MultiBoard.KeyboardElements
 {
     class KeyboardScanner
     {

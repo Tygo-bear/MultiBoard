@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using MultiBoard.Keyboard;
 using MultiBoard.ErrorSystem;
+using MultiBoard.KeyboardElements;
 
 namespace MultiBoard
 {

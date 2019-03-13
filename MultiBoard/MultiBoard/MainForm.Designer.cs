@@ -371,7 +371,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MultiBoard";
-            this.Text = "Form1";
+            this.Text = "MultiBoard";
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
             this.TOP_ICON_PANEL.ResumeLayout(false);
