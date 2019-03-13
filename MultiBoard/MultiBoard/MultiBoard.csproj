@@ -134,7 +134,6 @@
     <Compile Include="KeyboardElements\KeyElements\KeyListPanel.Designer.cs">
       <DependentUpon>KeyListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeySpace.cs" />
     <Compile Include="add keyboard\ManuallyAddKeyboard.cs">
       <SubType>UserControl</SubType>
     </Compile>

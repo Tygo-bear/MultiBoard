@@ -26,8 +26,6 @@ namespace MultiBoard
         private readonly string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
         public string DynamicId; 
 
-        KeySpace _kSpace = new KeySpace();
-
         public void setup(string com, int bRate)
         {
             _comPort = new SerialPort(com, bRate);
@@ -49,7 +47,6 @@ namespace MultiBoard
         public void closePort()
         {
             _comPort.Close();
-            _kSpace.emtySpace();
         }
 
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -179,7 +176,6 @@ namespace MultiBoard
             
             if (KeyDown != null)
             {
-                _kSpace.keyDown(key);
                 KeyDown(this, new KeyEventArgs() { Key = key });
             }
         }
@@ -190,7 +186,6 @@ namespace MultiBoard
 
             if (KeyUp != null)
             {
-                _kSpace.keyUp(key);
                 KeyUp(this, new KeyEventArgs() { Key = key });
             }
         }
