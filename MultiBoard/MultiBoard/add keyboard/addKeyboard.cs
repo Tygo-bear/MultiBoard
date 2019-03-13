@@ -184,5 +184,58 @@ namespace MultiBoard
             }));
             
         }
+
+        private void AUTO_ADD_HOVER_TIMER_Tick(object sender, EventArgs e)
+        {
+            AUTO_ADD_PANEL.BackColor = Color.DarkGray;
+            REFRESH_BUTTON.BackColor = Color.DarkGray;
+            AUTO_ADD_HOVER_TIMER.Stop();
+        }
+
+        private void MANUAL_ADD_HOVER_TIMER_Tick(object sender, EventArgs e)
+        {
+            MANUAL_ADD_PANEL.BackColor = Color.DarkGray;
+            MANUAL_ADD_HOVER_TIMER.Stop();
+        }
+
+        private void CANCEL_HOVER_TIMER_Tick(object sender, EventArgs e)
+        {
+            CANCEL_PANEL.BackColor = Color.DarkGray;
+            CANCEL_HOVER_TIMER.Stop();
+        }
+
+        private void AUTO_ADD_PANEL_MouseEnter(object sender, EventArgs e)
+        {
+            AUTO_ADD_HOVER_TIMER.Stop();
+            AUTO_ADD_PANEL.BackColor = Color.Gray;
+            REFRESH_BUTTON.BackColor = Color.Gray;
+        }
+
+        private void AUTO_ADD_PANEL_MouseLeave(object sender, EventArgs e)
+        {
+            AUTO_ADD_HOVER_TIMER.Start();
+        }
+
+        private void MANUAL_ADD_PANEL_MouseEnter(object sender, EventArgs e)
+        {
+            MANUAL_ADD_HOVER_TIMER.Stop();
+            MANUAL_ADD_PANEL.BackColor = Color.Gray;
+        }
+
+        private void MANUAL_ADD_PANEL_MouseLeave(object sender, EventArgs e)
+        {
+            MANUAL_ADD_HOVER_TIMER.Start();
+        }
+
+        private void CANCEL_PANEL_MouseEnter(object sender, EventArgs e)
+        {
+            CANCEL_HOVER_TIMER.Stop();
+            CANCEL_PANEL.BackColor = Color.Gray;
+        }
+
+        private void CANCEL_PANEL_MouseLeave(object sender, EventArgs e)
+        {
+            CANCEL_HOVER_TIMER.Start();
+        }
     }
 }

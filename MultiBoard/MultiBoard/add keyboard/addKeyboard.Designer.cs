@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addKeyboard));
             this.AUTO_ADD_PANEL = new System.Windows.Forms.Panel();
             this.REFRESH_BUTTON = new System.Windows.Forms.Button();
@@ -38,6 +39,9 @@
             this.CANCEL_LABEL = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.BACKGROUND_SCANNER = new System.ComponentModel.BackgroundWorker();
+            this.AUTO_ADD_HOVER_TIMER = new System.Windows.Forms.Timer(this.components);
+            this.MANUAL_ADD_HOVER_TIMER = new System.Windows.Forms.Timer(this.components);
+            this.CANCEL_HOVER_TIMER = new System.Windows.Forms.Timer(this.components);
             this.AUTO_ADD_PANEL.SuspendLayout();
             this.MANUAL_ADD_PANEL.SuspendLayout();
             this.CANCEL_PANEL.SuspendLayout();
@@ -46,7 +50,7 @@
             // 
             // AUTO_ADD_PANEL
             // 
-            this.AUTO_ADD_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.AUTO_ADD_PANEL.BackColor = System.Drawing.Color.DarkGray;
             this.AUTO_ADD_PANEL.Controls.Add(this.REFRESH_BUTTON);
             this.AUTO_ADD_PANEL.Controls.Add(this.AUTO_ADD_LABEL);
             this.AUTO_ADD_PANEL.Location = new System.Drawing.Point(258, 81);
@@ -54,10 +58,12 @@
             this.AUTO_ADD_PANEL.Size = new System.Drawing.Size(353, 72);
             this.AUTO_ADD_PANEL.TabIndex = 0;
             this.AUTO_ADD_PANEL.Click += new System.EventHandler(this.AUTO_ADD_PANEL_Click);
+            this.AUTO_ADD_PANEL.MouseEnter += new System.EventHandler(this.AUTO_ADD_PANEL_MouseEnter);
+            this.AUTO_ADD_PANEL.MouseLeave += new System.EventHandler(this.AUTO_ADD_PANEL_MouseLeave);
             // 
             // REFRESH_BUTTON
             // 
-            this.REFRESH_BUTTON.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.REFRESH_BUTTON.BackColor = System.Drawing.Color.DarkGray;
             this.REFRESH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("REFRESH_BUTTON.BackgroundImage")));
             this.REFRESH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.REFRESH_BUTTON.FlatAppearance.BorderSize = 0;
@@ -70,6 +76,8 @@
             this.REFRESH_BUTTON.TabIndex = 1;
             this.REFRESH_BUTTON.UseVisualStyleBackColor = false;
             this.REFRESH_BUTTON.Click += new System.EventHandler(this.REFRESH_BUTTON_Click);
+            this.REFRESH_BUTTON.MouseEnter += new System.EventHandler(this.AUTO_ADD_PANEL_MouseEnter);
+            this.REFRESH_BUTTON.MouseLeave += new System.EventHandler(this.AUTO_ADD_PANEL_MouseLeave);
             // 
             // AUTO_ADD_LABEL
             // 
@@ -82,16 +90,20 @@
             this.AUTO_ADD_LABEL.TabIndex = 0;
             this.AUTO_ADD_LABEL.Text = "No keyboards detected";
             this.AUTO_ADD_LABEL.Click += new System.EventHandler(this.AUTO_ADD_PANEL_Click);
+            this.AUTO_ADD_LABEL.MouseEnter += new System.EventHandler(this.AUTO_ADD_PANEL_MouseEnter);
+            this.AUTO_ADD_LABEL.MouseLeave += new System.EventHandler(this.AUTO_ADD_PANEL_MouseLeave);
             // 
             // MANUAL_ADD_PANEL
             // 
-            this.MANUAL_ADD_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.MANUAL_ADD_PANEL.BackColor = System.Drawing.Color.DarkGray;
             this.MANUAL_ADD_PANEL.Controls.Add(this.MANUALY_ADD_LABEL);
             this.MANUAL_ADD_PANEL.Location = new System.Drawing.Point(258, 192);
             this.MANUAL_ADD_PANEL.Name = "MANUAL_ADD_PANEL";
             this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(353, 72);
             this.MANUAL_ADD_PANEL.TabIndex = 1;
             this.MANUAL_ADD_PANEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
+            this.MANUAL_ADD_PANEL.MouseEnter += new System.EventHandler(this.MANUAL_ADD_PANEL_MouseEnter);
+            this.MANUAL_ADD_PANEL.MouseLeave += new System.EventHandler(this.MANUAL_ADD_PANEL_MouseLeave);
             // 
             // MANUALY_ADD_LABEL
             // 
@@ -104,16 +116,20 @@
             this.MANUALY_ADD_LABEL.TabIndex = 1;
             this.MANUALY_ADD_LABEL.Text = "Add keyboard manually";
             this.MANUALY_ADD_LABEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
+            this.MANUALY_ADD_LABEL.MouseEnter += new System.EventHandler(this.MANUAL_ADD_PANEL_MouseEnter);
+            this.MANUALY_ADD_LABEL.MouseLeave += new System.EventHandler(this.MANUAL_ADD_PANEL_MouseLeave);
             // 
             // CANCEL_PANEL
             // 
-            this.CANCEL_PANEL.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.CANCEL_PANEL.BackColor = System.Drawing.Color.DarkGray;
             this.CANCEL_PANEL.Controls.Add(this.CANCEL_LABEL);
             this.CANCEL_PANEL.Location = new System.Drawing.Point(343, 324);
             this.CANCEL_PANEL.Name = "CANCEL_PANEL";
             this.CANCEL_PANEL.Size = new System.Drawing.Size(185, 56);
             this.CANCEL_PANEL.TabIndex = 1;
             this.CANCEL_PANEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
+            this.CANCEL_PANEL.MouseEnter += new System.EventHandler(this.CANCEL_PANEL_MouseEnter);
+            this.CANCEL_PANEL.MouseLeave += new System.EventHandler(this.CANCEL_PANEL_MouseLeave);
             // 
             // CANCEL_LABEL
             // 
@@ -126,6 +142,8 @@
             this.CANCEL_LABEL.TabIndex = 2;
             this.CANCEL_LABEL.Text = "Cancel";
             this.CANCEL_LABEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
+            this.CANCEL_LABEL.MouseEnter += new System.EventHandler(this.CANCEL_PANEL_MouseEnter);
+            this.CANCEL_LABEL.MouseLeave += new System.EventHandler(this.CANCEL_PANEL_MouseLeave);
             // 
             // panel4
             // 
@@ -141,6 +159,21 @@
             // BACKGROUND_SCANNER
             // 
             this.BACKGROUND_SCANNER.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BACKGROUND_SCANNER_DoWork);
+            // 
+            // AUTO_ADD_HOVER_TIMER
+            // 
+            this.AUTO_ADD_HOVER_TIMER.Interval = 50;
+            this.AUTO_ADD_HOVER_TIMER.Tick += new System.EventHandler(this.AUTO_ADD_HOVER_TIMER_Tick);
+            // 
+            // MANUAL_ADD_HOVER_TIMER
+            // 
+            this.MANUAL_ADD_HOVER_TIMER.Interval = 50;
+            this.MANUAL_ADD_HOVER_TIMER.Tick += new System.EventHandler(this.MANUAL_ADD_HOVER_TIMER_Tick);
+            // 
+            // CANCEL_HOVER_TIMER
+            // 
+            this.CANCEL_HOVER_TIMER.Interval = 50;
+            this.CANCEL_HOVER_TIMER.Tick += new System.EventHandler(this.CANCEL_HOVER_TIMER_Tick);
             // 
             // addKeyboard
             // 
@@ -171,5 +204,8 @@
         private System.Windows.Forms.Label CANCEL_LABEL;
         private System.Windows.Forms.Panel panel4;
         private System.ComponentModel.BackgroundWorker BACKGROUND_SCANNER;
+        private System.Windows.Forms.Timer AUTO_ADD_HOVER_TIMER;
+        private System.Windows.Forms.Timer MANUAL_ADD_HOVER_TIMER;
+        private System.Windows.Forms.Timer CANCEL_HOVER_TIMER;
     }
 }
