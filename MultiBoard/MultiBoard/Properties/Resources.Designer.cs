@@ -101,6 +101,15 @@ namespace MultiBoard.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1.
+        /// </summary>
+        internal static string KeyboardScanner__staticId {
+            get {
+                return ResourceManager.GetString("KeyboardScanner__staticId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TOGGLE_OFF {

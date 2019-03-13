@@ -136,4 +136,7 @@
   <data name="eyes_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eyes 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="KeyboardScanner__staticId" xml:space="preserve">
+    <value>86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
+using MultiBoard.Properties;
 
 namespace MultiBoard.Keyboard
 {
@@ -10,7 +11,7 @@ namespace MultiBoard.Keyboard
         public List<string> Uuid = new List<string>();
 
         private List<SerialPort> openSerials = new List<SerialPort>();
-        private string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
+        private string _staticId = Resources.KeyboardScanner__staticId;
 
         public bool loadList(int bRate)
         {
