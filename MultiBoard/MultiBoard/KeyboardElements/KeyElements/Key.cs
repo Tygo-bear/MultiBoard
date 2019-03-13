@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
+using System.Timers;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {
@@ -18,7 +18,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private string _keyTag;
         private string _executeLocation;
 
-        private System.Windows.Forms.Timer _timer = new Timer();
+        private Timer _timer = new Timer();
 
         public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
         {
@@ -29,11 +29,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _executeLocation = executeLoc;
 
             _timer.Interval = 500;
-            _timer.Tick += Timer_Tick;
+            _timer.Elapsed += timerOnElapsed;
             _timer.Stop();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void timerOnElapsed(object sender, EventArgs e)
         {
             if (_timer.Interval == 500)
             {
