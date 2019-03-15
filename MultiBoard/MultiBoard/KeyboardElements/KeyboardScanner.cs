@@ -44,7 +44,7 @@ namespace MultiBoard.KeyboardElements
                 }
             }
 
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(2000);
 
             foreach(SerialPort s in openSerials)
             {
@@ -56,7 +56,7 @@ namespace MultiBoard.KeyboardElements
                 while (input == "" && count < 5)
                 {
                     s.Write("?");
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(2000);
                     input = s.ReadExisting();
                     s.Close();
                     s.Open();

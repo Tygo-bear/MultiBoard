@@ -8,7 +8,7 @@
 #include <SPI.h>
 
 //change to your keyboard ID!!!!!!
-const String dynamicID = "7fba9a6d-61d1-4973-a68e-41a26309b48e";
+const String dynamicID = "7fb77a6d-61d1-4973-a68e-41a26309b48e";
 
 class KbdRptParser : public KeyboardReportParser
 {
@@ -143,4 +143,3 @@ void loop()
 {
   Usb.Task();
 }
-
