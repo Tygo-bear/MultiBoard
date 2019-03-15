@@ -9,6 +9,8 @@ namespace MultiBoard.Keyboard
         public string KbUuid;
         public string KbPort;
 
+        private bool _lockedSettings = true;
+
         public KeyBoard connectedKeyboard;
 
         public KeyboardSettings(string kname, string kId, string kCom, KeyBoard board)
@@ -71,10 +73,22 @@ namespace MultiBoard.Keyboard
 
         private void LOCK_BUTTON_Click(object sender, EventArgs e)
         {
-            LOCK_1_PICTURE.Hide();
-            LOCK_2_PICTURE.Hide();
-            DELETE_BUTTON.Enabled = true;
-            KEYBOARD_UUID_TEXTBOX.ReadOnly = false;
+            if (_lockedSettings == true)
+            {
+                _lockedSettings = false;
+                LOCK_1_PICTURE.Hide();
+                LOCK_2_PICTURE.Hide();
+                DELETE_BUTTON.Enabled = true;
+                KEYBOARD_UUID_TEXTBOX.ReadOnly = false;
+            }
+            else
+            {
+                _lockedSettings = true;
+                LOCK_1_PICTURE.Show();
+                LOCK_2_PICTURE.Show();
+                DELETE_BUTTON.Enabled = false;
+                KEYBOARD_UUID_TEXTBOX.ReadOnly = true;
+            }
         }
     }
 }
