@@ -168,8 +168,7 @@ namespace MultiBoard
             {
                 foreach (Key aKey in _keyList)
                 {
-                    Thread t = new Thread(() => aKey.keyDown(key, allEnebled));
-                    t.Start();
+                    aKey.keyDown(key, allEnebled);
                 }
 
                 _keyGui.keyDown(key, allEnebled);
@@ -182,8 +181,7 @@ namespace MultiBoard
             {
                 foreach (Key aKey in _keyList)
                 {
-                    Thread t = new Thread(() => aKey.keyUp(key, allEnebled));
-                    t.Start();
+                    aKey.keyUp(key, allEnebled);
                 }
             }
         }
