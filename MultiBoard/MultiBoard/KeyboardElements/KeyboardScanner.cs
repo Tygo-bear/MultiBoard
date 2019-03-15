@@ -38,7 +38,7 @@ namespace MultiBoard.KeyboardElements
 
                     openSerials.Add(comPort);
                 }
-                catch(UnauthorizedAccessException unauthorizedAccessException)
+                catch (UnauthorizedAccessException)
                 {
 
                 }
