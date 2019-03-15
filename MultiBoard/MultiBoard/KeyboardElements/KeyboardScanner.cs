@@ -84,7 +84,7 @@ namespace MultiBoard.KeyboardElements
 
                 s.Close();
             }
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(2000);
 
             return true;
         }
