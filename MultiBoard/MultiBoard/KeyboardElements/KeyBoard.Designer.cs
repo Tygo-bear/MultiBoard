@@ -32,15 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.NAME_LABEL = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LEFT_TOP_ICON = new System.Windows.Forms.PictureBox();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.ADD_ITEM_P = new System.Windows.Forms.PictureBox();
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.SEARCH_BUTTON = new System.Windows.Forms.Button();
+            this.SEARCH_TEXTBOC = new System.Windows.Forms.TextBox();
             this.TOP_PANEL.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADD_ITEM_P)).BeginInit();
             this.LEFT_PANEL.SuspendLayout();
@@ -49,8 +51,10 @@
             // TOP_PANEL
             // 
             this.TOP_PANEL.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.TOP_PANEL.Controls.Add(this.SEARCH_BUTTON);
             this.TOP_PANEL.Controls.Add(this.NAME_LABEL);
-            this.TOP_PANEL.Controls.Add(this.pictureBox1);
+            this.TOP_PANEL.Controls.Add(this.LEFT_TOP_ICON);
+            this.TOP_PANEL.Controls.Add(this.SEARCH_TEXTBOC);
             this.TOP_PANEL.Dock = System.Windows.Forms.DockStyle.Top;
             this.TOP_PANEL.Location = new System.Drawing.Point(0, 0);
             this.TOP_PANEL.Name = "TOP_PANEL";
@@ -67,16 +71,16 @@
             this.NAME_LABEL.TabIndex = 1;
             this.NAME_LABEL.Text = "[KEYBOARD NAME]";
             // 
-            // pictureBox1
+            // LEFT_TOP_ICON
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.LEFT_TOP_ICON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LEFT_TOP_ICON.BackgroundImage")));
+            this.LEFT_TOP_ICON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LEFT_TOP_ICON.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LEFT_TOP_ICON.Location = new System.Drawing.Point(0, 0);
+            this.LEFT_TOP_ICON.Name = "LEFT_TOP_ICON";
+            this.LEFT_TOP_ICON.Size = new System.Drawing.Size(35, 35);
+            this.LEFT_TOP_ICON.TabIndex = 0;
+            this.LEFT_TOP_ICON.TabStop = false;
             // 
             // BOTTEM_PANEL
             // 
@@ -149,6 +153,29 @@
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // SEARCH_BUTTON
+            // 
+            this.SEARCH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SEARCH_BUTTON.BackgroundImage")));
+            this.SEARCH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SEARCH_BUTTON.FlatAppearance.BorderSize = 0;
+            this.SEARCH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SEARCH_BUTTON.Location = new System.Drawing.Point(163, 0);
+            this.SEARCH_BUTTON.Name = "SEARCH_BUTTON";
+            this.SEARCH_BUTTON.Size = new System.Drawing.Size(35, 35);
+            this.SEARCH_BUTTON.TabIndex = 2;
+            this.SEARCH_BUTTON.UseVisualStyleBackColor = true;
+            this.SEARCH_BUTTON.Click += new System.EventHandler(this.SEARCH_BUTTON_Click);
+            // 
+            // SEARCH_TEXTBOC
+            // 
+            this.SEARCH_TEXTBOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SEARCH_TEXTBOC.Location = new System.Drawing.Point(3, 6);
+            this.SEARCH_TEXTBOC.Name = "SEARCH_TEXTBOC";
+            this.SEARCH_TEXTBOC.Size = new System.Drawing.Size(154, 24);
+            this.SEARCH_TEXTBOC.TabIndex = 3;
+            this.SEARCH_TEXTBOC.Visible = false;
+            this.SEARCH_TEXTBOC.TextChanged += new System.EventHandler(this.SEARCH_TEXTBOC_TextChanged);
+            // 
             // KeyBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,7 +185,7 @@
             this.Size = new System.Drawing.Size(854, 506);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).EndInit();
             this.BOTTEM_PANEL.ResumeLayout(false);
             this.BOTTEM_PANEL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ADD_ITEM_P)).EndInit();
@@ -171,12 +198,14 @@
 
         private System.Windows.Forms.Panel TOP_PANEL;
         private System.Windows.Forms.Label NAME_LABEL;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox LEFT_TOP_ICON;
         private System.Windows.Forms.Panel BOTTEM_PANEL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox ADD_ITEM_P;
         private System.Windows.Forms.Panel LEFT_PANEL;
         private System.Windows.Forms.Panel KEYLIST_PANEL;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button SEARCH_BUTTON;
+        private System.Windows.Forms.TextBox SEARCH_TEXTBOC;
     }
 }

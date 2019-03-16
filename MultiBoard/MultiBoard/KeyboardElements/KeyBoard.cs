@@ -21,6 +21,8 @@ namespace MultiBoard
         private string _name;
         private string _comPort;
 
+        private bool _search = false;
+
         private string _saveFile;
         private int _numberOfKeys = 0;
         private KeyGui _keyGui = new KeyGui();
@@ -172,6 +174,11 @@ namespace MultiBoard
                 }
 
                 _keyGui.keyDown(key, allEnebled);
+                if (_search == true)
+                {
+                    this.Invoke(new Action(() =>
+                        SEARCH_TEXTBOC.Text = key));
+                }
             }
         }
 
@@ -361,6 +368,56 @@ namespace MultiBoard
         private void BOTTEM_PANEL_MouseLeave(object sender, EventArgs e)
         {
             timer1.Start();
+        }
+
+        private void SEARCH_BUTTON_Click(object sender, EventArgs e)
+        {
+            if (_search == true)
+            {
+                drawListView(_keyPanelList);
+                SEARCH_TEXTBOC.Hide();
+                NAME_LABEL.Show();
+                LEFT_TOP_ICON.Show();
+                _search = false;
+            }
+            else
+            {
+                SEARCH_TEXTBOC.Show();
+                SEARCH_TEXTBOC.Focus();
+                NAME_LABEL.Hide();
+                LEFT_TOP_ICON.Hide();
+                _search = true;
+            }
+        }
+
+        private void SEARCH_TEXTBOC_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(SEARCH_TEXTBOC.Text))
+            {
+                drawListView(_keyPanelList);
+            }
+            else
+            {
+                drawListView(searchKey(SEARCH_TEXTBOC.Text));
+            }
+            
+        }
+
+        private List<KeyListPanel> searchKey(string input)
+        {
+            List<KeyListPanel> panelList = new List<KeyListPanel>();
+
+            //key search on key name
+            foreach (KeyListPanel k in _keyPanelList)
+            {
+                if (k.Kname.ToLower().Replace(input, String.Empty) != k.Kname.ToLower() 
+                    || k.connected_key.keyTag == input)
+                {
+                    panelList.Add(k);
+                }
+            }
+
+            return panelList;
         }
     }
 }
