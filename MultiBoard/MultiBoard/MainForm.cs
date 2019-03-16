@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using MultiBoard.Keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
+using MultiBoard.KeyboardElements.KeyboardScannerElements;
 
 namespace MultiBoard
 {

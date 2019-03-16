@@ -90,6 +90,7 @@
       <DependentUpon>ErrorMangePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorSystem\Errors.cs" />
+    <Compile Include="KeyboardElements\KeyboardScannerElements\ScannerPort.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,7 +122,7 @@
     <Compile Include="KeyboardElements\KeyboardListPanel.Designer.cs">
       <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyboardScanner.cs" />
+    <Compile Include="KeyboardElements\KeyboardScannerElements\KeyboardScanner.cs" />
     <Compile Include="KeyboardElements\KeyboardSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -267,6 +268,9 @@
     <Content Include="MultiBoard.ico" />
     <None Include="Resources\eyes 2.png" />
     <None Include="Resources\eyes 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SettingsElements\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
