@@ -63,6 +63,26 @@ namespace MultiBoard.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_close_white_48dp2 {
+            get {
+                object obj = ResourceManager.GetObject("baseline_close_white_48dp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_search_white_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_search_white_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dark_key {
             get {
                 object obj = ResourceManager.GetObject("dark_key", resourceCulture);

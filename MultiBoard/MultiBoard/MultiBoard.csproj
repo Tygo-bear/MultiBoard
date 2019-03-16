@@ -266,6 +266,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MultiBoard.ico" />
+    <None Include="Resources\baseline_close_white_48dp2.png" />
+    <None Include="Resources\baseline_search_white_18dp.png" />
     <None Include="Resources\eyes 2.png" />
     <None Include="Resources\eyes 1.png" />
   </ItemGroup>

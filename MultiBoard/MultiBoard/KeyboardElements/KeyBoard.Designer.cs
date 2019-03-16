@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
+            this.SEARCH_BUTTON = new System.Windows.Forms.Button();
             this.NAME_LABEL = new System.Windows.Forms.Label();
             this.LEFT_TOP_ICON = new System.Windows.Forms.PictureBox();
+            this.SEARCH_TEXTBOC = new System.Windows.Forms.TextBox();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.ADD_ITEM_P = new System.Windows.Forms.PictureBox();
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.SEARCH_BUTTON = new System.Windows.Forms.Button();
-            this.SEARCH_TEXTBOC = new System.Windows.Forms.TextBox();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -60,6 +60,19 @@
             this.TOP_PANEL.Name = "TOP_PANEL";
             this.TOP_PANEL.Size = new System.Drawing.Size(198, 35);
             this.TOP_PANEL.TabIndex = 0;
+            // 
+            // SEARCH_BUTTON
+            // 
+            this.SEARCH_BUTTON.BackgroundImage = global::MultiBoard.Properties.Resources.baseline_search_white_18dp;
+            this.SEARCH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SEARCH_BUTTON.FlatAppearance.BorderSize = 0;
+            this.SEARCH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SEARCH_BUTTON.Location = new System.Drawing.Point(163, 0);
+            this.SEARCH_BUTTON.Name = "SEARCH_BUTTON";
+            this.SEARCH_BUTTON.Size = new System.Drawing.Size(35, 35);
+            this.SEARCH_BUTTON.TabIndex = 2;
+            this.SEARCH_BUTTON.UseVisualStyleBackColor = true;
+            this.SEARCH_BUTTON.Click += new System.EventHandler(this.SEARCH_BUTTON_Click);
             // 
             // NAME_LABEL
             // 
@@ -81,6 +94,17 @@
             this.LEFT_TOP_ICON.Size = new System.Drawing.Size(35, 35);
             this.LEFT_TOP_ICON.TabIndex = 0;
             this.LEFT_TOP_ICON.TabStop = false;
+            // 
+            // SEARCH_TEXTBOC
+            // 
+            this.SEARCH_TEXTBOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SEARCH_TEXTBOC.Location = new System.Drawing.Point(3, 8);
+            this.SEARCH_TEXTBOC.Name = "SEARCH_TEXTBOC";
+            this.SEARCH_TEXTBOC.Size = new System.Drawing.Size(154, 21);
+            this.SEARCH_TEXTBOC.TabIndex = 3;
+            this.SEARCH_TEXTBOC.Visible = false;
+            this.SEARCH_TEXTBOC.TextChanged += new System.EventHandler(this.SEARCH_TEXTBOC_TextChanged);
+            this.SEARCH_TEXTBOC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SEARCH_TEXTBOC_KeyDown);
             // 
             // BOTTEM_PANEL
             // 
@@ -152,29 +176,6 @@
             // 
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // SEARCH_BUTTON
-            // 
-            this.SEARCH_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SEARCH_BUTTON.BackgroundImage")));
-            this.SEARCH_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.SEARCH_BUTTON.FlatAppearance.BorderSize = 0;
-            this.SEARCH_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SEARCH_BUTTON.Location = new System.Drawing.Point(163, 0);
-            this.SEARCH_BUTTON.Name = "SEARCH_BUTTON";
-            this.SEARCH_BUTTON.Size = new System.Drawing.Size(35, 35);
-            this.SEARCH_BUTTON.TabIndex = 2;
-            this.SEARCH_BUTTON.UseVisualStyleBackColor = true;
-            this.SEARCH_BUTTON.Click += new System.EventHandler(this.SEARCH_BUTTON_Click);
-            // 
-            // SEARCH_TEXTBOC
-            // 
-            this.SEARCH_TEXTBOC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SEARCH_TEXTBOC.Location = new System.Drawing.Point(3, 6);
-            this.SEARCH_TEXTBOC.Name = "SEARCH_TEXTBOC";
-            this.SEARCH_TEXTBOC.Size = new System.Drawing.Size(154, 24);
-            this.SEARCH_TEXTBOC.TabIndex = 3;
-            this.SEARCH_TEXTBOC.Visible = false;
-            this.SEARCH_TEXTBOC.TextChanged += new System.EventHandler(this.SEARCH_TEXTBOC_TextChanged);
             // 
             // KeyBoard
             // 

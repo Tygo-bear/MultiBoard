@@ -378,6 +378,7 @@ namespace MultiBoard
                 SEARCH_TEXTBOC.Hide();
                 NAME_LABEL.Show();
                 LEFT_TOP_ICON.Show();
+                SEARCH_BUTTON.BackgroundImage = Properties.Resources.baseline_search_white_18dp;
                 _search = false;
             }
             else
@@ -386,6 +387,7 @@ namespace MultiBoard
                 SEARCH_TEXTBOC.Focus();
                 NAME_LABEL.Hide();
                 LEFT_TOP_ICON.Hide();
+                SEARCH_BUTTON.BackgroundImage = Properties.Resources.baseline_close_white_48dp2;
                 _search = true;
             }
         }
@@ -418,6 +420,23 @@ namespace MultiBoard
             }
 
             return panelList;
+        }
+
+        private void SEARCH_TEXTBOC_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //enter key is down
+                if (String.IsNullOrEmpty(SEARCH_TEXTBOC.Text))
+                {
+                    drawListView(_keyPanelList);
+                }
+                else
+                {
+                    drawListView(searchKey(SEARCH_TEXTBOC.Text));
+                }
+                
+            }
         }
     }
 }
