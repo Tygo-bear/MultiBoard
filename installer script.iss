@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MultiBoard"
-#define MyAppVersion "1.0.0.7"
+#define MyAppVersion "1.0.0.8"
 #define MyAppPublisher "Tygo, Inc."
 #define MyAppExeName "MultiBoard.exe"
 
