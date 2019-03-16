@@ -140,4 +140,19 @@
   <metadata name="FADE_TIMER.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="CLOSE_BUTTON.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAI9SURBVHhe7dyxSi0xFIXhU4r4OjZWNr6vWooWYuPriKBio3uJGyTMOWZPcibJzP/BgntFMFnr
+        XotRZgcAAAAAAAAAAAAAQIEzy53l/OdvY9BZ7y06+9BOLc+WL8urZYQRdEadVWfW2XWHIengTxZdxNP7
+        CH/L9+gOw41wYknL9/Q6wlT5Ht1FdxqCDvpgmbqIp7cRDpXv0Z2GGOHaMnWBNL2MkFO+R3fr3qXlwzJ1
+        gTStR7iw5JavO+luQ4iOoCKWpq/5Zpk6U5qhyneREVTEkiOsvnzX4wibKd/1NMLmync9jLDZ8l3LETZf
+        vmsxgr5mbvn6vNWW75YspMXgQ1jiWwLl/+OYI1B+pmOMQPlBNUeg/JlqjED5hUpGiJTf6uHfEOaMcPX7
+        56nPSdP68fcQoiN8Jh/bF8oP0Ai5PyjJCeXPEPlR4aFQfoHSESi/grkjUH5F0REov7LoAC8WBqgkWr6H
+        /wUVzC3fwwgFSsv3MMIMtcr3MEJApHw9inhPPrYvjJAh8gjCH8ZFn4Qywh5znoQ6HkcXKinfRUbQ12KE
+        XzXKd4wQVLN8xwiZjlG+Y4R/HLN8xwh7qJjc8vV5c8p3jJBoUciSg3et5b/GJb7lda1l+W6zI/RQvtvc
+        CD2V7zYzQo/lu9WPECm/1cOx1Y4w0u9qrnKEW8vUBdL08mw+MsKNpXsjvq5GI+hMU2f1DPO6GtFBeWFT
+        Y7yyrAM6OC/ta0yvfny0jFC+01lX8dpKAAAAAAAAAAAAAEAru903Vro1ICMfRtkAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

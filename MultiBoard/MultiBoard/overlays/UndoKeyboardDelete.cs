@@ -13,6 +13,7 @@ namespace MultiBoard.overlays
     public partial class UndoKeyboardDelete : UserControl
     {
         public event EventHandler Undo;
+        public event EventHandler Closed;
 
         private string _text = "";
         private string _tag = "";
@@ -49,6 +50,19 @@ namespace MultiBoard.overlays
 
         private void FADE_TIMER_Tick(object sender, EventArgs e)
         {
+            if (Closed != null)
+            {
+                Closed(this, EventArgs.Empty);
+            }
+            this.Dispose();
+        }
+
+        private void CLOSE_BUTTON_Click(object sender, EventArgs e)
+        {
+            if (Closed != null)
+            {
+                Closed(this, EventArgs.Empty);
+            }
             this.Dispose();
         }
     }
