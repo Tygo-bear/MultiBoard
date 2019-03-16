@@ -20,6 +20,7 @@ namespace MultiBoard.overlays
         public UndoKeyboardDelete()
         {
             InitializeComponent();
+            FADE_TIMER.Start();
         }
 
         private void UNDO_BUTTON_Click(object sender, EventArgs e)
@@ -30,5 +31,25 @@ namespace MultiBoard.overlays
             }
         }
 
+        public string text
+        {
+            get { return _text; }
+            set
+            {
+                MESSAGE_LABEL.Text = value;
+                _text = value;
+            }
+        }
+
+        public string tag
+        {
+            get { return _tag; }
+            set { _tag = value; }
+        }
+
+        private void FADE_TIMER_Tick(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

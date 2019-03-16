@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UndoKeyboardDelete));
             this.UNDO_BUTTON = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MESSAGE_LABEL = new System.Windows.Forms.Label();
+            this.FADE_TIMER = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // UNDO_BUTTON
@@ -47,21 +49,26 @@
             this.UNDO_BUTTON.UseVisualStyleBackColor = true;
             this.UNDO_BUTTON.Click += new System.EventHandler(this.UNDO_BUTTON_Click);
             // 
-            // label1
+            // MESSAGE_LABEL
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Undo keyboard delete";
+            this.MESSAGE_LABEL.AutoSize = true;
+            this.MESSAGE_LABEL.Location = new System.Drawing.Point(4, 10);
+            this.MESSAGE_LABEL.Name = "MESSAGE_LABEL";
+            this.MESSAGE_LABEL.Size = new System.Drawing.Size(112, 13);
+            this.MESSAGE_LABEL.TabIndex = 1;
+            this.MESSAGE_LABEL.Text = "Undo keyboard delete";
+            // 
+            // FADE_TIMER
+            // 
+            this.FADE_TIMER.Interval = 10000;
+            this.FADE_TIMER.Tick += new System.EventHandler(this.FADE_TIMER_Tick);
             // 
             // UndoKeyboardDelete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MESSAGE_LABEL);
             this.Controls.Add(this.UNDO_BUTTON);
             this.Name = "UndoKeyboardDelete";
             this.Size = new System.Drawing.Size(203, 32);
@@ -73,6 +80,7 @@
         #endregion
 
         private System.Windows.Forms.Button UNDO_BUTTON;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MESSAGE_LABEL;
+        private System.Windows.Forms.Timer FADE_TIMER;
     }
 }
