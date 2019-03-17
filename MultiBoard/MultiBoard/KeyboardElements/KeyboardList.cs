@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MultiBoard.overlays;
 
 namespace MultiBoard.Keyboard
 {
@@ -15,6 +16,7 @@ namespace MultiBoard.Keyboard
         private List<KeyboardListPanel> _kblp = new List<KeyboardListPanel>();
 
         private string _mainDirectory;
+        private string _undo;
 
         public KeyboardList(string mainDire)
         {
@@ -103,7 +105,38 @@ namespace MultiBoard.Keyboard
 
             if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
             {
-                File.Delete(_mainDirectory + @"\" + b.getKeyboardName() + ".inf");
+                if (Directory.Exists(_mainDirectory + @"\.del"))
+                {
+                    if (File.Exists(_mainDirectory + @"\.del\keyboards.inf"))
+                    {
+                        File.Delete(_mainDirectory + @"\.del\keyboards.inf");
+                    }
+                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf"))
+                    {
+                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+                    }
+
+
+                    File.Copy(_mainDirectory + @"\keyboards.inf"
+                        , _mainDirectory + @"\.del\keyboards.inf");
+                    File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+
+                    
+                }
+                else
+                {
+                    Directory.CreateDirectory(_mainDirectory + @"\.del");
+                    File.Copy(_mainDirectory + @"\keyboards.inf"
+                        , _mainDirectory + @"\.del\keyboards.inf");
+                    File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+
+                }
+
+                _undo = b.getKeyboardName();
+                createUndo("Undo " + b.getKeyboardName() + "delete");
+
             }
             else
             {
@@ -120,6 +153,41 @@ namespace MultiBoard.Keyboard
 
             k.Dispose();
             UpdateKeyboards(this, new KeyboardToArgs() {keybo = b});
+        }
+
+        private void createUndo(string mes)
+        {
+            UndoKeyboardDelete u = new UndoKeyboardDelete();
+            u.text = mes;
+            u.Undo += UOnUndo;
+            u.Location = new Point(this.Width-u.Width, this.Height - u.Height);
+            Controls.Add(u);
+            u.BringToFront();
+            this.Show();
+        }
+
+        private void UOnUndo(object sender, EventArgs e)
+        {
+            if (Directory.Exists(_mainDirectory + @"\.del"))
+            {
+                if (File.Exists(_mainDirectory + @"\keyboards.inf"))
+                {
+                    File.Delete(_mainDirectory + @"\keyboards.inf");
+                }
+
+                if (File.Exists(_mainDirectory + @"\" + _undo + ".inf"))
+                {
+                    File.Delete(_mainDirectory + @"\" + _undo + ".inf");
+                }
+
+                File.Move(_mainDirectory + @"\.del\keyboards.inf"
+                    ,_mainDirectory + @"\keyboards.inf");
+                File.Move(_mainDirectory + @"\.del" + @"\" + _undo + ".inf"
+                    , _mainDirectory + @"\" + _undo + ".inf"); 
+            }
+
+            Application.Restart();
+            Environment.Exit(0);
         }
     }
 
