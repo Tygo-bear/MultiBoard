@@ -19,6 +19,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private string _executeLocation;
 
         private Timer _timer = new Timer();
+        private int _keyPressCount = 0;
+        private const int _defInterval = 300;
 
         public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
         {
@@ -28,16 +30,27 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _enabled = enabledKey;
             _executeLocation = executeLoc;
 
-            _timer.Interval = 500;
+            _timer.Interval = _defInterval;
             _timer.Elapsed += timerOnElapsed;
             _timer.Stop();
         }
 
         private void timerOnElapsed(object sender, EventArgs e)
         {
-            if (_timer.Interval == 500)
+            if (_timer.Interval == _defInterval)
             {
                 _timer.Interval = 200;
+            }
+
+            if (_timer.Interval != _defInterval)
+            {
+                _keyPressCount++;
+                int newInter = 200 - _keyPressCount * 20;
+                if (newInter > 50)
+                {
+                    _timer.Interval = newInter;
+                    Console.WriteLine("new interval: " + newInter);
+                }
             }
 
             if (File.Exists(_executeLocation))
@@ -150,6 +163,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 }
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
+                    System.Diagnostics.Process.Start(_executeLocation);
                     _timer.Start();
                 }
             }
@@ -167,6 +181,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
                     _timer.Stop();
+                    _timer.Interval = _defInterval;
+                    _keyPressCount = 0;
                 }
             }
         }
