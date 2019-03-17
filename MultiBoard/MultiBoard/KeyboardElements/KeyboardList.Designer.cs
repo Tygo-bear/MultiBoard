@@ -45,7 +45,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 32);
+            this.panel2.Size = new System.Drawing.Size(857, 32);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -74,7 +74,7 @@
             this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MAIN_PANEL.Location = new System.Drawing.Point(0, 32);
             this.MAIN_PANEL.Name = "MAIN_PANEL";
-            this.MAIN_PANEL.Size = new System.Drawing.Size(854, 474);
+            this.MAIN_PANEL.Size = new System.Drawing.Size(857, 476);
             this.MAIN_PANEL.TabIndex = 1;
             // 
             // KeyboardList
@@ -84,7 +84,7 @@
             this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.panel2);
             this.Name = "KeyboardList";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -31,10 +31,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ERROR_LIST_LISTBOX = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ERROR_LIST_LISTBOX = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +46,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(854, 31);
+            this.panel1.Size = new System.Drawing.Size(857, 31);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -66,41 +66,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 475);
+            this.panel2.Size = new System.Drawing.Size(200, 477);
             this.panel2.TabIndex = 1;
-            // 
-            // ERROR_LIST_LISTBOX
-            // 
-            this.ERROR_LIST_LISTBOX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ERROR_LIST_LISTBOX.FormattingEnabled = true;
-            this.ERROR_LIST_LISTBOX.Location = new System.Drawing.Point(200, 31);
-            this.ERROR_LIST_LISTBOX.Name = "ERROR_LIST_LISTBOX";
-            this.ERROR_LIST_LISTBOX.Size = new System.Drawing.Size(654, 475);
-            this.ERROR_LIST_LISTBOX.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(4, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(4, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 35);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
@@ -114,6 +81,39 @@
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Silver;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(4, 48);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(190, 35);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(4, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(190, 35);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // ERROR_LIST_LISTBOX
+            // 
+            this.ERROR_LIST_LISTBOX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ERROR_LIST_LISTBOX.FormattingEnabled = true;
+            this.ERROR_LIST_LISTBOX.Location = new System.Drawing.Point(200, 31);
+            this.ERROR_LIST_LISTBOX.Name = "ERROR_LIST_LISTBOX";
+            this.ERROR_LIST_LISTBOX.Size = new System.Drawing.Size(657, 477);
+            this.ERROR_LIST_LISTBOX.TabIndex = 2;
+            // 
             // ErrorMangePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,7 +122,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "ErrorMangePanel";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -125,7 +125,7 @@
             this.BAKC_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BAKC_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BAKC_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.BAKC_BUTTON.Location = new System.Drawing.Point(3, 450);
+            this.BAKC_BUTTON.Location = new System.Drawing.Point(3, 452);
             this.BAKC_BUTTON.Name = "BAKC_BUTTON";
             this.BAKC_BUTTON.Size = new System.Drawing.Size(119, 53);
             this.BAKC_BUTTON.TabIndex = 7;
@@ -152,7 +152,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.MANUAL_ADD_PANEL);
             this.Name = "AutoAddKeyboard";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             this.MANUAL_ADD_PANEL.ResumeLayout(false);
             this.MANUAL_ADD_PANEL.PerformLayout();
             this.panel2.ResumeLayout(false);

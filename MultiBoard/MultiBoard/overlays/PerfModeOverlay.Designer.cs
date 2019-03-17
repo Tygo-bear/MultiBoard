@@ -90,7 +90,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.START_BUTTON);
             this.Name = "PerfModeOverlay";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

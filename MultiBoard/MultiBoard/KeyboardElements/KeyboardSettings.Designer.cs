@@ -202,7 +202,7 @@
             this.LOCK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LOCK_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOCK_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.LOCK_BUTTON.Location = new System.Drawing.Point(801, 436);
+            this.LOCK_BUTTON.Location = new System.Drawing.Point(804, 438);
             this.LOCK_BUTTON.Name = "LOCK_BUTTON";
             this.LOCK_BUTTON.Size = new System.Drawing.Size(50, 67);
             this.LOCK_BUTTON.TabIndex = 11;
@@ -233,7 +233,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "KeyboardSettings";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

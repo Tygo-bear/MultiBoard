@@ -168,6 +168,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsElements\MainSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsElements\MainSettings.Designer.cs">
+      <DependentUpon>MainSettings.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="add keyboard\addKeyboard.resx">
       <DependentUpon>addKeyboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +232,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsElements\MainSettings.resx">
+      <DependentUpon>MainSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -271,8 +280,6 @@
     <None Include="Resources\eyes 2.png" />
     <None Include="Resources\eyes 1.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SettingsElements\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -112,7 +112,7 @@
             this.BOTTEM_PANEL.Controls.Add(this.label1);
             this.BOTTEM_PANEL.Controls.Add(this.ADD_ITEM_P);
             this.BOTTEM_PANEL.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BOTTEM_PANEL.Location = new System.Drawing.Point(0, 471);
+            this.BOTTEM_PANEL.Location = new System.Drawing.Point(0, 473);
             this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(198, 35);
             this.BOTTEM_PANEL.TabIndex = 1;
@@ -156,7 +156,7 @@
             this.LEFT_PANEL.Dock = System.Windows.Forms.DockStyle.Left;
             this.LEFT_PANEL.Location = new System.Drawing.Point(0, 0);
             this.LEFT_PANEL.Name = "LEFT_PANEL";
-            this.LEFT_PANEL.Size = new System.Drawing.Size(198, 506);
+            this.LEFT_PANEL.Size = new System.Drawing.Size(198, 508);
             this.LEFT_PANEL.TabIndex = 3;
             // 
             // KEYLIST_PANEL
@@ -169,7 +169,7 @@
             this.KEYLIST_PANEL.Location = new System.Drawing.Point(0, 35);
             this.KEYLIST_PANEL.Margin = new System.Windows.Forms.Padding(0);
             this.KEYLIST_PANEL.Name = "KEYLIST_PANEL";
-            this.KEYLIST_PANEL.Size = new System.Drawing.Size(198, 436);
+            this.KEYLIST_PANEL.Size = new System.Drawing.Size(198, 438);
             this.KEYLIST_PANEL.TabIndex = 2;
             // 
             // timer1
@@ -183,7 +183,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LEFT_PANEL);
             this.Name = "KeyBoard";
-            this.Size = new System.Drawing.Size(854, 506);
+            this.Size = new System.Drawing.Size(857, 508);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).EndInit();
