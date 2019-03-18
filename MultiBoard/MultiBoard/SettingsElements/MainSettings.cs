@@ -12,7 +12,7 @@ namespace MultiBoard.SettingsElements
         {
             InitializeComponent();
 
-            _gs.Location = new Point(168,32);
+            _gs.Location = new Point(168,0);
             Controls.Add(_gs);
             _gs.Show();
         }

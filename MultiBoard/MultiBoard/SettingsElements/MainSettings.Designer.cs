@@ -34,6 +34,7 @@
             this.TOP_LEFT_LOGO_PICTUREBOX = new System.Windows.Forms.PictureBox();
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.GENERAL_BUTTON = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.LEFT_PANEL.SuspendLayout();
@@ -47,12 +48,13 @@
             this.TOP_PANEL.Dock = System.Windows.Forms.DockStyle.Top;
             this.TOP_PANEL.Location = new System.Drawing.Point(0, 0);
             this.TOP_PANEL.Name = "TOP_PANEL";
-            this.TOP_PANEL.Size = new System.Drawing.Size(857, 32);
+            this.TOP_PANEL.Size = new System.Drawing.Size(168, 32);
             this.TOP_PANEL.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(39, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
@@ -72,11 +74,13 @@
             // 
             // LEFT_PANEL
             // 
+            this.LEFT_PANEL.Controls.Add(this.panel1);
             this.LEFT_PANEL.Controls.Add(this.GENERAL_BUTTON);
+            this.LEFT_PANEL.Controls.Add(this.TOP_PANEL);
             this.LEFT_PANEL.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LEFT_PANEL.Location = new System.Drawing.Point(0, 32);
+            this.LEFT_PANEL.Location = new System.Drawing.Point(0, 0);
             this.LEFT_PANEL.Name = "LEFT_PANEL";
-            this.LEFT_PANEL.Size = new System.Drawing.Size(168, 476);
+            this.LEFT_PANEL.Size = new System.Drawing.Size(168, 508);
             this.LEFT_PANEL.TabIndex = 1;
             // 
             // GENERAL_BUTTON
@@ -84,7 +88,8 @@
             this.GENERAL_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.GENERAL_BUTTON.FlatAppearance.BorderSize = 0;
             this.GENERAL_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GENERAL_BUTTON.Location = new System.Drawing.Point(3, 6);
+            this.GENERAL_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.GENERAL_BUTTON.Location = new System.Drawing.Point(3, 38);
             this.GENERAL_BUTTON.Name = "GENERAL_BUTTON";
             this.GENERAL_BUTTON.Size = new System.Drawing.Size(162, 38);
             this.GENERAL_BUTTON.TabIndex = 0;
@@ -92,12 +97,20 @@
             this.GENERAL_BUTTON.UseVisualStyleBackColor = false;
             this.GENERAL_BUTTON.Click += new System.EventHandler(this.GENERAL_BUTTON_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(167, 32);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1, 476);
+            this.panel1.TabIndex = 1;
+            // 
             // MainSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LEFT_PANEL);
-            this.Controls.Add(this.TOP_PANEL);
             this.Name = "MainSettings";
             this.Size = new System.Drawing.Size(857, 508);
             this.TOP_PANEL.ResumeLayout(false);
@@ -115,5 +128,6 @@
         private System.Windows.Forms.PictureBox TOP_LEFT_LOGO_PICTUREBOX;
         private System.Windows.Forms.Panel LEFT_PANEL;
         private System.Windows.Forms.Button GENERAL_BUTTON;
+        private System.Windows.Forms.Panel panel1;
     }
 }
