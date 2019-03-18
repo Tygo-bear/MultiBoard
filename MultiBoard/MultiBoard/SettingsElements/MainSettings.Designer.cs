@@ -1,4 +1,4 @@
-﻿namespace MultiBoard.SettingsElments
+﻿namespace MultiBoard.SettingsElements
 {
     partial class MainSettings
     {
@@ -90,6 +90,7 @@
             this.GENERAL_BUTTON.TabIndex = 0;
             this.GENERAL_BUTTON.Text = "General";
             this.GENERAL_BUTTON.UseVisualStyleBackColor = false;
+            this.GENERAL_BUTTON.Click += new System.EventHandler(this.GENERAL_BUTTON_Click);
             // 
             // MainSettings
             // 

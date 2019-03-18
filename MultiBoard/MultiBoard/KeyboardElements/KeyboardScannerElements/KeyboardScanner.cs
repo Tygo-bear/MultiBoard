@@ -35,7 +35,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
                 _ScanPorts.Add(sp);
             }
 
-            System.Threading.Thread.Sleep(6000);
+            System.Threading.Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
 
             foreach (ScannerPort sp in _ScanPorts)
             {

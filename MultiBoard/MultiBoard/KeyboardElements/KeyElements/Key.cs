@@ -49,7 +49,6 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 if (newInter > 50)
                 {
                     _timer.Interval = newInter;
-                    Console.WriteLine("new interval: " + newInter);
                 }
             }
 

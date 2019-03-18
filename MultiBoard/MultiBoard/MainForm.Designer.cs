@@ -42,7 +42,7 @@
             this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.KEYBOARD_B = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SETTINGS_BUTTON = new System.Windows.Forms.Button();
             this.BOTTEM_PANEL = new System.Windows.Forms.Panel();
             this.ERROR_LABEL = new System.Windows.Forms.Label();
             this.WARRNING_BUTTON = new System.Windows.Forms.Button();
@@ -147,7 +147,7 @@
             this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.panel1);
             this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
-            this.LEFT_PENEL.Controls.Add(this.button2);
+            this.LEFT_PENEL.Controls.Add(this.SETTINGS_BUTTON);
             this.LEFT_PENEL.Dock = System.Windows.Forms.DockStyle.Left;
             this.LEFT_PENEL.Location = new System.Drawing.Point(0, 31);
             this.LEFT_PENEL.Name = "LEFT_PENEL";
@@ -235,23 +235,23 @@
             this.KEYBOARD_B.UseVisualStyleBackColor = false;
             this.KEYBOARD_B.Click += new System.EventHandler(this.KEYBOARD_LIST_CLICKED);
             // 
-            // button2
+            // SETTINGS_BUTTON
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SETTINGS_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 508);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 34);
-            this.button2.TabIndex = 4;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.SETTINGS_BUTTON.BackColor = System.Drawing.Color.Transparent;
+            this.SETTINGS_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SETTINGS_BUTTON.BackgroundImage")));
+            this.SETTINGS_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SETTINGS_BUTTON.FlatAppearance.BorderSize = 0;
+            this.SETTINGS_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.SETTINGS_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SETTINGS_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SETTINGS_BUTTON.Location = new System.Drawing.Point(0, 508);
+            this.SETTINGS_BUTTON.Name = "SETTINGS_BUTTON";
+            this.SETTINGS_BUTTON.Size = new System.Drawing.Size(32, 34);
+            this.SETTINGS_BUTTON.TabIndex = 4;
+            this.SETTINGS_BUTTON.UseVisualStyleBackColor = false;
+            this.SETTINGS_BUTTON.Click += new System.EventHandler(this.SETTINGS_BUTTON_Click);
             // 
             // BOTTEM_PANEL
             // 
@@ -371,6 +371,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MultiBoard";
             this.Text = "MultiBoard";
+            this.Shown += new System.EventHandler(this.MultiBoard_Shown);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
             this.TOP_ICON_PANEL.ResumeLayout(false);
@@ -392,7 +393,7 @@
         private System.Windows.Forms.Button MINIMIZE_B;
         private System.Windows.Forms.Button TOGGLE_B;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SETTINGS_BUTTON;
         private System.Windows.Forms.Button KEYBOARD_B;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel MAIN_PANEL;

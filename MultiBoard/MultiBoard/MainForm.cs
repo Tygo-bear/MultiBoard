@@ -12,6 +12,7 @@ using MultiBoard.Keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
 using MultiBoard.KeyboardElements.KeyboardScannerElements;
+using MultiBoard.SettingsElements;
 
 namespace MultiBoard
 {
@@ -21,6 +22,7 @@ namespace MultiBoard
         //==================================
         public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MultiBoard";
         public bool ToggleB = true;
+        private bool _firstStartUp = true;
         private List<KeyBoard> _keyboardList = new List<KeyBoard>();
         private List<Connector> _connectorList = new List<Connector>();
         private List<string> _ShowErrorList = new List<string>();
@@ -33,6 +35,7 @@ namespace MultiBoard
         ErrorOptions _errorContr = new ErrorOptions();
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
         ErrorMangePanel _errorManagePanel = new ErrorMangePanel();
+        MainSettings _mainSettings = new MainSettings();
         
 
         //resouces images
@@ -69,6 +72,11 @@ namespace MultiBoard
             _listkeyboardElement.Location = new Point(32, 31);
             this.Controls.Add(_listkeyboardElement);
 
+            //settings control
+            _mainSettings.Location = new Point(32,31);
+            _mainSettings.Hide();
+            Controls.Add(_mainSettings);
+
             //errorcontr
             _errorContr.IgnoreClicked += errorIgnore;
             _errorContr.ReloadClicked += errorReload;
@@ -92,9 +100,10 @@ namespace MultiBoard
             _addKeyboardContr.Location = new Point(32, 31);
             this.Controls.Add(_addKeyboardContr);
             _addKeyboardContr.AddKeyboarde += keyboardAdded;
-
+            
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
+
         }
 
         private void SaveKeyboardsEvent(object sender, KeyboardToArgs e)
@@ -472,12 +481,6 @@ namespace MultiBoard
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
             //scanning boards
@@ -541,6 +544,7 @@ namespace MultiBoard
             {
                 this.Invoke(new Action(() =>
                 {
+                    this.Show();
                     WARRNING_BUTTON.Show();
                     ERROR_LABEL.Text = mes;
                 }));
@@ -582,6 +586,21 @@ namespace MultiBoard
             _errorManagePanel.UpdateErrorList();
             _errorManagePanel.Show();
             _errorManagePanel.BringToFront();
+        }
+
+        private void SETTINGS_BUTTON_Click(object sender, EventArgs e)
+        {
+            _mainSettings.Show();
+            _mainSettings.BringToFront();
+        }
+
+        private void MultiBoard_Shown(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.StayHidden && _firstStartUp)
+            {
+                this.Visible = false;
+                _firstStartUp = false;
+            }
         }
     }
 }

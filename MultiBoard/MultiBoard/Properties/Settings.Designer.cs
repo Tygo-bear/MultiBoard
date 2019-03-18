@@ -46,5 +46,41 @@ namespace MultiBoard.Properties {
                 this["ErrorList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int ThreadPriority {
+            get {
+                return ((int)(this["ThreadPriority"]));
+            }
+            set {
+                this["ThreadPriority"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StayHidden {
+            get {
+                return ((bool)(this["StayHidden"]));
+            }
+            set {
+                this["StayHidden"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6000")]
+        public int TimeOutDelay {
+            get {
+                return ((int)(this["TimeOutDelay"]));
+            }
+            set {
+                this["TimeOutDelay"] = value;
+            }
+        }
     }
 }
