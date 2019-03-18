@@ -23,6 +23,7 @@ namespace MultiBoard
         public bool ToggleB = true;
         private List<KeyBoard> _keyboardList = new List<KeyBoard>();
         private List<Connector> _connectorList = new List<Connector>();
+        private List<string> _ShowErrorList = new List<string>();
 
         //classes and user controls
         //====================================
@@ -32,7 +33,7 @@ namespace MultiBoard
         ErrorOptions _errorContr = new ErrorOptions();
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
         ErrorMangePanel _errorManagePanel = new ErrorMangePanel();
-        Errors _errorDatabase = new Errors();
+        
 
         //resouces images
         //===============================
@@ -52,7 +53,10 @@ namespace MultiBoard
         public MultiBoard()
         {
             InitializeComponent();
-            
+
+            Properties.Settings.Default.ErrorList = "";
+            Properties.Settings.Default.Save();
+
             //loadOverlay control
             _loadOverlay.Location = new Point(0, 0);
             this.Controls.Add(_loadOverlay);
@@ -105,7 +109,9 @@ namespace MultiBoard
 
         private void errorView(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            _errorManagePanel.UpdateErrorList();
+            _errorManagePanel.Show();
+            _errorManagePanel.BringToFront();
         }
 
         private void errorReload(object sender, EventArgs e)
@@ -118,9 +124,20 @@ namespace MultiBoard
 
         private void errorIgnore(object sender, EventArgs e)
         {
-            ERROR_LABEL.Text = "";
-            _errorContr.Hide();
-            WARRNING_BUTTON.Visible = false;
+            if (_ShowErrorList.Count > 0)
+            {
+                _ShowErrorList.RemoveAt(0);
+            }
+            if (_ShowErrorList.Count > 0)
+            {
+                ERROR_LABEL.Text = _ShowErrorList[0];
+            }
+            else
+            {
+                ERROR_LABEL.Text = "";
+                _errorContr.Hide();
+                WARRNING_BUTTON.Visible = false;
+            }
         }
 
         private void keyboardAdded(object sender, EventArgs e)
@@ -336,10 +353,9 @@ namespace MultiBoard
                 string comport = getPortFromId(kb.getKeyboardUuid());
                 if(comport == null)
                 {
-                    this.Invoke(new Action(() => {
-                        WARRNING_BUTTON.Visible = true;
-                        ERROR_LABEL.Text = kb.getKeyboardName() + " --> not found!";
-                    }));
+
+                    AddError(true, kb.getKeyboardName() + " --> not found!");
+
                 }
                 else
                 {
@@ -511,6 +527,27 @@ namespace MultiBoard
 
         }
 
+        private void AddError(bool show, string mes)
+        {
+            Properties.Settings.Default.ErrorList = Properties.Settings.Default.ErrorList + mes + ",";
+            Properties.Settings.Default.Save();
+
+            if(show)
+            {
+                _ShowErrorList.Add(mes);
+            }
+
+            if(WARRNING_BUTTON.Visible == false && show)
+            {
+                this.Invoke(new Action(() =>
+                {
+                    WARRNING_BUTTON.Show();
+                    ERROR_LABEL.Text = mes;
+                }));
+            }
+
+        }
+
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == NativeMethods.WmShowme)
@@ -542,6 +579,7 @@ namespace MultiBoard
 
         private void ERROR_MANAGE_BUTTON_Click(object sender, EventArgs e)
         {
+            _errorManagePanel.UpdateErrorList();
             _errorManagePanel.Show();
             _errorManagePanel.BringToFront();
         }

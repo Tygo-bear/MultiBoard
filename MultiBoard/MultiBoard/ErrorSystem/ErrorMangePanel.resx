@@ -117,4 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAOcSURBVHhe7dyxURxBEAXQw6CwMDHwCQCPCHCUAAlAAiRABCRABCRAEFgKQL4MmbJUMnT6O/ep
+        uhPbp92d7tmdnf+qpkqC3p6Zdn8NGxERERERkZpst9sv3eJ/pSQM/hTrG9cpfyylYOiPWB8e+WMpAQO/
+        wPqZRr/T/fuCv5ZoGPZLGvuhF/5aImHQ11h/0sgPdT+7ZplEwZDf07j7vbNMImDAd7s5H3XHcvGEwZ5h
+        fU8jPq6rOeNn4gVDfUrjHeaJn4kHDPQS61ca7TBd7SU/l1wY5msa6ziv/FxyYJA3u3lOcsM2MgUGeIL1
+        NY1ymu7bE7aTsTC8hzTGPA9sJ2NgcOdYP9II83Q9ztlWhsLQntP4fDyzrQyBgV1h/U6j89H1umJ7+R8M
+        6y2Nzdcb28sxGNTtbl4hbrmN9MGAPmLGKIovj8Fw9mPGKIov+2Aw/8aMURRf9sFQ+mLGKIov92EgVswY
+        RfHlPgzjWMwYRfFlB4MYEjNGaTu+xACGxoxR2o4vcfkxMWOUNuNLXHxszBilzfgSl54SM0ZpK77EhXNi
+        xihtxJe4aFbMyDYmlk3RRnyJS96n607ENiaWTXXPNuuEC2bHjGxlYtlU644vcbnsmJGtTCzLsc74Ehdz
+        iRnZzsSyHOuML3Epl5iR7Uwsy7Wu+BIXcosZ2dLEMg/riC9xEdeYkW1NLPOwjvgSl3CNGdnWxDIvdceX
+        uIB7zMjWJpZ5qTu+xOHdY0a2NrHMU53xJQ4eEjOyvYllnuqML3HokJiR7U0s81ZXfIkDh8WM3MLEsgh1
+        xJc4aGjMyG1MLItQR3yJQ4bGjNzGxLIoy44vccClxIxRlh1f4nBLihmjLDO+xMGWGDNGWVZ8iQPlvmas
+        zbLiSxwmK2as1DLiSxzE6zVjbZYRX+IQnq8ZazNvfIkDeL9mrM288SU2j3jNeBS3NrGspHniS2wc+ZrR
+        xO1NLCutbHyJDaNfM5p4BBPLSisbX2KzEq8Ze/EIJpbNoUx8iY1KvWbsxWOYWDaHMvElNin5mvETHsPE
+        srnExpfYoPRrxk94FBPL5hIbX6L5HK8ZD/AoJpbNKSa+ROM5XzPWxje+RMO5XzPWxje+RLMlvGasjU98
+        iUZrjxmj+MSXaNJCzBglL75Eg5ZixijT4kt82FrMGGVafImPWowZo4yLL/FBqzFjlHHxJYpbjhmjDIsv
+        Udh6zBhlWHyJouIxY0P0x2NFRERERERERJq12fwFOB5US9bMtTQAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

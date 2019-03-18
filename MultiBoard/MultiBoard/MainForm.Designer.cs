@@ -170,7 +170,6 @@
             this.ERROR_MANAGE_BUTTON.Size = new System.Drawing.Size(32, 34);
             this.ERROR_MANAGE_BUTTON.TabIndex = 8;
             this.ERROR_MANAGE_BUTTON.UseVisualStyleBackColor = false;
-            this.ERROR_MANAGE_BUTTON.Visible = false;
             this.ERROR_MANAGE_BUTTON.Click += new System.EventHandler(this.ERROR_MANAGE_BUTTON_Click);
             // 
             // PERF_MODE_BUTTON
@@ -271,7 +270,7 @@
             // ERROR_LABEL
             // 
             this.ERROR_LABEL.AutoSize = true;
-            this.ERROR_LABEL.Location = new System.Drawing.Point(672, 9);
+            this.ERROR_LABEL.Location = new System.Drawing.Point(703, 9);
             this.ERROR_LABEL.Name = "ERROR_LABEL";
             this.ERROR_LABEL.Size = new System.Drawing.Size(0, 13);
             this.ERROR_LABEL.TabIndex = 8;

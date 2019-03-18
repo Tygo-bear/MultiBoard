@@ -34,5 +34,17 @@ namespace MultiBoard.Properties {
                 this["FileOpen_LastLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ErrorList {
+            get {
+                return ((string)(this["ErrorList"]));
+            }
+            set {
+                this["ErrorList"] = value;
+            }
+        }
     }
 }
