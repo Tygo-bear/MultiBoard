@@ -84,7 +84,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.0.8";
+            this.label2.Text = "Beta V1.0.0.9";
             // 
             // MINIMIZE_B
             // 
