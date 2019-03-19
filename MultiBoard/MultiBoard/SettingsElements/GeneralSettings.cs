@@ -50,6 +50,14 @@ namespace MultiBoard.SettingsElements
             Properties.Settings.Default.StayHidden = STAY_HIDDEN_CHECKBOX.Checked;
             Properties.Settings.Default.TimeOutDelay = TIME_OUT_TRACKBAR.Value;
             Properties.Settings.Default.Save();
+
+            overlays.SavedOverlay l = new overlays.SavedOverlay();
+            l.Width = this.Width;
+            l.Height = this.Height;
+            l.Location = new Point(0, 0);
+            Controls.Add(l);
+            l.Show();
+            l.BringToFront();
         }
 
         private void TIME_OUT_TRACKBAR_ValueChanged(object sender, EventArgs e)

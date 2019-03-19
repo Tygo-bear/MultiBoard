@@ -41,5 +41,10 @@ namespace MultiBoard.ErrorSystem
 
             UpdateErrorList();
         }
+
+        private void RELOAD_LIST_BUTTON_Click(object sender, EventArgs e)
+        {
+            UpdateErrorList();
+        }
     }
 }
