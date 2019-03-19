@@ -49,7 +49,7 @@ namespace MultiBoard.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int ThreadPriority {
             get {
                 return ((int)(this["ThreadPriority"]));

@@ -54,22 +54,25 @@ namespace MultiBoard
             switch (Properties.Settings.Default.ThreadPriority)
             {
                 case 1:
-                    System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Lowest;
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.Idle;
                     break;
                 case 2:
-                    System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.BelowNormal;
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.BelowNormal;
                     break;
                 case 3:
-                    System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Normal;
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.Normal;
                     break;
                 case 4:
-                    System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.AboveNormal;
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal;
                     break;
                 case 5:
-                    System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Highest;
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.High;
+                    break;
+                case 6:
+                    System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.RealTime;
                     break;
             }
-            System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.RealTime;
+            
 
             string s = _comPort.ReadExisting();
             //Console.WriteLine("Data: " + s);

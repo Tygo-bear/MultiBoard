@@ -30,30 +30,30 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettings));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TOP_LEFT_LOGO_PICTUREBOX = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.THREAD_PRI_LABEL = new System.Windows.Forms.Label();
             this.PRIORITY_TRACKBAR = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.STAY_HIDDEN_CHECKBOX = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.STAY_HIDDEN_CHECKBOX = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.TIME_DELAY_LABEL = new System.Windows.Forms.Label();
             this.TIME_OUT_TRACKBAR = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
-            this.TOP_LEFT_LOGO_PICTUREBOX = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PRIORITY_TRACKBAR)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -66,6 +66,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(689, 32);
             this.panel1.TabIndex = 0;
+            // 
+            // TOP_LEFT_LOGO_PICTUREBOX
+            // 
+            this.TOP_LEFT_LOGO_PICTUREBOX.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TOP_LEFT_LOGO_PICTUREBOX.BackgroundImage")));
+            this.TOP_LEFT_LOGO_PICTUREBOX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.TOP_LEFT_LOGO_PICTUREBOX.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TOP_LEFT_LOGO_PICTUREBOX.Location = new System.Drawing.Point(0, 0);
+            this.TOP_LEFT_LOGO_PICTUREBOX.Name = "TOP_LEFT_LOGO_PICTUREBOX";
+            this.TOP_LEFT_LOGO_PICTUREBOX.Size = new System.Drawing.Size(32, 32);
+            this.TOP_LEFT_LOGO_PICTUREBOX.TabIndex = 1;
+            this.TOP_LEFT_LOGO_PICTUREBOX.TabStop = false;
             // 
             // label1
             // 
@@ -102,7 +113,7 @@
             this.PRIORITY_TRACKBAR.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.PRIORITY_TRACKBAR.Cursor = System.Windows.Forms.Cursors.Default;
             this.PRIORITY_TRACKBAR.Location = new System.Drawing.Point(7, 20);
-            this.PRIORITY_TRACKBAR.Maximum = 5;
+            this.PRIORITY_TRACKBAR.Maximum = 6;
             this.PRIORITY_TRACKBAR.Minimum = 1;
             this.PRIORITY_TRACKBAR.Name = "PRIORITY_TRACKBAR";
             this.PRIORITY_TRACKBAR.Size = new System.Drawing.Size(341, 45);
@@ -131,15 +142,14 @@
             this.panel3.Size = new System.Drawing.Size(249, 67);
             this.panel3.TabIndex = 2;
             // 
-            // STAY_HIDDEN_CHECKBOX
+            // label4
             // 
-            this.STAY_HIDDEN_CHECKBOX.AutoSize = true;
-            this.STAY_HIDDEN_CHECKBOX.Location = new System.Drawing.Point(7, 3);
-            this.STAY_HIDDEN_CHECKBOX.Name = "STAY_HIDDEN_CHECKBOX";
-            this.STAY_HIDDEN_CHECKBOX.Size = new System.Drawing.Size(118, 17);
-            this.STAY_HIDDEN_CHECKBOX.TabIndex = 1;
-            this.STAY_HIDDEN_CHECKBOX.Text = "Stay in background";
-            this.STAY_HIDDEN_CHECKBOX.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(238, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Only when a error occured will MultiBoard pop up";
             // 
             // label3
             // 
@@ -150,14 +160,15 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "On system startup MultiBoard will stay hidden";
             // 
-            // label4
+            // STAY_HIDDEN_CHECKBOX
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 44);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(238, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Only when a error occured will MultiBoard pop up";
+            this.STAY_HIDDEN_CHECKBOX.AutoSize = true;
+            this.STAY_HIDDEN_CHECKBOX.Location = new System.Drawing.Point(7, 3);
+            this.STAY_HIDDEN_CHECKBOX.Name = "STAY_HIDDEN_CHECKBOX";
+            this.STAY_HIDDEN_CHECKBOX.Size = new System.Drawing.Size(118, 17);
+            this.STAY_HIDDEN_CHECKBOX.TabIndex = 1;
+            this.STAY_HIDDEN_CHECKBOX.Text = "Stay in background";
+            this.STAY_HIDDEN_CHECKBOX.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -171,6 +182,24 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(366, 132);
             this.panel4.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 112);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(258, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Shorter = slow startup time and less connection errors";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(283, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Longer = faster startup time and more connection problems";
             // 
             // TIME_DELAY_LABEL
             // 
@@ -207,24 +236,6 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Connection time out delay";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 99);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(283, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Longer = faster startup time and more connection problems";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 112);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(258, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Shorter = slow startup time and less connection errors";
-            // 
             // SAVE_BUTTON
             // 
             this.SAVE_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -240,17 +251,6 @@
             this.SAVE_BUTTON.UseVisualStyleBackColor = false;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
-            // TOP_LEFT_LOGO_PICTUREBOX
-            // 
-            this.TOP_LEFT_LOGO_PICTUREBOX.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TOP_LEFT_LOGO_PICTUREBOX.BackgroundImage")));
-            this.TOP_LEFT_LOGO_PICTUREBOX.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.TOP_LEFT_LOGO_PICTUREBOX.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TOP_LEFT_LOGO_PICTUREBOX.Location = new System.Drawing.Point(0, 0);
-            this.TOP_LEFT_LOGO_PICTUREBOX.Name = "TOP_LEFT_LOGO_PICTUREBOX";
-            this.TOP_LEFT_LOGO_PICTUREBOX.Size = new System.Drawing.Size(32, 32);
-            this.TOP_LEFT_LOGO_PICTUREBOX.TabIndex = 1;
-            this.TOP_LEFT_LOGO_PICTUREBOX.TabStop = false;
-            // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,6 +264,7 @@
             this.Size = new System.Drawing.Size(689, 508);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PRIORITY_TRACKBAR)).EndInit();
@@ -272,7 +273,6 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).EndInit();
             this.ResumeLayout(false);
 
         }

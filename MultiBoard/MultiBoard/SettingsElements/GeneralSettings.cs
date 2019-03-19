@@ -26,7 +26,7 @@ namespace MultiBoard.SettingsElements
             switch (PRIORITY_TRACKBAR.Value)
             {
                 case 1:
-                    THREAD_PRI_LABEL.Text = "Lowest";
+                    THREAD_PRI_LABEL.Text = "Idle";
                     break;
                 case 2:
                     THREAD_PRI_LABEL.Text = "Below normal";
@@ -39,6 +39,9 @@ namespace MultiBoard.SettingsElements
                     break;
                 case 5:
                     THREAD_PRI_LABEL.Text = "Highest";
+                    break;
+                case 6:
+                    THREAD_PRI_LABEL.Text = "RealTime";
                     break;
             }
 
