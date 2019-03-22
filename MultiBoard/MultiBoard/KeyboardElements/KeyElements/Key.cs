@@ -52,11 +52,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 }
             }
 
-            if (File.Exists(_executeLocation))
-            {
-                //execute
-                System.Diagnostics.Process.Start(_executeLocation);
-            }
+            executeFile();
 
         }
 
@@ -155,14 +151,14 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             if (_recordingKey == false)
             {
-                if (_keyTag == key && _enabled == true && _onKeyDownSelected && File.Exists(_executeLocation) && allEnebled)
+                if (_keyTag == key && _enabled == true && _onKeyDownSelected && allEnebled)
                 {
                     //execute
-                    System.Diagnostics.Process.Start(_executeLocation);
+                    executeFile();
                 }
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
-                    System.Diagnostics.Process.Start(_executeLocation);
+                    executeFile();
                     _timer.Start();
                 }
             }
@@ -172,10 +168,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             if (_recordingKey == false)
             {
-                if (_keyTag == key && _enabled == true && _onKeyUpSelected && File.Exists(_executeLocation) && allEnebled)
+                if (_keyTag == key && _enabled == true && _onKeyUpSelected && allEnebled)
                 {
-                    //execute
-                    System.Diagnostics.Process.Start(_executeLocation);
+                    executeFile();
                 }
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
@@ -183,6 +178,19 @@ namespace MultiBoard.KeyboardElements.KeyElements
                     _timer.Interval = _defInterval;
                     _keyPressCount = 0;
                 }
+            }
+        }
+
+        private void executeFile()
+        {
+            if (File.Exists(_executeLocation))
+            {
+                //execute
+                System.Diagnostics.Process.Start(_executeLocation);
+            }
+            else
+            {
+                Properties.Settings.Default.ErrorList += ", execute file not found --> " + _keyName;
             }
         }
     }
