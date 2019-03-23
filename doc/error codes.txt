@@ -1,3 +1,0 @@
-ERROR: 001, keyboard not found
-ERROR: 002, keyboard disconnected
-ERROR: 003, file not found
