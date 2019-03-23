@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using MultiBoard.Keyboard.KeyElements;
 using MultiBoard.overlays;
 
 namespace MultiBoard.KeyboardElements.KeyElements
@@ -47,6 +46,27 @@ namespace MultiBoard.KeyboardElements.KeyElements
             InitializeComponent();
         }
 
+        /// <summary>
+        /// The settings of the key GUI
+        /// </summary>
+        /// <param name="name">
+        /// Name of the key
+        /// </param>
+        /// <param name="eventState">
+        /// Event state of the key
+        /// </param>
+        /// <param name="key">
+        /// The key code
+        /// </param>
+        /// <param name="enabledKey">
+        /// Is the key enabled
+        /// </param>
+        /// <param name="executeLoc">
+        /// The task of the key
+        /// </param>
+        /// <param name="connectKey">
+        /// the reference to the key class
+        /// </param>
         public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
         {
             _keyName = name;
@@ -106,6 +126,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             LOCATION_TEXTBOX.Text = executeLoc;
         }
 
+        /// <summary>
+        /// When key down event state is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void keyDownClicked(object sender, EventArgs e)
         {
             _onKeyDownSelected = true;
@@ -117,6 +142,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
         }
 
+        /// <summary>
+        /// When key up event state is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void keyUpClicked(object sender, EventArgs e)
         {
             _onKeyDownSelected = false;
@@ -128,6 +158,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             KEY_PRESSED_p.BackColor = EVENT_PANEL.BackColor;
         }
 
+        /// <summary>
+        /// when key pressed event state is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void keyPressedClicked(object sender, EventArgs e)
         {
             _onKeyDownSelected = false;
@@ -139,6 +174,15 @@ namespace MultiBoard.KeyboardElements.KeyElements
             KEY_PRESSED_p.BackColor = Color.DimGray;
         }
 
+        /// <summary>
+        /// Key down event for key recording
+        /// </summary>
+        /// <param name="key">
+        /// key code
+        /// </param>
+        /// <param name="allEnebled">
+        /// Is key allowed to run
+        /// </param>
         public void keyDown(string key, bool allEnebled)
         {
             if(_recordingKey == true)
@@ -156,7 +200,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
-
+        /// <summary>
+        /// When key recording is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startRecordingClicked(object sender, EventArgs e)
         {
             if(_recordingKey == true)
@@ -173,6 +221,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Enable key button Clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ENABLE_BUTTON_CLICK(object sender, EventArgs e)
         {
             if(_enabled == true)
@@ -187,6 +240,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Open file button clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OPEN_FILE_CLICKED(object sender, EventArgs e)
         {
 
@@ -221,42 +279,36 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
-        public string getName()
-        {
-            return _keyName;
-        }
+        public string KeyName => _keyName;
 
-        public int getEvent()
+        public int EventState
         {
-            if(_onKeyDownSelected)
+            get
             {
-                return 1;
+                if (_onKeyDownSelected)
+                {
+                    return 1;
+                }
+                else if (_onKeyUpSelected)
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 3;
+                }
             }
-            else if(_onKeyUpSelected)
-            {
-                return 2;
-            }
-            else
-            {
-                return 3;
-            }
         }
 
-        public string getKeytag()
-        {
-            return _keyTag;
-        }
+        public string KeyTag => _keyTag;
 
-        public bool getEnebled()
-        {
-            return _enabled;
-        }
+        public bool KeyEnebled => _enabled;
 
-        public string getExecuteLocation()
-        {
-            return _executeLocation;
-        }
+        public string ExecuteLocation => _executeLocation;
 
+        /// <summary>
+        /// Event for when data updated
+        /// </summary>
         protected virtual void onUpdatedData()
         {
             if(UpdatedData != null)
@@ -265,38 +317,43 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Key delete button clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DELETE_BUTTON_Click(object sender, EventArgs e)
         {
             onDeleteKey();
         }
 
+        /// <summary>
+        /// Save button clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
-            if (checkKeyName(_keyName))
-            {
-                KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
+            KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
 
-                _connectedKey.key_name = _keyName;
-                _connectedKey.keyEnebled = _enabled;
-                _connectedKey.EventState = getEvent();
-                _connectedKey.executeLoc = _executeLocation;
-                _connectedKey.keyTag = _keyTag;
+            _connectedKey.key_name = _keyName;
+            _connectedKey.keyEnebled = _enabled;
+            _connectedKey.EventState = EventState;
+            _connectedKey.executeLoc = _executeLocation;
+            _connectedKey.keyTag = _keyTag;
 
-                onUpdatedData();
+            onUpdatedData();
 
-                SavedOverlay ol = new SavedOverlay();
-                ol.Location = new Point(0, 0);
-                this.Controls.Add(ol);
-                ol.BringToFront();
+            SavedOverlay ol = new SavedOverlay();
+            ol.Location = new Point(0, 0);
+            this.Controls.Add(ol);
+            ol.BringToFront();
 
-                
-            }
-            else
-            {
-                KEY_NAME_TEXTBOX.BackColor = Color.Red;
-            }
         }
 
+        /// <summary>
+        /// Event for key delete request
+        /// </summary>
         protected virtual void onDeleteKey()
         {
             if (DeleteKey != null) DeleteKey(this, new ObjKeyEventArgs() {ObjKey = _connectedKey});
@@ -306,12 +363,12 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             _keyName = KEY_NAME_TEXTBOX.Text;
         }
-
-        private bool checkKeyName(string s)
-        {
-            return true;
-        }
-
+        
+        /// <summary>
+        /// Stop recording when focus lost
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KEY_RECORD_PANEL_Leave(object sender, EventArgs e)
         {
             _recordingKey = false;
@@ -324,17 +381,25 @@ namespace MultiBoard.KeyboardElements.KeyElements
             createKeyTaskOverlay();
         }
 
+        /// <summary>
+        /// Create KeyTaskOverlay for advanced settings
+        /// </summary>
         private void createKeyTaskOverlay()
         {
             _keyTaskOverlay = new SelectKeyTaskOverlay();
-            _keyTaskOverlay.UserMadeSelection += KeyTaskOverlayOnUserMadeSelection;
+            _keyTaskOverlay.UserMadeSelection += keyTaskOverlayOnUserMadeSelection;
             _keyTaskOverlay.Location = new Point((Width/2)-(_keyTaskOverlay.Width/2), (Height/2)-(_keyTaskOverlay.Height/2));
             Controls.Add(_keyTaskOverlay);
             _keyTaskOverlay.Show();
             _keyTaskOverlay.BringToFront();
         }
 
-        private void KeyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
+        /// <summary>
+        /// Collect data input and dispose overlay
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void keyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
         {
             string s = "<" + _keyTaskOverlay.selectedKey + ">";
             _executeLocation = s;
@@ -343,6 +408,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
         }
     }
 
+    /// <summary>
+    /// Give key class reference as event argument
+    /// </summary>
     public class ObjKeyEventArgs : EventArgs
     {
         public Key ObjKey { get; set; }

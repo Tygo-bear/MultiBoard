@@ -1,4 +1,4 @@
-﻿namespace MultiBoard.Keyboard.KeyElements
+﻿namespace MultiBoard.KeyboardElements.KeyElements
 {
     partial class KeyListPanel
     {

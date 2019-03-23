@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using MultiBoard.Keyboard;
-using MultiBoard.Keyboard.KeyElements;
 using MultiBoard.KeyboardElements.KeyElements;
 
 namespace MultiBoard
@@ -265,9 +264,9 @@ namespace MultiBoard
         {
             foreach(KeyListPanel klp in _keyPanelList)
             {
-                Key k = klp.connected_key;
-                klp.Kname = k.key_name;
-                klp.setState(k.keyEnebled);
+                Key k = klp.ConnectedKey;
+                klp.KeyName = k.key_name;
+                klp.KeyEnabledState = k.keyEnebled;
             }
 
             updateKeyNameList();
@@ -285,7 +284,7 @@ namespace MultiBoard
 
             foreach(Key aKey in _keyList)
             {
-                if(aKey == k.connected_key)
+                if(aKey == k.ConnectedKey)
                 {
                     _keyGui.settings(aKey.key_name, aKey.EventState, aKey.keyTag, aKey.keyEnebled, aKey.executeLoc, aKey);
                 }
@@ -317,7 +316,7 @@ namespace MultiBoard
             _keyList.Remove(e.ObjKey);
             foreach(KeyListPanel k in _keyPanelList)
             {
-                if(k.connected_key == e.ObjKey)
+                if(k.ConnectedKey == e.ObjKey)
                 {
                     _keyPanelList.Remove(k);
                     k.Dispose();
@@ -412,8 +411,8 @@ namespace MultiBoard
             //key search on key name
             foreach (KeyListPanel k in _keyPanelList)
             {
-                if (k.Kname.ToLower().Replace(input, String.Empty) != k.Kname.ToLower() 
-                    || k.connected_key.keyTag == input)
+                if (k.KeyName.ToLower().Replace(input, String.Empty) != k.KeyName.ToLower() 
+                    || k.ConnectedKey.keyTag == input)
                 {
                     panelList.Add(k);
                 }

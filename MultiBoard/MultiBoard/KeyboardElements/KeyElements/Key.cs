@@ -28,6 +28,24 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private int _keyPressCount = 0;
         private const int _defInterval = 300;
 
+        /// <summary>
+        /// a key that is connected to a keyboard and handles key events
+        /// </summary>
+        /// <param name="name">
+        /// The name of the key shown to the user
+        /// </param>
+        /// <param name="eventStateAr">
+        /// On which event the key must react
+        /// </param>
+        /// <param name="key">
+        /// The key code
+        /// </param>
+        /// <param name="enabledKey">
+        /// Is the key enabled
+        /// </param>
+        /// <param name="executeLoc">
+        /// The action or location of file to open
+        /// </param>
         public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
         {
             _keyName = name;
@@ -41,6 +59,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _timer.Stop();
         }
 
+        /// <summary>
+        /// Handles the key pressed event timing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerOnElapsed(object sender, EventArgs e)
         {
             if (_timer.Interval == _defInterval)
@@ -62,6 +85,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         }
 
+        /// <summary>
+        /// The name of the key shown to the user
+        /// </summary>
         public string key_name
         {
             get
@@ -74,6 +100,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// On which event the key must react
+        /// </summary>
         public int EventState
         {
             get
@@ -117,6 +146,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Is the key enabled
+        /// </summary>
         public bool keyEnebled
         {
             get
@@ -129,6 +161,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// The key code
+        /// </summary>
         public string keyTag
         {
             get
@@ -141,6 +176,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// The action or location of file to open
+        /// </summary>
         public string executeLoc
         {
             get
@@ -153,6 +191,15 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Key down event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="allEnebled">
+        /// Is key allowed to run
+        /// </param>
         public void keyDown(string key, bool allEnebled)
         {
             if (_recordingKey == false)
@@ -170,6 +217,15 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// The key up event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="allEnebled">
+        /// Is key allowed to run
+        /// </param>
         public void keyUp(string key, bool allEnebled)
         {
             if (_recordingKey == false)
@@ -187,6 +243,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
         }
 
+        /// <summary>
+        /// Execute the task of the key
+        /// </summary>
         private void executeFile()
         {
             if (_executeLocation.Remove('<') != _executeLocation)
