@@ -160,6 +160,12 @@
     <Compile Include="overlays\SavedOverlay.Designer.cs">
       <DependentUpon>SavedOverlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="overlays\SelectKeyTaskOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\SelectKeyTaskOverlay.Designer.cs">
+      <DependentUpon>SelectKeyTaskOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="overlays\UndoKeyboardDelete.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\SavedOverlay.resx">
       <DependentUpon>SavedOverlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="overlays\SelectKeyTaskOverlay.resx">
+      <DependentUpon>SelectKeyTaskOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\UndoKeyboardDelete.resx">
       <DependentUpon>UndoKeyboardDelete.cs</DependentUpon>

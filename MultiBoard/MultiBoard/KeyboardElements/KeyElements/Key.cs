@@ -1,13 +1,19 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Timers;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {
     public class Key
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+
         //variables
         //===============================
+        const int _KEYDOWN = 0x0100;
+
         private bool _onKeyDownSelected = false;
         private bool _onKeyUpSelected = false;
         private bool _onKeyPressedSelected = false;
@@ -183,14 +189,23 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         private void executeFile()
         {
-            if (File.Exists(_executeLocation))
+            if (_executeLocation.Remove('<') != _executeLocation)
             {
-                //execute
-                System.Diagnostics.Process.Start(_executeLocation);
+                //const int key = Int32.Parse(_executeLocation.Remove('<').Remove('>').Replace("VK", ""));
+                const int key = 0xA1;
+                keybd_event(key, 0, _KEYDOWN, 0);
             }
             else
             {
-                Properties.Settings.Default.ErrorList += ", execute file not found --> " + _keyName;
+                if (File.Exists(_executeLocation))
+                {
+                    //execute
+                    System.Diagnostics.Process.Start(_executeLocation);
+                }
+                else
+                {
+                    Properties.Settings.Default.ErrorList += ", execute file not found --> " + _keyName;
+                }
             }
         }
     }

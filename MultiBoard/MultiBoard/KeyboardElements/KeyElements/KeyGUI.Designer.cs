@@ -51,6 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.KEY_TASK_BUTTON = new System.Windows.Forms.Button();
             this.OPEN_FILE_BUTTON = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.LOCATION_TEXTBOX = new System.Windows.Forms.TextBox();
@@ -296,6 +297,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.KEY_TASK_BUTTON);
             this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.LOCATION_TEXTBOX);
@@ -304,13 +306,26 @@
             this.panel2.Size = new System.Drawing.Size(632, 120);
             this.panel2.TabIndex = 14;
             // 
+            // KEY_TASK_BUTTON
+            // 
+            this.KEY_TASK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_TASK_BUTTON.BackgroundImage")));
+            this.KEY_TASK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.KEY_TASK_BUTTON.FlatAppearance.BorderSize = 0;
+            this.KEY_TASK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KEY_TASK_BUTTON.Location = new System.Drawing.Point(6, 53);
+            this.KEY_TASK_BUTTON.Name = "KEY_TASK_BUTTON";
+            this.KEY_TASK_BUTTON.Size = new System.Drawing.Size(76, 58);
+            this.KEY_TASK_BUTTON.TabIndex = 6;
+            this.KEY_TASK_BUTTON.UseVisualStyleBackColor = true;
+            this.KEY_TASK_BUTTON.Click += new System.EventHandler(this.KEY_TASK_BUTTON_Click);
+            // 
             // OPEN_FILE_BUTTON
             // 
             this.OPEN_FILE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("OPEN_FILE_BUTTON.BackgroundImage")));
             this.OPEN_FILE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.OPEN_FILE_BUTTON.FlatAppearance.BorderSize = 0;
             this.OPEN_FILE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(10, 54);
+            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(91, 53);
             this.OPEN_FILE_BUTTON.Name = "OPEN_FILE_BUTTON";
             this.OPEN_FILE_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.OPEN_FILE_BUTTON.TabIndex = 5;
@@ -322,9 +337,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Location";
+            this.label6.Text = "Task";
             // 
             // LOCATION_TEXTBOX
             // 
@@ -406,5 +421,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button KEY_TASK_BUTTON;
     }
 }

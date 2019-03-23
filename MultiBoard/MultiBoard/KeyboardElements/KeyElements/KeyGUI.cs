@@ -33,6 +33,10 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         public List<string> NameAllKeys = new List<string>();
 
+        //user controls
+        //=======================
+        private SelectKeyTaskOverlay _keyTaskOverlay;
+
         //events
         //=========================
         public event EventHandler UpdatedData;
@@ -313,6 +317,29 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _recordingKey = false;
             RECORD_KEY_BUTTON.Text = "Start recording";
             KEY_RECORD_PANEL.BackColor = EVENT_PANEL.BackColor;
+        }
+
+        private void KEY_TASK_BUTTON_Click(object sender, EventArgs e)
+        {
+            createKeyTaskOverlay();
+        }
+
+        private void createKeyTaskOverlay()
+        {
+            _keyTaskOverlay = new SelectKeyTaskOverlay();
+            _keyTaskOverlay.UserMadeSelection += KeyTaskOverlayOnUserMadeSelection;
+            _keyTaskOverlay.Location = new Point((Width/2)-(_keyTaskOverlay.Width/2), (Height/2)-(_keyTaskOverlay.Height/2));
+            Controls.Add(_keyTaskOverlay);
+            _keyTaskOverlay.Show();
+            _keyTaskOverlay.BringToFront();
+        }
+
+        private void KeyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
+        {
+            string s = "<" + _keyTaskOverlay.selectedKey + ">";
+            _executeLocation = s;
+            LOCATION_TEXTBOX.Text = s;
+            _keyTaskOverlay.Dispose();
         }
     }
 
