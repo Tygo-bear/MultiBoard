@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using MultiBoard.Keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
 using MultiBoard.KeyboardElements.KeyboardScannerElements;
@@ -110,8 +109,8 @@ namespace MultiBoard
         {
             if(e != EventArgs.Empty)
             {
-                _keyboardList.Remove(e.keybo);
-                e.keybo.Dispose();
+                _keyboardList.Remove(e.Keyboard);
+                e.Keyboard.Dispose();
             }
             saveBoards();
         }
@@ -169,9 +168,9 @@ namespace MultiBoard
             this.Controls.Add(obj);
             obj.BringToFront();
 
-            obj.setKeyBoardName(name);
-            obj.setKeyboardUuid(uuid);
-            obj.setComPort(port);
+            obj.KeyboardName = name;
+            obj.KeyboardUuid = uuid;
+            obj.ComPort = port;
 
             _listkeyboardElement.addItem(name, uuid, port, obj);
 
@@ -198,9 +197,9 @@ namespace MultiBoard
 
             foreach (KeyBoard kb in _keyboardList)
             {
-                string name = kb.getKeyboardName();
-                string uuid = kb.getKeyboardUuid();
-                string port = kb.getComPort();
+                string name = kb.KeyboardName;
+                string uuid = kb.KeyboardUuid;
+                string port = kb.ComPort;
 
                 sstring.Add(uuid + "|" + name + "|" + port + "\n");
             }
@@ -309,9 +308,9 @@ namespace MultiBoard
                     obj.Visible = false;
                     this.Controls.Add(obj);
 
-                    obj.setKeyBoardName(splits[1]);
-                    obj.setKeyboardUuid(splits[0]);
-                    obj.setComPort(splits[2]);
+                    obj.KeyboardName = splits[1];
+                    obj.KeyboardUuid = splits[0];
+                    obj.ComPort = splits[2];
 
                     _listkeyboardElement.addItem(splits[1], splits[0], splits[2], obj);
 
@@ -359,17 +358,17 @@ namespace MultiBoard
 
             foreach (KeyBoard kb in _keyboardList)
             {
-                string comport = getPortFromId(kb.getKeyboardUuid());
+                string comport = getPortFromId(kb.KeyboardUuid);
                 if(comport == null)
                 {
 
-                    AddError(true, kb.getKeyboardName() + " --> not found!");
+                    AddError(true, kb.KeyboardName + " --> not found!");
 
                 }
                 else
                 {
                     Connector conect1 = new Connector();
-                    conect1.DynamicId = kb.getKeyboardUuid();
+                    conect1.DynamicId = kb.KeyboardUuid;
                     conect1.setup(comport, 115200);
                     conect1.openPort();
                     conect1.KeyDown += onKeyDown;
@@ -396,7 +395,7 @@ namespace MultiBoard
         {
             foreach(KeyBoard aKeyboard in _keyboardList)
             {
-                if(aKeyboard.getKeyboardName() == e.Name)
+                if(aKeyboard.KeyboardName == e.Name)
                 {
                     aKeyboard.Visible = true;
                     aKeyboard.BringToFront();

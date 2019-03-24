@@ -5,63 +5,101 @@ using System.IO;
 using System.Windows.Forms;
 using MultiBoard.overlays;
 
-namespace MultiBoard.Keyboard
+namespace MultiBoard.KeyboardElements
 {
     public partial class KeyboardList : UserControl
     {
+        //Events
+        //=================
         public event EventHandler<ItemName> SelectedItem;
         public event EventHandler<KeyboardToArgs> UpdateKeyboards;
 
-        private Point NextPoint = new Point(31, 31);
-        private List<KeyboardListPanel> _kblp = new List<KeyboardListPanel>();
+        //Vars
+        //=================
+        private Point _nextPoint = new Point(31, 31);
+        private List<KeyboardListPanel> _KeyboardPanelList = new List<KeyboardListPanel>();
 
         private string _mainDirectory;
         private string _undo;
 
+        /// <summary>
+        /// Setup of keyboardList
+        /// </summary>
+        /// <param name="mainDire">
+        /// The main directory of the program
+        /// </param>
         public KeyboardList(string mainDire)
         {
             InitializeComponent();
             _mainDirectory = mainDire;
         }
 
+        /// <summary>
+        /// Add a Keyboard to the keyboardList
+        /// </summary>
+        /// <param name="itemName">
+        /// Name of the Keyboard
+        /// </param>
+        /// <param name="uuidItem">
+        /// Dynamic ID of the keyboard
+        /// </param>
+        /// <param name="comportItem">
+        /// The com port of the keyboard
+        /// </param>
+        /// <param name="board">
+        /// The keyboard class it represents
+        /// </param>
         public void addItem(string itemName, string uuidItem, string comportItem, KeyBoard board)
         {
+            //Create panel and add to control
             KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, board);
-            obj.Location = NextPoint;
+            obj.Location = _nextPoint;
             obj.Visible = true;
-            obj.BoardSettingsClicked += bsClikced;
+            obj.BoardSettingsClicked += bsClicked;
             obj.OpenBoardClicked += obClicked;
             MAIN_PANEL.Controls.Add(obj);
 
-            _kblp.Add(obj);
+            _KeyboardPanelList.Add(obj);
 
-            if(NextPoint.X == 31)
+            //Draw point on control
+            if(_nextPoint.X == 31)
             {
-                NextPoint.X = NextPoint.X + obj.Width + 31;
+                _nextPoint.X = _nextPoint.X + obj.Width + 31;
             }
             else
             {
-                NextPoint.X = 31;
-                NextPoint.Y = NextPoint.Y + obj.Height + 31;
+                _nextPoint.X = 31;
+                _nextPoint.Y = _nextPoint.Y + obj.Height + 31;
             }
         }
 
+        /// <summary>
+        /// User clicked on keyboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void obClicked(object sender, EventArgs e)
         {
-            foreach(KeyboardListPanel k in _kblp)
+            foreach(KeyboardListPanel k in _KeyboardPanelList)
             {
                 if(k == sender)
                 {
-                    SelectedItem(this, new ItemName() { Name = k.KbName });
+                    if (SelectedItem != null) SelectedItem(this, new ItemName() {Name = k.KeyboardName});
                 }
             }
             
         }
 
-        private void bsClikced(object sender, EventArgs e)
+        /// <summary>
+        /// USer clicked on Settings icon of keyboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bsClicked(object sender, EventArgs e)
         {
+            //Show settings control of keyboard
             KeyboardListPanel k = sender as KeyboardListPanel;
-            KeyboardSettings obj = new KeyboardSettings(k.KbName, k.KbUuid, k.KbPort, k.connectedBoard);
+            KeyboardSettings obj = new KeyboardSettings(k.KeyboardName, k.KeyboardUuid, k.KeyboardPort, k.ConnectedBoard);
 
             obj.Save += keyboardSave;
             obj.Delete += keyboardDelete;
@@ -73,37 +111,53 @@ namespace MultiBoard.Keyboard
 
         }
 
+        /// <summary>
+        /// Save the new settings of the keyboard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void keyboardSave(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.connectedKeyboard;
+            KeyBoard b = k.ConnectedKeyboard;
 
-            //TODO error naming
-            //throw new NotImplementedException();
+            //TODO Check for correct naming
 
-            if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
+            //Check file exist
+            if (File.Exists(_mainDirectory + @"\" + b.KeyboardName + ".inf"))
             {
-                File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf", _mainDirectory + @"\" + k.KbName + ".inf");
+                File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf", _mainDirectory + @"\" + k.KbName + ".inf");
             }
             else
             {
+                //report error
+                Properties.Settings.Default.ErrorList += ",File rename error --> " + b.KeyboardName;
+                Properties.Settings.Default.Save();
                 Console.WriteLine("File rename error");
             }
 
+            //Applies new settings to keyboard class
+            b.KeyboardName = k.KbName;
+            b.KeyboardUuid = k.KbUuid;
+            b.ComPort = k.KbPort;
 
-            b.setKeyBoardName(k.KbName);
-            b.setKeyboardUuid(k.KbUuid);
-            b.setComPort(k.KbPort);
-
-            UpdateKeyboards(this, new KeyboardToArgs() { keybo = null });
+            //call event for saving settings
+            if (UpdateKeyboards != null) UpdateKeyboards(this, new KeyboardToArgs() {Keyboard = null});
         }
 
+        /// <summary>
+        /// Keyboard delete request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void keyboardDelete(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.connectedKeyboard;
+            KeyBoard b = k.ConnectedKeyboard;
 
-            if (File.Exists(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"))
+            //TODO Make more efficient
+            //Move deleted keyboard to .del folder
+            if (File.Exists(_mainDirectory + @"\" + b.KeyboardName + ".inf"))
             {
                 if (Directory.Exists(_mainDirectory + @"\.del"))
                 {
@@ -111,16 +165,16 @@ namespace MultiBoard.Keyboard
                     {
                         File.Delete(_mainDirectory + @"\.del\keyboards.inf");
                     }
-                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf"))
+                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf"))
                     {
-                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
                     }
 
 
                     File.Copy(_mainDirectory + @"\keyboards.inf"
                         , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+                    File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
 
                     
                 }
@@ -129,45 +183,64 @@ namespace MultiBoard.Keyboard
                     Directory.CreateDirectory(_mainDirectory + @"\.del");
                     File.Copy(_mainDirectory + @"\keyboards.inf"
                         , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.getKeyboardName() + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.getKeyboardName() + ".inf");
+                    File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
 
                 }
 
-                _undo = b.getKeyboardName();
-                createUndo("Undo " + b.getKeyboardName() + "delete");
+                _undo = b.KeyboardName;
+                createUndo("Undo " + b.KeyboardName + " delete");
 
             }
             else
             {
+                //report error
+                Properties.Settings.Default.ErrorList += ",File delete error --> " + b.KeyboardName;
+                Properties.Settings.Default.Save();
                 Console.WriteLine("File delete error");
             }
 
-            foreach (KeyboardListPanel p in _kblp)
+            //dispose representing keyboardPanel
+            foreach (KeyboardListPanel p in _KeyboardPanelList)
             {
-                if (p.connectedBoard == b)
+                if (p.ConnectedBoard == b)
                 {
                     p.Dispose();
                 }
             }
 
+            //dispose Keyboard settings control
             k.Dispose();
-            UpdateKeyboards(this, new KeyboardToArgs() {keybo = b});
+
+            //Call delete event for saving new settings
+            if (UpdateKeyboards != null) UpdateKeyboards(this, new KeyboardToArgs() {Keyboard = b});
         }
 
+        /// <summary>
+        /// Create a undo control
+        /// </summary>
+        /// <param name="mes">
+        /// The message shown to the user
+        /// </param>
         private void createUndo(string mes)
         {
             UndoKeyboardDelete u = new UndoKeyboardDelete();
             u.text = mes;
-            u.Undo += UOnUndo;
+            u.Undo += OnUndo;
             u.Location = new Point(this.Width-u.Width, this.Height - u.Height);
             Controls.Add(u);
             u.BringToFront();
             this.Show();
         }
 
-        private void UOnUndo(object sender, EventArgs e)
+        /// <summary>
+        /// User clicked undo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUndo(object sender, EventArgs e)
         {
+            //Move files out of .del folder
             if (Directory.Exists(_mainDirectory + @"\.del"))
             {
                 if (File.Exists(_mainDirectory + @"\keyboards.inf"))
@@ -186,6 +259,7 @@ namespace MultiBoard.Keyboard
                     , _mainDirectory + @"\" + _undo + ".inf"); 
             }
 
+            //restart application
             Application.Restart();
             Environment.Exit(0);
         }
@@ -198,6 +272,6 @@ namespace MultiBoard.Keyboard
 
     public class KeyboardToArgs : EventArgs
     {
-        public KeyBoard keybo { get; set; }
+        public KeyBoard Keyboard { get; set; }
     }
 }

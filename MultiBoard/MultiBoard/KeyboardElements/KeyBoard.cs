@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using MultiBoard.Keyboard;
+using System.Windows.Forms;
 using MultiBoard.KeyboardElements.KeyElements;
 
-namespace MultiBoard
+namespace MultiBoard.KeyboardElements
 {
     public partial class KeyBoard : UserControl
     {
+        //Vars
+        //=============
         private string _id;
         private string _name;
         private string _comPort;
@@ -32,30 +27,9 @@ namespace MultiBoard
 
         private Point _nextKeyListPoint = new Point(3, 3);
 
-        public Key createKey(string namekey, int eventState, string keytag, bool keyEnebled, string exeLoc)
-        {
-            KEYLIST_PANEL.BackgroundImage = null;
-
-            Key obj = new Key(namekey, eventState, keytag, keyEnebled, exeLoc);
-
-            _numberOfKeys++;
-            _keyList.Add(obj);
-
-            return obj;
-        }
-
-        private bool checkName(string s)
-        {
-            foreach(string n in _keyNameList)
-            {
-                if(n == s)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        /// <summary>
+        /// Initialize all elements
+        /// </summary>
         public KeyBoard()
         {
             InitializeComponent();
@@ -68,68 +42,136 @@ namespace MultiBoard
             _keyGui.Hide();
         }
 
+        /// <summary>
+        /// Create a new key
+        /// </summary>
+        /// <param name="keyName">
+        /// Name of the key
+        /// </param>
+        /// <param name="eventState">
+        /// The event on which the key reacts
+        /// </param>
+        /// <param name="keyTag">
+        /// The key code
+        /// </param>
+        /// <param name="keyEnabled">
+        /// Is the key enabled
+        /// </param>
+        /// <param name="exeLoc">
+        /// The task of the key (open file/press key)
+        /// </param>
+        /// <returns>
+        /// Return the generated class
+        /// </returns>
+        public Key createKey(string keyName, int eventState, string keyTag, bool keyEnabled, string exeLoc)
+        {
+            KEYLIST_PANEL.BackgroundImage = null;
+
+            Key obj = new Key(keyName, eventState, keyTag, keyEnabled, exeLoc);
+
+            _numberOfKeys++;
+            _keyList.Add(obj);
+
+            return obj;
+        }
+
+        /// <summary>
+        /// Check the key Name of dupes
+        /// </summary>
+        /// <param name="s">
+        /// The name to check for
+        /// </param>
+        /// <returns>
+        /// True = valid
+        /// False = invalid
+        /// </returns>
+        private bool checkName(string s)
+        {
+            foreach (string n in _keyNameList)
+            {
+                if (n == s)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// User clicked "Add new key" control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewKeyClicked(object sender, EventArgs e)
         {
-            //add key clicked
-            string kname;
-            kname = "KEY " + (_numberOfKeys);
+            //generate name
+            var keyName = "KEY " + (_numberOfKeys);
 
-            while (!checkName(kname))
+            //regenerate new key until valid
+            while (!checkName(keyName))
             {
                 _numberOfKeys++;
-                kname = "KEY " + (_numberOfKeys);
+                keyName = "KEY " + (_numberOfKeys);
             }
 
-            Key k = createKey(kname, 1, "NONE", true, "");
-            _keyGui.settings(kname, 1, "NONE", true, "", k);
+            //Create the key
+            Key k = createKey(keyName, 1, "NONE", true, "");
+            _keyGui.settings(keyName, 1, "NONE", true, "", k);
 
-            addKeyToListVieuw(k);
+            addKeyToListView(k);
             updateKeyNameList();
 
             _keyGui.Show();
         }
 
-        public void setKeyBoardName(string name)
+        /// <summary>
+        /// Name of the keyboard shown to the user
+        /// </summary>
+        public string KeyboardName
         {
-            _name = name;
-            NAME_LABEL.Text = _name;
+            set
+            {
+                _name = value;
+                NAME_LABEL.Text = _name;
+            }
+            get => _name;
         }
 
-        public string getKeyboardName()
+        /// <summary>
+        /// Dynamic id of the keyboard
+        /// </summary>
+        public string KeyboardUuid
         {
-            return _name;
+            set => _id = value;
+            get => _id;
         }
 
-        public void setKeyboardUuid(string uuid)
+        /// <summary>
+        /// Com port of the keyboard
+        /// </summary>
+        public string ComPort
         {
-            _id = uuid;
+            set => _comPort = value;
+            get => _comPort;
         }
 
-        public string getKeyboardUuid()
-        {
-            return _id;
-        }
-
-        public void setComPort(string port)
-        {
-            _comPort = port;
-        }
-
-        public string getComPort()
-        {
-            return _comPort;
-        }
-
-        public void loadKeys(string mainDirecory)
+        /// <summary>
+        /// Load the keys into the keyboard class
+        /// </summary>
+        /// <param name="mainDirectory">
+        /// The main directory of the program
+        /// </param>
+        public void loadKeys(string mainDirectory)
         {
             _keyList.Clear();
 
-            if(!File.Exists(mainDirecory + @"\" + _name + ".inf"))
+            //check for file exist
+            if(!File.Exists(mainDirectory + @"\" + _name + ".inf"))
             {
-                File.Create(mainDirecory + @"\" + _name + ".inf").Close();
+                File.Create(mainDirectory + @"\" + _name + ".inf").Close();
             }
 
-            _saveFile = mainDirecory + @"\" + _name + ".inf";
+            _saveFile = mainDirectory + @"\" + _name + ".inf";
 
             //read keys
             //============================
@@ -137,7 +179,7 @@ namespace MultiBoard
             var counter = 0;
 
             System.IO.StreamReader file =
-                new System.IO.StreamReader(mainDirecory + @"\" + _name + ".inf");
+                new System.IO.StreamReader(mainDirectory + @"\" + _name + ".inf");
             while ((line = file.ReadLine()) != null)
             {
                 if (line != "")
@@ -163,16 +205,31 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
-        public void keyDown(string key,string keyboardUuid, bool allEnebled)
+        /// <summary>
+        /// Key down event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="keyboardUuid">
+        /// dynamic id of the keyboard
+        /// </param>
+        /// <param name="allEnabled">
+        /// Is key allowed to run
+        /// </param>
+        public void keyDown(string key,string keyboardUuid, bool allEnabled)
         {
+            //check for matching ids
             if (keyboardUuid == _id)
             {
+                //send to all keys
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyDown(key, allEnebled);
+                    aKey.keyDown(key, allEnabled);
                 }
 
-                _keyGui.keyDown(key, allEnebled);
+                //send to GUI components
+                _keyGui.keyDown(key, allEnabled);
                 if (_search == true)
                 {
                     this.Invoke(new Action(() =>
@@ -181,17 +238,34 @@ namespace MultiBoard
             }
         }
 
-        public void keyUp(string key, string keyboardUuid , bool allEnebled)
+        /// <summary>
+        /// Key up event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="keyboardUuid">
+        /// dynamic id of the keyboard
+        /// </param>
+        /// <param name="allEnabled">
+        /// Is key allowed to run
+        /// </param>
+        public void keyUp(string key, string keyboardUuid , bool allEnabled)
         {
+            //check for matching ids
             if (keyboardUuid == _id)
             {
+                //send to all keys
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyUp(key, allEnebled);
+                    aKey.keyUp(key, allEnabled);
                 }
             }
         }
 
+        /// <summary>
+        /// Load the key list
+        /// </summary>
         public void loadListView()
         {
 
@@ -218,6 +292,12 @@ namespace MultiBoard
 
         }
 
+        /// <summary>
+        /// Draw list of keys
+        /// </summary>
+        /// <param name="lp">
+        /// List of key panels to show
+        /// </param>
         public void drawListView(List<KeyListPanel> lp)
         {
             foreach(KeyListPanel k in _keyPanelList)
@@ -236,9 +316,15 @@ namespace MultiBoard
             }
         }
 
-        public void addKeyToListVieuw(Key k)
+        /// <summary>
+        /// Add a key to the end of the list (GUI)
+        /// </summary>
+        /// <param name="k">
+        /// The key class to add to the list
+        /// </param>
+        public void addKeyToListView(Key k)
         {
-
+            //create a panel for the key
             KeyListPanel item = new KeyListPanel(k.key_name, k.keyEnebled, k);
 
             if (_keyPanelList.Count == 0)
@@ -260,6 +346,9 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
+        /// <summary>
+        /// Reload the settings of the keyListPanels to match to new ones
+        /// </summary>
         public void updateListView()
         {
             foreach(KeyListPanel klp in _keyPanelList)
@@ -272,6 +361,11 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
+        /// <summary>
+        /// User clicked on key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void userSelectedKey(object sender, EventArgs e)
         {
             KeyListPanel k = sender as KeyListPanel;
@@ -291,10 +385,16 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// The settings of a key are changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void onUpdatedKey(object sender, EventArgs e)
         {
             string lines = "";
 
+            //generate new save file
             foreach (Key aKey in _keyList)
             {
                 lines += aKey.key_name + "|";
@@ -311,10 +411,18 @@ namespace MultiBoard
             updateKeyNameList();
         }
 
+        /// <summary>
+        /// User deleted a key
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void onDeleteKey(object sender, ObjKeyEventArgs e)
         {
+            //Remove key from list
             _keyList.Remove(e.ObjKey);
-            foreach(KeyListPanel k in _keyPanelList)
+
+            //generate new save file
+            foreach (KeyListPanel k in _keyPanelList)
             {
                 if(k.ConnectedKey == e.ObjKey)
                 {
@@ -325,9 +433,13 @@ namespace MultiBoard
             }
 
             onUpdatedKey(sender, EventArgs.Empty);
+            //redraw list view
             drawListView(_keyPanelList);
         }
 
+        /// <summary>
+        /// Update the list of the names from all the keys
+        /// </summary>
         private void updateKeyNameList()
         {
             _keyNameList.Clear();
@@ -335,13 +447,12 @@ namespace MultiBoard
             {
                 _keyNameList.Add(k.key_name);
             }
-            
-            //foreach (Key k in keyList)
-            //{
-            //    k.nameAllKeys = KeyNameList;
-            //}
+
         }
 
+        /// <summary>
+        /// Clear the key list and dispose of panels
+        /// </summary>
         public void clearKeyList()
         {
             foreach(KeyListPanel k in _keyPanelList)
@@ -352,27 +463,48 @@ namespace MultiBoard
             _keyPanelList.Clear();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             BOTTEM_PANEL.BackColor = Color.FromArgb(252, 163, 17);
             timer1.Stop();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BOTTEM_PANEL_MouseEnter(object sender, EventArgs e)
         {
             timer1.Stop();
             BOTTEM_PANEL.BackColor = Color.DarkOrange;
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BOTTEM_PANEL_MouseLeave(object sender, EventArgs e)
         {
             timer1.Start();
         }
 
+        /// <summary>
+        /// User toggle key search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SEARCH_BUTTON_Click(object sender, EventArgs e)
         {
             if (_search == true)
             {
+                //disable search
                 drawListView(_keyPanelList);
                 SEARCH_TEXTBOC.Hide();
                 NAME_LABEL.Show();
@@ -382,6 +514,7 @@ namespace MultiBoard
             }
             else
             {
+                //enable search
                 SEARCH_TEXTBOC.Show();
                 SEARCH_TEXTBOC.Focus();
                 NAME_LABEL.Hide();
@@ -391,6 +524,11 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// When search text change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SEARCH_TEXTBOC_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(SEARCH_TEXTBOC.Text))
@@ -404,6 +542,13 @@ namespace MultiBoard
             
         }
 
+        /// <summary>
+        /// Search for a key
+        /// </summary>
+        /// <param name="input">
+        /// Name or key code
+        /// </param>
+        /// <returns></returns>
         private List<KeyListPanel> searchKey(string input)
         {
             List<KeyListPanel> panelList = new List<KeyListPanel>();
@@ -421,6 +566,11 @@ namespace MultiBoard
             return panelList;
         }
 
+        /// <summary>
+        /// Enter key pressed in search box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SEARCH_TEXTBOC_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

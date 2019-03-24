@@ -1,35 +1,54 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MultiBoard.Keyboard
+namespace MultiBoard.KeyboardElements
 {
     public partial class KeyboardSettings : UserControl
     {
+        //vars
+        //===================
         public string KbName;
         public string KbUuid;
         public string KbPort;
 
         private bool _lockedSettings = true;
 
-        public KeyBoard connectedKeyboard;
+        public KeyBoard ConnectedKeyboard;
 
-        public KeyboardSettings(string kname, string kId, string kCom, KeyBoard board)
+        //Events
+        //==========================
+        public event EventHandler Save;
+        public event EventHandler Delete;
+
+        /// <summary>
+        /// Settings to load in the user control
+        /// </summary>
+        /// <param name="kName">
+        /// Name of the keyboard
+        /// </param>
+        /// <param name="kId">
+        /// Keyboard ID
+        /// </param>
+        /// <param name="kCom">
+        /// The com port of the keyboard
+        /// </param>
+        /// <param name="board">
+        /// The keyboard class in represents
+        /// </param>
+        public KeyboardSettings(string kName, string kId, string kCom, KeyBoard board)
         {
             InitializeComponent();
 
-            KbName = kname;
+            KbName = kName;
             KbUuid = kId;
             KbPort = kCom;
-            connectedKeyboard = board;
+            ConnectedKeyboard = board;
 
-            KEYBOARD_NAME_TEXTBOX.Text = kname;
+            KEYBOARD_NAME_TEXTBOX.Text = kName;
             KEYBOARD_UUID_TEXTBOX.Text = kId;
             KEYBOARD_COMP_TEXTBOX.Text = kCom;
 
         }
-
-        public event EventHandler Save;
-        public event EventHandler Delete;
 
         private void BACK_BUTTON_Click(object sender, EventArgs e)
         {
@@ -48,20 +67,28 @@ namespace MultiBoard.Keyboard
 
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
-            //save
+            //save the data
             KbName = KEYBOARD_NAME_TEXTBOX.Text;
             KbUuid = KEYBOARD_UUID_TEXTBOX.Text;
             KbPort = KEYBOARD_COMP_TEXTBOX.Text;
 
-
+            //call event
             if(Save != null)
             {
                 Save(this, EventArgs.Empty);
             }
         }
 
+        /// <summary>
+        /// Check user input if it is valid
+        /// </summary>
+        /// <returns>
+        /// Valid = true
+        /// Invalid = false
+        /// </returns>
         private bool checkInput()
         {
+            //check if user has left the field empty
             if(KEYBOARD_COMP_TEXTBOX.Text != "" && KEYBOARD_UUID_TEXTBOX.Text != "" 
                 && KEYBOARD_NAME_TEXTBOX.Text != "")
             {
@@ -73,6 +100,7 @@ namespace MultiBoard.Keyboard
 
         private void LOCK_BUTTON_Click(object sender, EventArgs e)
         {
+            //Toggle the dangerous settings lock on/off
             if (_lockedSettings == true)
             {
                 _lockedSettings = false;
