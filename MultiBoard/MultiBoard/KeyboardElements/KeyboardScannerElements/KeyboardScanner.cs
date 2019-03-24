@@ -11,40 +11,52 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         public List<string> Ports = new List<string>();
         public List<string> Uuid = new List<string>();
 
-        private List<ScannerPort> _ScanPorts = new List<ScannerPort>();
+        private List<ScannerPort> _scanPorts = new List<ScannerPort>();
 
-        public bool loadList(int bRate)
+
+        /// <summary>
+        /// Generate the list of available keyboards
+        /// </summary>
+        /// <param name="bRate">
+        /// baud rate of com port (115200 default)
+        /// </param>
+        public void loadList(int bRate)
         {
+            //Clear lists
             Ports.Clear();
             Uuid.Clear();
-            _ScanPorts.Clear();
+            _scanPorts.Clear();
 
-            List<string> avaiblePorts = new List<string>();
+            //Make list of all the com ports
+            List<string> availablePorts = new List<string>();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
-                avaiblePorts.Add(s);
+                availablePorts.Add(s);
             }
 
-            foreach(string s in avaiblePorts)
+            //open connection foreach com port
+            foreach(string s in availablePorts)
             {
                 ScannerPort sp = new ScannerPort();
                 sp.setup(s, bRate);
                 Thread t = new Thread(() => sp.start());
                 t.Start();
 
-                _ScanPorts.Add(sp);
+                _scanPorts.Add(sp);
             }
 
+            //wait 1s-10s
             System.Threading.Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
 
-            foreach (ScannerPort sp in _ScanPorts)
+            //collect results
+            foreach (ScannerPort sp in _scanPorts)
             {
-                Uuid.Add(sp.uuid);
-                Ports.Add(sp.comPort);
-                sp.Close();
+                Uuid.Add(sp.Uuid);
+                Ports.Add(sp.ComPort);
+                sp.close();
             }
 
-            return true;
+            return;
         }
 
     }
