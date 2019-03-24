@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard.ErrorSystem
@@ -18,12 +13,18 @@ namespace MultiBoard.ErrorSystem
             InitializeComponent();
         }
 
-        public void UpdateErrorList()
+        /// <summary>
+        /// Updates the error list to latest
+        /// </summary>
+        public void updateErrorList()
         {
+            //clear list
             ERROR_LIST_LISTBOX.Items.Clear();
+            //Read settings
             string input = Properties.Settings.Default.ErrorList;
             List<string> l = input.Split(',').ToList();
 
+            //add to list view
             foreach(string s in l)
             {
                 if (!String.IsNullOrEmpty(s))
@@ -34,17 +35,22 @@ namespace MultiBoard.ErrorSystem
 
         }
 
+        /// <summary>
+        /// Remove all error messages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CLEAR_LIST_BUTTON_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.ErrorList = "";
             Properties.Settings.Default.Save();
 
-            UpdateErrorList();
+            updateErrorList();
         }
 
         private void RELOAD_LIST_BUTTON_Click(object sender, EventArgs e)
         {
-            UpdateErrorList();
+            updateErrorList();
         }
     }
 }

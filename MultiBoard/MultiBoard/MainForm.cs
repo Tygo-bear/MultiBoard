@@ -117,7 +117,7 @@ namespace MultiBoard
 
         private void errorView(object sender, EventArgs e)
         {
-            _errorManagePanel.UpdateErrorList();
+            _errorManagePanel.updateErrorList();
             _errorManagePanel.Show();
             _errorManagePanel.BringToFront();
         }
@@ -582,7 +582,7 @@ namespace MultiBoard
 
         private void ERROR_MANAGE_BUTTON_Click(object sender, EventArgs e)
         {
-            _errorManagePanel.UpdateErrorList();
+            _errorManagePanel.updateErrorList();
             _errorManagePanel.Show();
             _errorManagePanel.BringToFront();
         }

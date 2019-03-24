@@ -89,7 +89,6 @@
     <Compile Include="ErrorSystem\ErrorMangePanel.Designer.cs">
       <DependentUpon>ErrorMangePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ErrorSystem\Errors.cs" />
     <Compile Include="KeyboardElements\KeyboardScannerElements\ScannerPort.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
