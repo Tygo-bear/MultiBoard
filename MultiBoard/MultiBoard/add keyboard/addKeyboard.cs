@@ -2,53 +2,46 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MultiBoard.KeyboardElements;
 using MultiBoard.KeyboardElements.KeyboardScannerElements;
 
-namespace MultiBoard
+namespace MultiBoard.add_keyboard
 {
     public partial class addKeyboard : UserControl
     {
-        private bool refreshing = false;
-        private List<string> IDs = new List<string>();
-        private List<string> ports = new List<string>();
+        private bool _refreshing = false;
+        private List<string> _IDs = new List<string>();
+        private List<string> _ports = new List<string>();
 
-        private AutoAddKeyboard aakb;
-        private ManuallyAddKeyboard makb;
+        private AutoAddKeyboard _autoAddKeyboard;
+        private ManuallyAddKeyboard _manuallyAddKeyboard;
 
-        public event EventHandler AddKeyboarde;
-        public string kbName;
-        public string kbId;
-        public string kbPort;
+        public event EventHandler AddKeyboard;
+        public string KeyboardName;
+        public string KeyboardID;
+        public string KeyboardPort;
 
-        private List<string> IDsBlackList;
+        //List of keyboards to ignore
+        private List<string> _IDsBlackList;
 
         public addKeyboard()
         {
             InitializeComponent();
-
-
-            //start scanner
-            //==============
-            /*
-            refreshing = true;
-            AUTO_ADD_LABEL.Text = "Searching...";
-            refreshKeyboards();
-            REFRESH_BUTTON.Enabled = true;
-            displayKeyboardCount();
-            */
         }
 
+        /// <summary>
+        /// User clicked "refresh" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void REFRESH_BUTTON_Click(object sender, EventArgs e)
         {
-            if(refreshing == false)
+            //Check if it already started
+            if(_refreshing == false)
             {
-                refreshing = true;
+                //start refreshing keyboard list
+                _refreshing = true;
                 AUTO_ADD_LABEL.Text = "Searching...";
                 REFRESH_BUTTON.Enabled = false;
 
@@ -60,47 +53,72 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// Display keyboard number sentence
+        /// </summary>
         private void displayKeyboardCount()
         {
-            if (IDs.Count() > 0)
+            if (_IDs.Any())
             {
-                if (IDs.Count() > 1)
+                if (_IDs.Count() > 1)
                 {
-                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboards found";
+                    //more than 1 keyboard found
+                    AUTO_ADD_LABEL.Text = _IDs.Count() + " keyboards found";
                 }
                 else
                 {
-                    AUTO_ADD_LABEL.Text = IDs.Count() + " keyboard found";
+                    //1 keyboard found
+                    AUTO_ADD_LABEL.Text = _IDs.Count() + " keyboard found";
                 }
             }
             else
             {
+                //no keyboards found
                 AUTO_ADD_LABEL.Text = "No keyboards found";
             }
         }
 
+        /// <summary>
+        /// Start refreshing keyboard list with background worker
+        /// </summary>
         private void refreshKeyboards()
         {
             BACKGROUND_SCANNER.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Update black list of keyboard IDs
+        /// </summary>
+        /// <param name="blackIDs">
+        /// List of IDs
+        /// </param>
         public void idBlackListUpdate(List<string> blackIDs)
         {
-            IDsBlackList = blackIDs;
+            _IDsBlackList = blackIDs;
         }
 
-        private void filterKeyboards(List<string> AllPorts, List<string> AllIds)
+        /// <summary>
+        /// Filter to list of keyboard-scanner results and
+        /// generate list of new keyboards
+        /// </summary>
+        /// <param name="allPorts">
+        /// List of all com Ports
+        /// </param>
+        /// <param name="allIds">
+        /// List of all IDs
+        /// </param>
+        private void filterKeyboards(List<string> allPorts, List<string> allIds)
         {
-            IDs.Clear();
-            ports.Clear();
+            _IDs.Clear();
+            _ports.Clear();
 
             int index = 0;
-            foreach(string s in AllIds)
+            foreach(string s in allIds)
             {
                 bool newKB = true;
-                if (IDsBlackList != null)
+                if (_IDsBlackList != null)
                 {
-                    foreach (string bs in IDsBlackList)
+                    foreach (string bs in _IDsBlackList)
                     {
                         if (s == bs)
                         {
@@ -111,13 +129,13 @@ namespace MultiBoard
 
                 if(newKB == true && s != "NONE")
                 {
-                    IDs.Add(s);
+                    _IDs.Add(s);
                     int indexP = 0;
-                    foreach(string p in AllPorts)
+                    foreach(string p in allPorts)
                     {
                         if(index == indexP)
                         {
-                            ports.Add(p);
+                            _ports.Add(p);
                         }
                         indexP++;
                     }
@@ -127,58 +145,106 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// User clicked "cancel" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CANCEL_PANEL_Click(object sender, EventArgs e)
         {
             this.Visible = false;
         }
 
+        /// <summary>
+        /// User clicked "auto add" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AUTO_ADD_PANEL_Click(object sender, EventArgs e)
         {
-            if (IDs.Count() > 0)
+            //Check if there are new keyboards found
+            if (_IDs.Any())
             {
-                aakb = new AutoAddKeyboard();
-                aakb.AddClicked += AutoAddKeyboardEvent;
-                aakb.Location = new Point(0, 0);
-                aakb.IDs = IDs;
-                aakb.Ports = ports;
-                aakb.loadKbList();
-                this.Controls.Add(aakb);
-                aakb.BringToFront();
+                makeAutoAddControl();
             }
         }
 
+        /// <summary>
+        /// Create and place "AutoAdd" control
+        /// </summary>
+        private void makeAutoAddControl()
+        {
+            _autoAddKeyboard = new AutoAddKeyboard();
+            _autoAddKeyboard.AddClicked += autoAddKeyboardEvent;
+            _autoAddKeyboard.Location = new Point(0, 0);
+            _autoAddKeyboard.IDs = _IDs;
+            _autoAddKeyboard.Ports = _ports;
+            _autoAddKeyboard.loadKbList();
+            this.Controls.Add(_autoAddKeyboard);
+            _autoAddKeyboard.BringToFront();
+        }
+
+        /// <summary>
+        /// User clicked "manual add" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MANUAL_ADD_PANEL_Click(object sender, EventArgs e)
         {
-            makb = new ManuallyAddKeyboard();
-            makb.Location = new Point(0, 0);
-            this.Controls.Add(makb);
-            makb.BringToFront();
+            makeManualAddControl();
         }
 
-        protected virtual void OnAddKeyboarde()
+        /// <summary>
+        /// Create and place "ManualAdd" control
+        /// </summary>
+        private void makeManualAddControl()
         {
-            if (AddKeyboarde != null)
+            _manuallyAddKeyboard = new ManuallyAddKeyboard();
+            _manuallyAddKeyboard.Location = new Point(0, 0);
+            this.Controls.Add(_manuallyAddKeyboard);
+            _manuallyAddKeyboard.BringToFront();
+        }
+
+        /// <summary>
+        /// Call "add keyboard" event
+        /// </summary>
+        protected virtual void onAddKeyboard()
+        {
+            if (AddKeyboard != null)
             {
-                AddKeyboarde(this, EventArgs.Empty);
+                AddKeyboard(this, EventArgs.Empty);
             }
         }
 
-        private void AutoAddKeyboardEvent(object sender, EventArgs e)
+        /// <summary>
+        /// keyboard added (auto add control)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void autoAddKeyboardEvent(object sender, EventArgs e)
         {
-            kbName = aakb.kbName;
-            kbId = aakb.kbUUID;
-            kbPort = aakb.kbPort;
-            OnAddKeyboarde();
+            KeyboardName = _autoAddKeyboard.KeyboardName;
+            KeyboardID = _autoAddKeyboard.KeyboardUuid;
+            KeyboardPort = _autoAddKeyboard.KeyboardPort;
+            onAddKeyboard();
         }
 
+        /// <summary>
+        /// Update list of new keyboards as background-worker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BACKGROUND_SCANNER_DoWork(object sender, DoWorkEventArgs e)
         {
+            //Start a keyboardScanner
             KeyboardScanner kbs = new KeyboardScanner();
             kbs.loadList(115200);
 
+            //Filter keyboards
             filterKeyboards(kbs.Ports, kbs.Uuid);
-            refreshing = false;
 
+            //Update control
+            _refreshing = false;
             this.Invoke(new Action(() => {
                 REFRESH_BUTTON.Enabled = true;
                 displayKeyboardCount();
@@ -186,6 +252,11 @@ namespace MultiBoard
             
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AUTO_ADD_HOVER_TIMER_Tick(object sender, EventArgs e)
         {
             AUTO_ADD_PANEL.BackColor = Color.DarkGray;
@@ -193,18 +264,33 @@ namespace MultiBoard
             AUTO_ADD_HOVER_TIMER.Stop();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MANUAL_ADD_HOVER_TIMER_Tick(object sender, EventArgs e)
         {
             MANUAL_ADD_PANEL.BackColor = Color.DarkGray;
             MANUAL_ADD_HOVER_TIMER.Stop();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CANCEL_HOVER_TIMER_Tick(object sender, EventArgs e)
         {
             CANCEL_PANEL.BackColor = Color.DarkGray;
             CANCEL_HOVER_TIMER.Stop();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AUTO_ADD_PANEL_MouseEnter(object sender, EventArgs e)
         {
             AUTO_ADD_HOVER_TIMER.Stop();
@@ -212,28 +298,53 @@ namespace MultiBoard
             REFRESH_BUTTON.BackColor = Color.Gray;
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AUTO_ADD_PANEL_MouseLeave(object sender, EventArgs e)
         {
             AUTO_ADD_HOVER_TIMER.Start();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MANUAL_ADD_PANEL_MouseEnter(object sender, EventArgs e)
         {
             MANUAL_ADD_HOVER_TIMER.Stop();
             MANUAL_ADD_PANEL.BackColor = Color.Gray;
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MANUAL_ADD_PANEL_MouseLeave(object sender, EventArgs e)
         {
             MANUAL_ADD_HOVER_TIMER.Start();
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CANCEL_PANEL_MouseEnter(object sender, EventArgs e)
         {
             CANCEL_HOVER_TIMER.Stop();
             CANCEL_PANEL.BackColor = Color.Gray;
         }
 
+        /// <summary>
+        /// Hover effect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CANCEL_PANEL_MouseLeave(object sender, EventArgs e)
         {
             CANCEL_HOVER_TIMER.Start();

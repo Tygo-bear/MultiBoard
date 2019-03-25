@@ -1,31 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiBoard
+namespace MultiBoard.add_keyboard
 {
     public partial class AutoAddKeyboard : UserControl
     {
+        //Events
+        //==============
+        public event EventHandler AddClicked;
+
+        //Vars
+        //=============
         public List<string> IDs;
         public List<string> Ports;
 
-        public string kbName;
-        public string kbUUID;
-        public string kbPort;
+        public string KeyboardName;
+        public string KeyboardUuid;
+        public string KeyboardPort;
 
-        public event EventHandler AddClicked;
 
         public AutoAddKeyboard()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Load list of available keyboards into combobox
+        /// </summary>
         public void loadKbList()
         {
             SELECT_KEYBOARD_COMBOX.Items.Clear();
@@ -36,19 +38,31 @@ namespace MultiBoard
             }
         }
 
-        private void BAKC_BUTTON_Click(object sender, EventArgs e)
+        /// <summary>
+        /// User clicked "back" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BACK_BUTTON_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
+        /// <summary>
+        /// User clicked "ADD" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ADD_BUTTON_Click(object sender, EventArgs e)
         {
             if(checkName(NAME_TEXT_BOX.Text))
             {
                 //add keyboard to list
-                kbName = NAME_TEXT_BOX.Text;
-                kbUUID = SELECT_KEYBOARD_COMBOX.SelectedItem.ToString();
-                OnAddClicked();
+                KeyboardName = NAME_TEXT_BOX.Text;
+                KeyboardUuid = SELECT_KEYBOARD_COMBOX.SelectedItem.ToString();
+                onAddClicked();
+
+                //Close "autoAddKeyboard" control
                 this.Dispose();
             }
             else
@@ -57,10 +71,20 @@ namespace MultiBoard
             }
         }
 
-        private bool checkName(string NAME)
+        /// <summary>
+        /// Check keyboard name
+        /// </summary>
+        /// <param name="name">
+        /// Name of the keyboard
+        /// </param>
+        /// <returns>
+        /// true = valid name
+        /// false = invalid name
+        /// </returns>
+        private bool checkName(string name)
         {
             //TODO make it better
-            if(NAME == "" || NAME == null)
+            if(string.IsNullOrEmpty(name))
             {
                 return false;
             }
@@ -68,7 +92,10 @@ namespace MultiBoard
             return true;
         }
 
-        protected virtual void OnAddClicked()
+        /// <summary>
+        /// Call add keyboard clicked event
+        /// </summary>
+        protected virtual void onAddClicked()
         {
             if (AddClicked != null)
             {

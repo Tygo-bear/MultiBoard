@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using MultiBoard.add_keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
 using MultiBoard.KeyboardElements.KeyboardScannerElements;
@@ -98,7 +99,7 @@ namespace MultiBoard
             _addKeyboardContr = new addKeyboard();
             _addKeyboardContr.Location = new Point(32, 31);
             this.Controls.Add(_addKeyboardContr);
-            _addKeyboardContr.AddKeyboarde += keyboardAdded;
+            _addKeyboardContr.AddKeyboard += keyboardAdded;
             
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
@@ -153,11 +154,11 @@ namespace MultiBoard
             string[] allLines = File.ReadAllLines(MainDirectory + @"\keyboards.inf");
             List<string> sstring = allLines.ToList();
 
-            string name = _addKeyboardContr.kbName;
-            string uuid = _addKeyboardContr.kbId;
-            string port = _addKeyboardContr.kbPort;
+            string name = _addKeyboardContr.KeyboardName;
+            string uuid = _addKeyboardContr.KeyboardID;
+            string port = _addKeyboardContr.KeyboardPort;
             
-            sstring.Add(_addKeyboardContr.kbId + "|" + _addKeyboardContr.kbName + "|" + _addKeyboardContr.kbPort + "\n");
+            sstring.Add(_addKeyboardContr.KeyboardID + "|" + _addKeyboardContr.KeyboardName + "|" + _addKeyboardContr.KeyboardPort + "\n");
             string[] writeAll = sstring.ToArray();
 
             File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);

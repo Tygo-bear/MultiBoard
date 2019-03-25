@@ -1,4 +1,4 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.add_keyboard
 {
     partial class AutoAddKeyboard
     {
@@ -131,7 +131,7 @@
             this.BAKC_BUTTON.TabIndex = 7;
             this.BAKC_BUTTON.Text = "< BACK";
             this.BAKC_BUTTON.UseVisualStyleBackColor = false;
-            this.BAKC_BUTTON.Click += new System.EventHandler(this.BAKC_BUTTON_Click);
+            this.BAKC_BUTTON.Click += new System.EventHandler(this.BACK_BUTTON_Click);
             // 
             // label1
             // 

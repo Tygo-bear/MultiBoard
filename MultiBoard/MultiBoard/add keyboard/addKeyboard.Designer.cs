@@ -1,4 +1,4 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.add_keyboard
 {
     partial class addKeyboard
     {
