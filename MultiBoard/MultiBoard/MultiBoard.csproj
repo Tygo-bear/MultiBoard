@@ -77,10 +77,10 @@
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Connector.cs" />
-    <Compile Include="ErrorOptions.cs">
+    <Compile Include="overlays\ErrorOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ErrorOptions.Designer.cs">
+    <Compile Include="overlays\ErrorOptions.Designer.cs">
       <DependentUpon>ErrorOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorSystem\ErrorMangePanel.cs">
@@ -191,7 +191,7 @@
     <EmbeddedResource Include="add keyboard\AutoAddKeyboard.resx">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorOptions.resx">
+    <EmbeddedResource Include="overlays\ErrorOptions.resx">
       <DependentUpon>ErrorOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorSystem\ErrorMangePanel.resx">

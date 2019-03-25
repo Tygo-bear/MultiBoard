@@ -1,4 +1,4 @@
-﻿namespace MultiBoard
+﻿namespace MultiBoard.overlays
 {
     partial class ErrorOptions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MultiBoard
+namespace MultiBoard.overlays
 {
     public partial class ErrorOptions : UserControl
     {
