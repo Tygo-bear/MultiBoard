@@ -3,29 +3,41 @@ using System.IO.Ports;
 
 namespace MultiBoard
 {
-    public class UuidEventArgs : EventArgs
-    {
-        public string Uuid { get; set; }
-    }
-
-    public class ErrorEventArgs : EventArgs
-    {
-        public string Error { get; set; }
-    }
-
-    public class KeyEventArgs : EventArgs
-    {
-        public string Key { get; set; }
-    }
 
     class Connector
     {
+        //Events
+        //============================
+
+        //connection event handlers
+        public event EventHandler<UuidEventArgs> Connected;
+        public event EventHandler<UuidEventArgs> ConnectionLost;
+        public event EventHandler<ErrorEventArgs> Error;
+
+        //key event handlers
+        public event EventHandler<KeyEventArgs> KeyDown;
+        public event EventHandler<KeyEventArgs> KeyUp;
+        public event EventHandler<KeyEventArgs> KeyPressed;
+
+        //Class
+        //===============
         private SerialPort _comPort;
 
-        private bool _connectioValid = false;
-        private readonly string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
+        //Vars
+        //=================
+        private bool _connectioValid;
+        private readonly string _staticId = Properties.Resources.KeyboardScanner__staticId;
         public string DynamicId; 
 
+        /// <summary>
+        /// Setup connection settings of connector class
+        /// </summary>
+        /// <param name="com">
+        /// The com port of the keyboard
+        /// </param>
+        /// <param name="bRate">
+        /// The baudrate of the com port
+        /// </param>
         public void setup(string com, int bRate)
         {
             _comPort = new SerialPort(com, bRate);
@@ -38,19 +50,31 @@ namespace MultiBoard
             //Console.WriteLine("error: " + e);
         }
 
+        /// <summary>
+        /// Open the serial port with current settings
+        /// </summary>
         public void openPort()
         {
             _comPort.Open();
             _comPort.Write("?");
         }
 
+        /// <summary>
+        /// Close the com port / release com port
+        /// </summary>
         public void closePort()
         {
             _comPort.Close();
         }
 
+        /// <summary>
+        /// Read received data of the com port
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            //Processes priority as settings define
             switch (Properties.Settings.Default.ThreadPriority)
             {
                 case 1:
@@ -73,24 +97,34 @@ namespace MultiBoard
                     break;
             }
             
-
+            //Read received data
             string s = _comPort.ReadExisting();
             //Console.WriteLine("Data: " + s);
 
+            //Sort received data
             if (s.Split('<')[0] != s)
             {
+                //normal input
                 normalKey(s);
             }
             else if(s.Split('_')[0] != s)
             {
+                //alternative keys
                 altKey(s);
             }
             else
             {
+                //alternative input
                 altInput(s);
             }
         }
 
+        /// <summary>
+        /// Read normal key input
+        /// </summary>
+        /// <param name="input">
+        /// input/received data
+        /// </param>
         private void normalKey(string input)
         {
             if(input.Split(new string[] { "DN" }, StringSplitOptions.None)[0] != input)
@@ -113,6 +147,15 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// Extract key code out of normal input
+        /// </summary>
+        /// <param name="input">
+        /// the key input
+        /// </param>
+        /// <returns>
+        /// key code
+        /// </returns>
         private string extractKey(string input)
         {
             input = input.Split('>')[1];
@@ -121,8 +164,15 @@ namespace MultiBoard
             return ">" + input + "<";
         }
 
+        /// <summary>
+        /// Read alternative key input
+        /// </summary>
+        /// <param name="input">
+        /// The key input
+        /// </param>
         private void altKey(string input)
         {
+            //sort by up/down
             if(input.Split('_')[0] == "0")
             {
                 //alt key down
@@ -135,8 +185,15 @@ namespace MultiBoard
             }
         }
 
+        /// <summary>
+        /// Read alternative input (no key input)
+        /// </summary>
+        /// <param name="input">
+        /// The input
+        /// </param>
         private void altInput(string input)
         {
+            //try to read as ID
             if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && _connectioValid == false)
             {
                 if (input.Split('&').Length > 2)
@@ -153,18 +210,8 @@ namespace MultiBoard
             }
         }
 
-        //connection event handlers
-        public event EventHandler<UuidEventArgs> Connected;
-        public event EventHandler<UuidEventArgs> ConnectionLost;
-        public event EventHandler<ErrorEventArgs> Error;
-         
-        //key event hanlders
-        public event EventHandler<KeyEventArgs> KeyDown;
-        public event EventHandler<KeyEventArgs> KeyUp;
-        public event EventHandler<KeyEventArgs> KeyPressed;
-
-        //events
         //connection events
+        //====================
         protected virtual void onConnected(string uuid)
         {
             if(Connected != null)
@@ -190,6 +237,7 @@ namespace MultiBoard
         }
 
         //key events
+        //====================
         protected virtual void onKeyDown(string key)
         {
             //Console.WriteLine("KEY: " + KEY);
@@ -220,5 +268,20 @@ namespace MultiBoard
 
     }
 
-    
+    public class UuidEventArgs : EventArgs
+    {
+        public string Uuid { get; set; }
+    }
+
+    public class ErrorEventArgs : EventArgs
+    {
+        public string Error { get; set; }
+    }
+
+    public class KeyEventArgs : EventArgs
+    {
+        public string Key { get; set; }
+    }
+
+
 }
