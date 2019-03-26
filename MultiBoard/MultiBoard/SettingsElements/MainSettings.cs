@@ -6,6 +6,8 @@ namespace MultiBoard.SettingsElements
 {
     public partial class MainSettings : UserControl
     {
+        //Controls
+        //==================
         private GeneralSettings _gs = new GeneralSettings();
 
         public MainSettings()
@@ -17,6 +19,11 @@ namespace MultiBoard.SettingsElements
             _gs.Show();
         }
 
+        /// <summary>
+        /// User clicked "general" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GENERAL_BUTTON_Click(object sender, EventArgs e)
         {
             _gs.Show();
