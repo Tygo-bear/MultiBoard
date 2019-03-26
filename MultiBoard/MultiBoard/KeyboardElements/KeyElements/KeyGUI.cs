@@ -401,7 +401,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="e"></param>
         private void keyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
         {
-            string s = "<" + _keyTaskOverlay.selectedKey + ">";
+            string s = "<" + _keyTaskOverlay.SelectedKey + ">";
             _executeLocation = s;
             LOCATION_TEXTBOX.Text = s;
             _keyTaskOverlay.Dispose();

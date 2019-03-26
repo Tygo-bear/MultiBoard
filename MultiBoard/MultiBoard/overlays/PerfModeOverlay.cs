@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard.overlays
@@ -19,6 +12,11 @@ namespace MultiBoard.overlays
             InitializeComponent();
         }
 
+        /// <summary>
+        /// User clicked "start" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void START_BUTTON_Click(object sender, EventArgs e)
         {
             if (StartPerfMode != null)

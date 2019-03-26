@@ -1,29 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MultiBoard.overlays
 {
     public partial class UndoKeyboardDelete : UserControl
     {
+        //Events
+        //===============
         public event EventHandler Undo;
         public event EventHandler Closed;
 
+        //Vars
+        //==================
         private string _text = "";
         private string _tag = "";
 
+        /// <summary>
+        /// Control create, start fade timer
+        /// </summary>
         public UndoKeyboardDelete()
         {
             InitializeComponent();
             FADE_TIMER.Start();
         }
 
+        /// <summary>
+        /// User clicked "undo" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UNDO_BUTTON_Click(object sender, EventArgs e)
         {
             if (Undo != null)
@@ -32,6 +37,9 @@ namespace MultiBoard.overlays
             }
         }
 
+        /// <summary>
+        /// Message shown to the user
+        /// </summary>
         public string text
         {
             get { return _text; }
@@ -42,12 +50,20 @@ namespace MultiBoard.overlays
             }
         }
 
+        /// <summary>
+        /// Hidden tag
+        /// </summary>
         public string tag
         {
             get { return _tag; }
             set { _tag = value; }
         }
 
+        /// <summary>
+        /// Fade delay ended, delete control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FADE_TIMER_Tick(object sender, EventArgs e)
         {
             if (Closed != null)
@@ -57,6 +73,11 @@ namespace MultiBoard.overlays
             this.Dispose();
         }
 
+        /// <summary>
+        /// User clicked "close" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CLOSE_BUTTON_Click(object sender, EventArgs e)
         {
             if (Closed != null)
