@@ -38,14 +38,18 @@
             // 
             this.KEY_COMBOBOX.FormattingEnabled = true;
             this.KEY_COMBOBOX.Items.AddRange(new object[] {
-            "vk0x88",
-            "vk0x89",
-            "vk0x8A",
-            "vk0x8B",
-            "vk0x8C",
-            "vk0x8D",
-            "vk0x8E",
-            "vk0x8F"});
+            "F13",
+            "F14",
+            "F15",
+            "F16",
+            "F17",
+            "F18",
+            "F19",
+            "F20",
+            "F21",
+            "F22",
+            "F23",
+            "F24"});
             this.KEY_COMBOBOX.Location = new System.Drawing.Point(63, 83);
             this.KEY_COMBOBOX.Name = "KEY_COMBOBOX";
             this.KEY_COMBOBOX.Size = new System.Drawing.Size(121, 21);

@@ -248,11 +248,10 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// </summary>
         private void executeFile()
         {
-            if (_executeLocation.Remove('<') != _executeLocation)
+            if (_executeLocation.Replace("<", "") != _executeLocation)
             {
-                //const int key = Int32.Parse(_executeLocation.Remove('<').Remove('>').Replace("VK", ""));
-                const int key = 0xA1;
-                keybd_event(key, 0, _KEYDOWN, 0);
+                string key = executeLoc.Replace("<" , "").Replace(">", "");
+                keybd_event(getVkkey(key), 0, _KEYDOWN, 0); 
             }
             else
             {
@@ -266,6 +265,69 @@ namespace MultiBoard.KeyboardElements.KeyElements
                     Properties.Settings.Default.ErrorList += ", execute file not found --> " + _keyName;
                 }
             }
+        }
+
+        /// <summary>
+        /// Convert vk name to vk byte code
+        /// </summary>
+        /// <param name="keyCode">
+        /// Name of the key
+        /// </param>
+        /// <returns>
+        /// The byte of the key
+        /// </returns>
+        private byte getVkkey(string keyCode)
+        {
+            if(keyCode =="F13")
+            {
+                return 0x7c;
+            }
+            else if (keyCode == "F14")
+            {
+                return 0x7d;
+            }
+            else if (keyCode == "F15")
+            {
+                return 0x7e;
+            }
+            else if (keyCode == "F16")
+            {
+                return 0x7f;
+            }
+            else if (keyCode == "F17")
+            {
+                return 0x80;
+            }
+            else if (keyCode == "F18")
+            {
+                return 0x81;
+            }
+            else if (keyCode == "F19")
+            {
+                return 0x82;
+            }
+            else if (keyCode == "F20")
+            {
+                return 0x83;
+            }
+            else if (keyCode == "F21")
+            {
+                return 0x84;
+            }
+            else if (keyCode == "F22")
+            {
+                return 0x85;
+            }
+            else if (keyCode == "F23")
+            {
+                return 0x86;
+            }
+            else if (keyCode == "F24")
+            {
+                return 0x87;
+            }
+
+            return 0x87;
         }
     }
 }
