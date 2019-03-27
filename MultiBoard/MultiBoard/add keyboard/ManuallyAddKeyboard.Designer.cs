@@ -39,6 +39,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.UUID_TEXT_BOX = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -130,9 +132,9 @@
             this.label1.Location = new System.Drawing.Point(20, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 18);
+            this.label1.Size = new System.Drawing.Size(84, 18);
             this.label1.TabIndex = 4;
-            this.label1.Text = "COM poort";
+            this.label1.Text = "COM port";
             // 
             // panel3
             // 
@@ -164,10 +166,30 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "UUID";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(279, 452);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(327, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "All active keyboards have to restart when a new keyboard is added!";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(321, 439);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(241, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Manually adding a keyboard is not recommended!";
+            // 
             // ManuallyAddKeyboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BAKC_BUTTON);
@@ -182,6 +204,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -198,5 +221,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox UUID_TEXT_BOX;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
     }
 }

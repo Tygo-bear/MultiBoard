@@ -201,6 +201,7 @@ namespace MultiBoard.add_keyboard
         {
             _manuallyAddKeyboard = new ManuallyAddKeyboard();
             _manuallyAddKeyboard.Location = new Point(0, 0);
+            _manuallyAddKeyboard.KeyboardAdded += manuallyAddKeyboardEvent;
             this.Controls.Add(_manuallyAddKeyboard);
             _manuallyAddKeyboard.BringToFront();
         }
@@ -226,6 +227,19 @@ namespace MultiBoard.add_keyboard
             KeyboardName = _autoAddKeyboard.KeyboardName;
             KeyboardID = _autoAddKeyboard.KeyboardUuid;
             KeyboardPort = _autoAddKeyboard.KeyboardPort;
+            onAddKeyboard();
+        }
+
+        /// <summary>
+        /// Keyboard added (manually add control)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void manuallyAddKeyboardEvent(object sender, EventArgs e)
+        {
+            KeyboardName = _manuallyAddKeyboard.keyboardName;
+            KeyboardID = _manuallyAddKeyboard.keyboardId;
+            KeyboardPort = _manuallyAddKeyboard.keyboardComPort;
             onAddKeyboard();
         }
 
