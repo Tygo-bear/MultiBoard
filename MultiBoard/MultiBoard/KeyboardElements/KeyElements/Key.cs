@@ -280,6 +280,23 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// </returns>
         private byte getVkkey(string keyCode)
         {
+            /*
+               Undefind keys (12)
+            --------------------
+                0x07
+                0x0E
+                0x0F
+                0x16
+                0x1A
+                0x3A
+                0x3B
+                0x3C
+                0x3D
+                0x3E
+                0x3F
+                0x40
+            */
+
             //Numbers
             if(keyCode == "0")
             {
