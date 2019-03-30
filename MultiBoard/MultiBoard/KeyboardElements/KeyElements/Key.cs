@@ -12,7 +12,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         //variables
         //===============================
-        const int _KEYDOWN = 0x0100;
+        const int _KEYUP = 0x0002;
+        const int _KEYDOWN = 0x0001;
 
         private bool _onKeyDownSelected = false;
         private bool _onKeyUpSelected = false;
@@ -251,7 +252,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
             if (_executeLocation.Replace("<", "") != _executeLocation)
             {
                 string key = executeLoc.Replace("<" , "").Replace(">", "");
-                keybd_event(getVkkey(key), 0, _KEYDOWN, 0); 
+                keybd_event(getVkkey(key), 0, _KEYDOWN, 0);
+                keybd_event(getVkkey(key), 0, _KEYUP, 0);
             }
             else
             {
@@ -324,7 +326,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             }
             else if (keyCode == "F24")
             {
-                return 0x87;
+                return 0xFB;
             }
 
             return 0x87;

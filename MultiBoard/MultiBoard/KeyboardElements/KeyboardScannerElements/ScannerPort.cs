@@ -9,7 +9,7 @@ using MultiBoard.Properties;
 
 namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 {
-    class ScannerPort
+    class ScannerPort 
     {
         private string _staticId = Resources.KeyboardScanner__staticId;
         private SerialPort _serialPort = new SerialPort();
