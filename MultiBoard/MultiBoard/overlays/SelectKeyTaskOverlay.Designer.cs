@@ -47,6 +47,7 @@
             // 
             // F_KEY_COMBOBOX
             // 
+            this.F_KEY_COMBOBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.F_KEY_COMBOBOX.FormattingEnabled = true;
             this.F_KEY_COMBOBOX.Items.AddRange(new object[] {
             "F1",
@@ -77,7 +78,6 @@
             this.F_KEY_COMBOBOX.Name = "F_KEY_COMBOBOX";
             this.F_KEY_COMBOBOX.Size = new System.Drawing.Size(121, 21);
             this.F_KEY_COMBOBOX.TabIndex = 0;
-            this.F_KEY_COMBOBOX.Text = "F1";
             // 
             // OK_BUTTON
             // 
@@ -129,6 +129,7 @@
             this.F_KEYS_RADIOBUTTON.TabStop = true;
             this.F_KEYS_RADIOBUTTON.Text = "F keys";
             this.F_KEYS_RADIOBUTTON.UseVisualStyleBackColor = true;
+            this.F_KEYS_RADIOBUTTON.Click += new System.EventHandler(this.OnCheckRadioButton);
             // 
             // panel2
             // 
@@ -155,6 +156,7 @@
             // 
             // NORMAL_COMBOBOX
             // 
+            this.NORMAL_COMBOBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NORMAL_COMBOBOX.FormattingEnabled = true;
             this.NORMAL_COMBOBOX.Items.AddRange(new object[] {
             "0",
@@ -197,7 +199,6 @@
             this.NORMAL_COMBOBOX.Name = "NORMAL_COMBOBOX";
             this.NORMAL_COMBOBOX.Size = new System.Drawing.Size(121, 21);
             this.NORMAL_COMBOBOX.TabIndex = 0;
-            this.NORMAL_COMBOBOX.Text = "0";
             // 
             // panel3
             // 
@@ -219,9 +220,11 @@
             this.UND_KEY_RADIOBUTTON.TabStop = true;
             this.UND_KEY_RADIOBUTTON.Text = "Undefind keys";
             this.UND_KEY_RADIOBUTTON.UseVisualStyleBackColor = true;
+            this.UND_KEY_RADIOBUTTON.Click += new System.EventHandler(this.OnCheckRadioButton);
             // 
             // UND_COMBOBOX
             // 
+            this.UND_COMBOBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UND_COMBOBOX.FormattingEnabled = true;
             this.UND_COMBOBOX.Items.AddRange(new object[] {
             "UND1",
@@ -248,7 +251,6 @@
             this.UND_COMBOBOX.Name = "UND_COMBOBOX";
             this.UND_COMBOBOX.Size = new System.Drawing.Size(121, 21);
             this.UND_COMBOBOX.TabIndex = 0;
-            this.UND_COMBOBOX.Text = "UND1";
             // 
             // SelectKeyTaskOverlay
             // 

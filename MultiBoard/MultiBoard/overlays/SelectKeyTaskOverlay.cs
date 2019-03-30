@@ -16,6 +16,10 @@ namespace MultiBoard.overlays
         public SelectKeyTaskOverlay()
         {
             InitializeComponent();
+
+            NORMAL_COMBOBOX.SelectedIndex = 0;
+            F_KEY_COMBOBOX.SelectedIndex = 0;
+            UND_COMBOBOX.SelectedIndex = 0;
         }
 
         /// <summary>

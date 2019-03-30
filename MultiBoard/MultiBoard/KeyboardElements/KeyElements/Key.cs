@@ -280,7 +280,202 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// </returns>
         private byte getVkkey(string keyCode)
         {
-            if(keyCode =="F13")
+            //Numbers
+            if(keyCode == "0")
+            {
+                return 0x30;
+            }
+            else if (keyCode == "1")
+            {
+                return 0x31;
+            }
+            else if (keyCode == "2")
+            {
+                return 0x32;
+            }
+            else if (keyCode == "3")
+            {
+                return 0x33;
+            }
+            else if (keyCode == "4")
+            {
+                return 0x34;
+            }
+            else if (keyCode == "5")
+            {
+                return 0x35;
+            }
+            else if (keyCode == "6")
+            {
+                return 0x36;
+            }
+            else if (keyCode == "7")
+            {
+                return 0x37;
+            }
+            else if (keyCode == "8")
+            {
+                return 0x38;
+            }
+            else if (keyCode == "9")
+            {
+                return 0x39;
+            }
+            //Chars
+            else if (keyCode == "A")
+            {
+                return 0x41;
+            }
+            else if (keyCode == "B")
+            {
+                return 0x42;
+            }
+            else if (keyCode == "C")
+            {
+                return 0x43;
+            }
+            else if (keyCode == "D")
+            {
+                return 0x44;
+            }
+            else if (keyCode == "E")
+            {
+                return 0x45;
+            }
+            else if (keyCode == "F")
+            {
+                return 0x46;
+            }
+            else if (keyCode == "G")
+            {
+                return 0x47;
+            }
+            else if (keyCode == "H")
+            {
+                return 0x48;
+            }
+            else if (keyCode == "I")
+            {
+                return 0x49;
+            }
+            else if (keyCode == "J")
+            {
+                return 0x4a;
+            }
+            else if (keyCode == "K")
+            {
+                return 0x4b;
+            }
+            else if (keyCode == "L")
+            {
+                return 0x4c;
+            }
+            else if (keyCode == "M")
+            {
+                return 0x4d;
+            }
+            else if (keyCode == "N")
+            {
+                return 0x4e;
+            }
+            else if (keyCode == "O")
+            {
+                return 0x4f;
+            }
+            else if (keyCode == "P")
+            {
+                return 0x50;
+            }
+            else if (keyCode == "Q")
+            {
+                return 0x51;
+            }
+            else if (keyCode == "R")
+            {
+                return 0x52;
+            }
+            else if (keyCode == "S")
+            {
+                return 0x53;
+            }
+            else if (keyCode == "T")
+            {
+                return 0x54;
+            }
+            else if (keyCode == "U")
+            {
+                return 0x55;
+            }
+            else if (keyCode == "V")
+            {
+                return 0x56;
+            }
+            else if (keyCode == "W")
+            {
+                return 0x57;
+            }
+            else if (keyCode == "X")
+            {
+                return 0x58;
+            }
+            else if (keyCode == "Y")
+            {
+                return 0x59;
+            }
+            else if (keyCode == "Z")
+            {
+                return 0x5a;
+            }
+            //F keys
+            else if (keyCode == "F1")
+            {
+                return 0x70;
+            }
+            else if (keyCode == "F2")
+            {
+                return 0x71;
+            }
+            else if (keyCode == "F3")
+            {
+                return 0x72;
+            }
+            else if (keyCode == "F4")
+            {
+                return 0x73;
+            }
+            else if (keyCode == "F5")
+            {
+                return 0x74;
+            }
+            else if (keyCode == "F6")
+            {
+                return 0x75;
+            }
+            else if (keyCode == "F7")
+            {
+                return 0x76;
+            }
+            else if (keyCode == "F8")
+            {
+                return 0x77;
+            }
+            else if (keyCode == "F9")
+            {
+                return 0x78;
+            }
+            else if (keyCode == "F10")
+            {
+                return 0x79;
+            }
+            else if (keyCode == "F11")
+            {
+                return 0x7a;
+            }
+            else if (keyCode == "F12")
+            {
+                return 0x7b;
+            }
+            else if(keyCode =="F13")
             {
                 return 0x7c;
             }
@@ -329,7 +524,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 return 0xFB;
             }
 
-            return 0x87;
+            return 0x00;
         }
     }
 }
