@@ -237,16 +237,7 @@
             "UND8",
             "UND9",
             "UND10",
-            "UND11",
-            "UND12",
-            "UND13",
-            "UND14",
-            "UND15",
-            "UND16",
-            "UND17",
-            "UND18",
-            "UND19",
-            "UND20"});
+            "UND11"});
             this.UND_COMBOBOX.Location = new System.Drawing.Point(126, 11);
             this.UND_COMBOBOX.Name = "UND_COMBOBOX";
             this.UND_COMBOBOX.Size = new System.Drawing.Size(121, 21);

@@ -252,8 +252,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
             if (_executeLocation.Replace("<", "") != _executeLocation)
             {
                 string key = executeLoc.Replace("<" , "").Replace(">", "");
-                keybd_event(getVkkey(key), 0, _KEYDOWN, 0);
-                keybd_event(getVkkey(key), 0, _KEYUP, 0);
+                keybd_event(getVkKey(key), 0, _KEYDOWN, 0);
+                keybd_event(getVkKey(key), 0, _KEYUP, 0);
             }
             else
             {
@@ -278,25 +278,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <returns>
         /// The byte of the key
         /// </returns>
-        private byte getVkkey(string keyCode)
+        private byte getVkKey(string keyCode)
         {
-            /*
-               Undefind keys (12)
-            --------------------
-                0x07
-                0x0E
-                0x0F
-                0x16
-                0x1A
-                0x3A
-                0x3B
-                0x3C
-                0x3D
-                0x3E
-                0x3F
-                0x40
-            */
-
             //Numbers
             if(keyCode == "0")
             {
@@ -539,6 +522,51 @@ namespace MultiBoard.KeyboardElements.KeyElements
             else if (keyCode == "F24")
             {
                 return 0xFB;
+            }
+            //Undefined keys
+            else if (keyCode == "UND1")
+            {
+                return 0x0E;
+            }
+            else if (keyCode == "UND2")
+            {
+                return 0x0F;
+            }
+            else if (keyCode == "UND3")
+            {
+                return 0x16;
+            }
+            else if (keyCode == "UND4")
+            {
+                return 0x1A;
+            }
+            else if (keyCode == "UND5")
+            {
+                return 0x3A;
+            }
+            else if (keyCode == "UND6")
+            {
+                return 0x3B;
+            }
+            else if (keyCode == "UND7")
+            {
+                return 0x3C;
+            }
+            else if (keyCode == "UND8")
+            {
+                return 0x3D;
+            }
+            else if (keyCode == "UND9")
+            {
+                return 0x3E;
+            }
+            else if (keyCode == "UND10")
+            {
+                return 0x3F;
+            }
+            else if (keyCode == "UND11")
+            {
+                return 0x40;
             }
 
             return 0x00;
