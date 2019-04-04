@@ -51,11 +51,19 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             //collect results
             foreach (ScannerPort sp in _scanPorts)
             {
+
                 Uuid.Add(sp.Uuid);
                 Ports.Add(sp.ComPort);
-                sp.close();
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    sp.close();
+
+                }).Start();
+                
             }
 
+            Console.WriteLine("done");
             return;
         }
 

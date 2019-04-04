@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using MultiBoard.Properties;
 
 namespace MultiBoard.KeyboardElements.KeyboardScannerElements
@@ -54,9 +50,9 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
                 Thread.Sleep(2000);
                 _serialPort.Write("?");
             }
-            catch (UnauthorizedAccessException)
+            catch (Exception)
             {
-
+                
             }
         }
 
@@ -65,7 +61,9 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// </summary>
         public void close()
         {
+
             _serialPort.Close();
+
         }
 
         /// <summary>
