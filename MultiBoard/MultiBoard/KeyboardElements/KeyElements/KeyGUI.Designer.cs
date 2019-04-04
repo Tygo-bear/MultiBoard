@@ -56,6 +56,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.LOCATION_TEXTBOX = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -87,7 +88,7 @@
             this.KEY_NAME_TEXTBOX.Location = new System.Drawing.Point(42, 9);
             this.KEY_NAME_TEXTBOX.Name = "KEY_NAME_TEXTBOX";
             this.KEY_NAME_TEXTBOX.Size = new System.Drawing.Size(237, 13);
-            this.KEY_NAME_TEXTBOX.TabIndex = 0;
+            this.KEY_NAME_TEXTBOX.TabIndex = 1;
             this.KEY_NAME_TEXTBOX.TextChanged += new System.EventHandler(this.KEY_NAME_TEXTBOX_TextChanged);
             // 
             // pictureBox1
@@ -297,6 +298,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.AHK_BUTTON);
             this.panel2.Controls.Add(this.KEY_TASK_BUTTON);
             this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
             this.panel2.Controls.Add(this.label6);
@@ -358,6 +360,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(153, 51);
             this.panel3.TabIndex = 15;
+            // 
+            // AHK_BUTTON
+            // 
+            this.AHK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AHK_BUTTON.BackgroundImage")));
+            this.AHK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AHK_BUTTON.FlatAppearance.BorderSize = 0;
+            this.AHK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AHK_BUTTON.Location = new System.Drawing.Point(173, 53);
+            this.AHK_BUTTON.Name = "AHK_BUTTON";
+            this.AHK_BUTTON.Size = new System.Drawing.Size(76, 58);
+            this.AHK_BUTTON.TabIndex = 7;
+            this.AHK_BUTTON.UseVisualStyleBackColor = true;
+            this.AHK_BUTTON.Click += new System.EventHandler(this.AHK_BUTTON_Click);
             // 
             // KeyGui
             // 
@@ -422,5 +437,6 @@
         private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button KEY_TASK_BUTTON;
+        private System.Windows.Forms.Button AHK_BUTTON;
     }
 }

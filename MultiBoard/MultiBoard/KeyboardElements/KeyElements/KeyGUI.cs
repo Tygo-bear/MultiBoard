@@ -406,6 +406,45 @@ namespace MultiBoard.KeyboardElements.KeyElements
             LOCATION_TEXTBOX.Text = s;
             _keyTaskOverlay.Dispose();
         }
+
+        /// <summary>
+        /// User clicked autoHotKey button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AHK_BUTTON_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog theDialog = new OpenFileDialog();
+            theDialog.Title = "Select autohotkey script";
+            theDialog.Filter = "AutoHotKey script|*.ahk";
+            theDialog.InitialDirectory = Properties.Settings.Default.FileOpen_LastLocation;
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = theDialog.OpenFile()) != null)
+                    {
+                        using (myStream)
+                        {
+                            //file exists
+                            string loc = "?" + theDialog.FileName + "?";
+                            _executeLocation = loc;
+                            LOCATION_TEXTBOX.Text = loc;
+
+                            //save to "FileOpenLastLocation"
+                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string remove = splits[splits.Length - 1];
+                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+        }
     }
 
     /// <summary>

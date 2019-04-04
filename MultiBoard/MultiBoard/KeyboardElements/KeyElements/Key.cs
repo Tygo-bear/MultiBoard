@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Timers;
+using AutoHotkey.Interop;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {
@@ -14,6 +15,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
         //===============================
         const int _KEYUP = 0x0002;
         const int _KEYDOWN = 0x0001;
+
+        private AutoHotkeyEngine _ahk = AutoHotkeyEngine.Instance;
+        private string _ahkScript = "";
 
         private bool _onKeyDownSelected = false;
         private bool _onKeyUpSelected = false;
@@ -54,6 +58,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _keyTag = key;
             _enabled = enabledKey;
             _executeLocation = executeLoc;
+            updateExecuteLoc();
 
             _timer.Interval = _defInterval;
             _timer.Elapsed += timerOnElapsed;
@@ -189,6 +194,28 @@ namespace MultiBoard.KeyboardElements.KeyElements
             set
             {
                 _executeLocation = value;
+                updateExecuteLoc();
+
+            }
+        }
+
+        /// <summary>
+        /// Update variables related to changing execute location
+        /// </summary>
+        private void updateExecuteLoc()
+        {
+            if (_executeLocation.Replace("?", "") != _executeLocation)
+            {
+                string loc = _executeLocation.Replace("?", "");
+                if (File.Exists(loc))
+                {
+                    _ahkScript = File.ReadAllText(loc);
+                }
+                else
+                {
+                    Properties.Settings.Default.ErrorList += ", ahk read error, script not found --> " + loc;
+                    Properties.Settings.Default.Save();
+                }
             }
         }
 
@@ -255,6 +282,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 keybd_event(getVkKey(key), 0, _KEYDOWN, 0);
                 keybd_event(getVkKey(key), 0, _KEYUP, 0);
             }
+            else if (_executeLocation.Replace("?", "") != _executeLocation)
+            {
+                //AutoHotKey script
+                runAhkScript();
+            }
             else
             {
                 if (File.Exists(_executeLocation))
@@ -265,6 +297,20 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 else
                 {
                     Properties.Settings.Default.ErrorList += ", execute file not found --> " + _keyName;
+                }
+            }
+            
+        }
+
+        private void runAhkScript()
+        {
+            if (!String.IsNullOrEmpty(_ahkScript))
+            {
+                string[] lines = _ahkScript.Split('\n');
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    _ahk.ExecRaw(lines[i]);
                 }
             }
         }
@@ -522,6 +568,449 @@ namespace MultiBoard.KeyboardElements.KeyElements
             else if (keyCode == "F24")
             {
                 return 0xFB;
+            }
+            //Number-pad
+            else if (keyCode == "PAD_0")
+            {
+                return 0x60;
+            }
+            else if (keyCode == "PAD_1")
+            {
+                return 0x61;
+            }
+            else if (keyCode == "PAD_2")
+            {
+                return 0x62;
+            }
+            else if (keyCode == "PAD_3")
+            {
+                return 0x63;
+            }
+            else if (keyCode == "PAD_4")
+            {
+                return 0x64;
+            }
+            else if (keyCode == "PAD_5")
+            {
+                return 0x65;
+            }
+            else if (keyCode == "PAD_6")
+            {
+                return 0x66;
+            }
+            else if (keyCode == "PAD_7")
+            {
+                return 0x67;
+            }
+            else if (keyCode == "PAD_8")
+            {
+                return 0x68;
+            }
+            else if (keyCode == "PAD_9")
+            {
+                return 0x69;
+            }
+            else if (keyCode == "PAD_MULTIPLY")
+            {
+                return 0x6A;
+            }
+            else if (keyCode == "PAD_ADD")
+            {
+                return 0x6B;
+            }
+            else if (keyCode == "PAD_SEPARATOR")
+            {
+                return 0x6C;
+            }
+            else if (keyCode == "PAD_SUBTRACT")
+            {
+                return 0x6D;
+            }
+            else if (keyCode == "PAD_DECIMAL")
+            {
+                return 0x6E;
+            }
+            else if (keyCode == "PAD_DIVIDE")
+            {
+                return 0x6F;
+            }
+            else if (keyCode == "PAD_NUMLOCK")
+            {
+                return 0x6A;
+            }
+            else if (keyCode == "PAD_PRIOR")
+            {
+                return 0x21;
+            }
+            else if (keyCode == "PAD_NEXT")
+            {
+                return 0x22;
+            }
+            else if (keyCode == "PAD_END")
+            {
+                return 0x23;
+            }
+            else if (keyCode == "PAD_HOME")
+            {
+                return 0x24;
+            }
+            else if (keyCode == "PAD_LEFT")
+            {
+                return 0x25;
+            }
+            else if (keyCode == "PAD_RIGHT")
+            {
+                return 0x27;
+            }
+            else if (keyCode == "PAD_UP")
+            {
+                return 0x26;
+            }
+            else if (keyCode == "PAD_DOWN")
+            {
+                return 0x28;
+            }
+            //Alt keys
+            else if (keyCode == "ALT_LBUTTON")
+            {
+                return 0x01;
+            }
+            else if (keyCode == "ALT_RBUTTON")
+            {
+                return 0x02;
+            }
+            else if (keyCode == "ALT_CANCEL")
+            {
+                return 0x03;
+            }
+            else if (keyCode == "ALT_MBUTTON")
+            {
+                return 0x04;
+            }
+            else if (keyCode == "ALT_XBUTTON1")
+            {
+                return 0x05;
+            }
+            else if (keyCode == "ALT_XBUTTON2")
+            {
+                return 0x06;
+            }
+            else if (keyCode == "ALT_BACK")
+            {
+                return 0x08;
+            }
+            else if (keyCode == "ALT_TAB")
+            {
+                return 0x09;
+            }
+            else if (keyCode == "ALT_CLEAR")
+            {
+                return 0x0C;
+            }
+            else if (keyCode == "ALT_RETURN")
+            {
+                return 0x0D;
+            }
+            else if (keyCode == "ALT_SHIFT")
+            {
+                return 0x10;
+            }
+            else if (keyCode == "ALT_CONTROL")
+            {
+                return 0x11;
+            }
+            else if (keyCode == "ALT_MENU")
+            {
+                return 0x12;
+            }
+            else if (keyCode == "ALT_PAUSE")
+            {
+                return 0x13;
+            }
+            else if (keyCode == "ALT_CAPITAL")
+            {
+                return 0x14;
+            }
+            else if (keyCode == "ALT_ESCAPE")
+            {
+                return 0x1B;
+            }
+            else if (keyCode == "ALT_SPACE")
+            {
+                return 0x20;
+            }
+            else if (keyCode == "ALT_SELECT")
+            {
+                return 0x29;
+            }
+            else if (keyCode == "ALT_PRINT")
+            {
+                return 0x2A;
+            }
+            else if (keyCode == "ALT_EXECUTE")
+            {
+                return 0x2B;
+            }
+            else if (keyCode == "ALT_SNAPSHOT")
+            {
+                return 0x2C;
+            }
+            else if (keyCode == "ALT_INSERT")
+            {
+                return 0x2D;
+            }
+            else if (keyCode == "ALT_DELETE")
+            {
+                return 0x2E;
+            }
+            else if (keyCode == "ALT_HELP")
+            {
+                return 0x2F;
+            }
+            else if (keyCode == "ALT_LWIN")
+            {
+                return 0x5B;
+            }
+            else if (keyCode == "ALT_RWIN")
+            {
+                return 0x5C;
+            }
+            else if (keyCode == "ALT_APPS")
+            {
+                return 0x5D;
+            }
+            else if (keyCode == "ALT_SLEEP")
+            {
+                return 0x5F;
+            }
+            else if (keyCode == "ALT_SCROLL")
+            {
+                return 0x91;
+            }
+            else if (keyCode == "ALT_LSHIFT")
+            {
+                return 0xA0;
+            }
+            else if (keyCode == "ALT_RSHIFT")
+            {
+                return 0xA1;
+            }
+            else if (keyCode == "ALT_LCONTROL")
+            {
+                return 0xA2;
+            }
+            else if (keyCode == "ALT_RCONTROL")
+            {
+                return 0xA3;
+            }
+            else if (keyCode == "ALT_LMENU")
+            {
+                return 0xA4;
+            }
+            else if (keyCode == "ALT_RMENU")
+            {
+                return 0xA5;
+            }
+            else if (keyCode == "ALT_BROWSER_BACK")
+            {
+                return 0xA6;
+            }
+            else if (keyCode == "ALT_BROWSER_FORWARD")
+            {
+                return 0xA7;
+            }
+            else if (keyCode == "ALT_BROWSER_REFRESH")
+            {
+                return 0xA8;
+            }
+            else if (keyCode == "ALT_BROWSER_STOP")
+            {
+                return 0xA9;
+            }
+            else if (keyCode == "ALT_BROWSER_SEARCH")
+            {
+                return 0xAA;
+            }
+            else if (keyCode == "ALT_BROWSER_FAVORITES")
+            {
+                return 0xAB;
+            }
+            else if (keyCode == "ALT_BROWSER_HOME")
+            {
+                return 0xAC;
+            }
+            else if (keyCode == "ALT_VOLUME_MUTE")
+            {
+                return 0xAD;
+            }
+            else if (keyCode == "ALT_VOLUME_DOWN")
+            {
+                return 0xAE;
+            }
+            else if (keyCode == "ALT_VOLUME_UP")
+            {
+                return 0xAF;
+            }
+            else if (keyCode == "ALT_MEDIA_NEXT")
+            {
+                return 0xB0;
+            }
+            else if (keyCode == "ALT_MEDIA_PREV")
+            {
+                return 0xB1;
+            }
+            else if (keyCode == "ALT_MEDIA_STOP")
+            {
+                return 0xB2;
+            }
+            else if (keyCode == "ALT_MEDIA_PLAY")
+            {
+                return 0xB3;
+            }
+            else if (keyCode == "ALT_MAIL")
+            {
+                return 0xB4;
+            }
+            else if (keyCode == "ALT_MEDIA_SELECT")
+            {
+                return 0xB5;
+            }
+            else if (keyCode == "ALT_APP1")
+            {
+                return 0xB6;
+            }
+            else if (keyCode == "ALT_APP2")
+            {
+                return 0xB7;
+            }
+            //Special keys
+            else if (keyCode == "SPEC_KANA")
+            {
+                return 0x15;
+            }
+            else if (keyCode == "SPEC_JUNJA")
+            {
+                return 0x17;
+            }
+            else if (keyCode == "SPEC_FINAL")
+            {
+                return 0x18;
+            }
+            else if (keyCode == "SPEC_HANJA")
+            {
+                return 0x19;
+            }
+            else if (keyCode == "SPEC_CONVERT")
+            {
+                return 0x1C;
+            }
+            else if (keyCode == "SPEC_NONCOVERT")
+            {
+                return 0x1D;
+            }
+            else if (keyCode == "SPEC_ACCEPT")
+            {
+                return 0x1E;
+            }
+            else if (keyCode == "SPEC_MODECHANGE")
+            {
+                return 0x1F;
+            }
+            else if (keyCode == "SPEC_OEM1")
+            {
+                return 0xBA;
+            }
+            else if (keyCode == "SPEC_OEM_PLUS")
+            {
+                return 0xBB;
+            }
+            else if (keyCode == "SPEC_COMMA")
+            {
+                return 0xBC;
+            }
+            else if (keyCode == "SPEC_MINUS")
+            {
+                return 0xBD;
+            }
+            else if (keyCode == "SPEC_PERIOD")
+            {
+                return 0xBE;
+            }
+            else if (keyCode == "SPEC_OEM2")
+            {
+                return 0xBF;
+            }
+            else if (keyCode == "SPEC_OEM3")
+            {
+                return 0xC0;
+            }
+            else if (keyCode == "SPEC_OEM4")
+            {
+                return 0xDB;
+            }
+            else if (keyCode == "SPEC_OEM5")
+            {
+                return 0xDC;
+            }
+            else if (keyCode == "SPEC_OEM7")
+            {
+                return 0xDE;
+            }
+            else if (keyCode == "SPEC_OEM8")
+            {
+                return 0xDF;
+            }
+            else if (keyCode == "SPEC_OEM9")
+            {
+                return 0xE1;
+            }
+            else if (keyCode == "SPEC_OEM102")
+            {
+                return 0xE2;
+            }
+            else if (keyCode == "SPEC_PROCESSKEY")
+            {
+                return 0xE5;
+            }
+            else if (keyCode == "SPEC_PACKET")
+            {
+                return 0xE7;
+            }
+            else if (keyCode == "SPEC_ATTN")
+            {
+                return 0xF6;
+            }
+            else if (keyCode == "SPEC_CRSEL")
+            {
+                return 0xF7;
+            }
+            else if (keyCode == "SPEC_EXSEL")
+            {
+                return 0xF8;
+            }
+            else if (keyCode == "SPEC_EREOF")
+            {
+                return 0xF9;
+            }
+            else if (keyCode == "SPEC_NONAME")
+            {
+                return 0xFC;
+            }
+            else if (keyCode == "SPEC_PA1")
+            {
+                return 0xFD;
+            }
+            else if (keyCode == "SPEC_OEM_CLEAR")
+            {
+                return 0xFE;
+            }
+            else if (keyCode == "SPEC_ZOOM")
+            {
+                return 0xFB;
+            }
+            else if (keyCode == "SPEC_PLAY")
+            {
+                return 0xFA;
             }
             //Undefined keys
             else if (keyCode == "UND1")
