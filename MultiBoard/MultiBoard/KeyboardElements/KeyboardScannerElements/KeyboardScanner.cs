@@ -62,8 +62,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
                 }).Start();
                 
             }
-
-            Console.WriteLine("done");
+            
             return;
         }
 
