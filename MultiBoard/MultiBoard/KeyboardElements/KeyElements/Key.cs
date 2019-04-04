@@ -302,6 +302,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             
         }
 
+        /// <summary>
+        /// Runs AutoHotKey script
+        /// </summary>
         private void runAhkScript()
         {
             if (!String.IsNullOrEmpty(_ahkScript))
