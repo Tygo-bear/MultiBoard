@@ -32,6 +32,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\Gebruiker\Desktop\DevProjects\2de toetsenbord\MultiBoard\MultiBoard\MultiBoard\bin\Debug\MultiBoard.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Gebruiker\Desktop\DevProjects\2de toetsenbord\MultiBoard\MultiBoard\MultiBoard\bin\Debug\AutoHotkey.Interop.dll"; DestDir: "{app}"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
