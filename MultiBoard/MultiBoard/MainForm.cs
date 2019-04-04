@@ -174,7 +174,8 @@ namespace MultiBoard
             if (_showErrorList.Count > 0)
             {
                 //Show next error
-                ERROR_LABEL.Text = _showErrorList[0];
+                ErrorLabelShowMessage(_showErrorList[0]);
+                
             }
             else
             {
@@ -183,6 +184,19 @@ namespace MultiBoard
                 _errorContr.Hide();
                 WARRNING_BUTTON.Visible = false;
             }
+        }
+
+        /// <summary>
+        /// Show a message on error label
+        /// </summary>
+        /// <param name="mes">
+        /// Message for the user
+        /// </param>
+        private void ErrorLabelShowMessage(string mes)
+        {
+            ERROR_LABEL.Text = mes;
+            ERROR_LABEL.Location = new Point(WARRNING_BUTTON.Location.X - 3 - ERROR_LABEL.Width,
+                ERROR_LABEL.Location.Y);
         }
 
         /// <summary>
@@ -726,7 +740,7 @@ namespace MultiBoard
                 {
                     this.Show();
                     WARRNING_BUTTON.Show();
-                    ERROR_LABEL.Text = mes;
+                    ErrorLabelShowMessage(mes);
                 }));
             }
 
