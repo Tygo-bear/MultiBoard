@@ -147,12 +147,6 @@
     <Compile Include="overlays\LoadingMainOverlay.Designer.cs">
       <DependentUpon>LoadingMainOverlay.cs</DependentUpon>
     </Compile>
-    <Compile Include="overlays\PerfModeOverlay.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="overlays\PerfModeOverlay.Designer.cs">
-      <DependentUpon>PerfModeOverlay.cs</DependentUpon>
-    </Compile>
     <Compile Include="overlays\SavedOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,9 +217,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\LoadingMainOverlay.resx">
       <DependentUpon>LoadingMainOverlay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="overlays\PerfModeOverlay.resx">
-      <DependentUpon>PerfModeOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\SavedOverlay.resx">
       <DependentUpon>SavedOverlay.cs</DependentUpon>

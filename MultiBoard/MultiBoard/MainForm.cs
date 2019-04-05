@@ -778,16 +778,6 @@ namespace MultiBoard
         }
 
         /// <summary>
-        /// User clicked "perfMode" button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PERF_MODE_BUTTON_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        /// <summary>
         /// User clicked "error mange" button
         /// </summary>
         /// <param name="sender"></param>

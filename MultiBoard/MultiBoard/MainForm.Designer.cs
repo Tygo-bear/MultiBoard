@@ -38,7 +38,6 @@
             this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.LEFT_PENEL = new System.Windows.Forms.Panel();
             this.ERROR_MANAGE_BUTTON = new System.Windows.Forms.Button();
-            this.PERF_MODE_BUTTON = new System.Windows.Forms.Button();
             this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.KEYBOARD_B = new System.Windows.Forms.Button();
@@ -144,7 +143,6 @@
             // 
             this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.LEFT_PENEL.Controls.Add(this.ERROR_MANAGE_BUTTON);
-            this.LEFT_PENEL.Controls.Add(this.PERF_MODE_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.panel1);
             this.LEFT_PENEL.Controls.Add(this.KEYBOARD_B);
@@ -172,25 +170,6 @@
             this.ERROR_MANAGE_BUTTON.TabIndex = 8;
             this.ERROR_MANAGE_BUTTON.UseVisualStyleBackColor = false;
             this.ERROR_MANAGE_BUTTON.Click += new System.EventHandler(this.ERROR_MANAGE_BUTTON_Click);
-            // 
-            // PERF_MODE_BUTTON
-            // 
-            this.PERF_MODE_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PERF_MODE_BUTTON.BackColor = System.Drawing.Color.Transparent;
-            this.PERF_MODE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PERF_MODE_BUTTON.BackgroundImage")));
-            this.PERF_MODE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PERF_MODE_BUTTON.FlatAppearance.BorderSize = 0;
-            this.PERF_MODE_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.PERF_MODE_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PERF_MODE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PERF_MODE_BUTTON.Location = new System.Drawing.Point(0, 83);
-            this.PERF_MODE_BUTTON.Name = "PERF_MODE_BUTTON";
-            this.PERF_MODE_BUTTON.Size = new System.Drawing.Size(32, 34);
-            this.PERF_MODE_BUTTON.TabIndex = 7;
-            this.PERF_MODE_BUTTON.UseVisualStyleBackColor = false;
-            this.PERF_MODE_BUTTON.Visible = false;
-            this.PERF_MODE_BUTTON.Click += new System.EventHandler(this.PERF_MODE_BUTTON_Click);
             // 
             // ADD_KEYBOARD_BUTTON
             // 
@@ -408,7 +387,6 @@
         private System.Windows.Forms.Label ERROR_LABEL;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
-        private System.Windows.Forms.Button PERF_MODE_BUTTON;
         private System.Windows.Forms.Button ERROR_MANAGE_BUTTON;
     }
 }
