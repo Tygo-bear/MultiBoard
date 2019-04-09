@@ -124,9 +124,9 @@ namespace MultiBoard.KeyboardElements
             //TODO Check for correct naming
 
             //Check file exist
-            if (File.Exists(_mainDirectory + @"\" + b.KeyboardName + ".inf"))
+            if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
             {
-                File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf", _mainDirectory + @"\" + k.KbName + ".inf");
+                File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf", _mainDirectory + @"\" + k.KbUuid + ".inf");
             }
             else
             {
@@ -157,7 +157,7 @@ namespace MultiBoard.KeyboardElements
 
             //TODO Make more efficient
             //Move deleted keyboard to .del folder
-            if (File.Exists(_mainDirectory + @"\" + b.KeyboardName + ".inf"))
+            if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
             {
                 if (Directory.Exists(_mainDirectory + @"\.del"))
                 {
@@ -165,16 +165,16 @@ namespace MultiBoard.KeyboardElements
                     {
                         File.Delete(_mainDirectory + @"\.del\keyboards.inf");
                     }
-                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf"))
+                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf"))
                     {
-                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
+                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
                     }
 
 
                     File.Copy(_mainDirectory + @"\keyboards.inf"
                         , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
+                    File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
 
                     
                 }
@@ -183,13 +183,13 @@ namespace MultiBoard.KeyboardElements
                     Directory.CreateDirectory(_mainDirectory + @"\.del");
                     File.Copy(_mainDirectory + @"\keyboards.inf"
                         , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.KeyboardName + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardName + ".inf");
+                    File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
+                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
 
                 }
 
-                _undo = b.KeyboardName;
-                createUndo("Undo " + b.KeyboardName + " delete");
+                _undo = b.KeyboardUuid;
+                createUndo("Undo " + b.KeyboardUuid + " delete");
 
             }
             else

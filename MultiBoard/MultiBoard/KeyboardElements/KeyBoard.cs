@@ -166,12 +166,12 @@ namespace MultiBoard.KeyboardElements
             _keyList.Clear();
 
             //check for file exist
-            if(!File.Exists(mainDirectory + @"\" + _name + ".inf"))
+            if(!File.Exists(mainDirectory + @"\" + _id + ".inf"))
             {
-                File.Create(mainDirectory + @"\" + _name + ".inf").Close();
+                File.Create(mainDirectory + @"\" + _id + ".inf").Close();
             }
 
-            _saveFile = mainDirectory + @"\" + _name + ".inf";
+            _saveFile = mainDirectory + @"\" + _id + ".inf";
 
             //read keys
             //============================
@@ -179,7 +179,7 @@ namespace MultiBoard.KeyboardElements
             var counter = 0;
 
             System.IO.StreamReader file =
-                new System.IO.StreamReader(mainDirectory + @"\" + _name + ".inf");
+                new System.IO.StreamReader(mainDirectory + @"\" + _id + ".inf");
             while ((line = file.ReadLine()) != null)
             {
                 if (line != "")
