@@ -20,7 +20,7 @@ namespace MultiBoard
     {
         //variables
         //==================================
-        public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\MultiBoard";
+        public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard";
         public bool ToggleB = true;
         private bool _firstStartUp = true;
         private List<KeyBoard> _keyboardList = new List<KeyBoard>();
