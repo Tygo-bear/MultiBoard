@@ -75,11 +75,17 @@
     <Compile Include="Util\ProcessorType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="x64\AutoHotkey.dll" />
-    <EmbeddedResource Include="x86\AutoHotkey.dll" />
+    <EmbeddedResource Include="x64\AutoHotkey.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="x86\AutoHotkey.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="x64\v2_AutoHotkey.dll" />
+    <EmbeddedResource Include="x64\v2_AutoHotkey.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pipes\pipeclient.ahk" />
     <None Include="x86\v2_AutoHotkey.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
