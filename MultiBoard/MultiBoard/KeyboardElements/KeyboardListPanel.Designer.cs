@@ -90,7 +90,7 @@
             // KeyboardListPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.SETTINGS_BUTTON);
             this.Controls.Add(this.UUID_LABEL);

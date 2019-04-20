@@ -69,7 +69,7 @@
             // KeyListPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.KEY_NAME_LABEL);
             this.Controls.Add(this.KEY_PICTURE);

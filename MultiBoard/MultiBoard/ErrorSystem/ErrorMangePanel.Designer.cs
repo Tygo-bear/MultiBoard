@@ -136,7 +136,7 @@
             // ErrorMangePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.ERROR_LIST_LISTBOX);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

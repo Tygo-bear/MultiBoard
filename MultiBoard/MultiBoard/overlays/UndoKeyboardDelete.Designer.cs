@@ -81,7 +81,7 @@
             // UndoKeyboardDelete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.CLOSE_BUTTON);
             this.Controls.Add(this.MESSAGE_LABEL);
