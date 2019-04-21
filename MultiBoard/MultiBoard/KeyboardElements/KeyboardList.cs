@@ -159,7 +159,7 @@ namespace MultiBoard.KeyboardElements
             //.del directory
             if (Directory.Exists(_mainDirectory + @"\.del"))
             {
-                Directory.Delete(_mainDirectory + @"\.del");
+                Directory.Delete(_mainDirectory + @"\.del", true);
             }
 
             Directory.CreateDirectory(_mainDirectory + @"\.del");
@@ -185,6 +185,8 @@ namespace MultiBoard.KeyboardElements
                 Console.WriteLine("File delete error");
             }
 
+            createUndo("Undo" + b.KeyboardName +" delete");
+            _undo = b.KeyboardUuid;
 
             //dispose representing keyboardPanel
             foreach (KeyboardListPanel p in _KeyboardPanelList)
