@@ -185,7 +185,7 @@ namespace MultiBoard.KeyboardElements
                 Console.WriteLine("File delete error");
             }
 
-            createUndo("Undo" + b.KeyboardName +" delete");
+            createUndo("Undo " + b.KeyboardName +" delete");
             _undo = b.KeyboardUuid;
 
             //dispose representing keyboardPanel
