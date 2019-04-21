@@ -322,7 +322,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// Convert vk name to vk byte code
         /// </summary>
         /// <param name="keyCode">
-        /// Name of the key
+        /// Uuid of the key
         /// </param>
         /// <returns>
         /// The byte of the key

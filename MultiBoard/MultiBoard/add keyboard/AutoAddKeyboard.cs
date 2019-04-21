@@ -75,7 +75,7 @@ namespace MultiBoard.add_keyboard
         /// Check keyboard name
         /// </summary>
         /// <param name="name">
-        /// Name of the keyboard
+        /// Uuid of the keyboard
         /// </param>
         /// <returns>
         /// true = valid name
@@ -83,8 +83,11 @@ namespace MultiBoard.add_keyboard
         /// </returns>
         private bool checkName(string name)
         {
-            //TODO make it better
             if(string.IsNullOrEmpty(name))
+            {
+                return false;
+            }
+            if (name.Contains("|"))
             {
                 return false;
             }

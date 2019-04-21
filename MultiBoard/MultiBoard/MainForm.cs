@@ -528,16 +528,15 @@ namespace MultiBoard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">
-        /// Name of the keyboard
+        /// Uuid of the keyboard
         /// </param>
         private void userSelectedKeyboard(object sender, ItemName e)
         {
-            //TODO move from name to UUID
 
             foreach (KeyBoard aKeyboard in _keyboardList)
             {
                 //Find matching keyboard
-                if(aKeyboard.KeyboardName == e.Name)
+                if(aKeyboard.KeyboardUuid == e.Uuid)
                 {
                     //show matching keyboard
                     aKeyboard.Visible = true;

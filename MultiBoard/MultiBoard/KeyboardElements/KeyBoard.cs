@@ -46,7 +46,7 @@ namespace MultiBoard.KeyboardElements
         /// Create a new key
         /// </summary>
         /// <param name="keyName">
-        /// Name of the key
+        /// Uuid of the key
         /// </param>
         /// <param name="eventState">
         /// The event on which the key reacts
@@ -76,7 +76,7 @@ namespace MultiBoard.KeyboardElements
         }
 
         /// <summary>
-        /// Check the key Name of dupes
+        /// Check the key Uuid of dupes
         /// </summary>
         /// <param name="s">
         /// The name to check for
@@ -125,7 +125,7 @@ namespace MultiBoard.KeyboardElements
         }
 
         /// <summary>
-        /// Name of the keyboard shown to the user
+        /// Uuid of the keyboard shown to the user
         /// </summary>
         public string KeyboardName
         {
@@ -546,7 +546,7 @@ namespace MultiBoard.KeyboardElements
         /// Search for a key
         /// </summary>
         /// <param name="input">
-        /// Name or key code
+        /// Uuid or key code
         /// </param>
         /// <returns></returns>
         private List<KeyListPanel> searchKey(string input)

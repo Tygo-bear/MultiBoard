@@ -50,7 +50,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// The settings of the key GUI
         /// </summary>
         /// <param name="name">
-        /// Name of the key
+        /// Uuid of the key
         /// </param>
         /// <param name="eventState">
         /// Event state of the key

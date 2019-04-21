@@ -24,7 +24,7 @@ namespace MultiBoard.KeyboardElements
         /// Settings to load in the user control
         /// </summary>
         /// <param name="kName">
-        /// Name of the keyboard
+        /// Uuid of the keyboard
         /// </param>
         /// <param name="kId">
         /// Keyboard ID
@@ -67,15 +67,19 @@ namespace MultiBoard.KeyboardElements
 
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
         {
-            //save the data
-            KbName = KEYBOARD_NAME_TEXTBOX.Text;
-            KbUuid = KEYBOARD_UUID_TEXTBOX.Text;
-            KbPort = KEYBOARD_COMP_TEXTBOX.Text;
-
-            //call event
-            if(Save != null)
+            //check for correct input
+            if (checkInput())
             {
-                Save(this, EventArgs.Empty);
+                //save the data
+                KbName = KEYBOARD_NAME_TEXTBOX.Text;
+                KbUuid = KEYBOARD_UUID_TEXTBOX.Text;
+                KbPort = KEYBOARD_COMP_TEXTBOX.Text;
+
+                //call event
+                if (Save != null)
+                {
+                    Save(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -89,13 +93,20 @@ namespace MultiBoard.KeyboardElements
         private bool checkInput()
         {
             //check if user has left the field empty
-            if(KEYBOARD_COMP_TEXTBOX.Text != "" && KEYBOARD_UUID_TEXTBOX.Text != "" 
-                && KEYBOARD_NAME_TEXTBOX.Text != "")
+            if(String.IsNullOrEmpty(KEYBOARD_NAME_TEXTBOX.Text) 
+               || String.IsNullOrEmpty(KEYBOARD_UUID_TEXTBOX.Text)
+               || String.IsNullOrEmpty(KEYBOARD_COMP_TEXTBOX.Text))
             {
-                //TODO make better
-                return true;
+                return false;
             }
-            return false;
+
+            if (KEYBOARD_NAME_TEXTBOX.Text.Contains("|")
+                || KEYBOARD_UUID_TEXTBOX.Text.Contains("|")
+                || KEYBOARD_COMP_TEXTBOX.Text.Contains("|"))
+            {
+                return false;
+            }
+            return true;
         }
 
         private void LOCK_BUTTON_Click(object sender, EventArgs e)
