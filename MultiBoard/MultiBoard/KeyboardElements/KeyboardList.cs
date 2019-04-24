@@ -38,7 +38,7 @@ namespace MultiBoard.KeyboardElements
         /// Add a Keyboard to the keyboardList
         /// </summary>
         /// <param name="itemName">
-        /// Name of the Keyboard
+        /// Uuid of the Keyboard
         /// </param>
         /// <param name="uuidItem">
         /// Dynamic ID of the keyboard
@@ -84,7 +84,7 @@ namespace MultiBoard.KeyboardElements
             {
                 if(k == sender)
                 {
-                    if (SelectedItem != null) SelectedItem(this, new ItemName() {Name = k.KeyboardName});
+                    if (SelectedItem != null) SelectedItem(this, new ItemName() {Uuid = k.KeyboardUuid});
                 }
             }
             
@@ -121,8 +121,6 @@ namespace MultiBoard.KeyboardElements
             KeyboardSettings k = sender as KeyboardSettings;
             KeyBoard b = k.ConnectedKeyboard;
 
-            //TODO Check for correct naming
-
             //Check file exist
             if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
             {
@@ -155,42 +153,29 @@ namespace MultiBoard.KeyboardElements
             KeyboardSettings k = sender as KeyboardSettings;
             KeyBoard b = k.ConnectedKeyboard;
 
-            //TODO Make more efficient
-            //Move deleted keyboard to .del folder
+            //MOVE FILES TO .DEL FOLDER
+            //=============================
+
+            //.del directory
+            if (Directory.Exists(_mainDirectory + @"\.del"))
+            {
+                Directory.Delete(_mainDirectory + @"\.del", true);
+            }
+
+            Directory.CreateDirectory(_mainDirectory + @"\.del");
+
+            //Keyboards config
+            if (File.Exists(_mainDirectory + @"\keyboards.inf"))
+            {
+                File.Copy(_mainDirectory + @"\keyboards.inf"
+                    , _mainDirectory + @"\.del\keyboards.inf");
+            }
+            
+            //keyboard file
             if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
             {
-                if (Directory.Exists(_mainDirectory + @"\.del"))
-                {
-                    if (File.Exists(_mainDirectory + @"\.del\keyboards.inf"))
-                    {
-                        File.Delete(_mainDirectory + @"\.del\keyboards.inf");
-                    }
-                    if (File.Exists(_mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf"))
-                    {
-                        File.Delete(_mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
-                    }
-
-
-                    File.Copy(_mainDirectory + @"\keyboards.inf"
-                        , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
-
-                    
-                }
-                else
-                {
-                    Directory.CreateDirectory(_mainDirectory + @"\.del");
-                    File.Copy(_mainDirectory + @"\keyboards.inf"
-                        , _mainDirectory + @"\.del\keyboards.inf");
-                    File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
-                        , _mainDirectory + @"\.del" + @"\" + b.KeyboardUuid + ".inf");
-
-                }
-
-                _undo = b.KeyboardUuid;
-                createUndo("Undo " + b.KeyboardUuid + " delete");
-
+                File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
+                          , _mainDirectory + @"\.del\" + b.KeyboardUuid + ".inf");
             }
             else
             {
@@ -199,6 +184,9 @@ namespace MultiBoard.KeyboardElements
                 Properties.Settings.Default.Save();
                 Console.WriteLine("File delete error");
             }
+
+            createUndo("Undo " + b.KeyboardName +" delete");
+            _undo = b.KeyboardUuid;
 
             //dispose representing keyboardPanel
             foreach (KeyboardListPanel p in _KeyboardPanelList)
@@ -267,7 +255,7 @@ namespace MultiBoard.KeyboardElements
 
     public class ItemName : EventArgs
     {
-        public string Name { get; set; }
+        public string Uuid { get; set; }
     }
 
     public class KeyboardToArgs : EventArgs

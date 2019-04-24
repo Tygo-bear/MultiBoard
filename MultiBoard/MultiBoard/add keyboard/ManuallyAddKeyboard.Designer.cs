@@ -92,7 +92,7 @@
             this.NAME_TEXT_BOX.Location = new System.Drawing.Point(23, 33);
             this.NAME_TEXT_BOX.Name = "NAME_TEXT_BOX";
             this.NAME_TEXT_BOX.Size = new System.Drawing.Size(330, 20);
-            this.NAME_TEXT_BOX.TabIndex = 5;
+            this.NAME_TEXT_BOX.TabIndex = 2;
             // 
             // label4
             // 
@@ -122,7 +122,7 @@
             this.COM_PORT_TEXT_BOX.Location = new System.Drawing.Point(23, 33);
             this.COM_PORT_TEXT_BOX.Name = "COM_PORT_TEXT_BOX";
             this.COM_PORT_TEXT_BOX.Size = new System.Drawing.Size(330, 20);
-            this.COM_PORT_TEXT_BOX.TabIndex = 5;
+            this.COM_PORT_TEXT_BOX.TabIndex = 0;
             // 
             // label1
             // 
@@ -152,7 +152,7 @@
             this.UUID_TEXT_BOX.Location = new System.Drawing.Point(23, 33);
             this.UUID_TEXT_BOX.Name = "UUID_TEXT_BOX";
             this.UUID_TEXT_BOX.Size = new System.Drawing.Size(330, 20);
-            this.UUID_TEXT_BOX.TabIndex = 5;
+            this.UUID_TEXT_BOX.TabIndex = 1;
             // 
             // label2
             // 
@@ -186,7 +186,6 @@
             // 
             // ManuallyAddKeyboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);

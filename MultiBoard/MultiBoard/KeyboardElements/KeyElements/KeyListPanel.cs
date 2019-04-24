@@ -20,7 +20,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// Create a key panel for key list
         /// </summary>
         /// <param name="name">
-        /// Name of the key
+        /// Uuid of the key
         /// </param>
         /// <param name="state">
         /// Is the key enabled
@@ -49,7 +49,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         }
 
         /// <summary>
-        /// Name of the key shown to the user
+        /// Uuid of the key shown to the user
         /// </summary>
         public string KeyName
         {

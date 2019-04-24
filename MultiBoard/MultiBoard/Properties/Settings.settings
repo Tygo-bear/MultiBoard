@@ -1,20 +1,20 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MultiBoard.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassUuidspace="MultiBoard.Properties" GeneratedClassUuid="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FileOpen_LastLocation" Type="System.String" Scope="User">
+    <Setting Uuid="FileOpen_LastLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">c:\</Value>
     </Setting>
-    <Setting Name="ErrorList" Type="System.String" Scope="User">
+    <Setting Uuid="ErrorList" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ThreadPriority" Type="System.Int32" Scope="User">
+    <Setting Uuid="ThreadPriority" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
-    <Setting Name="StayHidden" Type="System.Boolean" Scope="User">
+    <Setting Uuid="StayHidden" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="TimeOutDelay" Type="System.Int32" Scope="User">
+    <Setting Uuid="TimeOutDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6000</Value>
     </Setting>
   </Settings>
