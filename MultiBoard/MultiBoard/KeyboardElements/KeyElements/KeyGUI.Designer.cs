@@ -51,12 +51,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.KEY_TASK_BUTTON = new System.Windows.Forms.Button();
             this.OPEN_FILE_BUTTON = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.LOCATION_TEXTBOX = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -88,7 +88,7 @@
             this.KEY_NAME_TEXTBOX.Location = new System.Drawing.Point(42, 9);
             this.KEY_NAME_TEXTBOX.Name = "KEY_NAME_TEXTBOX";
             this.KEY_NAME_TEXTBOX.Size = new System.Drawing.Size(237, 13);
-            this.KEY_NAME_TEXTBOX.TabIndex = 1;
+            this.KEY_NAME_TEXTBOX.TabIndex = 0;
             this.KEY_NAME_TEXTBOX.TextChanged += new System.EventHandler(this.KEY_NAME_TEXTBOX_TextChanged);
             // 
             // pictureBox1
@@ -122,7 +122,7 @@
             this.SAVE_BUTTON.Location = new System.Drawing.Point(625, 0);
             this.SAVE_BUTTON.Name = "SAVE_BUTTON";
             this.SAVE_BUTTON.Size = new System.Drawing.Size(35, 35);
-            this.SAVE_BUTTON.TabIndex = 13;
+            this.SAVE_BUTTON.TabIndex = 2;
             this.SAVE_BUTTON.UseVisualStyleBackColor = true;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
@@ -164,7 +164,7 @@
             this.RECORD_KEY_BUTTON.Location = new System.Drawing.Point(170, 3);
             this.RECORD_KEY_BUTTON.Name = "RECORD_KEY_BUTTON";
             this.RECORD_KEY_BUTTON.Size = new System.Drawing.Size(96, 23);
-            this.RECORD_KEY_BUTTON.TabIndex = 0;
+            this.RECORD_KEY_BUTTON.TabIndex = 1;
             this.RECORD_KEY_BUTTON.Text = "Start recording";
             this.RECORD_KEY_BUTTON.UseVisualStyleBackColor = true;
             this.RECORD_KEY_BUTTON.Click += new System.EventHandler(this.startRecordingClicked);
@@ -189,7 +189,6 @@
             // 
             // ENABLE_BUTTON
             // 
-            this.ENABLE_BUTTON.BackgroundImage = global::MultiBoard.Properties.Resources.TOGGLE_ON;
             this.ENABLE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ENABLE_BUTTON.FlatAppearance.BorderSize = 0;
             this.ENABLE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -308,6 +307,19 @@
             this.panel2.Size = new System.Drawing.Size(632, 120);
             this.panel2.TabIndex = 14;
             // 
+            // AHK_BUTTON
+            // 
+            this.AHK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AHK_BUTTON.BackgroundImage")));
+            this.AHK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AHK_BUTTON.FlatAppearance.BorderSize = 0;
+            this.AHK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AHK_BUTTON.Location = new System.Drawing.Point(173, 53);
+            this.AHK_BUTTON.Name = "AHK_BUTTON";
+            this.AHK_BUTTON.Size = new System.Drawing.Size(76, 58);
+            this.AHK_BUTTON.TabIndex = 7;
+            this.AHK_BUTTON.UseVisualStyleBackColor = true;
+            this.AHK_BUTTON.Click += new System.EventHandler(this.AHK_BUTTON_Click);
+            // 
             // KEY_TASK_BUTTON
             // 
             this.KEY_TASK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_TASK_BUTTON.BackgroundImage")));
@@ -361,22 +373,8 @@
             this.panel3.Size = new System.Drawing.Size(153, 51);
             this.panel3.TabIndex = 15;
             // 
-            // AHK_BUTTON
-            // 
-            this.AHK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AHK_BUTTON.BackgroundImage")));
-            this.AHK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AHK_BUTTON.FlatAppearance.BorderSize = 0;
-            this.AHK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AHK_BUTTON.Location = new System.Drawing.Point(173, 53);
-            this.AHK_BUTTON.Name = "AHK_BUTTON";
-            this.AHK_BUTTON.Size = new System.Drawing.Size(76, 58);
-            this.AHK_BUTTON.TabIndex = 7;
-            this.AHK_BUTTON.UseVisualStyleBackColor = true;
-            this.AHK_BUTTON.Click += new System.EventHandler(this.AHK_BUTTON_Click);
-            // 
             // KeyGui
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

@@ -35,6 +35,7 @@ namespace MultiBoard.add_keyboard
             foreach(string s in IDs)
             {
                 SELECT_KEYBOARD_COMBOX.Items.Add(s);
+                SELECT_KEYBOARD_COMBOX.SelectedIndex = 0;
             }
         }
 

@@ -33,10 +33,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.RELOAD_LIST_BUTTON = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.CLEAR_LIST_BUTTON = new System.Windows.Forms.Button();
             this.ERROR_LIST_LISTBOX = new System.Windows.Forms.ListBox();
-            this.RELOAD_LIST_BUTTON = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -85,14 +85,27 @@
             this.panel2.Size = new System.Drawing.Size(200, 477);
             this.panel2.TabIndex = 1;
             // 
+            // RELOAD_LIST_BUTTON
+            // 
+            this.RELOAD_LIST_BUTTON.BackColor = System.Drawing.Color.Silver;
+            this.RELOAD_LIST_BUTTON.FlatAppearance.BorderSize = 0;
+            this.RELOAD_LIST_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RELOAD_LIST_BUTTON.Location = new System.Drawing.Point(0, 0);
+            this.RELOAD_LIST_BUTTON.Name = "RELOAD_LIST_BUTTON";
+            this.RELOAD_LIST_BUTTON.Size = new System.Drawing.Size(200, 41);
+            this.RELOAD_LIST_BUTTON.TabIndex = 2;
+            this.RELOAD_LIST_BUTTON.Text = "Reload list";
+            this.RELOAD_LIST_BUTTON.UseVisualStyleBackColor = false;
+            this.RELOAD_LIST_BUTTON.Click += new System.EventHandler(this.RELOAD_LIST_BUTTON_Click);
+            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(3, 88);
+            this.button2.Location = new System.Drawing.Point(0, 76);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 35);
+            this.button2.Size = new System.Drawing.Size(200, 47);
             this.button2.TabIndex = 1;
             this.button2.Text = "Reload boards";
             this.button2.UseVisualStyleBackColor = false;
@@ -103,9 +116,10 @@
             this.CLEAR_LIST_BUTTON.BackColor = System.Drawing.Color.Silver;
             this.CLEAR_LIST_BUTTON.FlatAppearance.BorderSize = 0;
             this.CLEAR_LIST_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CLEAR_LIST_BUTTON.Location = new System.Drawing.Point(4, 47);
+            this.CLEAR_LIST_BUTTON.Location = new System.Drawing.Point(0, 40);
+            this.CLEAR_LIST_BUTTON.Margin = new System.Windows.Forms.Padding(0);
             this.CLEAR_LIST_BUTTON.Name = "CLEAR_LIST_BUTTON";
-            this.CLEAR_LIST_BUTTON.Size = new System.Drawing.Size(190, 35);
+            this.CLEAR_LIST_BUTTON.Size = new System.Drawing.Size(200, 42);
             this.CLEAR_LIST_BUTTON.TabIndex = 0;
             this.CLEAR_LIST_BUTTON.Text = "Clear List";
             this.CLEAR_LIST_BUTTON.UseVisualStyleBackColor = false;
@@ -113,6 +127,7 @@
             // 
             // ERROR_LIST_LISTBOX
             // 
+            this.ERROR_LIST_LISTBOX.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ERROR_LIST_LISTBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ERROR_LIST_LISTBOX.FormattingEnabled = true;
             this.ERROR_LIST_LISTBOX.Location = new System.Drawing.Point(200, 31);
@@ -120,22 +135,8 @@
             this.ERROR_LIST_LISTBOX.Size = new System.Drawing.Size(657, 477);
             this.ERROR_LIST_LISTBOX.TabIndex = 2;
             // 
-            // RELOAD_LIST_BUTTON
-            // 
-            this.RELOAD_LIST_BUTTON.BackColor = System.Drawing.Color.Silver;
-            this.RELOAD_LIST_BUTTON.FlatAppearance.BorderSize = 0;
-            this.RELOAD_LIST_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RELOAD_LIST_BUTTON.Location = new System.Drawing.Point(3, 6);
-            this.RELOAD_LIST_BUTTON.Name = "RELOAD_LIST_BUTTON";
-            this.RELOAD_LIST_BUTTON.Size = new System.Drawing.Size(190, 35);
-            this.RELOAD_LIST_BUTTON.TabIndex = 2;
-            this.RELOAD_LIST_BUTTON.Text = "Reload list";
-            this.RELOAD_LIST_BUTTON.UseVisualStyleBackColor = false;
-            this.RELOAD_LIST_BUTTON.Click += new System.EventHandler(this.RELOAD_LIST_BUTTON_Click);
-            // 
             // ErrorMangePanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.ERROR_LIST_LISTBOX);
             this.Controls.Add(this.panel2);

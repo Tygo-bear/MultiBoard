@@ -75,7 +75,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(13, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Uuid";
             // 
@@ -106,7 +106,7 @@
             this.KEYBOARD_UUID_TEXTBOX.Name = "KEYBOARD_UUID_TEXTBOX";
             this.KEYBOARD_UUID_TEXTBOX.ReadOnly = true;
             this.KEYBOARD_UUID_TEXTBOX.Size = new System.Drawing.Size(342, 20);
-            this.KEYBOARD_UUID_TEXTBOX.TabIndex = 1;
+            this.KEYBOARD_UUID_TEXTBOX.TabIndex = 2;
             // 
             // label2
             // 
@@ -134,7 +134,7 @@
             this.KEYBOARD_COMP_TEXTBOX.Location = new System.Drawing.Point(16, 29);
             this.KEYBOARD_COMP_TEXTBOX.Name = "KEYBOARD_COMP_TEXTBOX";
             this.KEYBOARD_COMP_TEXTBOX.Size = new System.Drawing.Size(342, 20);
-            this.KEYBOARD_COMP_TEXTBOX.TabIndex = 1;
+            this.KEYBOARD_COMP_TEXTBOX.TabIndex = 3;
             // 
             // label3
             // 
@@ -222,7 +222,6 @@
             // 
             // KeyboardSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.LOCK_2_PICTURE);
             this.Controls.Add(this.LOCK_BUTTON);
