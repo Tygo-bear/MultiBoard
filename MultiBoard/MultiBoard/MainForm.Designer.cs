@@ -83,7 +83,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.1.1";
+            this.label2.Text = "Beta V1.0.1.2";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // MINIMIZE_B
@@ -279,7 +279,6 @@
             this.TOGGLE_B.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.TOGGLE_B.BackColor = System.Drawing.Color.Transparent;
-            this.TOGGLE_B.BackgroundImage = global::MultiBoard.Properties.Resources.TOGGLE_ON;
             this.TOGGLE_B.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.TOGGLE_B.FlatAppearance.BorderSize = 0;
             this.TOGGLE_B.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
