@@ -16,3 +16,8 @@ Gives the user the possibility to connect a second keyboard to a Windows compute
 
 3) Install MultiBoard
    * https://github.com/Tygo-bear/MultiBoard/releases
+
+## Links
+- Issue tracker: https://github.com/Tygo-bear/MultiBoard/issues
+- Related projects:
+  - AutoHotkey.Interop: https://github.com/amazing-andrew/AutoHotkey.Interop
