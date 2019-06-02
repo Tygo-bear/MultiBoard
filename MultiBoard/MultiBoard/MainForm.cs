@@ -105,6 +105,9 @@ namespace MultiBoard
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
 
+            //enable toggle button
+            enableB();
+
         }
 
         /// <summary>
