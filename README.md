@@ -4,7 +4,7 @@ Gives the user the possibility to connect a second keyboard to a Windows compute
 (Arduino Uno and usb host shield required)
 
 ## Install / Getting started
-
+https://www.instructables.com/id/MultiBoard/
 1) Buy a Arduino uno and connect a usb Host Shield
    * https://bit.ly/2DEJsYc (Arduino uno)
    * https://bit.ly/2BxyQKs (USB host shield)
