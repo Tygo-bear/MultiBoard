@@ -4,7 +4,7 @@ Gives the user the possibility to connect a second keyboard to a Windows compute
 (Arduino Uno and usb host shield required)
 
 ## Install / Getting started
-
+https://www.instructables.com/id/MultiBoard/
 1) Buy a Arduino uno and connect a usb Host Shield
    * https://bit.ly/2DEJsYc (Arduino uno)
    * https://bit.ly/2BxyQKs (USB host shield)
@@ -23,5 +23,5 @@ Gives the user the possibility to connect a second keyboard to a Windows compute
   - AutoHotkey.Interop: https://github.com/amazing-andrew/AutoHotkey.Interop
 
 ## Images
-![MultiBoard keyboard](https://github.com/Tygo-bear/MultiBoard/blob/master/doc/readme images/MultiBoard_KeyboardView.png)
-![MultiBoard key](https://github.com/Tygo-bear/MultiBoard/blob/master/doc/readme images/MultiBoard_KeyView.png)
+![MultiBoard keyboard](https://github.com/Tygo-bear/MultiBoard/blob/master/doc/readme%20images/MultiBoard_KeyboardView.png)
+![MultiBoard key](https://github.com/Tygo-bear/MultiBoard/blob/master/doc/readme%20images/MultiBoard_KeyView.png)
