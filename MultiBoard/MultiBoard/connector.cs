@@ -101,6 +101,8 @@ namespace MultiBoard
             string s = _comPort.ReadExisting();
             //Console.WriteLine("Data: " + s);
 
+            s = s.Replace("\n", "");
+
             //Sort received data
             if (s.Split('<')[0] != s)
             {
