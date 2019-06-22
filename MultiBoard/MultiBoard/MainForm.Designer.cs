@@ -81,9 +81,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label2.Location = new System.Drawing.Point(38, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Beta V1.0.1.3";
+            this.label2.Text = "V1.0.1.4";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // MINIMIZE_B
