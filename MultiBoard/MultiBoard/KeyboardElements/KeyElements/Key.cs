@@ -309,12 +309,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             if (!String.IsNullOrEmpty(_ahkScript))
             {
-                string[] lines = _ahkScript.Split('\n');
-
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    _ahk.ExecRaw(lines[i]);
-                }
+                _ahk.ExecRaw(_ahkScript);
             }
         }
 

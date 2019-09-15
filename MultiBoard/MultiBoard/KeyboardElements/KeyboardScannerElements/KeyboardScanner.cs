@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
 using MultiBoard.Properties;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO.Ports;
+using System.Linq;
+using System.Management;
+using System.Runtime.CompilerServices;
 
 namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 {
@@ -35,7 +43,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
 
             //open connection foreach com port
-            foreach(string s in availablePorts)
+            foreach (string s in availablePorts)
             {
                 ScannerPort sp = new ScannerPort();
                 sp.setup(s, bRate);
@@ -60,11 +68,11 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
                     sp.close();
 
                 }).Start();
-                
+
             }
-            
+
             return;
         }
-
     }
+
 }
