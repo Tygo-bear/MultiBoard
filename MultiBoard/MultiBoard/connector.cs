@@ -87,6 +87,8 @@ namespace MultiBoard
             _retryMax++;
             if (_retryMax < 5)
             {
+                Properties.Settings.Default.ErrorList += ", connection fialed reconnecting:" + _retryMax +" --> " + _comPort;
+                Properties.Settings.Default.Save();
                 reConnect();
             }
             return false;
