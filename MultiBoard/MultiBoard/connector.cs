@@ -144,6 +144,7 @@ namespace MultiBoard
             //Console.WriteLine("Data: " + s);
 
             s = s.Replace("\n", "");
+            s = s.Replace("\r","");
 
             //Sort received data
             if (s.Split('<')[0] != s)
