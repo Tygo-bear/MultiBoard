@@ -37,9 +37,11 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 
             //Make list of all the com ports
             List<string> availablePorts = new List<string>();
+            Debug.WriteLine("--comports--");
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 availablePorts.Add(s);
+                Debug.WriteLine("   comports: " + s);
             }
 
             //open connection foreach com port
@@ -57,11 +59,14 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             System.Threading.Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
 
             //collect results
+            Debug.WriteLine("--scan results--");
             foreach (ScannerPort sp in _scanPorts)
             {
-
                 Uuid.Add(sp.Uuid);
                 Ports.Add(sp.ComPort);
+
+                Debug.WriteLine("   {0} result: {1}", sp.ComPort, sp.Uuid);
+
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;

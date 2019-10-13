@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 
@@ -49,7 +50,7 @@ namespace MultiBoard
 
         private void comPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            //Console.WriteLine("error: " + e);
+            Debug.WriteLine("error from {0} gave: {1}", _comPort.PortName, e.ToString());
         }
 
         /// <summary>
@@ -79,15 +80,18 @@ namespace MultiBoard
 
         private bool validedConnection()
         {
-            if(_connectioValid == true)
+            Debug.WriteLine("try check valid connection from {0} attempt {1}", _comPort.PortName, _retryMax);
+            if (_connectioValid == true)
             {
+                Debug.WriteLine("valid connection on " + _comPort.PortName);
                 return true;
+                
             }
 
             _retryMax++;
             if (_retryMax < 5)
             {
-                Properties.Settings.Default.ErrorList += ", connection fialed reconnecting:" + _retryMax +" --> " + _comPort;
+                Properties.Settings.Default.ErrorList += ", connection failed reconnecting:" + _retryMax +" --> " + _comPort;
                 Properties.Settings.Default.Save();
                 reConnect();
             }
