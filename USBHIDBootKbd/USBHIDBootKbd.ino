@@ -6,7 +6,7 @@
 
 //=================================================================
 //    CHANGE TO YOUR KEYBOATD ID!!!!
-const String dynamicID = "7fb77a6d-61d1-4973-a68e-41a26309b48e";
+const String dynamicID = "7fba9a6d-61d1-4973-a68e-41a26309b48e";
 //=================================================================
 
 class KbdRptParser : public KeyboardReportParser
@@ -56,6 +56,12 @@ void KbdRptParser::OnKeyUp(uint8_t mod, uint8_t key)
   PrintKey(mod, key);
 }
 
+void KbdRptParser::OnKeyPressed(uint8_t key)
+{
+
+};
+
+
 USB     Usb;
 //USBHub     Hub(&Usb);
 HIDBoot<USB_HID_PROTOCOL_KEYBOARD>    HidKeyboard(&Usb);
@@ -65,6 +71,8 @@ KbdRptParser Prs;
 void setup()
 {
   Serial.begin( 115200 );
+  Serial.setTimeout(10);
+  
 #if !defined(__MIPSEL__)
 #endif
 
