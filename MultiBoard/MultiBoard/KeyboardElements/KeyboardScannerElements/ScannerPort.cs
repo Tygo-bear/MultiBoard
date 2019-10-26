@@ -83,28 +83,39 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// </summary>
         private void checkReceivedData()
         {
-            string input = _serialPort.ReadExisting();
-            Console.WriteLine("received: " + input);
-
-            if (input.Replace("ID:", String.Empty).Split('&').Length == 3)
+            string input = "";
+            try
             {
-                if (input.Split('&')[1] == _staticId)
+                input = _serialPort.ReadExisting();
+
+
+                Console.WriteLine("received: " + input);
+
+                if (input.Replace("ID:", String.Empty).Split('&').Length == 3)
                 {
-                    //MultiBoard valid
-                    Uuid = input.Split('&')[2].Replace("\r\n", string.Empty);
-
-                    if (BoardFound != null)
+                    if (input.Split('&')[1] == _staticId)
                     {
-                        BoardFound(this, EventArgs.Empty);
+                        //MultiBoard valid
+                        Uuid = input.Split('&')[2].Replace("\r\n", string.Empty);
+
+                        if (BoardFound != null)
+                        {
+                            BoardFound(this, EventArgs.Empty);
+                        }
                     }
+
                 }
-                
+                else
+                {
+                    _serialPort.WriteLine("?");
+                }
+
             }
-            else
+            catch (Exception e)
             {
-                _serialPort.WriteLine("?");
+
             }
-            
+
         }
     }
 }
