@@ -83,7 +83,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "V1.0.1.5-testing 2";
+            this.label2.Text = "V1.0.1.5-testing 3";
             this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // MINIMIZE_B
