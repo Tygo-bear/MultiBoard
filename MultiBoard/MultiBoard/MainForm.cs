@@ -657,6 +657,9 @@ namespace MultiBoard
             {
                 //Close application
                 this.Close();
+                Application.Exit();
+                Environment.Exit(Environment.ExitCode);
+
             }
             else if(e.ClickedItem.Text == "Open")
             {
