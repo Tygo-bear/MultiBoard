@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace MultiBoard
 {
     public partial class MultiBoard : Form
     {
+
         //variables
         //==================================
         public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard";
@@ -27,6 +29,7 @@ namespace MultiBoard
         private List<Connector> _connectorList = new List<Connector>();
         private List<string> _showErrorList = new List<string>();
 
+  
         //classes and user controls
         //====================================
         KeyboardList _listkeyboardElement;
@@ -57,7 +60,26 @@ namespace MultiBoard
         {
             InitializeComponent();
 
+            //Debug
+            //=========================
+
+            //manage files
+            if (!Directory.Exists(MainDirectory + @"\logs")) Directory.CreateDirectory(MainDirectory + @"\logs");
+            if(File.Exists(MainDirectory + @"\logs\debugOld.log")) File.Delete(MainDirectory + @"\logs\debugOld.log");
+            if(File.Exists(MainDirectory + @"\logs\debug.log")) File.Move(MainDirectory + @"\logs\debug.log", MainDirectory + @"\logs\debugOld.log");
+            FileStream _debugLogStream = new FileStream(MainDirectory + @"\logs\debug.log", FileMode.Append);
+
+            //connect listener
+            TextWriterTraceListener myTextListener =
+                new TextWriterTraceListener(_debugLogStream);
+            Debug.Listeners.Add(myTextListener);
+            Debug.AutoFlush = true;
+
+            Debug.WriteLine("--DEBUG STARTED--");
+            Debug.AutoFlush = true;
+
             //Clear error list
+            //======================
             Properties.Settings.Default.ErrorList = "";
             Properties.Settings.Default.Save();
 
@@ -107,6 +129,8 @@ namespace MultiBoard
 
             //enable toggle button
             enableB();
+
+            Debug.WriteLine("Construction main done");
 
         }
 
@@ -359,6 +383,7 @@ namespace MultiBoard
         /// </summary>
         private void loadingBoards()
         {
+            Debug.WriteLine("loading boards");
             //Check for file exists
             if (!File.Exists(MainDirectory + @"\keyboards.inf"))
             {
@@ -407,6 +432,7 @@ namespace MultiBoard
                 else
                 {
                     string[] splits = boards[i].Split('|');
+                    Debug.WriteLine("loading keyboard "+ splits[0]);
 
                     //Create boards
                     KeyBoard obj = new KeyBoard();
@@ -491,7 +517,7 @@ namespace MultiBoard
                 string comport = getPortFromId(kb.KeyboardUuid);
                 if(comport == null)
                 {
-
+                    Debug.WriteLine("missing keyboard " + kb.KeyboardUuid);
                     addError(true, kb.KeyboardName + " --> not found!");
 
                 }
@@ -631,6 +657,9 @@ namespace MultiBoard
             {
                 //Close application
                 this.Close();
+                Application.Exit();
+                Environment.Exit(Environment.ExitCode);
+
             }
             else if(e.ClickedItem.Text == "Open")
             {
@@ -665,6 +694,7 @@ namespace MultiBoard
         /// <param name="e"></param>
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
+            Thread.Sleep(1);
             //scanning boards
             _scanner.loadList(115200);
             this.Invoke(new Action(() =>
@@ -680,6 +710,7 @@ namespace MultiBoard
         /// </summary>
         private void reloadKeyboards()
         {
+            Debug.WriteLine("reloading keyboards");
             //LoadOverlay
             _loadOverlay.Show();
             _loadOverlay.BringToFront();

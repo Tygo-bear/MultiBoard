@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO.Ports;
+using System.Threading;
 
 namespace MultiBoard
 {
@@ -25,6 +27,7 @@ namespace MultiBoard
 
         //Vars
         //=================
+        private int _retryMax = 0;
         private bool _connectioValid;
         private readonly string _staticId = Properties.Resources.KeyboardScanner__staticId;
         public string DynamicId; 
@@ -47,7 +50,7 @@ namespace MultiBoard
 
         private void comPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
-            //Console.WriteLine("error: " + e);
+            Debug.WriteLine("error from {0} gave: {1}", _comPort.PortName, e.ToString());
         }
 
         /// <summary>
@@ -57,6 +60,13 @@ namespace MultiBoard
         {
             _comPort.Open();
             _comPort.Write("?");
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
+                validedConnection();
+
+            }).Start();
         }
 
         /// <summary>
@@ -65,6 +75,36 @@ namespace MultiBoard
         public void closePort()
         {
             _comPort.Close();
+            _connectioValid = false;
+        }
+
+        private bool validedConnection()
+        {
+            Debug.WriteLine("try check valid connection from {0} attempt {1}", _comPort.PortName, _retryMax);
+            if (_connectioValid == true)
+            {
+                Debug.WriteLine("valid connection on " + _comPort.PortName);
+                return true;
+                
+            }
+
+            _retryMax++;
+            if (_retryMax < 5)
+            {
+                Properties.Settings.Default.ErrorList += ", connection failed reconnecting:" + _retryMax +" --> " + _comPort;
+                Properties.Settings.Default.Save();
+                reConnect();
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// reconnect comport and valide conection
+        /// </summary>
+        public void reConnect()
+        {
+            closePort();
+            openPort();
         }
 
         /// <summary>
@@ -99,9 +139,18 @@ namespace MultiBoard
             
             //Read received data
             string s = _comPort.ReadExisting();
+            if(s.Contains("ID:"))
+            {
+                Thread.Sleep(10);
+                if (_comPort.IsOpen)
+                {
+                    s += _comPort.ReadExisting();
+                }
+            }
             //Console.WriteLine("Data: " + s);
 
             s = s.Replace("\n", "");
+            s = s.Replace("\r","");
 
             //Sort received data
             if (s.Split('<')[0] != s)
