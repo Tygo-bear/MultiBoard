@@ -694,6 +694,7 @@ namespace MultiBoard
         /// <param name="e"></param>
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
+            Thread.Sleep(1);
             //scanning boards
             _scanner.loadList(115200);
             this.Invoke(new Action(() =>
