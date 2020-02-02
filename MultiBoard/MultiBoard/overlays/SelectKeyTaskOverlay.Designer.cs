@@ -304,7 +304,7 @@
             "PAD_END",
             "PAD_HOME",
             "PAD_LEFT",
-            "PAS_RIGHT",
+            "PAD_RIGHT",
             "PAD_UP",
             "PAD_DOWN"});
             this.NUMBERPAD_COMBOBOX.Location = new System.Drawing.Point(106, 11);
@@ -464,7 +464,6 @@
             // 
             // SelectKeyTaskOverlay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.panel6);

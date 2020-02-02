@@ -35,6 +35,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         //user controls
         //=======================
         private SelectKeyTaskOverlay _keyTaskOverlay;
+        private HotKeyCreator _hotKeyCreatorOverlay;
 
         //events
         //=========================
@@ -394,6 +395,22 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _keyTaskOverlay.BringToFront();
         }
 
+        private void createHotkeyCreatorOverlay()
+        {
+            _hotKeyCreatorOverlay = new HotKeyCreator();
+            _hotKeyCreatorOverlay.UserMadeSelection += HotKeyCreatorOverlayOnUserMadeSelection;
+            _hotKeyCreatorOverlay.Location = new Point((Width / 2) - (_hotKeyCreatorOverlay.Width / 2), (Height / 2) - (_hotKeyCreatorOverlay.Height / 2));
+            this.Controls.Add(_hotKeyCreatorOverlay);
+            _hotKeyCreatorOverlay.Show();
+            _hotKeyCreatorOverlay.BringToFront();
+        }
+
+        private void HotKeyCreatorOverlayOnUserMadeSelection(object sender, string e)
+        {
+            _executeLocation = e;
+            LOCATION_TEXTBOX.Text = e;
+        }
+
         /// <summary>
         /// Collect data input and dispose overlay
         /// </summary>
@@ -444,6 +461,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+        }
+
+        private void HOT_KEY_BUTTON_Click(object sender, EventArgs e)
+        {
+            createHotkeyCreatorOverlay();
         }
     }
 

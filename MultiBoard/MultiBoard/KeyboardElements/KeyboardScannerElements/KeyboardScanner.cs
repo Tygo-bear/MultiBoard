@@ -30,7 +30,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 
             //Make list of all the com ports
             List<string> availablePorts;
-            if (true)
+            if (Properties.Settings.Default.SafeModeScan)
             {
                 Debug.WriteLine("COM ports scan mode 1");
                 availablePorts = GetSerialPort();

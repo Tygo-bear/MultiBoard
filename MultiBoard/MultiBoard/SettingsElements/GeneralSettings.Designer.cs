@@ -47,6 +47,10 @@
             this.TIME_OUT_TRACKBAR = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.SAFE_MODE_SCAN_CHECKBOX = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,6 +58,7 @@
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -251,10 +256,49 @@
             this.SAVE_BUTTON.UseVisualStyleBackColor = false;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Controls.Add(this.SAFE_MODE_SCAN_CHECKBOX);
+            this.panel5.Location = new System.Drawing.Point(6, 356);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(249, 67);
+            this.panel5.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(161, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Only certain device get checked";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(102, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Experimental system";
+            // 
+            // SAFE_MODE_SCAN_CHECKBOX
+            // 
+            this.SAFE_MODE_SCAN_CHECKBOX.AutoSize = true;
+            this.SAFE_MODE_SCAN_CHECKBOX.Location = new System.Drawing.Point(7, 3);
+            this.SAFE_MODE_SCAN_CHECKBOX.Name = "SAFE_MODE_SCAN_CHECKBOX";
+            this.SAFE_MODE_SCAN_CHECKBOX.Size = new System.Drawing.Size(162, 17);
+            this.SAFE_MODE_SCAN_CHECKBOX.TabIndex = 1;
+            this.SAFE_MODE_SCAN_CHECKBOX.Text = "Keyboard scan SAFE MODE";
+            this.SAFE_MODE_SCAN_CHECKBOX.UseVisualStyleBackColor = true;
+            // 
             // GeneralSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.SAVE_BUTTON);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -273,6 +317,8 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -297,5 +343,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button SAVE_BUTTON;
         private System.Windows.Forms.PictureBox TOP_LEFT_LOGO_PICTUREBOX;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox SAFE_MODE_SCAN_CHECKBOX;
     }
 }

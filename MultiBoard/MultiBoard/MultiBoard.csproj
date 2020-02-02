@@ -142,6 +142,12 @@
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="NativeMethods.cs" />
+    <Compile Include="overlays\HotKeyCreator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\HotKeyCreator.Designer.cs">
+      <DependentUpon>HotKeyCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="overlays\LoadingMainOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +174,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SettingsElements\GeneralSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,6 +227,9 @@
     <EmbeddedResource Include="KeyboardElements\KeyElements\KeyListPanel.resx">
       <DependentUpon>KeyListPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="overlays\HotKeyCreator.resx">
+      <DependentUpon>HotKeyCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="overlays\LoadingMainOverlay.resx">
       <DependentUpon>LoadingMainOverlay.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,20 +258,15 @@
     <EmbeddedResource Include="SettingsElements\MainSettings.resx">
       <DependentUpon>MainSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\outline_toggle_off_black_48dp2.png" />
   </ItemGroup>
   <ItemGroup>

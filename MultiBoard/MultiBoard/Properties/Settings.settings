@@ -1,21 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassUuidspace="MultiBoard.Properties" GeneratedClassUuid="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MultiBoard.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Uuid="FileOpen_LastLocation" Type="System.String" Scope="User">
+    <Setting Name="FileOpen_LastLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">c:\</Value>
     </Setting>
-    <Setting Uuid="ErrorList" Type="System.String" Scope="User">
+    <Setting Name="ErrorList" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Uuid="ThreadPriority" Type="System.Int32" Scope="User">
+    <Setting Name="ThreadPriority" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
-    <Setting Uuid="StayHidden" Type="System.Boolean" Scope="User">
+    <Setting Name="StayHidden" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Uuid="TimeOutDelay" Type="System.Int32" Scope="User">
+    <Setting Name="TimeOutDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6000</Value>
+    </Setting>
+    <Setting Name="SafeModeScan" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

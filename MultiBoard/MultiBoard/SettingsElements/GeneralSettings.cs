@@ -17,6 +17,7 @@ namespace MultiBoard.SettingsElements
             PRIORITY_TRACKBAR.Value = Properties.Settings.Default.ThreadPriority;
             STAY_HIDDEN_CHECKBOX.Checked = Properties.Settings.Default.StayHidden;
             TIME_OUT_TRACKBAR.Value = Properties.Settings.Default.TimeOutDelay;
+            SAFE_MODE_SCAN_CHECKBOX.Checked = Properties.Settings.Default.SafeModeScan;
         }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace MultiBoard.SettingsElements
             Properties.Settings.Default.ThreadPriority = PRIORITY_TRACKBAR.Value;
             Properties.Settings.Default.StayHidden = STAY_HIDDEN_CHECKBOX.Checked;
             Properties.Settings.Default.TimeOutDelay = TIME_OUT_TRACKBAR.Value;
+            Properties.Settings.Default.SafeModeScan = SAFE_MODE_SCAN_CHECKBOX.Checked;
             Properties.Settings.Default.Save();
 
             //show save overlay
