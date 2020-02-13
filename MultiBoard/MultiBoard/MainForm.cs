@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -123,12 +124,24 @@ namespace MultiBoard
             _addKeyboardContr.Location = new Point(32, 31);
             this.Controls.Add(_addKeyboardContr);
             _addKeyboardContr.AddKeyboard += keyboardAdded;
-            
+
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
 
+            //AutoUpdate prompt
+            if (Properties.Settings.Default.CheckForUpdates == 2)
+            {
+                CheckForUpdatesOverlay cfu = new CheckForUpdatesOverlay();
+                cfu.Location = new Point(0, 0);
+                this.Controls.Add(cfu);
+                cfu.BringToFront();
+            }
+
             //enable toggle button
             enableB();
+
+            //Version updates
+            VERSION_LABEL.Text = Properties.Resources.Version;
 
             Debug.WriteLine("Construction main done");
 
@@ -695,6 +708,7 @@ namespace MultiBoard
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
             Thread.Sleep(1);
+            checkForUpdates();
             //scanning boards
             _scanner.loadList(115200);
             this.Invoke(new Action(() =>
@@ -844,6 +858,30 @@ namespace MultiBoard
             {
                 this.Visible = false;
                 _firstStartUp = false;
+            }
+        }
+
+        private void checkForUpdates()
+        {
+            if (Properties.Settings.Default.CheckForUpdates == 1)
+            {
+                GitApiUpdateCheck g = new GitApiUpdateCheck();
+                bool newV;
+                try
+                {
+                    newV = g.checkForUpdate(Properties.Resources.Version);
+                    if (newV)
+                    {
+                        Debug.WriteLine("new Version detected");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("update check failed");
+                }
+
+                //TODO promp user for update
+
             }
         }
     }

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiBoard));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.VERSION_LABEL = new System.Windows.Forms.Label();
             this.MINIMIZE_B = new System.Windows.Forms.Button();
             this.CLOSE_B = new System.Windows.Forms.Button();
             this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
@@ -63,7 +63,7 @@
             // TOP_PANEL
             // 
             this.TOP_PANEL.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.TOP_PANEL.Controls.Add(this.label2);
+            this.TOP_PANEL.Controls.Add(this.VERSION_LABEL);
             this.TOP_PANEL.Controls.Add(this.MINIMIZE_B);
             this.TOP_PANEL.Controls.Add(this.CLOSE_B);
             this.TOP_PANEL.Controls.Add(this.TOP_ICON_PANEL);
@@ -74,17 +74,17 @@
             this.TOP_PANEL.TabIndex = 0;
             this.TOP_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
-            // label2
+            // VERSION_LABEL
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(38, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "V1.0.1.6-test1";
-            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
+            this.VERSION_LABEL.AutoSize = true;
+            this.VERSION_LABEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VERSION_LABEL.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.VERSION_LABEL.Location = new System.Drawing.Point(38, 9);
+            this.VERSION_LABEL.Name = "VERSION_LABEL";
+            this.VERSION_LABEL.Size = new System.Drawing.Size(85, 13);
+            this.VERSION_LABEL.TabIndex = 4;
+            this.VERSION_LABEL.Text = "[VERSION NUM]";
+            this.VERSION_LABEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
             // 
             // MINIMIZE_B
             // 
@@ -384,7 +384,7 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Label ERROR_LABEL;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label VERSION_LABEL;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button ERROR_MANAGE_BUTTON;
     }

@@ -81,6 +81,15 @@ namespace MultiBoard.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://api.github.com/repos/Tygo-bear/MultiBoard/releases/latest.
+        /// </summary>
+        internal static string ChechForUpdatesApiUrl {
+            get {
+                return ResourceManager.GetString("ChechForUpdatesApiUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap dark_key {
@@ -155,6 +164,15 @@ namespace MultiBoard.Properties {
             get {
                 object obj = ResourceManager.GetObject("TOGGLE_ON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to v1.0.1.6-beta2.
+        /// </summary>
+        internal static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }
