@@ -182,6 +182,12 @@
     <Compile Include="overlays\UndoKeyboardDelete.Designer.cs">
       <DependentUpon>UndoKeyboardDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="overlays\UpdateOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\UpdateOverlay.Designer.cs">
+      <DependentUpon>UpdateOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\UndoKeyboardDelete.resx">
       <DependentUpon>UndoKeyboardDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="overlays\UpdateOverlay.resx">
+      <DependentUpon>UpdateOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -873,14 +873,21 @@ namespace MultiBoard
                     if (newV)
                     {
                         Debug.WriteLine("new Version detected");
+
+                        UpdateOverlay uo = new UpdateOverlay();
+                        uo.Location = new Point(0, 0);
+                        this.Invoke(new Action(() =>
+                        {
+                            this.Controls.Add(uo);
+                            uo.BringToFront();
+                            uo.downloadUrl = g.downloadUri;
+                        }));
                     }
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine("update check failed");
                 }
-
-                //TODO promp user for update
 
             }
         }
