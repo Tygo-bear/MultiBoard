@@ -47,6 +47,14 @@
             this.TIME_OUT_TRACKBAR = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.SAFE_MODE_SCAN_CHECKBOX = new System.Windows.Forms.CheckBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.UPDATE_CHECK_COMBOBOX = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,6 +62,8 @@
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -251,10 +261,92 @@
             this.SAVE_BUTTON.UseVisualStyleBackColor = false;
             this.SAVE_BUTTON.Click += new System.EventHandler(this.SAVE_BUTTON_Click);
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Controls.Add(this.SAFE_MODE_SCAN_CHECKBOX);
+            this.panel5.Location = new System.Drawing.Point(6, 356);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(249, 67);
+            this.panel5.TabIndex = 4;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(161, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Only certain device get checked";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(102, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Experimental system";
+            // 
+            // SAFE_MODE_SCAN_CHECKBOX
+            // 
+            this.SAFE_MODE_SCAN_CHECKBOX.AutoSize = true;
+            this.SAFE_MODE_SCAN_CHECKBOX.Location = new System.Drawing.Point(7, 3);
+            this.SAFE_MODE_SCAN_CHECKBOX.Name = "SAFE_MODE_SCAN_CHECKBOX";
+            this.SAFE_MODE_SCAN_CHECKBOX.Size = new System.Drawing.Size(162, 17);
+            this.SAFE_MODE_SCAN_CHECKBOX.TabIndex = 1;
+            this.SAFE_MODE_SCAN_CHECKBOX.Text = "Keyboard scan SAFE MODE";
+            this.SAFE_MODE_SCAN_CHECKBOX.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.Controls.Add(this.label10);
+            this.panel6.Controls.Add(this.UPDATE_CHECK_COMBOBOX);
+            this.panel6.Controls.Add(this.label11);
+            this.panel6.Location = new System.Drawing.Point(6, 429);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(249, 76);
+            this.panel6.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 5);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Check for Updates";
+            // 
+            // UPDATE_CHECK_COMBOBOX
+            // 
+            this.UPDATE_CHECK_COMBOBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UPDATE_CHECK_COMBOBOX.FormattingEnabled = true;
+            this.UPDATE_CHECK_COMBOBOX.Items.AddRange(new object[] {
+            "No",
+            "Yes",
+            "Ask"});
+            this.UPDATE_CHECK_COMBOBOX.Location = new System.Drawing.Point(4, 21);
+            this.UPDATE_CHECK_COMBOBOX.Name = "UPDATE_CHECK_COMBOBOX";
+            this.UPDATE_CHECK_COMBOBOX.Size = new System.Drawing.Size(151, 21);
+            this.UPDATE_CHECK_COMBOBOX.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 51);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(212, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "On startup check if new version is available";
+            // 
             // GeneralSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.SAVE_BUTTON);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -273,6 +365,10 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -297,5 +393,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button SAVE_BUTTON;
         private System.Windows.Forms.PictureBox TOP_LEFT_LOGO_PICTUREBOX;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox SAFE_MODE_SCAN_CHECKBOX;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox UPDATE_CHECK_COMBOBOX;
     }
 }

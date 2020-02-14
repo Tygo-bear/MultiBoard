@@ -51,6 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.HOT_KEY_BUTTON = new System.Windows.Forms.Button();
             this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.KEY_TASK_BUTTON = new System.Windows.Forms.Button();
             this.OPEN_FILE_BUTTON = new System.Windows.Forms.Button();
@@ -297,6 +298,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.HOT_KEY_BUTTON);
             this.panel2.Controls.Add(this.AHK_BUTTON);
             this.panel2.Controls.Add(this.KEY_TASK_BUTTON);
             this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
@@ -307,13 +309,26 @@
             this.panel2.Size = new System.Drawing.Size(632, 120);
             this.panel2.TabIndex = 14;
             // 
+            // HOT_KEY_BUTTON
+            // 
+            this.HOT_KEY_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("HOT_KEY_BUTTON.BackgroundImage")));
+            this.HOT_KEY_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.HOT_KEY_BUTTON.FlatAppearance.BorderSize = 0;
+            this.HOT_KEY_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HOT_KEY_BUTTON.Location = new System.Drawing.Point(88, 53);
+            this.HOT_KEY_BUTTON.Name = "HOT_KEY_BUTTON";
+            this.HOT_KEY_BUTTON.Size = new System.Drawing.Size(56, 58);
+            this.HOT_KEY_BUTTON.TabIndex = 8;
+            this.HOT_KEY_BUTTON.UseVisualStyleBackColor = true;
+            this.HOT_KEY_BUTTON.Click += new System.EventHandler(this.HOT_KEY_BUTTON_Click);
+            // 
             // AHK_BUTTON
             // 
             this.AHK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AHK_BUTTON.BackgroundImage")));
             this.AHK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.AHK_BUTTON.FlatAppearance.BorderSize = 0;
             this.AHK_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AHK_BUTTON.Location = new System.Drawing.Point(173, 53);
+            this.AHK_BUTTON.Location = new System.Drawing.Point(232, 53);
             this.AHK_BUTTON.Name = "AHK_BUTTON";
             this.AHK_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.AHK_BUTTON.TabIndex = 7;
@@ -339,7 +354,7 @@
             this.OPEN_FILE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.OPEN_FILE_BUTTON.FlatAppearance.BorderSize = 0;
             this.OPEN_FILE_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(91, 53);
+            this.OPEN_FILE_BUTTON.Location = new System.Drawing.Point(150, 53);
             this.OPEN_FILE_BUTTON.Name = "OPEN_FILE_BUTTON";
             this.OPEN_FILE_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.OPEN_FILE_BUTTON.TabIndex = 5;
@@ -436,5 +451,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button KEY_TASK_BUTTON;
         private System.Windows.Forms.Button AHK_BUTTON;
+        private System.Windows.Forms.Button HOT_KEY_BUTTON;
     }
 }

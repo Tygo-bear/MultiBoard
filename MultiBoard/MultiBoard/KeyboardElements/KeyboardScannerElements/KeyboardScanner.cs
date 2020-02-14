@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Ports;
+﻿using System.Collections.Generic;
 using System.Threading;
-using MultiBoard.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO.Ports;
-using System.Linq;
 using System.Management;
-using System.Runtime.CompilerServices;
 
 namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 {
@@ -30,19 +21,38 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// </param>
         public void loadList(int bRate)
         {
+            GetSerialPort();
+
             //Clear lists
             Ports.Clear();
             Uuid.Clear();
             _scanPorts.Clear();
 
             //Make list of all the com ports
-            List<string> availablePorts = new List<string>();
-            Debug.WriteLine("--comports--");
-            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            List<string> availablePorts;
+            if (Properties.Settings.Default.SafeModeScan)
             {
-                availablePorts.Add(s);
-                Debug.WriteLine("   comports: " + s);
+                Debug.WriteLine("COM ports scan mode 1");
+                availablePorts = GetSerialPort();
             }
+            else
+            {
+                Debug.WriteLine("COM ports scan mode 2");
+                availablePorts = new List<string>();
+                foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+                {
+                    availablePorts.Add(s);
+                }
+            }
+
+
+            //Debug, print all found comports
+            Debug.WriteLine("--comports--");
+            foreach (string port in availablePorts)
+            {
+                Debug.WriteLine("   comports: " + port);
+            }
+            
 
             //open connection foreach com port
             foreach (string s in availablePorts)
@@ -77,6 +87,40 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
 
             return;
+        }
+
+        /// <summary>
+        /// Alternative way off searching for available comports
+        /// </summary>
+        /// <returns>List of all found COM ports</returns>
+        private List<string> GetSerialPort()
+        {
+            List<string> availablePorts = new List<string>();
+
+            try
+            {
+                ManagementClass processClass = new ManagementClass("Win32_PnPEntity");
+                ManagementObjectCollection Ports = processClass.GetInstances();
+                foreach (ManagementObject property in Ports)
+                {
+                    var name = property.GetPropertyValue("Name");
+                    if (name != null && name.ToString().Contains("USB") && name.ToString().Contains("COM"))
+                    {
+                        string s = name.ToString();
+                        int start = s.IndexOf("(") + 1;
+                        int end = s.IndexOf(")", start);
+                        string result = s.Substring(start, end - start);
+                        availablePorts.Add(result);
+                    }
+                }
+            }
+            catch (ManagementException e)
+            {
+                
+            }
+
+            return availablePorts;
+
         }
     }
 

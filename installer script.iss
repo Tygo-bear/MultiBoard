@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MultiBoard"
-#define MyAppVersion "1.0.1.5"
+#define MyAppVersion "1.0.1.6"
 #define MyAppPublisher "Tygo, Inc."
 #define MyAppExeName "MultiBoard.exe"
 
@@ -33,6 +33,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\MultiBoard.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\AutoHotkey.Interop.dll"; DestDir: "{app}"
+Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\Newtonsoft.Json.dll"; DestDir: "{app}"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -51,6 +51,9 @@
     <ApplicationIcon>MultiBoard.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -78,6 +81,13 @@
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Connector.cs" />
+    <Compile Include="GithubApi.cs" />
+    <Compile Include="overlays\CheckForUpdatesOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\CheckForUpdatesOverlay.Designer.cs">
+      <DependentUpon>CheckForUpdatesOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="overlays\ErrorOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,6 +152,12 @@
       <DependentUpon>ManuallyAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="NativeMethods.cs" />
+    <Compile Include="overlays\HotKeyCreator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\HotKeyCreator.Designer.cs">
+      <DependentUpon>HotKeyCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="overlays\LoadingMainOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,8 +182,19 @@
     <Compile Include="overlays\UndoKeyboardDelete.Designer.cs">
       <DependentUpon>UndoKeyboardDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="overlays\UpdateOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="overlays\UpdateOverlay.Designer.cs">
+      <DependentUpon>UpdateOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SettingsElements\GeneralSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="add keyboard\AutoAddKeyboard.resx">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="overlays\CheckForUpdatesOverlay.resx">
+      <DependentUpon>CheckForUpdatesOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\ErrorOptions.resx">
       <DependentUpon>ErrorOptions.cs</DependentUpon>
@@ -216,6 +246,9 @@
     <EmbeddedResource Include="KeyboardElements\KeyElements\KeyListPanel.resx">
       <DependentUpon>KeyListPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="overlays\HotKeyCreator.resx">
+      <DependentUpon>HotKeyCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="overlays\LoadingMainOverlay.resx">
       <DependentUpon>LoadingMainOverlay.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\UndoKeyboardDelete.resx">
       <DependentUpon>UndoKeyboardDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="overlays\UpdateOverlay.resx">
+      <DependentUpon>UpdateOverlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -244,20 +280,16 @@
     <EmbeddedResource Include="SettingsElements\MainSettings.resx">
       <DependentUpon>MainSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\outline_toggle_off_black_48dp2.png" />
   </ItemGroup>
   <ItemGroup>

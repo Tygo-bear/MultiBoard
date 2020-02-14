@@ -217,6 +217,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
                     Properties.Settings.Default.Save();
                 }
             }
+            else if(_executeLocation.Replace("{", "") != _executeLocation)
+            {
+                _ahkScript = "SendInput, " + _executeLocation.Remove(0,1);
+                _ahkScript = _ahkScript.Remove(_ahkScript.Length - 1, 1);
+            }
         }
 
         /// <summary>
@@ -285,6 +290,10 @@ namespace MultiBoard.KeyboardElements.KeyElements
             else if (_executeLocation.Replace("?", "") != _executeLocation)
             {
                 //AutoHotKey script
+                runAhkScript();
+            }
+            else if (_executeLocation.Replace("{", "") != _executeLocation)
+            {
                 runAhkScript();
             }
             else

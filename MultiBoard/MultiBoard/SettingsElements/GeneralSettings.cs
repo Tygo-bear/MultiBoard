@@ -12,11 +12,17 @@ namespace MultiBoard.SettingsElements
         public GeneralSettings()
         {
             InitializeComponent();
+            UpdateSettings();
+        }
 
+        public void UpdateSettings()
+        {
             //Load in settings
             PRIORITY_TRACKBAR.Value = Properties.Settings.Default.ThreadPriority;
             STAY_HIDDEN_CHECKBOX.Checked = Properties.Settings.Default.StayHidden;
             TIME_OUT_TRACKBAR.Value = Properties.Settings.Default.TimeOutDelay;
+            SAFE_MODE_SCAN_CHECKBOX.Checked = Properties.Settings.Default.SafeModeScan;
+            UPDATE_CHECK_COMBOBOX.SelectedIndex = Properties.Settings.Default.CheckForUpdates;
         }
 
         /// <summary>
@@ -62,6 +68,8 @@ namespace MultiBoard.SettingsElements
             Properties.Settings.Default.ThreadPriority = PRIORITY_TRACKBAR.Value;
             Properties.Settings.Default.StayHidden = STAY_HIDDEN_CHECKBOX.Checked;
             Properties.Settings.Default.TimeOutDelay = TIME_OUT_TRACKBAR.Value;
+            Properties.Settings.Default.SafeModeScan = SAFE_MODE_SCAN_CHECKBOX.Checked;
+            Properties.Settings.Default.CheckForUpdates = UPDATE_CHECK_COMBOBOX.SelectedIndex;
             Properties.Settings.Default.Save();
 
             //show save overlay
@@ -83,5 +91,6 @@ namespace MultiBoard.SettingsElements
         {
             TIME_DELAY_LABEL.Text = TIME_OUT_TRACKBAR.Value + "ms";
         }
+
     }
 }
