@@ -51,6 +51,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.SAFE_MODE_SCAN_CHECKBOX = new System.Windows.Forms.CheckBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.UPDATE_CHECK_COMBOBOX = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,6 +63,7 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).BeginInit();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -295,9 +300,52 @@
             this.SAFE_MODE_SCAN_CHECKBOX.Text = "Keyboard scan SAFE MODE";
             this.SAFE_MODE_SCAN_CHECKBOX.UseVisualStyleBackColor = true;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel6.Controls.Add(this.label10);
+            this.panel6.Controls.Add(this.UPDATE_CHECK_COMBOBOX);
+            this.panel6.Controls.Add(this.label11);
+            this.panel6.Location = new System.Drawing.Point(6, 429);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(249, 76);
+            this.panel6.TabIndex = 5;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 5);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Check for Updates";
+            // 
+            // UPDATE_CHECK_COMBOBOX
+            // 
+            this.UPDATE_CHECK_COMBOBOX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UPDATE_CHECK_COMBOBOX.FormattingEnabled = true;
+            this.UPDATE_CHECK_COMBOBOX.Items.AddRange(new object[] {
+            "No",
+            "Yes",
+            "Ask"});
+            this.UPDATE_CHECK_COMBOBOX.Location = new System.Drawing.Point(4, 21);
+            this.UPDATE_CHECK_COMBOBOX.Name = "UPDATE_CHECK_COMBOBOX";
+            this.UPDATE_CHECK_COMBOBOX.Size = new System.Drawing.Size(151, 21);
+            this.UPDATE_CHECK_COMBOBOX.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 51);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(212, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "On startup check if new version is available";
+            // 
             // GeneralSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.SAVE_BUTTON);
             this.Controls.Add(this.panel4);
@@ -319,6 +367,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,5 +397,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox SAFE_MODE_SCAN_CHECKBOX;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox UPDATE_CHECK_COMBOBOX;
     }
 }

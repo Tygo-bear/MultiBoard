@@ -19,6 +19,11 @@ namespace MultiBoard.SettingsElements
             _gs.Show();
         }
 
+        public void UpdateSettings()
+        {
+            _gs.UpdateSettings();
+        }
+
         /// <summary>
         /// User clicked "general" button
         /// </summary>

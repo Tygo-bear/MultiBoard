@@ -844,6 +844,7 @@ namespace MultiBoard
         private void SETTINGS_BUTTON_Click(object sender, EventArgs e)
         {
             _mainSettings.Show();
+            _mainSettings.UpdateSettings();
             _mainSettings.BringToFront();
         }
 
