@@ -35,7 +35,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DISABLE_UPDATES_BUTTON = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.OLD_VERSION_LABEL = new System.Windows.Forms.Label();
+            this.NEW_VERSION_LABEL = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // INSTALL_BUTTON
@@ -46,7 +50,7 @@
             this.INSTALL_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.INSTALL_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.INSTALL_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.INSTALL_BUTTON.Location = new System.Drawing.Point(299, 402);
+            this.INSTALL_BUTTON.Location = new System.Drawing.Point(331, 402);
             this.INSTALL_BUTTON.Margin = new System.Windows.Forms.Padding(10);
             this.INSTALL_BUTTON.Name = "INSTALL_BUTTON";
             this.INSTALL_BUTTON.Size = new System.Drawing.Size(109, 47);
@@ -63,7 +67,7 @@
             this.LATER_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LATER_BUTTON.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LATER_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.LATER_BUTTON.Location = new System.Drawing.Point(428, 402);
+            this.LATER_BUTTON.Location = new System.Drawing.Point(460, 403);
             this.LATER_BUTTON.Margin = new System.Windows.Forms.Padding(10);
             this.LATER_BUTTON.Name = "LATER_BUTTON";
             this.LATER_BUTTON.Size = new System.Drawing.Size(109, 47);
@@ -76,7 +80,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(335, 131);
+            this.label1.Location = new System.Drawing.Point(363, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 25);
             this.label1.TabIndex = 10;
@@ -85,7 +89,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(335, 169);
+            this.pictureBox1.Location = new System.Drawing.Point(363, 177);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(178, 177);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -100,7 +104,7 @@
             this.DISABLE_UPDATES_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DISABLE_UPDATES_BUTTON.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DISABLE_UPDATES_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.DISABLE_UPDATES_BUTTON.Location = new System.Drawing.Point(653, 403);
+            this.DISABLE_UPDATES_BUTTON.Location = new System.Drawing.Point(681, 403);
             this.DISABLE_UPDATES_BUTTON.Margin = new System.Windows.Forms.Padding(10);
             this.DISABLE_UPDATES_BUTTON.Name = "DISABLE_UPDATES_BUTTON";
             this.DISABLE_UPDATES_BUTTON.Size = new System.Drawing.Size(130, 47);
@@ -111,16 +115,49 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(335, 352);
+            this.progressBar1.Location = new System.Drawing.Point(363, 360);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(178, 23);
             this.progressBar1.TabIndex = 15;
             this.progressBar1.Visible = false;
             // 
+            // OLD_VERSION_LABEL
+            // 
+            this.OLD_VERSION_LABEL.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OLD_VERSION_LABEL.Location = new System.Drawing.Point(363, 106);
+            this.OLD_VERSION_LABEL.Name = "OLD_VERSION_LABEL";
+            this.OLD_VERSION_LABEL.Size = new System.Drawing.Size(178, 16);
+            this.OLD_VERSION_LABEL.TabIndex = 16;
+            this.OLD_VERSION_LABEL.Text = "[OLD VERSION]";
+            this.OLD_VERSION_LABEL.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // NEW_VERSION_LABEL
+            // 
+            this.NEW_VERSION_LABEL.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NEW_VERSION_LABEL.Location = new System.Drawing.Point(363, 158);
+            this.NEW_VERSION_LABEL.Name = "NEW_VERSION_LABEL";
+            this.NEW_VERSION_LABEL.Size = new System.Drawing.Size(178, 16);
+            this.NEW_VERSION_LABEL.TabIndex = 17;
+            this.NEW_VERSION_LABEL.Text = "[NEW VERSION]";
+            this.NEW_VERSION_LABEL.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(435, 125);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabStop = false;
+            // 
             // UpdateOverlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.NEW_VERSION_LABEL);
+            this.Controls.Add(this.OLD_VERSION_LABEL);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.DISABLE_UPDATES_BUTTON);
             this.Controls.Add(this.INSTALL_BUTTON);
@@ -130,6 +167,7 @@
             this.Name = "UpdateOverlay";
             this.Size = new System.Drawing.Size(889, 573);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +181,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button DISABLE_UPDATES_BUTTON;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label OLD_VERSION_LABEL;
+        private System.Windows.Forms.Label NEW_VERSION_LABEL;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -708,7 +708,7 @@ namespace MultiBoard
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
             Thread.Sleep(1);
-            checkForUpdates();
+            CheckForUpdates();
             //scanning boards
             _scanner.loadList(115200);
             this.Invoke(new Action(() =>
@@ -862,7 +862,10 @@ namespace MultiBoard
             }
         }
 
-        private void checkForUpdates()
+        /// <summary>
+        /// Check if there is a software update
+        /// </summary>
+        private void CheckForUpdates()
         {
             if (Properties.Settings.Default.CheckForUpdates == 1)
             {
@@ -875,7 +878,7 @@ namespace MultiBoard
                     {
                         Debug.WriteLine("new Version detected");
 
-                        UpdateOverlay uo = new UpdateOverlay();
+                        UpdateOverlay uo = new UpdateOverlay(Properties.Resources.Version, g.latestVersion);
                         uo.Location = new Point(0, 0);
                         this.Invoke(new Action(() =>
                         {

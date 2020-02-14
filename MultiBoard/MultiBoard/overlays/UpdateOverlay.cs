@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MultiBoard.overlays
 {
@@ -17,9 +18,11 @@ namespace MultiBoard.overlays
         public string downloadUrl { get; set; }
         private string _main = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard";
         private bool installStarted = false;
-        public UpdateOverlay()
+        public UpdateOverlay(string oldV, string newV)
         {
             InitializeComponent();
+            OLD_VERSION_LABEL.Text = oldV;
+            NEW_VERSION_LABEL.Text = newV;
         }
 
         private void DISABLE_UPDATES_BUTTON_Click(object sender, EventArgs e)
