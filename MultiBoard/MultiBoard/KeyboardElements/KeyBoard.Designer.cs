@@ -41,6 +41,7 @@
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -177,10 +178,18 @@
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // MAIN_PANEL
+            // 
+            this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MAIN_PANEL.Location = new System.Drawing.Point(198, 0);
+            this.MAIN_PANEL.Name = "MAIN_PANEL";
+            this.MAIN_PANEL.Size = new System.Drawing.Size(659, 508);
+            this.MAIN_PANEL.TabIndex = 4;
+            // 
             // KeyBoard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.LEFT_PANEL);
             this.Name = "KeyBoard";
             this.Size = new System.Drawing.Size(857, 508);
@@ -208,5 +217,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button SEARCH_BUTTON;
         private System.Windows.Forms.TextBox SEARCH_TEXTBOC;
+        private System.Windows.Forms.Panel MAIN_PANEL;
     }
 }

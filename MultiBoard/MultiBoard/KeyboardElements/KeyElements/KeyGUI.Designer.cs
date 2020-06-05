@@ -116,6 +116,7 @@
             // 
             // SAVE_BUTTON
             // 
+            this.SAVE_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SAVE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SAVE_BUTTON.BackgroundImage")));
             this.SAVE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.SAVE_BUTTON.FlatAppearance.BorderSize = 0;
@@ -129,6 +130,7 @@
             // 
             // DELETE_BUTTON
             // 
+            this.DELETE_BUTTON.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DELETE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DELETE_BUTTON.BackgroundImage")));
             this.DELETE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.DELETE_BUTTON.FlatAppearance.BorderSize = 0;

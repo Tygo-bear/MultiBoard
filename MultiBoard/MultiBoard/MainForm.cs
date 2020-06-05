@@ -93,13 +93,13 @@ namespace MultiBoard
             _listkeyboardElement = new KeyboardList(MainDirectory);
             _listkeyboardElement.SelectedItem += userSelectedKeyboard;
             _listkeyboardElement.UpdateKeyboards += saveKeyboardsEvent;
-            _listkeyboardElement.Location = new Point(32, 31);
-            this.Controls.Add(_listkeyboardElement);
+            MAIN_PANEL.Controls.Add(_listkeyboardElement);
+            _listkeyboardElement.Dock = DockStyle.Fill;
 
             //settings control
-            _mainSettings.Location = new Point(32,31);
             _mainSettings.Hide();
-            Controls.Add(_mainSettings);
+            MAIN_PANEL.Controls.Add(_mainSettings);
+            _mainSettings.Dock = DockStyle.Fill;
 
             //error control
             _errorContr.IgnoreClicked += errorIgnore;
@@ -115,14 +115,14 @@ namespace MultiBoard
             this.Controls.Add(_errorContr);
 
             //errorManagePanel
-            _errorManagePanel.Location = new Point(32, 31);
             _errorManagePanel.Hide();
-            this.Controls.Add(_errorManagePanel);
+            MAIN_PANEL.Controls.Add(_errorManagePanel);
+            _errorManagePanel.Dock = DockStyle.Fill;
             
             //addkeyboard control
             _addKeyboardContr = new addKeyboard();
-            _addKeyboardContr.Location = new Point(32, 31);
-            this.Controls.Add(_addKeyboardContr);
+            MAIN_PANEL.Controls.Add(_addKeyboardContr);
+            _addKeyboardContr.Dock = DockStyle.Fill;
             _addKeyboardContr.AddKeyboard += keyboardAdded;
 
             //loading keyboards
@@ -264,9 +264,9 @@ namespace MultiBoard
 
             //Create new keyboard class/userControl
             KeyBoard obj = new KeyBoard();
-            obj.Location = new Point(32, 31);
             obj.Visible = true;
-            this.Controls.Add(obj);
+            MAIN_PANEL.Controls.Add(obj);
+            obj.Dock = DockStyle.Fill;
             obj.BringToFront();
 
             //Write keyboard settings to class
@@ -449,9 +449,9 @@ namespace MultiBoard
 
                     //Create boards
                     KeyBoard obj = new KeyBoard();
-                    obj.Location = new Point(32, 31);
                     obj.Visible = false;
-                    this.Controls.Add(obj);
+                    MAIN_PANEL.Controls.Add(obj);
+                    obj.Dock = DockStyle.Fill;
 
                     obj.KeyboardName = splits[1];
                     obj.KeyboardUuid = splits[0];
@@ -751,8 +751,8 @@ namespace MultiBoard
             _listkeyboardElement.Dispose();
             _listkeyboardElement = new KeyboardList(MainDirectory);
             _listkeyboardElement.SelectedItem += userSelectedKeyboard;
-            _listkeyboardElement.Location = new Point(32, 31);
-            this.Controls.Add(_listkeyboardElement);
+            MAIN_PANEL.Controls.Add(_listkeyboardElement);
+            _listkeyboardElement.Dock = DockStyle.Fill;
 
             //loading
             backgroundWorker1.CancelAsync();

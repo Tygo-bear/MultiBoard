@@ -37,8 +37,8 @@ namespace MultiBoard.KeyboardElements
             _keyGui.UpdatedData += onUpdatedKey;
             _keyGui.DeleteKey += onDeleteKey;
 
-            _keyGui.Location = new Point(194, 0);
-            this.Controls.Add(_keyGui);
+            MAIN_PANEL.Controls.Add(_keyGui);
+            _keyGui.Dock = DockStyle.Fill;
             _keyGui.Hide();
         }
 
