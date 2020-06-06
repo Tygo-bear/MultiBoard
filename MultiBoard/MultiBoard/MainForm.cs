@@ -26,7 +26,7 @@ namespace MultiBoard
         public string MainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard";
         public bool ToggleB = true;
         private bool _firstStartUp = true;
-        private List<KeyBoard> _keyboardList = new List<KeyBoard>();
+        private List<KeyBoardGUI> _keyboardGUIList = new List<KeyBoardGUI>();
         private List<Connector> _connectorList = new List<Connector>();
         private List<string> _showErrorList = new List<string>();
 
@@ -159,7 +159,7 @@ namespace MultiBoard
             if(e != EventArgs.Empty)
             {
                 //remove keyboard in args
-                _keyboardList.Remove(e.Keyboard);
+                _keyboardGUIList.Remove(e.Keyboard);
                 e.Keyboard.Dispose();
             }
             saveBoards();
@@ -263,7 +263,7 @@ namespace MultiBoard
             File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);
 
             //Create new keyboard class/userControl
-            KeyBoard obj = new KeyBoard();
+            KeyBoardGUI obj = new KeyBoardGUI();
             obj.Visible = true;
             MAIN_PANEL.Controls.Add(obj);
             obj.Dock = DockStyle.Fill;
@@ -281,7 +281,7 @@ namespace MultiBoard
             obj.loadKeys(MainDirectory);
 
             //Add new keyboard to keyboard list
-            _keyboardList.Add(obj);
+            _keyboardGUIList.Add(obj);
 
             //unloading all keyboards
             foreach (Connector c in _connectorList)
@@ -304,7 +304,7 @@ namespace MultiBoard
             List<string> sstring = new List<string>();
 
             //Add each keyboard file write list (sstring)
-            foreach (KeyBoard kb in _keyboardList)
+            foreach (KeyBoardGUI kb in _keyboardGUIList)
             {
                 string name = kb.KeyboardName;
                 string uuid = kb.KeyboardUuid;
@@ -448,7 +448,7 @@ namespace MultiBoard
                     Debug.WriteLine("loading keyboard "+ splits[0]);
 
                     //Create boards
-                    KeyBoard obj = new KeyBoard();
+                    KeyBoardGUI obj = new KeyBoardGUI();
                     obj.Visible = false;
                     MAIN_PANEL.Controls.Add(obj);
                     obj.Dock = DockStyle.Fill;
@@ -461,7 +461,7 @@ namespace MultiBoard
 
                     obj.loadKeys(MainDirectory);
 
-                    _keyboardList.Add(obj);
+                    _keyboardGUIList.Add(obj);
 
                     count++;
                 }
@@ -488,10 +488,10 @@ namespace MultiBoard
             Connector c = sender as Connector;
 
             //pass event to each keyboard
-            foreach (KeyBoard aKeyBoard in _keyboardList)
+            foreach (KeyBoardGUI aKeyBoard in _keyboardGUIList)
             {
                 //open a new thread foreach keyboard
-                Thread t = new Thread(() => aKeyBoard.keyDown(e.Key, c.DynamicId, ToggleB));
+                Thread t = new Thread(() => aKeyBoard.Keyboard.keyDown(e.Key, c.DynamicId, ToggleB));
                 t.Start();
             }
         }
@@ -508,10 +508,10 @@ namespace MultiBoard
             Connector c = sender as Connector;
 
             //pass event to each keyboard
-            foreach (KeyBoard aKeyBoard in _keyboardList)
+            foreach (KeyBoardGUI aKeyBoard in _keyboardGUIList)
             {
                 //open a new thread foreach keyboard
-                Thread t = new Thread(() => aKeyBoard.keyUp(e.Key, c.DynamicId, ToggleB));
+                Thread t = new Thread(() => aKeyBoard.Keyboard.keyUp(e.Key, c.DynamicId, ToggleB));
                 t.Start();
             }
         }
@@ -525,7 +525,7 @@ namespace MultiBoard
         {
             _connectorList.Clear();
 
-            foreach (KeyBoard kb in _keyboardList)
+            foreach (KeyBoardGUI kb in _keyboardGUIList)
             {
                 string comport = getPortFromId(kb.KeyboardUuid);
                 if(comport == null)
@@ -556,7 +556,7 @@ namespace MultiBoard
         /// <param name="e"></param>
         private void KEYBOARD_LIST_CLICKED(object sender, EventArgs e)
         {
-            foreach(KeyBoard aKeyboard in _keyboardList)
+            foreach(KeyBoardGUI aKeyboard in _keyboardGUIList)
             {
                 aKeyboard.Visible = false;
             }
@@ -575,7 +575,7 @@ namespace MultiBoard
         private void userSelectedKeyboard(object sender, ItemName e)
         {
 
-            foreach (KeyBoard aKeyboard in _keyboardList)
+            foreach (KeyBoardGUI aKeyboard in _keyboardGUIList)
             {
                 //Find matching keyboard
                 if(aKeyboard.KeyboardUuid == e.Uuid)
@@ -741,11 +741,11 @@ namespace MultiBoard
             }
             _connectorList.Clear();
 
-            foreach (KeyBoard k in _keyboardList)
+            foreach (KeyBoardGUI k in _keyboardGUIList)
             {
                 k.Dispose();
             }
-            _keyboardList.Clear();
+            _keyboardGUIList.Clear();
 
 
             _listkeyboardElement.Dispose();

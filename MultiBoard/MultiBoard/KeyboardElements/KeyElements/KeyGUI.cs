@@ -184,7 +184,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="allEnebled">
         /// Is key allowed to run
         /// </param>
-        public void keyDown(string key, bool allEnebled)
+        public void keyDown(string key)
         {
             if(_recordingKey == true)
             {

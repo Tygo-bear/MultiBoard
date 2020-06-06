@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Connector.cs" />
     <Compile Include="GithubApi.cs" />
+    <Compile Include="KeyboardElements\Keyboard.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,11 +115,11 @@
     <Compile Include="KeyboardElements\KeyElements\KeyGUI.Designer.cs">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyBoard.cs">
+    <Compile Include="KeyboardElements\KeyBoardGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyboardElements\KeyBoard.Designer.cs">
-      <DependentUpon>KeyBoard.cs</DependentUpon>
+    <Compile Include="KeyboardElements\KeyBoardGUI.Designer.cs">
+      <DependentUpon>KeyBoardGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardElements\KeyboardList.cs">
       <SubType>UserControl</SubType>
@@ -228,8 +229,8 @@
     <EmbeddedResource Include="KeyboardElements\KeyElements\KeyGUI.resx">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardElements\KeyBoard.resx">
-      <DependentUpon>KeyBoard.cs</DependentUpon>
+    <EmbeddedResource Include="KeyboardElements\KeyBoardGUI.resx">
+      <DependentUpon>KeyBoardGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardElements\KeyboardList.resx">
       <DependentUpon>KeyboardList.cs</DependentUpon>

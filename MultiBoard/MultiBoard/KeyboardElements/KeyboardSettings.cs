@@ -13,7 +13,7 @@ namespace MultiBoard.KeyboardElements
 
         private bool _lockedSettings = true;
 
-        public KeyBoard ConnectedKeyboard;
+        public KeyBoardGUI ConnectedKeyboard;
 
         //Events
         //==========================
@@ -32,17 +32,17 @@ namespace MultiBoard.KeyboardElements
         /// <param name="kCom">
         /// The com port of the keyboard
         /// </param>
-        /// <param name="board">
+        /// <param name="boardGui">
         /// The keyboard class in represents
         /// </param>
-        public KeyboardSettings(string kName, string kId, string kCom, KeyBoard board)
+        public KeyboardSettings(string kName, string kId, string kCom, KeyBoardGUI boardGui)
         {
             InitializeComponent();
 
             KbName = kName;
             KbUuid = kId;
             KbPort = kCom;
-            ConnectedKeyboard = board;
+            ConnectedKeyboard = boardGui;
 
             KEYBOARD_NAME_TEXTBOX.Text = kName;
             KEYBOARD_UUID_TEXTBOX.Text = kId;

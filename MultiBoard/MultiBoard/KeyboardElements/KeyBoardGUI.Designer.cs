@@ -1,6 +1,6 @@
 ﻿namespace MultiBoard.KeyboardElements
 {
-    partial class KeyBoard
+    partial class KeyBoardGUI
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoardGUI));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.SEARCH_BUTTON = new System.Windows.Forms.Button();
             this.NAME_LABEL = new System.Windows.Forms.Label();
@@ -186,12 +186,12 @@
             this.MAIN_PANEL.Size = new System.Drawing.Size(659, 508);
             this.MAIN_PANEL.TabIndex = 4;
             // 
-            // KeyBoard
+            // KeyBoardGUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.LEFT_PANEL);
-            this.Name = "KeyBoard";
+            this.Name = "KeyBoardGUI";
             this.Size = new System.Drawing.Size(857, 508);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();

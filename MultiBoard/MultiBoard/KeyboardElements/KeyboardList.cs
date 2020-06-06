@@ -46,13 +46,13 @@ namespace MultiBoard.KeyboardElements
         /// <param name="comportItem">
         /// The com port of the keyboard
         /// </param>
-        /// <param name="board">
+        /// <param name="boardGui">
         /// The keyboard class it represents
         /// </param>
-        public void addItem(string itemName, string uuidItem, string comportItem, KeyBoard board)
+        public void addItem(string itemName, string uuidItem, string comportItem, KeyBoardGUI boardGui)
         {
             //Create panel and add to control
-            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, board);
+            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, boardGui);
             obj.Location = _nextPoint;
             obj.Visible = true;
             obj.BoardSettingsClicked += bsClicked;
@@ -99,7 +99,7 @@ namespace MultiBoard.KeyboardElements
         {
             //Show settings control of keyboard
             KeyboardListPanel k = sender as KeyboardListPanel;
-            KeyboardSettings obj = new KeyboardSettings(k.KeyboardName, k.KeyboardUuid, k.KeyboardPort, k.ConnectedBoard);
+            KeyboardSettings obj = new KeyboardSettings(k.KeyboardName, k.KeyboardUuid, k.KeyboardPort, k.ConnectedBoardGui);
 
             obj.Save += keyboardSave;
             obj.Delete += keyboardDelete;
@@ -119,7 +119,7 @@ namespace MultiBoard.KeyboardElements
         private void keyboardSave(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.ConnectedKeyboard;
+            KeyBoardGUI b = k.ConnectedKeyboard;
 
             //Check file exist
             if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
@@ -151,7 +151,7 @@ namespace MultiBoard.KeyboardElements
         private void keyboardDelete(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.ConnectedKeyboard;
+            KeyBoardGUI b = k.ConnectedKeyboard;
 
             //MOVE FILES TO .DEL FOLDER
             //=============================
@@ -191,7 +191,7 @@ namespace MultiBoard.KeyboardElements
             //dispose representing keyboardPanel
             foreach (KeyboardListPanel p in _KeyboardPanelList)
             {
-                if (p.ConnectedBoard == b)
+                if (p.ConnectedBoardGui == b)
                 {
                     p.Dispose();
                 }
@@ -260,6 +260,6 @@ namespace MultiBoard.KeyboardElements
 
     public class KeyboardToArgs : EventArgs
     {
-        public KeyBoard Keyboard { get; set; }
+        public KeyBoardGUI Keyboard { get; set; }
     }
 }
