@@ -35,9 +35,13 @@
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.GENERAL_BUTTON = new System.Windows.Forms.Button();
+            this.INFO_BUTTON = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.LEFT_PANEL.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -74,8 +78,8 @@
             // 
             // LEFT_PANEL
             // 
+            this.LEFT_PANEL.Controls.Add(this.panel2);
             this.LEFT_PANEL.Controls.Add(this.panel1);
-            this.LEFT_PANEL.Controls.Add(this.GENERAL_BUTTON);
             this.LEFT_PANEL.Controls.Add(this.TOP_PANEL);
             this.LEFT_PANEL.Dock = System.Windows.Forms.DockStyle.Left;
             this.LEFT_PANEL.Location = new System.Drawing.Point(0, 0);
@@ -95,20 +99,56 @@
             // GENERAL_BUTTON
             // 
             this.GENERAL_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.GENERAL_BUTTON.Dock = System.Windows.Forms.DockStyle.Top;
             this.GENERAL_BUTTON.FlatAppearance.BorderSize = 0;
             this.GENERAL_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GENERAL_BUTTON.ForeColor = System.Drawing.Color.White;
-            this.GENERAL_BUTTON.Location = new System.Drawing.Point(-1, 32);
+            this.GENERAL_BUTTON.Location = new System.Drawing.Point(0, 0);
             this.GENERAL_BUTTON.Name = "GENERAL_BUTTON";
-            this.GENERAL_BUTTON.Size = new System.Drawing.Size(169, 38);
+            this.GENERAL_BUTTON.Size = new System.Drawing.Size(167, 38);
             this.GENERAL_BUTTON.TabIndex = 0;
             this.GENERAL_BUTTON.Text = "General";
             this.GENERAL_BUTTON.UseVisualStyleBackColor = false;
             this.GENERAL_BUTTON.Click += new System.EventHandler(this.GENERAL_BUTTON_Click);
             // 
+            // INFO_BUTTON
+            // 
+            this.INFO_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.INFO_BUTTON.Dock = System.Windows.Forms.DockStyle.Top;
+            this.INFO_BUTTON.FlatAppearance.BorderSize = 0;
+            this.INFO_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.INFO_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.INFO_BUTTON.Location = new System.Drawing.Point(0, 38);
+            this.INFO_BUTTON.Margin = new System.Windows.Forms.Padding(0);
+            this.INFO_BUTTON.Name = "INFO_BUTTON";
+            this.INFO_BUTTON.Size = new System.Drawing.Size(167, 38);
+            this.INFO_BUTTON.TabIndex = 2;
+            this.INFO_BUTTON.Text = "Info";
+            this.INFO_BUTTON.UseVisualStyleBackColor = false;
+            this.INFO_BUTTON.Click += new System.EventHandler(this.INFO_BUTTON_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.INFO_BUTTON);
+            this.panel2.Controls.Add(this.GENERAL_BUTTON);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 32);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(167, 476);
+            this.panel2.TabIndex = 2;
+            // 
+            // MAIN_PANEL
+            // 
+            this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MAIN_PANEL.Location = new System.Drawing.Point(168, 0);
+            this.MAIN_PANEL.Name = "MAIN_PANEL";
+            this.MAIN_PANEL.Size = new System.Drawing.Size(689, 508);
+            this.MAIN_PANEL.TabIndex = 2;
+            // 
             // MainSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.LEFT_PANEL);
             this.Name = "MainSettings";
             this.Size = new System.Drawing.Size(857, 508);
@@ -116,6 +156,7 @@
             this.TOP_PANEL.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).EndInit();
             this.LEFT_PANEL.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -128,5 +169,8 @@
         private System.Windows.Forms.Panel LEFT_PANEL;
         private System.Windows.Forms.Button GENERAL_BUTTON;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button INFO_BUTTON;
+        private System.Windows.Forms.Panel MAIN_PANEL;
     }
 }

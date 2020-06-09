@@ -9,14 +9,18 @@ namespace MultiBoard.SettingsElements
         //Controls
         //==================
         private GeneralSettings _gs = new GeneralSettings();
+        private InfoSettings _is = new InfoSettings();
 
         public MainSettings()
         {
             InitializeComponent();
 
-            _gs.Location = new Point(168,0);
-            Controls.Add(_gs);
+            MAIN_PANEL.Controls.Add(_gs);
+            _gs.Dock = DockStyle.Fill;
             _gs.Show();
+
+            MAIN_PANEL.Controls.Add(_is);
+            _is.Dock = DockStyle.Fill;
         }
 
         public void UpdateSettings()
@@ -33,6 +37,12 @@ namespace MultiBoard.SettingsElements
         {
             _gs.Show();
             _gs.BringToFront();
+        }
+
+        private void INFO_BUTTON_Click(object sender, EventArgs e)
+        {
+            _is.Show();
+            _is.BringToFront();
         }
     }
 }

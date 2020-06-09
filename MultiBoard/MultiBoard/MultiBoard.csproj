@@ -202,6 +202,12 @@
     <Compile Include="SettingsElements\GeneralSettings.Designer.cs">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsElements\InfoSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsElements\InfoSettings.Designer.cs">
+      <DependentUpon>InfoSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsElements\MainSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </Compile>
     <EmbeddedResource Include="SettingsElements\GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsElements\InfoSettings.resx">
+      <DependentUpon>InfoSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsElements\MainSettings.resx">
       <DependentUpon>MainSettings.cs</DependentUpon>
