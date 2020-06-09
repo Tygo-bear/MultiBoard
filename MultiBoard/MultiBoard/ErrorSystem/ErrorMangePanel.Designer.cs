@@ -76,6 +76,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.RELOAD_LIST_BUTTON);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.CLEAR_LIST_BUTTON);
@@ -128,11 +129,11 @@
             // ERROR_LIST_LISTBOX
             // 
             this.ERROR_LIST_LISTBOX.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ERROR_LIST_LISTBOX.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ERROR_LIST_LISTBOX.FormattingEnabled = true;
             this.ERROR_LIST_LISTBOX.Location = new System.Drawing.Point(200, 31);
+            this.ERROR_LIST_LISTBOX.Margin = new System.Windows.Forms.Padding(0);
             this.ERROR_LIST_LISTBOX.Name = "ERROR_LIST_LISTBOX";
-            this.ERROR_LIST_LISTBOX.Size = new System.Drawing.Size(657, 477);
+            this.ERROR_LIST_LISTBOX.Size = new System.Drawing.Size(657, 481);
             this.ERROR_LIST_LISTBOX.TabIndex = 2;
             // 
             // ErrorMangePanel
