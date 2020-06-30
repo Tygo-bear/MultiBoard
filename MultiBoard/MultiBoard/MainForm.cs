@@ -536,14 +536,14 @@ namespace MultiBoard
                 }
                 else
                 {
-                    Connector conect1 = new Connector();
-                    conect1.DynamicId = kb.KeyboardUuid;
-                    conect1.setup(comport, 115200);
-                    conect1.openPort();
-                    conect1.KeyDown += onKeyDown;
-                    conect1.KeyUp += onKeyUp;
+                    Connector connector1 = new Connector();
+                    connector1.DynamicId = kb.KeyboardUuid;
+                    connector1.setup(comport, 115200);
+                    connector1.openPort();
+                    connector1.KeyDown += onKeyDown;
+                    connector1.KeyUp += onKeyUp;
 
-                    _connectorList.Add(conect1);
+                    _connectorList.Add(connector1);
                 }
 
             }
