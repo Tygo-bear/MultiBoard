@@ -349,6 +349,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             SavedOverlay ol = new SavedOverlay();
             ol.Location = new Point(0, 0);
             this.Controls.Add(ol);
+            ol.Dock = DockStyle.Fill;
             ol.BringToFront();
 
         }
