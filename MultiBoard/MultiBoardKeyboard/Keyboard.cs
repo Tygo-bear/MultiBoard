@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MultiBoard.KeyboardElements.KeyElements;
 
-namespace MultiBoard.KeyboardElements
+namespace MultiBoardKeyboard
 {
     public class Keyboard
     {
@@ -15,9 +11,15 @@ namespace MultiBoard.KeyboardElements
         private string _id;
         private string _name;
         private string _comPort;
+        private string _staticId;
+        private int _connectTimeoutDelay = 6000;
+        private int _bRate = 115200;
+        private bool _enabled = true;
 
         private List<Key> _keyList = new List<Key>();
         private List<string> _keyNameList = new List<string>();
+        private Connector _comConnector;
+
 
         private int _numberOfKeys = 0;
         
@@ -27,12 +29,12 @@ namespace MultiBoard.KeyboardElements
         public event EventHandler<string> ReceivedKeyDown;
         public event EventHandler<string> ReceivedKeyUp;
 
-        public Keyboard()
+        public Keyboard(string staticId)
         {
-
+            _staticId = staticId;
         }
 
-        public List<Key> KeyboardKeylist
+        public List<Key> KeyboardKeyList
         {
             get { return _keyList; }
         }
@@ -55,34 +57,25 @@ namespace MultiBoard.KeyboardElements
             set { _comPort = value; }
         }
 
-        public int NumerOfKeys
+        public int NumberOfKeys
         {
             get { return _numberOfKeys; }
             set { _numberOfKeys = value; }
         }
 
-        /// <summary>
-        /// Create a new key
-        /// </summary>
-        /// <param name="keyName">
-        /// Uuid of the key
-        /// </param>
-        /// <param name="eventState">
-        /// The event on which the key reacts
-        /// </param>
-        /// <param name="keyTag">
-        /// The key code
-        /// </param>
-        /// <param name="keyEnabled">
-        /// Is the key enabled
-        /// </param>
-        /// <param name="exeLoc">
-        /// The task of the key (open file/press key)
-        /// </param>
-        /// <returns>
-        /// Return the generated class
-        /// </returns>
-        public Key createKey(string keyName, int eventState, string keyTag, bool keyEnabled, string exeLoc)
+        public int ConnectTimeoutDelay
+        {
+            get { return _connectTimeoutDelay; }
+            set { _connectTimeoutDelay = value; }
+        }
+
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set { _enabled = value; }
+        }
+
+        public Key CreateKey(string keyName, int eventState, string keyTag, bool keyEnabled, string exeLoc)
         {
 
             Key obj = new Key(keyName, eventState, keyTag, keyEnabled, exeLoc);
@@ -93,29 +86,80 @@ namespace MultiBoard.KeyboardElements
             return obj;
         }
 
-        public Key addKey(Key k)
+        public Key AddKey(Key k)
         {
             _keyList.Add(k);
             _numberOfKeys++;
             return k;
         }
 
-        public bool removeKey(Key k)
+        public bool RemoveKey(Key k)
         {
             return _keyList.Remove(k);
         }
 
-        /// <summary>
-        /// Check the key Uuid of dupes
-        /// </summary>
-        /// <param name="s">
-        /// The name to check for
-        /// </param>
-        /// <returns>
-        /// True = valid
-        /// False = invalid
-        /// </returns>
-        public bool checkNameAvailable(string s)
+        public bool ConnectorReady()
+        {
+            return _comPort.Contains("com") && !String.IsNullOrEmpty(_staticId) && !String.IsNullOrEmpty(KeyboardUuid);
+        }
+
+        public bool Connect()
+        {
+            if (_comConnector == null)
+            {
+                if (ConnectorReady())
+                {
+                    _comConnector = new Connector(_staticId, _connectTimeoutDelay);
+                    _comConnector.KeyDown += ComConnectorOnKeyDown;
+                    _comConnector.KeyUp += ComConnectorOnKeyUp;
+                }
+                else
+                {
+                    //TODO Error message
+                    return false;
+                }
+            }
+
+            _comConnector.closePort();
+            _comConnector.setup(_comPort, _bRate);
+            _comConnector.openPort();
+            return true;
+        }
+
+        private void ComConnectorOnKeyUp(object sender, KeyEventArgs e)
+        {
+            keyUp(e.Key, KeyboardUuid, _enabled);
+        }
+
+        private void ComConnectorOnKeyDown(object sender, KeyEventArgs e)
+        {
+            keyDown(e.Key, KeyboardUuid, _enabled);
+        }
+
+        public bool DisConnect()
+        {
+            if (_comConnector == null)
+            {
+                return false;
+            }
+
+            _comConnector.closePort();
+            return true;
+        }
+
+        public bool ReConnect()
+        {
+            if (_comConnector == null)
+            {
+                return false;
+            }
+
+            _comConnector.reConnect();
+            return true;
+        }
+
+
+        public bool CheckNameAvailable(string s)
         {
             foreach (string n in _keyNameList)
             {
@@ -127,12 +171,6 @@ namespace MultiBoard.KeyboardElements
             return true;
         }
 
-        /// <summary>
-        /// Load the keys into the keyboard class
-        /// </summary>
-        /// <param name="mainDirectory">
-        /// The main directory of the program
-        /// </param>
         public void loadKeys(string keys, bool add = false)
         {
             if (add)
@@ -148,26 +186,14 @@ namespace MultiBoard.KeyboardElements
                 if (s != "")
                 {
                     string[] splits =s.Split('|');
-                    Key k = createKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
+                    Key k = CreateKey(splits[0], Int32.Parse(splits[1]), splits[2], Convert.ToBoolean(splits[3]), splits[4]);
                     counter++;
                 }
             }
 
-            updateKeyNameList();
+            UpdateKeyNameList();
         }
 
-        /// <summary>
-        /// Key down event
-        /// </summary>
-        /// <param name="key">
-        /// Key code
-        /// </param>
-        /// <param name="keyboardUuid">
-        /// dynamic id of the keyboard
-        /// </param>
-        /// <param name="allEnabled">
-        /// Is key allowed to run
-        /// </param>
         public void keyDown(string key, string keyboardUuid, bool allEnabled = true)
         {
             //check for matching ids
@@ -183,18 +209,7 @@ namespace MultiBoard.KeyboardElements
             }
         }
 
-        /// <summary>
-        /// Key up event
-        /// </summary>
-        /// <param name="key">
-        /// Key code
-        /// </param>
-        /// <param name="keyboardUuid">
-        /// dynamic id of the keyboard
-        /// </param>
-        /// <param name="allEnabled">
-        /// Is key allowed to run
-        /// </param>
+
         public void keyUp(string key, string keyboardUuid, bool allEnabled = true)
         {
             //check for matching ids
@@ -210,10 +225,7 @@ namespace MultiBoard.KeyboardElements
             OnReceivedKeyUp(key);
         }
 
-        /// <summary>
-        /// Update the list of the names from all the keys
-        /// </summary>
-        public void updateKeyNameList()
+        public void UpdateKeyNameList()
         {
             _keyNameList.Clear();
             foreach (Key k in _keyList)

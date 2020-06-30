@@ -66,7 +66,17 @@ namespace MultiBoardKeyboard
         /// </summary>
         public void openPort()
         {
-            _comPort.Open();
+            try
+            {
+                _comPort.Open();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                onError("com open failed:" + _comPort);
+                return;
+            }
+            
             _comPort.Write("?");
             new Thread(() =>
             {
@@ -82,7 +92,10 @@ namespace MultiBoardKeyboard
         /// </summary>
         public void closePort()
         {
-            _comPort.Close();
+            if (_comPort != null)
+            {
+                _comPort.Close();
+            }
             _connectioValid = false;
         }
 
