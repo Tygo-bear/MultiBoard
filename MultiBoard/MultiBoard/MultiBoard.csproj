@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MultiBoard</RootNamespace>
     <AssemblyName>MultiBoard</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -26,6 +26,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -80,9 +81,7 @@
     <Compile Include="add keyboard\AutoAddKeyboard.Designer.cs">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connector.cs" />
     <Compile Include="GithubApi.cs" />
-    <Compile Include="KeyboardElements\Keyboard.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,14 +100,12 @@
     <Compile Include="ErrorSystem\ErrorMangePanel.Designer.cs">
       <DependentUpon>ErrorMangePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyboardScannerElements\ScannerPort.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyElements\Key.cs" />
     <Compile Include="KeyboardElements\KeyElements\KeyGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,7 +130,6 @@
     <Compile Include="KeyboardElements\KeyboardListPanel.Designer.cs">
       <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyboardScannerElements\KeyboardScanner.cs" />
     <Compile Include="KeyboardElements\KeyboardSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,6 +331,11 @@
       <Project>{2869dbfe-7762-4930-95ea-2b0c111cf353}</Project>
       <Name>AutoHotkey.Interop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MultiBoardKeyboard\MultiBoardKeyboard.csproj">
+      <Project>{641262a6-b2c8-4d7f-b394-030dc5e9302d}</Project>
+      <Name>MultiBoardKeyboard</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

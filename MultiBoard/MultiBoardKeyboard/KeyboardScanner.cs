@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
+using System.Threading;
 
-namespace MultiBoard.KeyboardElements.KeyboardScannerElements
+namespace MultiBoardKeyboard
 {
-    class KeyboardScanner
+    public class KeyboardScanner
     {
         public List<string> Ports = new List<string>();
         public List<string> Uuid = new List<string>();
@@ -126,7 +127,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
             catch (ManagementException e)
             {
-                
+                Console.WriteLine(e.ToString());
             }
 
             return availablePorts;

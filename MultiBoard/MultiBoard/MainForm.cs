@@ -13,8 +13,8 @@ using System.Windows.Forms;
 using MultiBoard.add_keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
-using MultiBoard.KeyboardElements.KeyboardScannerElements;
 using MultiBoard.SettingsElements;
+using MultiBoardKeyboard;
 
 namespace MultiBoard
 {
@@ -27,14 +27,18 @@ namespace MultiBoard
         public bool ToggleB = true;
         private bool _firstStartUp = true;
         private List<KeyBoardGUI> _keyboardGUIList = new List<KeyBoardGUI>();
-        private List<Connector> _connectorList = new List<Connector>();
         private List<string> _showErrorList = new List<string>();
+        private List<Keyboard> _keyboards = new List<Keyboard>();
 
-  
+
         //classes and user controls
         //====================================
         KeyboardList _listkeyboardElement;
-        KeyboardScanner _scanner = new KeyboardScanner();
+
+        private KeyboardScanner _scanner = new KeyboardScanner(
+            Properties.Settings.Default.TimeOutDelay,
+            Properties.Resources.KeyboardScanner__staticId,
+            Properties.Settings.Default.SafeModeScan);
         addKeyboard _addKeyboardContr;
         ErrorOptions _errorContr = new ErrorOptions();
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
@@ -161,6 +165,7 @@ namespace MultiBoard
                 //remove keyboard in args
                 _keyboardGUIList.Remove(e.Keyboard);
                 e.Keyboard.Dispose();
+                //TODO backend
             }
             saveBoards();
         }
@@ -263,7 +268,10 @@ namespace MultiBoard
             File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);
 
             //Create new keyboard class/userControl
-            KeyBoardGUI obj = new KeyBoardGUI();
+            Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
+            _keyboards.Add(kb);
+
+            KeyBoardGUI obj = new KeyBoardGUI(kb);
             obj.Visible = true;
             MAIN_PANEL.Controls.Add(obj);
             obj.Dock = DockStyle.Fill;
@@ -282,17 +290,9 @@ namespace MultiBoard
 
             //Add new keyboard to keyboard list
             _keyboardGUIList.Add(obj);
+            //TODO backend
 
-            //unloading all keyboards
-            foreach (Connector c in _connectorList)
-            {
-                c.closePort();
-            }
-            _connectorList.Clear();
 
-            //load all keyboards
-            backgroundWorker1.CancelAsync();
-            backgroundWorker1.RunWorkerAsync();
         }
 
         /// <summary>
@@ -448,7 +448,10 @@ namespace MultiBoard
                     Debug.WriteLine("loading keyboard "+ splits[0]);
 
                     //Create boards
-                    KeyBoardGUI obj = new KeyBoardGUI();
+                    Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
+                    _keyboards.Add(kb);
+
+                    KeyBoardGUI obj = new KeyBoardGUI(kb);
                     obj.Visible = false;
                     MAIN_PANEL.Controls.Add(obj);
                     obj.Dock = DockStyle.Fill;
@@ -476,78 +479,6 @@ namespace MultiBoard
 
         }
 
-        /// <summary>
-        /// Key down events called
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e">
-        /// The key code
-        /// </param>
-        void onKeyDown(object sender, KeyEventArgs e)
-        {
-            Connector c = sender as Connector;
-
-            //pass event to each keyboard
-            foreach (KeyBoardGUI aKeyBoard in _keyboardGUIList)
-            {
-                //open a new thread foreach keyboard
-                Thread t = new Thread(() => aKeyBoard.Keyboard.keyDown(e.Key, c.DynamicId, ToggleB));
-                t.Start();
-            }
-        }
-
-        /// <summary>
-        /// Key up event called
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e">
-        /// Key code
-        /// </param>
-        void onKeyUp(object sender, KeyEventArgs e)
-        {
-            Connector c = sender as Connector;
-
-            //pass event to each keyboard
-            foreach (KeyBoardGUI aKeyBoard in _keyboardGUIList)
-            {
-                //open a new thread foreach keyboard
-                Thread t = new Thread(() => aKeyBoard.Keyboard.keyUp(e.Key, c.DynamicId, ToggleB));
-                t.Start();
-            }
-        }
-
-        /// <summary>
-        /// Open a connector foreach keyboard as a background task
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            _connectorList.Clear();
-
-            foreach (KeyBoardGUI kb in _keyboardGUIList)
-            {
-                string comport = getPortFromId(kb.KeyboardUuid);
-                if(comport == null)
-                {
-                    Debug.WriteLine("missing keyboard " + kb.KeyboardUuid);
-                    addError(true, kb.KeyboardName + " --> not found!");
-
-                }
-                else
-                {
-                    Connector connector1 = new Connector();
-                    connector1.DynamicId = kb.KeyboardUuid;
-                    connector1.setup(comport, 115200);
-                    connector1.openPort();
-                    connector1.KeyDown += onKeyDown;
-                    connector1.KeyUp += onKeyUp;
-
-                    _connectorList.Add(connector1);
-                }
-
-            }
-        }
 
         /// <summary>
         /// User clicked "keyboard list" button
@@ -714,7 +645,6 @@ namespace MultiBoard
             this.Invoke(new Action(() =>
             {
                 loadingBoards();
-                backgroundWorker1.RunWorkerAsync();
                 _loadOverlay.Hide();
             }));
         }
@@ -734,12 +664,6 @@ namespace MultiBoard
             _errorContr.Hide();
             WARRNING_BUTTON.Visible = false;
 
-            //unloading
-            foreach (Connector c in _connectorList)
-            {
-                c.closePort();
-            }
-            _connectorList.Clear();
 
             foreach (KeyBoardGUI k in _keyboardGUIList)
             {
@@ -890,6 +814,7 @@ namespace MultiBoard
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e.ToString());
                     Debug.WriteLine("update check failed");
                 }
 

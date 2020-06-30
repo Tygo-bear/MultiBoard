@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MultiBoard.overlays;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {

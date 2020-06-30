@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MultiBoard.KeyboardElements.KeyElements;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.KeyboardElements
 {
@@ -16,7 +17,7 @@ namespace MultiBoard.KeyboardElements
         private string _saveFile;
         private KeyGui _keyGui = new KeyGui();
 
-        private Keyboard _keyboard = new Keyboard();
+        private Keyboard _keyboard;
 
         private List<KeyListPanel> _keyPanelList = new List<KeyListPanel>();
         private Point _nextKeyListPoint = new Point(3, 3);
@@ -24,9 +25,10 @@ namespace MultiBoard.KeyboardElements
         /// <summary>
         /// Initialize all elements
         /// </summary>
-        public KeyBoardGUI()
+        public KeyBoardGUI(Keyboard keyboard)
         {
             InitializeComponent();
+            _keyboard = keyboard;
 
             _keyGui.UpdatedData += onUpdatedKey;
             _keyGui.DeleteKey += onDeleteKey;
@@ -81,7 +83,7 @@ namespace MultiBoard.KeyboardElements
 
             Key obj = new Key(keyName, eventState, keyTag, keyEnabled, exeLoc);
 
-            _keyboard.addKey(obj);
+            _keyboard.AddKey(obj);
 
             return obj;
         }
@@ -94,13 +96,13 @@ namespace MultiBoard.KeyboardElements
         private void addNewKeyClicked(object sender, EventArgs e)
         {
             //generate name
-            var keyName = "KEY " + (_keyboard.NumerOfKeys);
+            var keyName = "KEY " + (_keyboard.NumberOfKeys);
 
             //regenerate new key until valid
-            while (!_keyboard.checkNameAvailable(keyName))
+            while (!_keyboard.CheckNameAvailable(keyName))
             {
-                _keyboard.NumerOfKeys++;
-                keyName = "KEY " + (_keyboard.NumerOfKeys);
+                _keyboard.NumberOfKeys++;
+                keyName = "KEY " + (_keyboard.NumberOfKeys);
             }
 
             //Create the key
@@ -108,7 +110,7 @@ namespace MultiBoard.KeyboardElements
             _keyGui.settings(keyName, 1, "NONE", true, "", k);
 
             addKeyToListView(k);
-            _keyboard.updateKeyNameList();
+            _keyboard.UpdateKeyNameList();
 
             _keyGui.Show();
         }
@@ -168,9 +170,9 @@ namespace MultiBoard.KeyboardElements
             string all = file.ReadToEnd();
             _keyboard.loadKeys(all);
 
-            if (_keyboard.KeyboardKeylist.Count > 0)
+            if (_keyboard.KeyboardKeyList.Count > 0)
             {
-                Key k = _keyboard.KeyboardKeylist[0];
+                Key k = _keyboard.KeyboardKeyList[0];
                 KEYLIST_PANEL.BackgroundImage = null;
                 _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
                 _keyGui.Show();
@@ -216,9 +218,9 @@ namespace MultiBoard.KeyboardElements
             _nextKeyListPoint.X = 5;
             _nextKeyListPoint.Y = 3;
 
-            for(int i = 0; i < _keyboard.KeyboardKeylist.Count; i++)
+            for(int i = 0; i < _keyboard.KeyboardKeyList.Count; i++)
             {
-                Key aKey = _keyboard.KeyboardKeylist[i];
+                Key aKey = _keyboard.KeyboardKeyList[i];
 
                 KeyListPanel item = new KeyListPanel(aKey.key_name, aKey.keyEnebled, aKey);
 
@@ -285,7 +287,7 @@ namespace MultiBoard.KeyboardElements
             item.BringToFront();
 
             _keyPanelList.Add(item);
-            _keyboard.updateKeyNameList();
+            _keyboard.UpdateKeyNameList();
         }
 
         /// <summary>
@@ -300,7 +302,7 @@ namespace MultiBoard.KeyboardElements
                 klp.KeyEnabledState = k.keyEnebled;
             }
 
-            _keyboard.updateKeyNameList();
+            _keyboard.UpdateKeyNameList();
         }
 
         /// <summary>
@@ -318,7 +320,7 @@ namespace MultiBoard.KeyboardElements
             }
             k.inFocus(true);
 
-            foreach(Key aKey in _keyboard.KeyboardKeylist)
+            foreach(Key aKey in _keyboard.KeyboardKeyList)
             {
                 if(aKey == k.ConnectedKey)
                 {
@@ -337,7 +339,7 @@ namespace MultiBoard.KeyboardElements
             string lines = "";
 
             //generate new save file
-            foreach (Key aKey in _keyboard.KeyboardKeylist)
+            foreach (Key aKey in _keyboard.KeyboardKeyList)
             {
                 lines += aKey.key_name + "|";
                 lines += aKey.EventState + "|";
@@ -350,7 +352,7 @@ namespace MultiBoard.KeyboardElements
             System.IO.File.WriteAllLines(_saveFile, splits);
 
             updateListView();
-            _keyboard.updateKeyNameList();
+            _keyboard.UpdateKeyNameList();
         }
 
         /// <summary>
@@ -361,7 +363,7 @@ namespace MultiBoard.KeyboardElements
         void onDeleteKey(object sender, ObjKeyEventArgs e)
         {
             //Remove key from list
-            _keyboard.removeKey(e.ObjKey);
+            _keyboard.RemoveKey(e.ObjKey);
 
             //generate new save file
             foreach (KeyListPanel k in _keyPanelList)

@@ -290,11 +290,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Off/On";
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
             // NOTIFY_ICO
             // 
             this.NOTIFY_ICO.ContextMenuStrip = this.NOTIFY_ICO_CONTENT;

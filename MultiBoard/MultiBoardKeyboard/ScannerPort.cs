@@ -2,7 +2,7 @@
 using System.IO.Ports;
 using System.Threading;
 
-namespace MultiBoard.KeyboardElements.KeyboardScannerElements
+namespace MultiBoardKeyboard
 {
     class ScannerPort 
     {
@@ -113,7 +113,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
 
         }
