@@ -101,7 +101,7 @@ namespace MultiBoardKeyboard
 
         public bool ConnectorReady()
         {
-            return _comPort.Contains("com") && !String.IsNullOrEmpty(_staticId) && !String.IsNullOrEmpty(KeyboardUuid);
+            return _comPort.ToUpper().Contains("COM") && !String.IsNullOrEmpty(_staticId) && !String.IsNullOrEmpty(KeyboardUuid);
         }
 
         public bool Connect()

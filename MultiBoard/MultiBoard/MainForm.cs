@@ -69,7 +69,7 @@ namespace MultiBoard
             //=========================
 
             //manage files
-            if (!Directory.Exists(MainDirectory + @"\logs")) Directory.CreateDirectory(MainDirectory + @"\logs");
+            if(!Directory.Exists(MainDirectory + @"\logs")) Directory.CreateDirectory(MainDirectory + @"\logs");
             if(File.Exists(MainDirectory + @"\logs\debugOld.log")) File.Delete(MainDirectory + @"\logs\debugOld.log");
             if(File.Exists(MainDirectory + @"\logs\debug.log")) File.Move(MainDirectory + @"\logs\debug.log", MainDirectory + @"\logs\debugOld.log");
             FileStream _debugLogStream = new FileStream(MainDirectory + @"\logs\debug.log", FileMode.Append);
@@ -194,6 +194,7 @@ namespace MultiBoard
             //Reset error control
             ERROR_LABEL.Text = "";
             _errorContr.Hide();
+            _showErrorList.Clear();
 
             //Clear error list
             Properties.Settings.Default.ErrorList = "";
@@ -449,16 +450,29 @@ namespace MultiBoard
 
                     //Create boards
                     Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
+                    kb.ConnectTimeoutDelay = Properties.Settings.Default.TimeOutDelay;
+                    string com = getPortFromId(splits[0]);
+
+                    kb.KeyboardUuid = splits[0];
+                    kb.KeyboardName = splits[1];
+
+                    if (com == null)
+                    {
+                        addError(true, kb.KeyboardName + " --> not found!");
+                        Debug.WriteLine(kb.KeyboardName + " --> not found!");
+                    }
+                    else
+                    {
+                        kb.KeyboardComPort = com;
+                        kb.Connect();
+                    }
+                    
                     _keyboards.Add(kb);
 
                     KeyBoardGUI obj = new KeyBoardGUI(kb);
                     obj.Visible = false;
                     MAIN_PANEL.Controls.Add(obj);
                     obj.Dock = DockStyle.Fill;
-
-                    obj.KeyboardName = splits[1];
-                    obj.KeyboardUuid = splits[0];
-                    obj.ComPort = splits[2];
 
                     _listkeyboardElement.addItem(splits[1], splits[0], splits[2], obj);
 
@@ -662,14 +676,22 @@ namespace MultiBoard
             //resetting
             ERROR_LABEL.Text = "";
             _errorContr.Hide();
+            _showErrorList.Clear();
             WARRNING_BUTTON.Visible = false;
 
 
             foreach (KeyBoardGUI k in _keyboardGUIList)
             {
+                k.Keyboard.DisConnect();
                 k.Dispose();
             }
             _keyboardGUIList.Clear();
+
+            foreach (Keyboard keyboard in _keyboards)
+            {
+                keyboard.DisConnect();
+            }
+            _keyboards.Clear();
 
 
             _listkeyboardElement.Dispose();
@@ -679,7 +701,6 @@ namespace MultiBoard
             _listkeyboardElement.Dock = DockStyle.Fill;
 
             //loading
-            backgroundWorker1.CancelAsync();
             backgroundWorker2.RunWorkerAsync();
 
         }

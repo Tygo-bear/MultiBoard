@@ -46,7 +46,6 @@
             this.WARRNING_BUTTON = new System.Windows.Forms.Button();
             this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.NOTIFY_ICO = new System.Windows.Forms.NotifyIcon(this.components);
             this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -380,7 +379,6 @@
         private System.Windows.Forms.Button SETTINGS_BUTTON;
         private System.Windows.Forms.Button KEYBOARD_B;
         private System.Windows.Forms.Panel panel1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button ADD_KEYBOARD_BUTTON;
         private System.Windows.Forms.Button WARRNING_BUTTON;
         private System.Windows.Forms.NotifyIcon NOTIFY_ICO;

@@ -29,6 +29,8 @@ namespace MultiBoard.KeyboardElements
         {
             InitializeComponent();
             _keyboard = keyboard;
+            KeyboardUuid = _keyboard.KeyboardUuid;
+            KeyboardName = _keyboard.KeyboardName;
 
             _keyGui.UpdatedData += onUpdatedKey;
             _keyGui.DeleteKey += onDeleteKey;
