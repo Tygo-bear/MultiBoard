@@ -30,7 +30,7 @@ namespace MultiBoardKeyboard
         /// <param name="bRate">
         /// baud rate of com port (115200 default)
         /// </param>
-        public void loadList(int bRate)
+        public void LoadList(int bRate)
         {
             GetSerialPort();
 
@@ -69,8 +69,8 @@ namespace MultiBoardKeyboard
             foreach (string s in availablePorts)
             {
                 ScannerPort sp = new ScannerPort(_staticId);
-                sp.setup(s, bRate);
-                Thread t = new Thread(() => sp.start());
+                sp.Setup(s, bRate);
+                Thread t = new Thread(() => sp.Start());
                 t.Start();
 
                 _scanPorts.Add(sp);
@@ -91,7 +91,7 @@ namespace MultiBoardKeyboard
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    sp.close();
+                    sp.Close();
 
                 }).Start();
 
@@ -111,8 +111,8 @@ namespace MultiBoardKeyboard
             try
             {
                 ManagementClass processClass = new ManagementClass("Win32_PnPEntity");
-                ManagementObjectCollection Ports = processClass.GetInstances();
-                foreach (ManagementObject property in Ports)
+                ManagementObjectCollection ports = processClass.GetInstances();
+                foreach (ManagementObject property in ports)
                 {
                     var name = property.GetPropertyValue("Name");
                     if (name != null && name.ToString().Contains("USB") && name.ToString().Contains("COM"))

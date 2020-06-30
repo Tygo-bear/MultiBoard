@@ -87,6 +87,7 @@ namespace MultiBoard
             //======================
             Properties.Settings.Default.ErrorList = "";
             Properties.Settings.Default.Save();
+            //TODO overhaul
 
             //loadOverlay control
             _loadOverlay.Location = new Point(0, 0);
@@ -95,7 +96,7 @@ namespace MultiBoard
 
             //keyboard list control
             _listkeyboardElement = new KeyboardList(MainDirectory);
-            _listkeyboardElement.SelectedItem += userSelectedKeyboard;
+            _listkeyboardElement.SelectedItem += UserSelectedKeyboard;
             _listkeyboardElement.UpdateKeyboards += saveKeyboardsEvent;
             MAIN_PANEL.Controls.Add(_listkeyboardElement);
             _listkeyboardElement.Dock = DockStyle.Fill;
@@ -142,7 +143,7 @@ namespace MultiBoard
             }
 
             //enable toggle button
-            enableB();
+            EnableB();
 
             //Version updates
             VERSION_LABEL.Text = Properties.Resources.Version;
@@ -202,7 +203,7 @@ namespace MultiBoard
 
             //Start reloading
             WARRNING_BUTTON.Visible = false;
-            reloadKeyboards();
+            ReloadKeyboards();
         }
 
         /// <summary>
@@ -272,16 +273,18 @@ namespace MultiBoard
             Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
             _keyboards.Add(kb);
 
+            kb.KeyboardName = name;
+            kb.KeyboardComPort = port;
+            kb.KeyboardUuid = uuid;
+
+            kb.Connect();
+
             KeyBoardGUI obj = new KeyBoardGUI(kb);
             obj.Visible = true;
             MAIN_PANEL.Controls.Add(obj);
             obj.Dock = DockStyle.Fill;
             obj.BringToFront();
 
-            //Write keyboard settings to class
-            obj.KeyboardName = name;
-            obj.KeyboardUuid = uuid;
-            obj.ComPort = port;
 
             //Add new keyboard class to the keyboard list control
             _listkeyboardElement.addItem(name, uuid, port, obj);
@@ -291,7 +294,6 @@ namespace MultiBoard
 
             //Add new keyboard to keyboard list
             _keyboardGUIList.Add(obj);
-            //TODO backend
 
 
         }
@@ -304,7 +306,7 @@ namespace MultiBoard
             //List of strings to write
             List<string> sstring = new List<string>();
 
-            //Add each keyboard file write list (sstring)
+            //Add each keyboard file write list (string)
             foreach (KeyBoardGUI kb in _keyboardGUIList)
             {
                 string name = kb.KeyboardName;
@@ -365,37 +367,45 @@ namespace MultiBoard
             if (ToggleB == true)
             {
                 //disable
-                disableB();
+                DisableB();
             }
             else
             {
                 //enable
-                enableB();
+                EnableB();
             }
         }
 
         /// <summary>
         /// Disable "all keyboards enabled"
         /// </summary>
-        private void disableB()
+        private void DisableB()
         {
             TOGGLE_B.BackgroundImage = TOGGLE_OFF;
             ToggleB = false;
+            foreach (Keyboard keyboard in _keyboards)
+            {
+                keyboard.Enabled = false;
+            }
         }
 
         /// <summary>
         /// Enable "all keyboards enabled"
         /// </summary>
-        private void enableB()
+        private void EnableB()
         {
             TOGGLE_B.BackgroundImage = TOGGLE_ON;
             ToggleB = true;
+            foreach (Keyboard keyboard in _keyboards)
+            {
+                keyboard.Enabled = true;
+            }
         }
 
         /// <summary>
         /// Load keyboards from main keyboard file
         /// </summary>
-        private void loadingBoards()
+        private void LoadingBoards()
         {
             Debug.WriteLine("loading boards");
             //Check for file exists
@@ -451,14 +461,14 @@ namespace MultiBoard
                     //Create boards
                     Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
                     kb.ConnectTimeoutDelay = Properties.Settings.Default.TimeOutDelay;
-                    string com = getPortFromId(splits[0]);
+                    string com = GetPortFromId(splits[0]);
 
                     kb.KeyboardUuid = splits[0];
                     kb.KeyboardName = splits[1];
 
                     if (com == null)
                     {
-                        addError(true, kb.KeyboardName + " --> not found!");
+                        AddError(true, kb.KeyboardName + " --> not found!");
                         Debug.WriteLine(kb.KeyboardName + " --> not found!");
                     }
                     else
@@ -517,7 +527,7 @@ namespace MultiBoard
         /// <param name="e">
         /// Uuid of the keyboard
         /// </param>
-        private void userSelectedKeyboard(object sender, ItemName e)
+        private void UserSelectedKeyboard(object sender, ItemName e)
         {
 
             foreach (KeyBoardGUI aKeyboard in _keyboardGUIList)
@@ -549,7 +559,7 @@ namespace MultiBoard
         /// Com port of the keyboard
         /// NULL if not found
         /// </returns>
-        private string getPortFromId(string id)
+        private string GetPortFromId(string id)
         {
             int i = 0;
 
@@ -632,7 +642,7 @@ namespace MultiBoard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void WARRNING_BUTTON_Click(object sender, EventArgs e)
+        private void WARNING_BUTTON_Click(object sender, EventArgs e)
         {
             if (_errorContr.Visible == false)
             {
@@ -655,10 +665,10 @@ namespace MultiBoard
             Thread.Sleep(1);
             CheckForUpdates();
             //scanning boards
-            _scanner.loadList(115200);
+            _scanner.LoadList(115200);
             this.Invoke(new Action(() =>
             {
-                loadingBoards();
+                LoadingBoards();
                 _loadOverlay.Hide();
             }));
         }
@@ -666,7 +676,7 @@ namespace MultiBoard
         /// <summary>
         /// Reload keyboards
         /// </summary>
-        private void reloadKeyboards()
+        private void ReloadKeyboards()
         {
             Debug.WriteLine("reloading keyboards");
             //LoadOverlay
@@ -696,7 +706,7 @@ namespace MultiBoard
 
             _listkeyboardElement.Dispose();
             _listkeyboardElement = new KeyboardList(MainDirectory);
-            _listkeyboardElement.SelectedItem += userSelectedKeyboard;
+            _listkeyboardElement.SelectedItem += UserSelectedKeyboard;
             MAIN_PANEL.Controls.Add(_listkeyboardElement);
             _listkeyboardElement.Dock = DockStyle.Fill;
 
@@ -715,7 +725,7 @@ namespace MultiBoard
         /// <param name="mes">
         /// Message shown to the user
         /// </param>
-        private void addError(bool show, string mes)
+        private void AddError(bool show, string mes)
         {
             //Write settings
             Properties.Settings.Default.ErrorList = Properties.Settings.Default.ErrorList + mes + ",";
@@ -746,7 +756,7 @@ namespace MultiBoard
         {
             if (m.Msg == NativeMethods.WmShowme)
             {
-                showMe();
+                ShowMe();
             }
             base.WndProc(ref m);
         }
@@ -754,7 +764,7 @@ namespace MultiBoard
         /// <summary>
         /// Second instance showMe
         /// </summary>
-        private void showMe()
+        private void ShowMe()
         {
             this.Show();
             if (WindowState == FormWindowState.Minimized)

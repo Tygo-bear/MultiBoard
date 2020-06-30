@@ -263,7 +263,7 @@
             this.WARRNING_BUTTON.TabIndex = 7;
             this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
             this.WARRNING_BUTTON.Visible = false;
-            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARRNING_BUTTON_Click);
+            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARNING_BUTTON_Click);
             // 
             // TOGGLE_B
             // 

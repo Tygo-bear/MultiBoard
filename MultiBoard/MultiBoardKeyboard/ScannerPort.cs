@@ -18,7 +18,7 @@ namespace MultiBoardKeyboard
         public ScannerPort(string staticId)
         {
             _staticId = staticId;
-            _serialPort.DataReceived += serialPortOnDataReceived;
+            _serialPort.DataReceived += SerialPortOnDataReceived;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace MultiBoardKeyboard
         /// <param name="rate">
         /// baud rate of the com port
         /// </param>
-        public void setup(string port, int rate)
+        public void Setup(string port, int rate)
         {
             ComPort = port;
             _baudRate = rate;
@@ -42,7 +42,7 @@ namespace MultiBoardKeyboard
         /// <summary>
         /// Start connection with com port
         /// </summary>
-        public void start()
+        public void Start()
         {
             try
             {
@@ -59,11 +59,9 @@ namespace MultiBoardKeyboard
         /// <summary>
         /// Release com port
         /// </summary>
-        public void close()
+        public void Close()
         {
-
             _serialPort.Close();
-
         }
 
         /// <summary>
@@ -71,17 +69,17 @@ namespace MultiBoardKeyboard
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void serialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(100);
-            checkReceivedData();
+            CheckReceivedData();
         }
 
         /// <summary>
         /// Processes received data
         /// Validate static id and collect dynamic id
         /// </summary>
-        private void checkReceivedData()
+        private void CheckReceivedData()
         {
             string input = "";
             try

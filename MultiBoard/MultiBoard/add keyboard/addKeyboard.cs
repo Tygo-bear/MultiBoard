@@ -255,7 +255,7 @@ namespace MultiBoard.add_keyboard
                 Properties.Settings.Default.TimeOutDelay,
                 Properties.Resources.KeyboardScanner__staticId,
                 Properties.Settings.Default.SafeModeScan);
-            kbs.loadList(115200);
+            kbs.LoadList(115200);
 
             //Filter keyboards
             filterKeyboards(kbs.Ports, kbs.Uuid);
