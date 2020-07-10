@@ -33,19 +33,31 @@
             this.TOP_LEFT_LOGO_PICTUREBOX = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.OPEN_GITHUB_BUTTON = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.OPEN_BUGREPORT_BUTTON = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.OPEN_LOGS_BUTTON = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.OPEN_SAVEFILE_BUTTON = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,14 +103,15 @@
             this.panel3.Size = new System.Drawing.Size(249, 34);
             this.panel3.TabIndex = 3;
             // 
-            // label4
+            // OPEN_GITHUB_BUTTON
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Open MultiBoard Github";
+            this.OPEN_GITHUB_BUTTON.Location = new System.Drawing.Point(166, 6);
+            this.OPEN_GITHUB_BUTTON.Name = "OPEN_GITHUB_BUTTON";
+            this.OPEN_GITHUB_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.OPEN_GITHUB_BUTTON.TabIndex = 5;
+            this.OPEN_GITHUB_BUTTON.Text = "Open";
+            this.OPEN_GITHUB_BUTTON.UseVisualStyleBackColor = true;
+            this.OPEN_GITHUB_BUTTON.Click += new System.EventHandler(this.OPEN_GITHUB_BUTTON_Click);
             // 
             // pictureBox1
             // 
@@ -110,15 +123,14 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // OPEN_GITHUB_BUTTON
+            // label4
             // 
-            this.OPEN_GITHUB_BUTTON.Location = new System.Drawing.Point(166, 6);
-            this.OPEN_GITHUB_BUTTON.Name = "OPEN_GITHUB_BUTTON";
-            this.OPEN_GITHUB_BUTTON.Size = new System.Drawing.Size(75, 23);
-            this.OPEN_GITHUB_BUTTON.TabIndex = 5;
-            this.OPEN_GITHUB_BUTTON.Text = "Open";
-            this.OPEN_GITHUB_BUTTON.UseVisualStyleBackColor = true;
-            this.OPEN_GITHUB_BUTTON.Click += new System.EventHandler(this.OPEN_GITHUB_BUTTON_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(40, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Open MultiBoard Github";
             // 
             // panel2
             // 
@@ -161,10 +173,93 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Open bug report";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.Controls.Add(this.OPEN_LOGS_BUTTON);
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Location = new System.Drawing.Point(3, 118);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(249, 34);
+            this.panel4.TabIndex = 7;
+            // 
+            // OPEN_LOGS_BUTTON
+            // 
+            this.OPEN_LOGS_BUTTON.Location = new System.Drawing.Point(166, 6);
+            this.OPEN_LOGS_BUTTON.Name = "OPEN_LOGS_BUTTON";
+            this.OPEN_LOGS_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.OPEN_LOGS_BUTTON.TabIndex = 5;
+            this.OPEN_LOGS_BUTTON.Text = "Open";
+            this.OPEN_LOGS_BUTTON.UseVisualStyleBackColor = true;
+            this.OPEN_LOGS_BUTTON.Click += new System.EventHandler(this.OPEN_LOGS_BUTTON_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.White;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 4);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(27, 27);
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(40, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Open Logs";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel5.Controls.Add(this.OPEN_SAVEFILE_BUTTON);
+            this.panel5.Controls.Add(this.pictureBox4);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Location = new System.Drawing.Point(3, 155);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(249, 34);
+            this.panel5.TabIndex = 6;
+            // 
+            // OPEN_SAVEFILE_BUTTON
+            // 
+            this.OPEN_SAVEFILE_BUTTON.Location = new System.Drawing.Point(166, 6);
+            this.OPEN_SAVEFILE_BUTTON.Name = "OPEN_SAVEFILE_BUTTON";
+            this.OPEN_SAVEFILE_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.OPEN_SAVEFILE_BUTTON.TabIndex = 5;
+            this.OPEN_SAVEFILE_BUTTON.Text = "Open";
+            this.OPEN_SAVEFILE_BUTTON.UseVisualStyleBackColor = true;
+            this.OPEN_SAVEFILE_BUTTON.Click += new System.EventHandler(this.OPEN_SAVEFILE_BUTTON_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 4);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(27, 27);
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Open savefile location";
+            // 
             // InfoSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -179,6 +274,12 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +297,13 @@
         private System.Windows.Forms.Button OPEN_BUGREPORT_BUTTON;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button OPEN_LOGS_BUTTON;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button OPEN_SAVEFILE_BUTTON;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -61,6 +61,7 @@ namespace MultiBoard.add_keyboard
                 //add keyboard to list
                 KeyboardName = NAME_TEXT_BOX.Text;
                 KeyboardUuid = SELECT_KEYBOARD_COMBOX.SelectedItem.ToString();
+                KeyboardPort = Ports[SELECT_KEYBOARD_COMBOX.SelectedIndex];
                 onAddClicked();
 
                 //Close "autoAddKeyboard" control

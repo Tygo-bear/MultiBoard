@@ -160,6 +160,7 @@
             this.ERROR_MANAGE_BUTTON.Size = new System.Drawing.Size(32, 34);
             this.ERROR_MANAGE_BUTTON.TabIndex = 8;
             this.ERROR_MANAGE_BUTTON.UseVisualStyleBackColor = false;
+            this.ERROR_MANAGE_BUTTON.Visible = false;
             this.ERROR_MANAGE_BUTTON.Click += new System.EventHandler(this.ERROR_MANAGE_BUTTON_Click);
             // 
             // ADD_KEYBOARD_BUTTON

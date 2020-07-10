@@ -26,5 +26,15 @@ namespace MultiBoard.SettingsElements
         {
             System.Diagnostics.Process.Start("https://github.com/Tygo-bear/MultiBoard/issues");
         }
+
+        private void OPEN_LOGS_BUTTON_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard\logs");
+        }
+
+        private void OPEN_SAVEFILE_BUTTON_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MultiBoard");
+        }
     }
 }
