@@ -35,7 +35,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         //user controls
         //=======================
-        private SelectKeyTaskOverlay _keyTaskOverlay;
+        private SelectKeyTaskOverlay _keyTaskOverlay = new SelectKeyTaskOverlay();
         private HotKeyCreator _hotKeyCreatorOverlay;
 
         //events
@@ -46,6 +46,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
         public KeyGui()
         {
             InitializeComponent();
+
+            _keyTaskOverlay.UserMadeSelection += keyTaskOverlayOnUserMadeSelection;
+            _keyTaskOverlay.Location = new Point((Width / 2) - (_keyTaskOverlay.Width / 2), (Height / 2) - (_keyTaskOverlay.Height / 2));
+            Controls.Add(_keyTaskOverlay);
+            _keyTaskOverlay.Hide();
         }
 
         /// <summary>
@@ -311,7 +316,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Event for when data updated
         /// </summary>
-        protected virtual void onUpdatedData()
+        protected virtual void OnUpdatedData()
         {
             if(UpdatedData != null)
             {
@@ -326,7 +331,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="e"></param>
         private void DELETE_BUTTON_Click(object sender, EventArgs e)
         {
-            onDeleteKey();
+            OnDeleteKey();
         }
 
         /// <summary>
@@ -344,7 +349,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _connectedKey.executeLoc = _executeLocation;
             _connectedKey.keyTag = _keyTag;
 
-            onUpdatedData();
+            OnUpdatedData();
 
             SavedOverlay ol = new SavedOverlay();
             ol.Location = new Point(0, 0);
@@ -357,7 +362,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Event for key delete request
         /// </summary>
-        protected virtual void onDeleteKey()
+        protected virtual void OnDeleteKey()
         {
             if (DeleteKey != null) DeleteKey(this, new ObjKeyEventArgs() {ObjKey = _connectedKey});
         }
@@ -381,23 +386,23 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         private void KEY_TASK_BUTTON_Click(object sender, EventArgs e)
         {
-            createKeyTaskOverlay();
+            CreateKeyTaskOverlay();
         }
 
         /// <summary>
         /// Create KeyTaskOverlay for advanced settings
         /// </summary>
-        private void createKeyTaskOverlay()
+        private void CreateKeyTaskOverlay()
         {
-            _keyTaskOverlay = new SelectKeyTaskOverlay();
-            _keyTaskOverlay.UserMadeSelection += keyTaskOverlayOnUserMadeSelection;
-            _keyTaskOverlay.Location = new Point((Width/2)-(_keyTaskOverlay.Width/2), (Height/2)-(_keyTaskOverlay.Height/2));
-            Controls.Add(_keyTaskOverlay);
+            this.SuspendLayout();
+
             _keyTaskOverlay.Show();
             _keyTaskOverlay.BringToFront();
+
+            this.ResumeLayout();
         }
 
-        private void createHotkeyCreatorOverlay()
+        private void CreateHotKeyCreatorOverlay()
         {
             _hotKeyCreatorOverlay = new HotKeyCreator();
             _hotKeyCreatorOverlay.UserMadeSelection += HotKeyCreatorOverlayOnUserMadeSelection;
@@ -467,7 +472,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         private void HOT_KEY_BUTTON_Click(object sender, EventArgs e)
         {
-            createHotkeyCreatorOverlay();
+            CreateHotKeyCreatorOverlay();
         }
     }
 
