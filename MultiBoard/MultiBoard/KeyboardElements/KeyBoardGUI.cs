@@ -154,7 +154,7 @@ namespace MultiBoard.KeyboardElements
         /// <param name="mainDirectory">
         /// The main directory of the program
         /// </param>
-        public void loadKeys(string mainDirectory)
+        public void LegacyLoadKeys(string mainDirectory)
         {
 
             //check for file exist
@@ -181,6 +181,18 @@ namespace MultiBoard.KeyboardElements
             }
 
             file.Close();
+            loadListView();
+        }
+
+        public void loadKeys()
+        {
+            if (_keyboard.KeyboardKeyList.Count > 0)
+            {
+                Key k = _keyboard.KeyboardKeyList[0];
+                KEYLIST_PANEL.BackgroundImage = null;
+                _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.keyEnebled, k.executeLoc, k);
+                _keyGui.Show();
+            }
             loadListView();
         }
 
@@ -338,6 +350,8 @@ namespace MultiBoard.KeyboardElements
         /// <param name="e"></param>
         void onUpdatedKey(object sender, EventArgs e)
         {
+            // Legacy system
+            /*
             string lines = "";
 
             //generate new save file
@@ -352,6 +366,7 @@ namespace MultiBoard.KeyboardElements
             string[] splits = lines.Split('\n');
 
             System.IO.File.WriteAllLines(_saveFile, splits);
+            */
 
             updateListView();
             _keyboard.UpdateKeyNameList();

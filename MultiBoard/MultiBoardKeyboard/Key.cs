@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Timers;
 using AutoHotkey.Interop;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {
@@ -60,8 +61,22 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _keyTag = key;
             _enabled = enabledKey;
             _executeLocation = executeLoc;
-            updateExecuteLoc();
 
+            updateExecuteLoc();
+            _timer.Interval = _defInterval;
+            _timer.Elapsed += timerOnElapsed;
+            _timer.Stop();
+        }
+
+        public Key(JKey jk)
+        {
+            _keyName = jk.KeyName;
+            EventState = jk.KeyState;
+            _keyTag = jk.KeyTag;
+            _enabled = jk.Enabled;
+            _executeLocation = jk.ExecuteLocation;
+
+            updateExecuteLoc();
             _timer.Interval = _defInterval;
             _timer.Elapsed += timerOnElapsed;
             _timer.Stop();
@@ -1072,6 +1087,18 @@ namespace MultiBoard.KeyboardElements.KeyElements
         protected virtual void OnError(string e)
         {
             Error?.Invoke(this, e);
+        }
+
+        public JKey SaveKey()
+        {
+            JKey jk = new JKey();
+            jk.KeyName = _keyName;
+            jk.Enabled = _enabled;
+            jk.KeyTag = _keyTag;
+            jk.ExecuteLocation = _executeLocation;
+            jk.KeyState = EventState;
+
+            return jk;
         }
     }
 }

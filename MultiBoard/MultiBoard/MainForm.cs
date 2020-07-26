@@ -15,6 +15,7 @@ using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
 using MultiBoard.SettingsElements;
 using MultiBoardKeyboard;
+using Newtonsoft.Json;
 
 namespace MultiBoard
 {
@@ -87,7 +88,7 @@ namespace MultiBoard
             //======================
             Properties.Settings.Default.ErrorList = "";
             Properties.Settings.Default.Save();
-            //TODO overhaul
+            //TODO redo
 
             //loadOverlay control
             _loadOverlay.Location = new Point(0, 0);
@@ -168,7 +169,7 @@ namespace MultiBoard
                 e.Keyboard.Dispose();
                 //TODO backend
             }
-            saveBoards();
+            SaveKeyboardSaveFile();
         }
 
         /// <summary>
@@ -253,6 +254,7 @@ namespace MultiBoard
         /// <param name="e"></param>
         private void keyboardAdded(object sender, EventArgs e)
         {
+            //TODO json write
             //Read main config file
             string[] allLines = File.ReadAllLines(MainDirectory + @"\keyboards.inf");
             List<string> sstring = allLines.ToList();
@@ -290,7 +292,7 @@ namespace MultiBoard
             _listkeyboardElement.addItem(name, uuid, port, obj);
 
             //Load in the keys of the new keyboard
-            obj.loadKeys(MainDirectory);
+            obj.LegacyLoadKeys(MainDirectory);
 
             //Add new keyboard to keyboard list
             _keyboardGUIList.Add(obj);
@@ -298,10 +300,25 @@ namespace MultiBoard
 
         }
 
+        private void SaveKeyboardSaveFile()
+        {
+            if (!Directory.Exists(MainDirectory + @"\saves"))
+            {
+                Directory.CreateDirectory(MainDirectory + @"\saves");
+            }
+
+            foreach (Keyboard keyboard in _keyboards)
+            {
+                JKeyboard jk = keyboard.SaveKeyboard(Properties.Resources.Version);
+                string output = JsonConvert.SerializeObject(jk, Formatting.Indented);
+                File.WriteAllText(MainDirectory + @"\saves\" + jk.Id + ".mkb", output, Encoding.UTF8);
+            }
+        }
+
         /// <summary>
         /// Save all keyboards to main config file
         /// </summary>
-        private void saveBoards()
+        private void LegacySaveBoards()
         {
             //List of strings to write
             List<string> sstring = new List<string>();
@@ -402,10 +419,85 @@ namespace MultiBoard
             }
         }
 
+        private void ReadSaveFiles()
+        {
+            Debug.WriteLine("loading boards");
+
+            if (!Directory.Exists(MainDirectory))
+            {
+                Directory.CreateDirectory(MainDirectory);
+            }
+
+            if (!Directory.Exists(MainDirectory + @"\saves"))
+            {
+                Directory.CreateDirectory(MainDirectory + @"\saves");
+                if (File.Exists(MainDirectory + @"\keyboards.inf"))
+                {
+                    Debug.WriteLine("legacy loader");
+                    LegacySaveFileLoader();
+                    SaveKeyboardSaveFile(); // Save in new save file format
+                    return;
+                }
+            }
+
+            string[] filePaths = Directory.GetFiles(MainDirectory + @"\saves\", "*.mkb");
+            foreach (string path in filePaths)
+            {
+                Debug.WriteLine("loading: " + path);
+                LoadKeyboardConfig(path);
+            }
+
+            if (filePaths.Length == 0)
+            {
+                //When no keyboards added show "add keyboards" control
+                _listkeyboardElement.Visible = false;
+                _addKeyboardContr.Visible = true;
+            }
+        }
+
+        private void LoadKeyboardConfig(string path)
+        {
+            if (File.Exists(path))
+            {
+                string text = File.ReadAllText(path, Encoding.UTF8);
+                JKeyboard deserializedKeyboard = JsonConvert.DeserializeObject<JKeyboard>(text);
+
+                Keyboard kb = new Keyboard(deserializedKeyboard, Properties.Resources.KeyboardScanner__staticId);
+                kb.ConnectTimeoutDelay = Properties.Settings.Default.TimeOutDelay;
+
+                Debug.WriteLine("loading keyboard " + kb.KeyboardUuid);
+
+                string com = GetPortFromId(kb.KeyboardUuid);
+                if (com == null)
+                {
+                    AddError(true, kb.KeyboardName + " --> not found!");
+                    Debug.WriteLine(kb.KeyboardName + " --> not found!");
+                }
+                else
+                {
+                    kb.KeyboardComPort = com;
+                    kb.Connect();
+                }
+
+                _keyboards.Add(kb);
+
+                KeyBoardGUI obj = new KeyBoardGUI(kb);
+                obj.Visible = false;
+                MAIN_PANEL.Controls.Add(obj);
+                obj.Dock = DockStyle.Fill;
+
+                obj.loadKeys();
+
+                _listkeyboardElement.addItem(kb.KeyboardName, kb.KeyboardUuid, kb.KeyboardComPort, obj);
+
+                _keyboardGUIList.Add(obj);
+            }
+        }
+
         /// <summary>
         /// Load keyboards from main keyboard file
         /// </summary>
-        private void LoadingBoards()
+        private void LegacySaveFileLoader()
         {
             Debug.WriteLine("loading boards");
             //Check for file exists
@@ -486,7 +578,7 @@ namespace MultiBoard
 
                     _listkeyboardElement.addItem(splits[1], splits[0], splits[2], obj);
 
-                    obj.loadKeys(MainDirectory);
+                    obj.LegacyLoadKeys(MainDirectory);
 
                     _keyboardGUIList.Add(obj);
 
@@ -668,7 +760,7 @@ namespace MultiBoard
             _scanner.LoadList(115200);
             this.Invoke(new Action(() =>
             {
-                LoadingBoards();
+                ReadSaveFiles();
                 _loadOverlay.Hide();
             }));
         }

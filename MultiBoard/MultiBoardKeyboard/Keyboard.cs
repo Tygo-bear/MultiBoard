@@ -34,6 +34,20 @@ namespace MultiBoardKeyboard
             _staticId = staticId;
         }
 
+        public Keyboard(JKeyboard jk, string staticId)
+        {
+            _id = jk.Id;
+            _name = jk.Name;
+            _comPort = jk.ComPort;
+            _staticId = staticId;
+
+            foreach (JKey jKey in jk.KeyList)
+            {
+                Key k = new Key(jKey);
+                _keyList.Add(k);
+            }
+        }
+
         public List<Key> KeyboardKeyList
         {
             get { return _keyList; }
@@ -251,6 +265,22 @@ namespace MultiBoardKeyboard
         protected virtual void OnReceivedKeyDown(string e)
         {
             ReceivedKeyDown?.Invoke(this, e);
+        }
+
+        public JKeyboard SaveKeyboard(string version)
+        {
+            JKeyboard jk = new JKeyboard();
+            jk.Version = version;
+            jk.Id = _id;
+            jk.Name = _name;
+            jk.ComPort = _comPort;
+
+            foreach (Key key in _keyList)
+            {
+                jk.KeyList.Add(key.SaveKey());
+            }
+
+            return jk;
         }
     }
 }
