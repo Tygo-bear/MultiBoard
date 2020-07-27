@@ -168,7 +168,7 @@ namespace MultiBoard.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v1.0.1.7-beta2.
+        ///   Looks up a localized string similar to v1.0.1.7-beta3.
         /// </summary>
         internal static string Version {
             get {

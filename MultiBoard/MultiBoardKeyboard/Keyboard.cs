@@ -141,20 +141,20 @@ namespace MultiBoardKeyboard
                 }
             }
 
-            _comConnector.closePort();
-            _comConnector.setup(_comPort, _bRate);
-            _comConnector.openPort();
+            _comConnector.ClosePort();
+            _comConnector.Setup(_comPort, _bRate);
+            _comConnector.OpenPort();
             return true;
         }
 
         private void ComConnectorOnKeyUp(object sender, KeyEventArgs e)
         {
-            keyUp(e.Key, KeyboardUuid, _enabled);
+            KeyUp(e.Key, KeyboardUuid, _enabled);
         }
 
         private void ComConnectorOnKeyDown(object sender, KeyEventArgs e)
         {
-            keyDown(e.Key, KeyboardUuid, _enabled);
+            KeyDown(e.Key, KeyboardUuid, _enabled);
         }
 
         public bool DisConnect()
@@ -164,7 +164,7 @@ namespace MultiBoardKeyboard
                 return false;
             }
 
-            _comConnector.closePort();
+            _comConnector.ClosePort();
             return true;
         }
 
@@ -175,7 +175,7 @@ namespace MultiBoardKeyboard
                 return false;
             }
 
-            _comConnector.reConnect();
+            _comConnector.ReConnect();
             return true;
         }
 
@@ -192,7 +192,7 @@ namespace MultiBoardKeyboard
             return true;
         }
 
-        public void loadKeys(string keys, bool add = false)
+        public void LoadKeys(string keys, bool add = false)
         {
             if (add)
             {
@@ -215,7 +215,7 @@ namespace MultiBoardKeyboard
             UpdateKeyNameList();
         }
 
-        public void keyDown(string key, string keyboardUuid, bool allEnabled = true)
+        public void KeyDown(string key, string keyboardUuid, bool allEnabled = true)
         {
             //check for matching ids
             if (keyboardUuid == _id)
@@ -223,7 +223,7 @@ namespace MultiBoardKeyboard
                 //send to all keys
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyDown(key, allEnabled);
+                    aKey.KeyDown(key, allEnabled);
                 }
 
                 OnReceivedKeyDown(key);
@@ -231,7 +231,7 @@ namespace MultiBoardKeyboard
         }
 
 
-        public void keyUp(string key, string keyboardUuid, bool allEnabled = true)
+        public void KeyUp(string key, string keyboardUuid, bool allEnabled = true)
         {
             //check for matching ids
             if (keyboardUuid == _id)
@@ -239,7 +239,7 @@ namespace MultiBoardKeyboard
                 //send to all keys
                 foreach (Key aKey in _keyList)
                 {
-                    aKey.keyUp(key, allEnabled);
+                    aKey.KeyUp(key, allEnabled);
                 }
             }
 

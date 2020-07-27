@@ -479,7 +479,7 @@ namespace MultiBoard
                 obj.Dock = DockStyle.Fill;
                 obj.SaveFile = path;
 
-                obj.loadKeys();
+                obj.LoadKeys();
 
                 _listkeyboardElement.addItem(kb.KeyboardName, kb.KeyboardUuid, kb.KeyboardComPort, obj);
 

@@ -49,7 +49,7 @@ namespace MultiBoardKeyboard
         /// <param name="bRate">
         /// The baudrate of the com port
         /// </param>
-        public void setup(string com, int bRate)
+        public void Setup(string com, int bRate)
         {
             _comPort = new SerialPort(com, bRate);
             _comPort.DataReceived += new SerialDataReceivedEventHandler(comPort_DataReceived);
@@ -64,7 +64,7 @@ namespace MultiBoardKeyboard
         /// <summary>
         /// Open the serial port with current settings
         /// </summary>
-        public void openPort()
+        public void OpenPort()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace MultiBoardKeyboard
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                onError("com open failed:" + _comPort);
+                OnError("com open failed:" + _comPort);
                 return;
             }
             
@@ -82,7 +82,7 @@ namespace MultiBoardKeyboard
             {
                 Thread.CurrentThread.IsBackground = true;
                 Thread.Sleep(TimeoutDelay);
-                validedConnection();
+                CheckValidConnection();
 
             }).Start();
         }
@@ -90,7 +90,7 @@ namespace MultiBoardKeyboard
         /// <summary>
         /// Close the com port / release com port
         /// </summary>
-        public void closePort()
+        public void ClosePort()
         {
             if (_comPort != null)
             {
@@ -99,7 +99,7 @@ namespace MultiBoardKeyboard
             _connectioValid = false;
         }
 
-        private bool validedConnection()
+        private bool CheckValidConnection()
         {
             Debug.WriteLine("try check valid connection from {0} attempt {1}", _comPort.PortName, _retryMax);
             if (_connectioValid == true)
@@ -112,8 +112,8 @@ namespace MultiBoardKeyboard
             _retryMax++;
             if (_retryMax < 5)
             {
-                onError("connection failed reconnecting:" + _retryMax + " --> " + _comPort);
-                reConnect();
+                OnError("connection failed reconnecting:" + _retryMax + " --> " + _comPort);
+                ReConnect();
             }
             return false;
         }
@@ -121,10 +121,10 @@ namespace MultiBoardKeyboard
         /// <summary>
         /// reconnect comport and valide conection
         /// </summary>
-        public void reConnect()
+        public void ReConnect()
         {
-            closePort();
-            openPort();
+            ClosePort();
+            OpenPort();
         }
 
         /// <summary>
@@ -176,17 +176,17 @@ namespace MultiBoardKeyboard
             if (s.Split('<')[0] != s)
             {
                 //normal input
-                normalKey(s);
+                NormalKey(s);
             }
             else if(s.Split('_')[0] != s)
             {
                 //alternative keys
-                altKey(s);
+                AltKey(s);
             }
             else
             {
                 //alternative input
-                altInput(s);
+                AltInput(s);
             }
         }
 
@@ -196,21 +196,21 @@ namespace MultiBoardKeyboard
         /// <param name="input">
         /// input/received data
         /// </param>
-        private void normalKey(string input)
+        private void NormalKey(string input)
         {
             if(input.Split(new string[] { "DN" }, StringSplitOptions.None)[0] != input)
             {
                 //down key
                 string key = extractKey(input);
                 //Console.WriteLine("Key DN: " + key);
-                onKeyDown(key);
+                OnKeyDown(key);
             }
             else if (input.Split(new string[] { "UP" }, StringSplitOptions.None)[0] != input)
             {
                 //up key
                 string key = extractKey(input);
                 //Console.WriteLine("Key UP: " + key);
-                onKeyUp(key);
+                OnKeyUp(key);
             }
             else
             {
@@ -241,18 +241,18 @@ namespace MultiBoardKeyboard
         /// <param name="input">
         /// The key input
         /// </param>
-        private void altKey(string input)
+        private void AltKey(string input)
         {
             //sort by up/down
             if(input.Split('_')[0] == "0")
             {
                 //alt key down
-                onKeyDown(input.Split('_')[1]);
+                OnKeyDown(input.Split('_')[1]);
             }
             else
             {
                 //alt key up
-                onKeyUp(input.Split('_')[0]);
+                OnKeyUp(input.Split('_')[0]);
             }
         }
 
@@ -262,7 +262,7 @@ namespace MultiBoardKeyboard
         /// <param name="input">
         /// The input
         /// </param>
-        private void altInput(string input)
+        private void AltInput(string input)
         {
             //try to read as ID
             if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && _connectioValid == false)
@@ -275,7 +275,7 @@ namespace MultiBoardKeyboard
                         DynamicId = input.Split('&')[2].Replace("\r\n", string.Empty);
                         _connectioValid = true;
                         //Console.WriteLine("valid connection!");
-                        onConnected(DynamicId);
+                        OnConnected(DynamicId);
                     }
                 }
             }
@@ -283,7 +283,7 @@ namespace MultiBoardKeyboard
 
         //connection events
         //====================
-        protected virtual void onConnected(string uuid)
+        protected virtual void OnConnected(string uuid)
         {
             if(Connected != null)
             {
@@ -291,7 +291,7 @@ namespace MultiBoardKeyboard
             }
         }
 
-        protected virtual void onConnectionLost(string uuid)
+        protected virtual void OnConnectionLost(string uuid)
         {
             if(ConnectionLost != null)
             {
@@ -299,7 +299,7 @@ namespace MultiBoardKeyboard
             }
         }
 
-        protected virtual void onError(string error)
+        protected virtual void OnError(string error)
         {
             if (Error != null)
             {
@@ -309,7 +309,7 @@ namespace MultiBoardKeyboard
 
         //key events
         //====================
-        protected virtual void onKeyDown(string key)
+        protected virtual void OnKeyDown(string key)
         {
             //Console.WriteLine("KEY: " + KEY);
             
@@ -319,7 +319,7 @@ namespace MultiBoardKeyboard
             }
         }
 
-        protected virtual void onKeyUp(string key)
+        protected virtual void OnKeyUp(string key)
         {
             //Console.WriteLine("KEY: " + key);
 
@@ -329,7 +329,7 @@ namespace MultiBoardKeyboard
             }
         }
 
-        protected virtual void onKeyPressed(string key)
+        protected virtual void OnKeyPressed(string key)
         {
             if (KeyPressed != null)
             {

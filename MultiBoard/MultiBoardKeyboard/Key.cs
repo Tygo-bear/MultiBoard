@@ -62,9 +62,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _enabled = enabledKey;
             _executeLocation = executeLoc;
 
-            updateExecuteLoc();
+            UpdateExecuteLoc();
             _timer.Interval = _defInterval;
-            _timer.Elapsed += timerOnElapsed;
+            _timer.Elapsed += TimerOnElapsed;
             _timer.Stop();
         }
 
@@ -76,9 +76,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _enabled = jk.Enabled;
             _executeLocation = jk.ExecuteLocation;
 
-            updateExecuteLoc();
+            UpdateExecuteLoc();
             _timer.Interval = _defInterval;
-            _timer.Elapsed += timerOnElapsed;
+            _timer.Elapsed += TimerOnElapsed;
             _timer.Stop();
         }
 
@@ -87,7 +87,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerOnElapsed(object sender, EventArgs e)
+        private void TimerOnElapsed(object sender, EventArgs e)
         {
             if (_timer.Interval == _defInterval)
             {
@@ -104,7 +104,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 }
             }
 
-            executeFile();
+            ExecuteFile();
 
         }
 
@@ -172,7 +172,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Is the key enabled
         /// </summary>
-        public bool keyEnebled
+        public bool KeyEnabled
         {
             get
             {
@@ -211,7 +211,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             set
             {
                 _executeLocation = value;
-                updateExecuteLoc();
+                UpdateExecuteLoc();
 
             }
         }
@@ -219,7 +219,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Update variables related to changing execute location
         /// </summary>
-        private void updateExecuteLoc()
+        private void UpdateExecuteLoc()
         {
             if (_executeLocation.Replace("?", "") != _executeLocation)
             {
@@ -249,18 +249,18 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="allEnebled">
         /// Is key allowed to run
         /// </param>
-        public void keyDown(string key, bool allEnebled)
+        public void KeyDown(string key, bool allEnebled)
         {
             if (_recordingKey == false)
             {
                 if (_keyTag == key && _enabled == true && _onKeyDownSelected && allEnebled)
                 {
                     //execute
-                    executeFile();
+                    ExecuteFile();
                 }
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
-                    executeFile();
+                    ExecuteFile();
                     _timer.Start();
                 }
             }
@@ -275,13 +275,13 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="allEnebled">
         /// Is key allowed to run
         /// </param>
-        public void keyUp(string key, bool allEnebled)
+        public void KeyUp(string key, bool allEnebled)
         {
             if (_recordingKey == false)
             {
                 if (_keyTag == key && _enabled == true && _onKeyUpSelected && allEnebled)
                 {
-                    executeFile();
+                    ExecuteFile();
                 }
                 else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
                 {
@@ -295,7 +295,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Execute the task of the key
         /// </summary>
-        private void executeFile()
+        private void ExecuteFile()
         {
             if (_executeLocation.Replace("<", "") != _executeLocation)
             {
@@ -306,11 +306,11 @@ namespace MultiBoard.KeyboardElements.KeyElements
             else if (_executeLocation.Replace("?", "") != _executeLocation)
             {
                 //AutoHotKey script
-                runAhkScript();
+                RunAhkScript();
             }
             else if (_executeLocation.Replace("{", "") != _executeLocation)
             {
-                runAhkScript();
+                RunAhkScript();
             }
             else
             {
@@ -330,7 +330,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <summary>
         /// Runs AutoHotKey script
         /// </summary>
-        private void runAhkScript()
+        private void RunAhkScript()
         {
             if (!String.IsNullOrEmpty(_ahkScript))
             {

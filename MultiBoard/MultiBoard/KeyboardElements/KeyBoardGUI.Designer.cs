@@ -117,7 +117,7 @@
             this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(198, 35);
             this.BOTTEM_PANEL.TabIndex = 1;
-            this.BOTTEM_PANEL.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.BOTTEM_PANEL.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.BOTTEM_PANEL.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.BOTTEM_PANEL.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
@@ -131,7 +131,7 @@
             this.label1.Size = new System.Drawing.Size(88, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "Add new key";
-            this.label1.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.label1.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.label1.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.label1.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
@@ -145,7 +145,7 @@
             this.ADD_ITEM_P.Size = new System.Drawing.Size(35, 35);
             this.ADD_ITEM_P.TabIndex = 1;
             this.ADD_ITEM_P.TabStop = false;
-            this.ADD_ITEM_P.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.ADD_ITEM_P.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.ADD_ITEM_P.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.ADD_ITEM_P.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 

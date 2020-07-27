@@ -344,7 +344,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
 
             _connectedKey.key_name = _keyName;
-            _connectedKey.keyEnebled = _enabled;
+            _connectedKey.KeyEnabled = _enabled;
             _connectedKey.EventState = EventState;
             _connectedKey.executeLoc = _executeLocation;
             _connectedKey.keyTag = _keyTag;
