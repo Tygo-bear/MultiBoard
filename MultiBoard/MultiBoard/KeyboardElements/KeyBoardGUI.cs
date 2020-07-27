@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using MultiBoard.KeyboardElements.KeyElements;
 using MultiBoardKeyboard;
+using Newtonsoft.Json;
 
 namespace MultiBoard.KeyboardElements
 {
@@ -46,6 +48,12 @@ namespace MultiBoard.KeyboardElements
         public Keyboard Keyboard
         {
             get { return _keyboard; }
+        }
+
+        public string SaveFile
+        {
+            get { return _saveFile; }
+            set { _saveFile = value; }
         }
 
         private void KeyboardOnReceivedKeyDown(object sender, string e)
@@ -158,7 +166,9 @@ namespace MultiBoard.KeyboardElements
         {
 
             //check for file exist
-            if(!File.Exists(mainDirectory + @"\" + _keyboard.KeyboardUuid + ".inf"))
+            if(!File.Exists(mainDirectory + @"\" + _keyboard.KeyboardUuid + "" +
+                            ".inf" +
+                            ""))
             {
                 File.Create(mainDirectory + @"\" + _keyboard.KeyboardUuid + ".inf").Close();
             }
@@ -368,8 +378,19 @@ namespace MultiBoard.KeyboardElements
             System.IO.File.WriteAllLines(_saveFile, splits);
             */
 
+            saveToSaveFile();
+
             updateListView();
             _keyboard.UpdateKeyNameList();
+        }
+
+        public void saveToSaveFile()
+        {
+            if(String.IsNullOrEmpty(_saveFile)) { return;}
+
+            JKeyboard jk = _keyboard.SaveKeyboard(Properties.Resources.Version);
+            string output = JsonConvert.SerializeObject(jk, Formatting.Indented);
+            File.WriteAllText(_saveFile, output, Encoding.UTF8);
         }
 
         /// <summary>

@@ -164,10 +164,15 @@ namespace MultiBoard
         {
             if(e != EventArgs.Empty)
             {
-                //remove keyboard in args
-                _keyboardGUIList.Remove(e.Keyboard);
-                e.Keyboard.Dispose();
-                //TODO backend
+                if (e.Keyboard != null)
+                {
+                    //remove keyboard in args
+                    e.Keyboard.Keyboard.DisConnect();
+                    _keyboards.Remove(e.Keyboard.Keyboard);
+
+                    _keyboardGUIList.Remove(e.Keyboard);
+                    e.Keyboard.Dispose();
+                }
             }
             SaveKeyboardSaveFile();
         }
@@ -254,22 +259,11 @@ namespace MultiBoard
         /// <param name="e"></param>
         private void keyboardAdded(object sender, EventArgs e)
         {
-            //TODO json write
-            //Read main config file
-            string[] allLines = File.ReadAllLines(MainDirectory + @"\keyboards.inf");
-            List<string> sstring = allLines.ToList();
 
             //Collect new keyboard information
             string name = _addKeyboardContr.KeyboardName;
             string uuid = _addKeyboardContr.KeyboardID;
             string port = _addKeyboardContr.KeyboardPort;
-            
-            //Add keyboard to main config file
-            sstring.Add(_addKeyboardContr.KeyboardID + "|" + _addKeyboardContr.KeyboardName + "|" + _addKeyboardContr.KeyboardPort + "\n");
-            string[] writeAll = sstring.ToArray();
-
-            //Update main config file
-            File.WriteAllLines(MainDirectory + @"\keyboards.inf", writeAll, Encoding.UTF8);
 
             //Create new keyboard class/userControl
             Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
@@ -286,18 +280,16 @@ namespace MultiBoard
             MAIN_PANEL.Controls.Add(obj);
             obj.Dock = DockStyle.Fill;
             obj.BringToFront();
+            obj.SaveFile = MainDirectory + @"/saves/" + uuid + ".mkb";
 
 
             //Add new keyboard class to the keyboard list control
             _listkeyboardElement.addItem(name, uuid, port, obj);
 
-            //Load in the keys of the new keyboard
-            obj.LegacyLoadKeys(MainDirectory);
-
             //Add new keyboard to keyboard list
             _keyboardGUIList.Add(obj);
 
-
+            SaveKeyboardSaveFile();
         }
 
         private void SaveKeyboardSaveFile()
@@ -485,6 +477,7 @@ namespace MultiBoard
                 obj.Visible = false;
                 MAIN_PANEL.Controls.Add(obj);
                 obj.Dock = DockStyle.Fill;
+                obj.SaveFile = path;
 
                 obj.loadKeys();
 

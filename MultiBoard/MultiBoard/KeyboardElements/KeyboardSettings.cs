@@ -59,10 +59,7 @@ namespace MultiBoard.KeyboardElements
         private void DELETE_BUTTON_Click(object sender, EventArgs e)
         {
             //delete
-            if(Delete != null)
-            {
-                Delete(this, EventArgs.Empty);
-            }
+            Delete?.Invoke(this, EventArgs.Empty);
         }
 
         private void SAVE_BUTTON_Click(object sender, EventArgs e)
