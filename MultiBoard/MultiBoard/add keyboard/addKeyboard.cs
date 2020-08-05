@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using MultiBoard.KeyboardElements.KeyboardScannerElements;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.add_keyboard
 {
@@ -251,8 +251,11 @@ namespace MultiBoard.add_keyboard
         private void BACKGROUND_SCANNER_DoWork(object sender, DoWorkEventArgs e)
         {
             //Start a keyboardScanner
-            KeyboardScanner kbs = new KeyboardScanner();
-            kbs.loadList(115200);
+            KeyboardScanner kbs = new KeyboardScanner(
+                Properties.Settings.Default.TimeOutDelay,
+                Properties.Resources.KeyboardScanner__staticId,
+                Properties.Settings.Default.SafeModeScan);
+            kbs.LoadList(115200);
 
             //Filter keyboards
             filterKeyboards(kbs.Ports, kbs.Uuid);

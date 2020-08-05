@@ -3,9 +3,8 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
 
-namespace MultiBoard
+namespace MultiBoardKeyboard
 {
-
     class Connector
     {
         //Events
@@ -29,8 +28,17 @@ namespace MultiBoard
         //=================
         private int _retryMax = 0;
         private bool _connectioValid;
-        private readonly string _staticId = Properties.Resources.KeyboardScanner__staticId;
-        public string DynamicId; 
+        private string _staticId;
+        public string DynamicId;
+
+        public int ThreadPriority = 6;
+        public int TimeoutDelay;
+
+        public Connector(string staticId, int timeoutDelay)
+        {
+            _staticId = staticId;
+            TimeoutDelay = timeoutDelay;
+        }
 
         /// <summary>
         /// Setup connection settings of connector class
@@ -41,7 +49,7 @@ namespace MultiBoard
         /// <param name="bRate">
         /// The baudrate of the com port
         /// </param>
-        public void setup(string com, int bRate)
+        public void Setup(string com, int bRate)
         {
             _comPort = new SerialPort(com, bRate);
             _comPort.DataReceived += new SerialDataReceivedEventHandler(comPort_DataReceived);
@@ -56,15 +64,25 @@ namespace MultiBoard
         /// <summary>
         /// Open the serial port with current settings
         /// </summary>
-        public void openPort()
+        public void OpenPort()
         {
-            _comPort.Open();
+            try
+            {
+                _comPort.Open();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                OnError("com open failed:" + _comPort);
+                return;
+            }
+            
             _comPort.Write("?");
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
-                validedConnection();
+                Thread.Sleep(TimeoutDelay);
+                CheckValidConnection();
 
             }).Start();
         }
@@ -72,13 +90,16 @@ namespace MultiBoard
         /// <summary>
         /// Close the com port / release com port
         /// </summary>
-        public void closePort()
+        public void ClosePort()
         {
-            _comPort.Close();
+            if (_comPort != null)
+            {
+                _comPort.Close();
+            }
             _connectioValid = false;
         }
 
-        private bool validedConnection()
+        private bool CheckValidConnection()
         {
             Debug.WriteLine("try check valid connection from {0} attempt {1}", _comPort.PortName, _retryMax);
             if (_connectioValid == true)
@@ -91,9 +112,8 @@ namespace MultiBoard
             _retryMax++;
             if (_retryMax < 5)
             {
-                Properties.Settings.Default.ErrorList += ", connection failed reconnecting:" + _retryMax +" --> " + _comPort;
-                Properties.Settings.Default.Save();
-                reConnect();
+                OnError("connection failed reconnecting:" + _retryMax + " --> " + _comPort);
+                ReConnect();
             }
             return false;
         }
@@ -101,10 +121,10 @@ namespace MultiBoard
         /// <summary>
         /// reconnect comport and valide conection
         /// </summary>
-        public void reConnect()
+        public void ReConnect()
         {
-            closePort();
-            openPort();
+            ClosePort();
+            OpenPort();
         }
 
         /// <summary>
@@ -115,7 +135,7 @@ namespace MultiBoard
         private void comPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             //Processes priority as settings define
-            switch (Properties.Settings.Default.ThreadPriority)
+            switch (ThreadPriority)
             {
                 case 1:
                     System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.Idle;
@@ -156,17 +176,17 @@ namespace MultiBoard
             if (s.Split('<')[0] != s)
             {
                 //normal input
-                normalKey(s);
+                NormalKey(s);
             }
             else if(s.Split('_')[0] != s)
             {
                 //alternative keys
-                altKey(s);
+                AltKey(s);
             }
             else
             {
                 //alternative input
-                altInput(s);
+                AltInput(s);
             }
         }
 
@@ -176,21 +196,21 @@ namespace MultiBoard
         /// <param name="input">
         /// input/received data
         /// </param>
-        private void normalKey(string input)
+        private void NormalKey(string input)
         {
             if(input.Split(new string[] { "DN" }, StringSplitOptions.None)[0] != input)
             {
                 //down key
                 string key = extractKey(input);
                 //Console.WriteLine("Key DN: " + key);
-                onKeyDown(key);
+                OnKeyDown(key);
             }
             else if (input.Split(new string[] { "UP" }, StringSplitOptions.None)[0] != input)
             {
                 //up key
                 string key = extractKey(input);
                 //Console.WriteLine("Key UP: " + key);
-                onKeyUp(key);
+                OnKeyUp(key);
             }
             else
             {
@@ -221,18 +241,18 @@ namespace MultiBoard
         /// <param name="input">
         /// The key input
         /// </param>
-        private void altKey(string input)
+        private void AltKey(string input)
         {
             //sort by up/down
             if(input.Split('_')[0] == "0")
             {
                 //alt key down
-                onKeyDown(input.Split('_')[1]);
+                OnKeyDown(input.Split('_')[1]);
             }
             else
             {
                 //alt key up
-                onKeyUp(input.Split('_')[0]);
+                OnKeyUp(input.Split('_')[0]);
             }
         }
 
@@ -242,7 +262,7 @@ namespace MultiBoard
         /// <param name="input">
         /// The input
         /// </param>
-        private void altInput(string input)
+        private void AltInput(string input)
         {
             //try to read as ID
             if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && _connectioValid == false)
@@ -255,7 +275,7 @@ namespace MultiBoard
                         DynamicId = input.Split('&')[2].Replace("\r\n", string.Empty);
                         _connectioValid = true;
                         //Console.WriteLine("valid connection!");
-                        onConnected(DynamicId);
+                        OnConnected(DynamicId);
                     }
                 }
             }
@@ -263,7 +283,7 @@ namespace MultiBoard
 
         //connection events
         //====================
-        protected virtual void onConnected(string uuid)
+        protected virtual void OnConnected(string uuid)
         {
             if(Connected != null)
             {
@@ -271,7 +291,7 @@ namespace MultiBoard
             }
         }
 
-        protected virtual void onConnectionLost(string uuid)
+        protected virtual void OnConnectionLost(string uuid)
         {
             if(ConnectionLost != null)
             {
@@ -279,7 +299,7 @@ namespace MultiBoard
             }
         }
 
-        protected virtual void onError(string error)
+        protected virtual void OnError(string error)
         {
             if (Error != null)
             {
@@ -289,7 +309,7 @@ namespace MultiBoard
 
         //key events
         //====================
-        protected virtual void onKeyDown(string key)
+        protected virtual void OnKeyDown(string key)
         {
             //Console.WriteLine("KEY: " + KEY);
             
@@ -299,7 +319,7 @@ namespace MultiBoard
             }
         }
 
-        protected virtual void onKeyUp(string key)
+        protected virtual void OnKeyUp(string key)
         {
             //Console.WriteLine("KEY: " + key);
 
@@ -309,7 +329,7 @@ namespace MultiBoard
             }
         }
 
-        protected virtual void onKeyPressed(string key)
+        protected virtual void OnKeyPressed(string key)
         {
             if (KeyPressed != null)
             {

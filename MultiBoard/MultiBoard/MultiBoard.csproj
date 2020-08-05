@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MultiBoard</RootNamespace>
     <AssemblyName>MultiBoard</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -50,6 +51,9 @@
   <PropertyGroup>
     <ApplicationIcon>MultiBoard.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -80,7 +84,6 @@
     <Compile Include="add keyboard\AutoAddKeyboard.Designer.cs">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connector.cs" />
     <Compile Include="GithubApi.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
@@ -100,25 +103,23 @@
     <Compile Include="ErrorSystem\ErrorMangePanel.Designer.cs">
       <DependentUpon>ErrorMangePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyboardScannerElements\ScannerPort.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyElements\Key.cs" />
     <Compile Include="KeyboardElements\KeyElements\KeyGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="KeyboardElements\KeyElements\KeyGUI.Designer.cs">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyBoard.cs">
+    <Compile Include="KeyboardElements\KeyBoardGUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="KeyboardElements\KeyBoard.Designer.cs">
-      <DependentUpon>KeyBoard.cs</DependentUpon>
+    <Compile Include="KeyboardElements\KeyBoardGUI.Designer.cs">
+      <DependentUpon>KeyBoardGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardElements\KeyboardList.cs">
       <SubType>UserControl</SubType>
@@ -132,7 +133,6 @@
     <Compile Include="KeyboardElements\KeyboardListPanel.Designer.cs">
       <DependentUpon>KeyboardListPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyboardElements\KeyboardScannerElements\KeyboardScanner.cs" />
     <Compile Include="KeyboardElements\KeyboardSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +201,12 @@
     <Compile Include="SettingsElements\GeneralSettings.Designer.cs">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsElements\InfoSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsElements\InfoSettings.Designer.cs">
+      <DependentUpon>InfoSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsElements\MainSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,8 +234,8 @@
     <EmbeddedResource Include="KeyboardElements\KeyElements\KeyGUI.resx">
       <DependentUpon>KeyGUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardElements\KeyBoard.resx">
-      <DependentUpon>KeyBoard.cs</DependentUpon>
+    <EmbeddedResource Include="KeyboardElements\KeyBoardGUI.resx">
+      <DependentUpon>KeyBoardGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardElements\KeyboardList.resx">
       <DependentUpon>KeyboardList.cs</DependentUpon>
@@ -276,6 +282,9 @@
     </Compile>
     <EmbeddedResource Include="SettingsElements\GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsElements\InfoSettings.resx">
+      <DependentUpon>InfoSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsElements\MainSettings.resx">
       <DependentUpon>MainSettings.cs</DependentUpon>
@@ -325,6 +334,11 @@
       <Project>{2869dbfe-7762-4930-95ea-2b0c111cf353}</Project>
       <Name>AutoHotkey.Interop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MultiBoardKeyboard\MultiBoardKeyboard.csproj">
+      <Project>{641262a6-b2c8-4d7f-b394-030dc5e9302d}</Project>
+      <Name>MultiBoardKeyboard</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

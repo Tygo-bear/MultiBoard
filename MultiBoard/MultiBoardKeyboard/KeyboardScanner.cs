@@ -1,16 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
+using System.Threading;
 
-namespace MultiBoard.KeyboardElements.KeyboardScannerElements
+namespace MultiBoardKeyboard
 {
-    class KeyboardScanner
+    public class KeyboardScanner
     {
         public List<string> Ports = new List<string>();
         public List<string> Uuid = new List<string>();
 
         private List<ScannerPort> _scanPorts = new List<ScannerPort>();
+        private bool _safeMode;
+        public int TimeOutDelay;
+        private string _staticId;
+
+        public KeyboardScanner(int timeOutDelay, string staticId, bool safeMode = true)
+        {
+            TimeOutDelay = timeOutDelay;
+            _staticId = staticId;
+            _safeMode = safeMode;
+        }
 
 
         /// <summary>
@@ -19,7 +30,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// <param name="bRate">
         /// baud rate of com port (115200 default)
         /// </param>
-        public void loadList(int bRate)
+        public void LoadList(int bRate)
         {
             GetSerialPort();
 
@@ -30,7 +41,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
 
             //Make list of all the com ports
             List<string> availablePorts;
-            if (Properties.Settings.Default.SafeModeScan)
+            if (_safeMode)
             {
                 Debug.WriteLine("COM ports scan mode 1");
                 availablePorts = GetSerialPort();
@@ -57,16 +68,16 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             //open connection foreach com port
             foreach (string s in availablePorts)
             {
-                ScannerPort sp = new ScannerPort();
-                sp.setup(s, bRate);
-                Thread t = new Thread(() => sp.start());
+                ScannerPort sp = new ScannerPort(_staticId);
+                sp.Setup(s, bRate);
+                Thread t = new Thread(() => sp.Start());
                 t.Start();
 
                 _scanPorts.Add(sp);
             }
 
             //wait 1s-10s
-            System.Threading.Thread.Sleep(Properties.Settings.Default.TimeOutDelay);
+            System.Threading.Thread.Sleep(TimeOutDelay);
 
             //collect results
             Debug.WriteLine("--scan results--");
@@ -80,7 +91,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    sp.close();
+                    sp.Close();
 
                 }).Start();
 
@@ -100,8 +111,8 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             try
             {
                 ManagementClass processClass = new ManagementClass("Win32_PnPEntity");
-                ManagementObjectCollection Ports = processClass.GetInstances();
-                foreach (ManagementObject property in Ports)
+                ManagementObjectCollection ports = processClass.GetInstances();
+                foreach (ManagementObject property in ports)
                 {
                     var name = property.GetPropertyValue("Name");
                     if (name != null && name.ToString().Contains("USB") && name.ToString().Contains("COM"))
@@ -116,7 +127,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
             catch (ManagementException e)
             {
-                
+                Console.WriteLine(e.ToString());
             }
 
             return availablePorts;

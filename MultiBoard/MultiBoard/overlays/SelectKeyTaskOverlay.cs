@@ -55,7 +55,7 @@ namespace MultiBoard.overlays
         /// <param name="e"></param>
         private void CLOSE_B_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Hide();
         }
 
         private void OnCheckRadioButton(object sender, EventArgs e)

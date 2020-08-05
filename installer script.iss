@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MultiBoard"
-#define MyAppVersion "1.0.1.6"
+#define MyAppVersion "1.0.1.7"
 #define MyAppPublisher "Tygo, Inc."
 #define MyAppExeName "MultiBoard.exe"
 
@@ -17,12 +17,15 @@ AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputDir=C:\Users\Casper\Documents\GitHub\MultiBoard
+OutputDir={#SourcePath}
 OutputBaseFilename=MultiBoard_setup
-SetupIconFile=C:\Users\Casper\Documents\GitHub\MultiBoard\icons\logo\MultiBoard.ico
+SetupIconFile={#SourcePath}\icons\logo\MultiBoard.ico
 Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin
+
+[InstallDelete]
+Type: files; Name: {app}\MultiBoardKeyboard.dll
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -31,9 +34,10 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\MultiBoard.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\AutoHotkey.Interop.dll"; DestDir: "{app}"
-Source: "C:\Users\Casper\Documents\GitHub\MultiBoard\MultiBoard\MultiBoard\bin\Debug\Newtonsoft.Json.dll"; DestDir: "{app}"
+Source: "{#SourcePath}\MultiBoard\MultiBoard\bin\Debug\MultiBoard.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\MultiBoard\MultiBoard\bin\Debug\AutoHotkey.Interop.dll"; DestDir: "{app}"
+Source: "{#SourcePath}\MultiBoard\MultiBoard\bin\Debug\Newtonsoft.Json.dll"; DestDir: "{app}"
+Source: "{#SourcePath}\MultiBoard\MultiBoard\bin\Debug\MultiBoardKeyboard.dll"; DestDir: "{app}"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

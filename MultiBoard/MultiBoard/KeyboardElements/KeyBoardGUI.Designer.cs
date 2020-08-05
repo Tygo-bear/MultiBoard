@@ -1,6 +1,6 @@
 ﻿namespace MultiBoard.KeyboardElements
 {
-    partial class KeyBoard
+    partial class KeyBoardGUI
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyBoardGUI));
             this.TOP_PANEL = new System.Windows.Forms.Panel();
             this.SEARCH_BUTTON = new System.Windows.Forms.Button();
             this.NAME_LABEL = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@
             this.LEFT_PANEL = new System.Windows.Forms.Panel();
             this.KEYLIST_PANEL = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LEFT_TOP_ICON)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -116,7 +117,7 @@
             this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
             this.BOTTEM_PANEL.Size = new System.Drawing.Size(198, 35);
             this.BOTTEM_PANEL.TabIndex = 1;
-            this.BOTTEM_PANEL.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.BOTTEM_PANEL.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.BOTTEM_PANEL.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.BOTTEM_PANEL.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
@@ -130,7 +131,7 @@
             this.label1.Size = new System.Drawing.Size(88, 14);
             this.label1.TabIndex = 2;
             this.label1.Text = "Add new key";
-            this.label1.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.label1.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.label1.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.label1.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
@@ -144,7 +145,7 @@
             this.ADD_ITEM_P.Size = new System.Drawing.Size(35, 35);
             this.ADD_ITEM_P.TabIndex = 1;
             this.ADD_ITEM_P.TabStop = false;
-            this.ADD_ITEM_P.Click += new System.EventHandler(this.addNewKeyClicked);
+            this.ADD_ITEM_P.Click += new System.EventHandler(this.AddNewKeyClicked);
             this.ADD_ITEM_P.MouseEnter += new System.EventHandler(this.BOTTEM_PANEL_MouseEnter);
             this.ADD_ITEM_P.MouseLeave += new System.EventHandler(this.BOTTEM_PANEL_MouseLeave);
             // 
@@ -177,12 +178,20 @@
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // KeyBoard
+            // MAIN_PANEL
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MAIN_PANEL.Location = new System.Drawing.Point(198, 0);
+            this.MAIN_PANEL.Name = "MAIN_PANEL";
+            this.MAIN_PANEL.Size = new System.Drawing.Size(659, 508);
+            this.MAIN_PANEL.TabIndex = 4;
+            // 
+            // KeyBoardGUI
+            // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.MAIN_PANEL);
             this.Controls.Add(this.LEFT_PANEL);
-            this.Name = "KeyBoard";
+            this.Name = "KeyBoardGUI";
             this.Size = new System.Drawing.Size(857, 508);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
@@ -208,5 +217,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button SEARCH_BUTTON;
         private System.Windows.Forms.TextBox SEARCH_TEXTBOC;
+        private System.Windows.Forms.Panel MAIN_PANEL;
     }
 }

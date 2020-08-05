@@ -46,13 +46,13 @@ namespace MultiBoard.KeyboardElements
         /// <param name="comportItem">
         /// The com port of the keyboard
         /// </param>
-        /// <param name="board">
+        /// <param name="boardGui">
         /// The keyboard class it represents
         /// </param>
-        public void addItem(string itemName, string uuidItem, string comportItem, KeyBoard board)
+        public void addItem(string itemName, string uuidItem, string comportItem, KeyBoardGUI boardGui)
         {
             //Create panel and add to control
-            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, board);
+            KeyboardListPanel obj = new KeyboardListPanel(itemName, uuidItem, comportItem, boardGui);
             obj.Location = _nextPoint;
             obj.Visible = true;
             obj.BoardSettingsClicked += bsClicked;
@@ -99,7 +99,7 @@ namespace MultiBoard.KeyboardElements
         {
             //Show settings control of keyboard
             KeyboardListPanel k = sender as KeyboardListPanel;
-            KeyboardSettings obj = new KeyboardSettings(k.KeyboardName, k.KeyboardUuid, k.KeyboardPort, k.ConnectedBoard);
+            KeyboardSettings obj = new KeyboardSettings(k.KeyboardName, k.KeyboardUuid, k.KeyboardPort, k.ConnectedBoardGui);
 
             obj.Save += keyboardSave;
             obj.Delete += keyboardDelete;
@@ -119,12 +119,12 @@ namespace MultiBoard.KeyboardElements
         private void keyboardSave(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.ConnectedKeyboard;
+            KeyBoardGUI b = k.ConnectedKeyboard;
 
             //Check file exist
-            if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
+            if (File.Exists(_mainDirectory + @"\saves\" + b.KeyboardUuid + ".mkb"))
             {
-                File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf", _mainDirectory + @"\" + k.KbUuid + ".inf");
+                File.Move(_mainDirectory + @"\saves\" + b.KeyboardUuid + ".mkb", _mainDirectory + @"\saves\" + k.KbUuid + ".mkb");
             }
             else
             {
@@ -151,7 +151,7 @@ namespace MultiBoard.KeyboardElements
         private void keyboardDelete(object sender, EventArgs e)
         {
             KeyboardSettings k = sender as KeyboardSettings;
-            KeyBoard b = k.ConnectedKeyboard;
+            KeyBoardGUI b = k.ConnectedKeyboard;
 
             //MOVE FILES TO .DEL FOLDER
             //=============================
@@ -161,21 +161,13 @@ namespace MultiBoard.KeyboardElements
             {
                 Directory.Delete(_mainDirectory + @"\.del", true);
             }
-
             Directory.CreateDirectory(_mainDirectory + @"\.del");
 
-            //Keyboards config
-            if (File.Exists(_mainDirectory + @"\keyboards.inf"))
-            {
-                File.Copy(_mainDirectory + @"\keyboards.inf"
-                    , _mainDirectory + @"\.del\keyboards.inf");
-            }
-            
             //keyboard file
-            if (File.Exists(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"))
+            if (File.Exists(_mainDirectory + @"\saves\" + b.KeyboardUuid + ".mkb"))
             {
-                File.Move(_mainDirectory + @"\" + b.KeyboardUuid + ".inf"
-                          , _mainDirectory + @"\.del\" + b.KeyboardUuid + ".inf");
+                File.Move(_mainDirectory + @"\saves\" + b.KeyboardUuid + ".mkb"
+                          , _mainDirectory + @"\.del\" + b.KeyboardUuid + ".mkb");
             }
             else
             {
@@ -191,7 +183,7 @@ namespace MultiBoard.KeyboardElements
             //dispose representing keyboardPanel
             foreach (KeyboardListPanel p in _KeyboardPanelList)
             {
-                if (p.ConnectedBoard == b)
+                if (p.ConnectedBoardGui == b)
                 {
                     p.Dispose();
                 }
@@ -201,7 +193,7 @@ namespace MultiBoard.KeyboardElements
             k.Dispose();
 
             //Call delete event for saving new settings
-            if (UpdateKeyboards != null) UpdateKeyboards(this, new KeyboardToArgs() {Keyboard = b});
+            UpdateKeyboards?.Invoke(this, new KeyboardToArgs() { Keyboard = b });
         }
 
         /// <summary>
@@ -231,20 +223,14 @@ namespace MultiBoard.KeyboardElements
             //Move files out of .del folder
             if (Directory.Exists(_mainDirectory + @"\.del"))
             {
-                if (File.Exists(_mainDirectory + @"\keyboards.inf"))
+
+                if (File.Exists(_mainDirectory + @"\saves\" + _undo + ".mkb"))
                 {
-                    File.Delete(_mainDirectory + @"\keyboards.inf");
+                    File.Delete(_mainDirectory + @"\saves\" + _undo + ".mkb");
                 }
 
-                if (File.Exists(_mainDirectory + @"\" + _undo + ".inf"))
-                {
-                    File.Delete(_mainDirectory + @"\" + _undo + ".inf");
-                }
-
-                File.Move(_mainDirectory + @"\.del\keyboards.inf"
-                    ,_mainDirectory + @"\keyboards.inf");
-                File.Move(_mainDirectory + @"\.del" + @"\" + _undo + ".inf"
-                    , _mainDirectory + @"\" + _undo + ".inf"); 
+                File.Move(_mainDirectory + @"\.del" + @"\" + _undo + ".mkb"
+                    , _mainDirectory + @"\saves\" + _undo + ".mkb"); 
             }
 
             //restart application
@@ -260,6 +246,6 @@ namespace MultiBoard.KeyboardElements
 
     public class KeyboardToArgs : EventArgs
     {
-        public KeyBoard Keyboard { get; set; }
+        public KeyBoardGUI Keyboard { get; set; }
     }
 }

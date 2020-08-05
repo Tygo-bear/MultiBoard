@@ -88,7 +88,7 @@
             "F24"});
             this.F_KEY_COMBOBOX.Location = new System.Drawing.Point(106, 11);
             this.F_KEY_COMBOBOX.Name = "F_KEY_COMBOBOX";
-            this.F_KEY_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.F_KEY_COMBOBOX.Size = new System.Drawing.Size(180, 21);
             this.F_KEY_COMBOBOX.TabIndex = 0;
             // 
             // OK_BUTTON
@@ -209,7 +209,7 @@
             "Z"});
             this.NORMAL_COMBOBOX.Location = new System.Drawing.Point(106, 15);
             this.NORMAL_COMBOBOX.Name = "NORMAL_COMBOBOX";
-            this.NORMAL_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.NORMAL_COMBOBOX.Size = new System.Drawing.Size(183, 21);
             this.NORMAL_COMBOBOX.TabIndex = 0;
             // 
             // panel3
@@ -252,7 +252,7 @@
             "UND11"});
             this.UND_COMBOBOX.Location = new System.Drawing.Point(106, 11);
             this.UND_COMBOBOX.Name = "UND_COMBOBOX";
-            this.UND_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.UND_COMBOBOX.Size = new System.Drawing.Size(180, 21);
             this.UND_COMBOBOX.TabIndex = 0;
             // 
             // panel4
@@ -309,7 +309,7 @@
             "PAD_DOWN"});
             this.NUMBERPAD_COMBOBOX.Location = new System.Drawing.Point(106, 11);
             this.NUMBERPAD_COMBOBOX.Name = "NUMBERPAD_COMBOBOX";
-            this.NUMBERPAD_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.NUMBERPAD_COMBOBOX.Size = new System.Drawing.Size(183, 21);
             this.NUMBERPAD_COMBOBOX.TabIndex = 0;
             // 
             // panel5
@@ -394,7 +394,7 @@
             "ALT_APP2"});
             this.ALT_KEYS_COMBOBOX.Location = new System.Drawing.Point(106, 11);
             this.ALT_KEYS_COMBOBOX.Name = "ALT_KEYS_COMBOBOX";
-            this.ALT_KEYS_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.ALT_KEYS_COMBOBOX.Size = new System.Drawing.Size(180, 21);
             this.ALT_KEYS_COMBOBOX.TabIndex = 0;
             // 
             // panel6
@@ -459,7 +459,7 @@
             "SPEC_PLAY"});
             this.SPEC_KEYS_COMBOBOX.Location = new System.Drawing.Point(106, 11);
             this.SPEC_KEYS_COMBOBOX.Name = "SPEC_KEYS_COMBOBOX";
-            this.SPEC_KEYS_COMBOBOX.Size = new System.Drawing.Size(200, 21);
+            this.SPEC_KEYS_COMBOBOX.Size = new System.Drawing.Size(183, 21);
             this.SPEC_KEYS_COMBOBOX.TabIndex = 0;
             // 
             // SelectKeyTaskOverlay

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
-using MultiBoard.Properties;
 
-namespace MultiBoard.KeyboardElements.KeyboardScannerElements
+namespace MultiBoardKeyboard
 {
     class ScannerPort 
     {
-        private string _staticId = Resources.KeyboardScanner__staticId;
+        private string _staticId;
         private SerialPort _serialPort = new SerialPort();
 
         public event EventHandler BoardFound;
@@ -16,9 +15,10 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         private int _baudRate;
         public string Uuid = "NONE";
 
-        public ScannerPort()
+        public ScannerPort(string staticId)
         {
-            _serialPort.DataReceived += serialPortOnDataReceived;
+            _staticId = staticId;
+            _serialPort.DataReceived += SerialPortOnDataReceived;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// <param name="rate">
         /// baud rate of the com port
         /// </param>
-        public void setup(string port, int rate)
+        public void Setup(string port, int rate)
         {
             ComPort = port;
             _baudRate = rate;
@@ -42,7 +42,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// <summary>
         /// Start connection with com port
         /// </summary>
-        public void start()
+        public void Start()
         {
             try
             {
@@ -59,11 +59,9 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// <summary>
         /// Release com port
         /// </summary>
-        public void close()
+        public void Close()
         {
-
             _serialPort.Close();
-
         }
 
         /// <summary>
@@ -71,17 +69,17 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void serialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(100);
-            checkReceivedData();
+            CheckReceivedData();
         }
 
         /// <summary>
         /// Processes received data
         /// Validate static id and collect dynamic id
         /// </summary>
-        private void checkReceivedData()
+        private void CheckReceivedData()
         {
             string input = "";
             try
@@ -113,7 +111,7 @@ namespace MultiBoard.KeyboardElements.KeyboardScannerElements
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
 
         }

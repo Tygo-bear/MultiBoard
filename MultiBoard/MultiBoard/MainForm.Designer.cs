@@ -35,7 +35,6 @@
             this.MINIMIZE_B = new System.Windows.Forms.Button();
             this.CLOSE_B = new System.Windows.Forms.Button();
             this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
-            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.LEFT_PENEL = new System.Windows.Forms.Panel();
             this.ERROR_MANAGE_BUTTON = new System.Windows.Forms.Button();
             this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
@@ -47,17 +46,18 @@
             this.WARRNING_BUTTON = new System.Windows.Forms.Button();
             this.TOGGLE_B = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.NOTIFY_ICO = new System.Windows.Forms.NotifyIcon(this.components);
             this.NOTIFY_ICO_CONTENT = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.MAIN_PANEL = new System.Windows.Forms.Panel();
             this.TOP_PANEL.SuspendLayout();
-            this.TOP_ICON_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
             this.BOTTEM_PANEL.SuspendLayout();
             this.NOTIFY_ICO_CONTENT.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -123,21 +123,12 @@
             this.TOP_ICON_PANEL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(163)))), ((int)(((byte)(17)))));
             this.TOP_ICON_PANEL.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TOP_ICON_PANEL.BackgroundImage")));
             this.TOP_ICON_PANEL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.TOP_ICON_PANEL.Controls.Add(this.MAIN_PANEL);
             this.TOP_ICON_PANEL.Dock = System.Windows.Forms.DockStyle.Left;
             this.TOP_ICON_PANEL.Location = new System.Drawing.Point(0, 0);
             this.TOP_ICON_PANEL.Name = "TOP_ICON_PANEL";
             this.TOP_ICON_PANEL.Size = new System.Drawing.Size(32, 31);
             this.TOP_ICON_PANEL.TabIndex = 1;
             this.TOP_ICON_PANEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDown);
-            // 
-            // MAIN_PANEL
-            // 
-            this.MAIN_PANEL.Location = new System.Drawing.Point(31, 31);
-            this.MAIN_PANEL.Margin = new System.Windows.Forms.Padding(0);
-            this.MAIN_PANEL.Name = "MAIN_PANEL";
-            this.MAIN_PANEL.Size = new System.Drawing.Size(858, 508);
-            this.MAIN_PANEL.TabIndex = 4;
             // 
             // LEFT_PENEL
             // 
@@ -169,6 +160,7 @@
             this.ERROR_MANAGE_BUTTON.Size = new System.Drawing.Size(32, 34);
             this.ERROR_MANAGE_BUTTON.TabIndex = 8;
             this.ERROR_MANAGE_BUTTON.UseVisualStyleBackColor = false;
+            this.ERROR_MANAGE_BUTTON.Visible = false;
             this.ERROR_MANAGE_BUTTON.Click += new System.EventHandler(this.ERROR_MANAGE_BUTTON_Click);
             // 
             // ADD_KEYBOARD_BUTTON
@@ -235,16 +227,16 @@
             // 
             // BOTTEM_PANEL
             // 
-            this.BOTTEM_PANEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BOTTEM_PANEL.BackColor = System.Drawing.Color.Linen;
             this.BOTTEM_PANEL.Controls.Add(this.ERROR_LABEL);
             this.BOTTEM_PANEL.Controls.Add(this.WARRNING_BUTTON);
             this.BOTTEM_PANEL.Controls.Add(this.TOGGLE_B);
             this.BOTTEM_PANEL.Controls.Add(this.label1);
-            this.BOTTEM_PANEL.Location = new System.Drawing.Point(31, 539);
+            this.BOTTEM_PANEL.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BOTTEM_PANEL.Location = new System.Drawing.Point(0, 508);
             this.BOTTEM_PANEL.Margin = new System.Windows.Forms.Padding(0);
             this.BOTTEM_PANEL.Name = "BOTTEM_PANEL";
-            this.BOTTEM_PANEL.Size = new System.Drawing.Size(858, 34);
+            this.BOTTEM_PANEL.Size = new System.Drawing.Size(857, 34);
             this.BOTTEM_PANEL.TabIndex = 3;
             // 
             // ERROR_LABEL
@@ -266,13 +258,13 @@
             this.WARRNING_BUTTON.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.WARRNING_BUTTON.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.WARRNING_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WARRNING_BUTTON.Location = new System.Drawing.Point(826, 0);
+            this.WARRNING_BUTTON.Location = new System.Drawing.Point(825, 0);
             this.WARRNING_BUTTON.Name = "WARRNING_BUTTON";
             this.WARRNING_BUTTON.Size = new System.Drawing.Size(32, 34);
             this.WARRNING_BUTTON.TabIndex = 7;
             this.WARRNING_BUTTON.UseVisualStyleBackColor = false;
             this.WARRNING_BUTTON.Visible = false;
-            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARRNING_BUTTON_Click);
+            this.WARRNING_BUTTON.Click += new System.EventHandler(this.WARNING_BUTTON_Click);
             // 
             // TOGGLE_B
             // 
@@ -297,11 +289,6 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Off/On";
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // NOTIFY_ICO
             // 
@@ -337,14 +324,33 @@
             // backgroundWorker2
             // 
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.MAIN_PANEL);
+            this.panel2.Controls.Add(this.BOTTEM_PANEL);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(32, 31);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(857, 542);
+            this.panel2.TabIndex = 4;
+            // 
+            // MAIN_PANEL
+            // 
+            this.MAIN_PANEL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MAIN_PANEL.Location = new System.Drawing.Point(0, 0);
+            this.MAIN_PANEL.Name = "MAIN_PANEL";
+            this.MAIN_PANEL.Size = new System.Drawing.Size(857, 508);
+            this.MAIN_PANEL.TabIndex = 4;
             // 
             // MultiBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(889, 573);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.LEFT_PENEL);
-            this.Controls.Add(this.BOTTEM_PANEL);
             this.Controls.Add(this.TOP_PANEL);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -353,11 +359,11 @@
             this.Shown += new System.EventHandler(this.MultiBoard_Shown);
             this.TOP_PANEL.ResumeLayout(false);
             this.TOP_PANEL.PerformLayout();
-            this.TOP_ICON_PANEL.ResumeLayout(false);
             this.LEFT_PENEL.ResumeLayout(false);
             this.BOTTEM_PANEL.ResumeLayout(false);
             this.BOTTEM_PANEL.PerformLayout();
             this.NOTIFY_ICO_CONTENT.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -375,8 +381,6 @@
         private System.Windows.Forms.Button SETTINGS_BUTTON;
         private System.Windows.Forms.Button KEYBOARD_B;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel MAIN_PANEL;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button ADD_KEYBOARD_BUTTON;
         private System.Windows.Forms.Button WARRNING_BUTTON;
         private System.Windows.Forms.NotifyIcon NOTIFY_ICO;
@@ -387,6 +391,8 @@
         private System.Windows.Forms.Label VERSION_LABEL;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button ERROR_MANAGE_BUTTON;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel MAIN_PANEL;
     }
 }
 

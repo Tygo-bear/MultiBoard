@@ -17,7 +17,7 @@ namespace MultiBoard.KeyboardElements
         private string _keyboardUuid;
         private string _keyboardPort;
         private bool _inFocus = false;
-        private KeyBoard _connectedBoard;
+        private KeyBoardGUI _connectedBoardGui;
 
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace MultiBoard.KeyboardElements
         /// </param>
         /// <param name="port">
         /// The comport of the keyboard</param>
-        /// <param name="board">
+        /// <param name="boardGui">
         /// The keyboard class it represents
         /// </param>
-        public KeyboardListPanel(string name, string uuid, string port, KeyBoard board)
+        public KeyboardListPanel(string name, string uuid, string port, KeyBoardGUI boardGui)
         {
             InitializeComponent();
 
@@ -43,16 +43,16 @@ namespace MultiBoard.KeyboardElements
             KeyboardName = name;
             _keyboardUuid = uuid;
             _keyboardPort = port;
-            _connectedBoard = board;
+            _connectedBoardGui = boardGui;
         }
 
         /// <summary>
         /// The keyboard class that it represents
         /// </summary>
-        public KeyBoard ConnectedBoard
+        public KeyBoardGUI ConnectedBoardGui
         {
-            get => _connectedBoard;
-            set => _connectedBoard = value;
+            get => _connectedBoardGui;
+            set => _connectedBoardGui = value;
         }
 
         /// <summary>
