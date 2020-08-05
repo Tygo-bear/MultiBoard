@@ -24,6 +24,9 @@ Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=admin
 
+[InstallDelete]
+Type: files; Name: {app}\MultiBoardKeyboard.dll
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 

@@ -751,11 +751,6 @@ namespace MultiBoard
             CheckForUpdates();
             //scanning boards
             _scanner.LoadList(115200);
-            this.Invoke(new Action(() =>
-            {
-                ReadSaveFiles();
-                _loadOverlay.Hide();
-            }));
         }
 
         /// <summary>
@@ -935,6 +930,12 @@ namespace MultiBoard
                 }
 
             }
+        }
+
+        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ReadSaveFiles();
+            _loadOverlay.Hide();
         }
     }
 }
