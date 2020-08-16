@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using MultiBoard.add_keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
+using MultiBoard.scripts;
 using MultiBoard.SettingsElements;
 using MultiBoardKeyboard;
 using Newtonsoft.Json;
@@ -30,6 +31,8 @@ namespace MultiBoard
         private List<KeyBoardGUI> _keyboardGUIList = new List<KeyBoardGUI>();
         private List<string> _showErrorList = new List<string>();
         private List<Keyboard> _keyboards = new List<Keyboard>();
+        private List<Script> _scripts = new List<Script>();
+        private FileSystemWatcher _scriptFileSystemWatcher = new FileSystemWatcher();
 
 
         //classes and user controls
@@ -45,6 +48,7 @@ namespace MultiBoard
         LoadingMainOverlay _loadOverlay = new LoadingMainOverlay();
         ErrorMangePanel _errorManagePanel = new ErrorMangePanel();
         MainSettings _mainSettings = new MainSettings();
+        private ScriptsMenuUC _scriptsMenu;
         
 
         //resouces images
@@ -149,9 +153,20 @@ namespace MultiBoard
             //Version updates
             VERSION_LABEL.Text = Properties.Resources.Version;
 
+            //Scripts
+            _scriptsMenu = new ScriptsMenuUC(_scripts);
+            _scriptsMenu.Hide();
+            MAIN_PANEL.Controls.Add(_scriptsMenu);
+            _scriptsMenu.Dock = DockStyle.Fill;
+
+            _scriptFileSystemWatcher.Changed += ScriptFileSystemWatcherOnChanged;
+            _scriptFileSystemWatcher.Created += ScriptFileSystemWatcherOnCreated;
+            _scriptFileSystemWatcher.Deleted += ScriptFileSystemWatcherOnDeleted;
+
             Debug.WriteLine("Construction main done");
 
         }
+
 
         /// <summary>
         /// Save keyboard event called
@@ -932,10 +947,79 @@ namespace MultiBoard
             }
         }
 
+        private void LoadScript(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string[] filePaths = Directory.GetFiles(path, "*.ahk");
+            foreach (string s in filePaths)
+            {
+                Script script = new Script();
+                script.ScriptLabel = s;
+                script.LoadScript(path);
+                _scripts.Add(script);
+            }
+
+            _scriptFileSystemWatcher.Path = path;
+            _scriptFileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        private void ScriptFileSystemWatcherOnDeleted(object sender, FileSystemEventArgs e)
+        {
+            string path = e.FullPath;
+            for (int i = 0; i < _scripts.Count; i++)
+            {
+                if (_scripts[i].ScriptLabel == path)
+                {
+                    _scripts[i].TerminateScript();
+                    _scripts.Remove(_scripts[i]);
+                    return;
+                }
+            }
+        }
+
+        private void ScriptFileSystemWatcherOnCreated(object sender, FileSystemEventArgs e)
+        {
+            string path = e.FullPath;
+
+            Thread.Sleep(100);
+
+            Script scp = new Script();
+            scp.ScriptLabel = path;
+            scp.LoadScript(path);
+            _scripts.Add(scp);
+
+        }
+
+        private void ScriptFileSystemWatcherOnChanged(object sender, FileSystemEventArgs e)
+        {
+            string path = e.FullPath;
+            for (int i = 0; i < _scripts.Count; i++)
+            {
+                if (_scripts[i].ScriptLabel == path)
+                {
+                    _scripts[i].TerminateScript();
+                    _scripts[i].LoadScript(path);
+                    return;
+                }
+            }
+        }
+
         private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ReadSaveFiles();
+            LoadScript(MainDirectory + @"\scripts");
             _loadOverlay.Hide();
+        }
+
+        private void ScriptsButton_Click(object sender, EventArgs e)
+        {
+            _scriptsMenu.Show();
+            _scriptsMenu.BringToFront();
+            _scriptsMenu.DisplayScripts();
         }
     }
 }

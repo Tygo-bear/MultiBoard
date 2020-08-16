@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AutoHotkey.Interop-master\src\AutoHotkey.Interop\AutoHotkey.Interop.csproj">
+      <Project>{2869dbfe-7762-4930-95ea-2b0c111cf353}</Project>
+      <Name>AutoHotkey.Interop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MultiBoardKeyboard\MultiBoardKeyboard.csproj">
       <Project>{641262a6-b2c8-4d7f-b394-030dc5e9302d}</Project>
       <Name>MultiBoardKeyboard</Name>

@@ -53,6 +53,7 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MAIN_PANEL = new System.Windows.Forms.Panel();
+            this.ScriptsButton = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -133,6 +134,7 @@
             // LEFT_PENEL
             // 
             this.LEFT_PENEL.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.LEFT_PENEL.Controls.Add(this.ScriptsButton);
             this.LEFT_PENEL.Controls.Add(this.ERROR_MANAGE_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.ADD_KEYBOARD_BUTTON);
             this.LEFT_PENEL.Controls.Add(this.panel1);
@@ -344,6 +346,24 @@
             this.MAIN_PANEL.Size = new System.Drawing.Size(857, 508);
             this.MAIN_PANEL.TabIndex = 4;
             // 
+            // ScriptsButton
+            // 
+            this.ScriptsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScriptsButton.BackColor = System.Drawing.Color.Transparent;
+            this.ScriptsButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ScriptsButton.BackgroundImage")));
+            this.ScriptsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ScriptsButton.FlatAppearance.BorderSize = 0;
+            this.ScriptsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ScriptsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ScriptsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ScriptsButton.Location = new System.Drawing.Point(0, 87);
+            this.ScriptsButton.Name = "ScriptsButton";
+            this.ScriptsButton.Size = new System.Drawing.Size(32, 34);
+            this.ScriptsButton.TabIndex = 9;
+            this.ScriptsButton.UseVisualStyleBackColor = false;
+            this.ScriptsButton.Click += new System.EventHandler(this.ScriptsButton_Click);
+            // 
             // MultiBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -393,6 +413,7 @@
         private System.Windows.Forms.Button ERROR_MANAGE_BUTTON;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel MAIN_PANEL;
+        private System.Windows.Forms.Button ScriptsButton;
     }
 }
 

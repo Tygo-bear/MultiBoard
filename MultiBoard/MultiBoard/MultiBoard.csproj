@@ -195,6 +195,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="scripts\ScriptListPanelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="scripts\ScriptListPanelUC.Designer.cs">
+      <DependentUpon>ScriptListPanelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scripts\ScriptsMenuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="scripts\ScriptsMenuUC.Designer.cs">
+      <DependentUpon>ScriptsMenuUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsElements\GeneralSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +292,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="scripts\ScriptListPanelUC.resx">
+      <DependentUpon>ScriptListPanelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scripts\ScriptsMenuUC.resx">
+      <DependentUpon>ScriptsMenuUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsElements\GeneralSettings.resx">
       <DependentUpon>GeneralSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +342,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MultiBoard.ico" />
+    <None Include="Resources\stop-fill.png" />
+    <None Include="Resources\play-fill.png" />
     <None Include="Resources\baseline_close_white_48dp2.png" />
     <None Include="Resources\baseline_search_white_18dp.png" />
     <None Include="Resources\eyes 2.png" />
