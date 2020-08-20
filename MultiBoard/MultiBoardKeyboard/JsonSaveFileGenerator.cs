@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace MultiBoardKeyboard
 {
+    public class JTask
+    {
+        public List<String> AhkScriptNameAndArgs;
+        public string OneLineAhkScript;
+        public string StaticAhkScriptFromFile;
+        public string PushKey;
+        public string OpenFile;
+    }
+
     public class JKey
     {
+        public JTask Task;
         public string KeyName;
         public bool Enabled = true;
         public string KeyTag;

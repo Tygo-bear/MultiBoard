@@ -290,7 +290,7 @@ namespace MultiBoard
 
             kb.Connect();
 
-            KeyBoardGUI obj = new KeyBoardGUI(kb);
+            KeyBoardGUI obj = new KeyBoardGUI(kb, _scripts);
             obj.Visible = true;
             MAIN_PANEL.Controls.Add(obj);
             obj.Dock = DockStyle.Fill;
@@ -488,7 +488,7 @@ namespace MultiBoard
 
                 _keyboards.Add(kb);
 
-                KeyBoardGUI obj = new KeyBoardGUI(kb);
+                KeyBoardGUI obj = new KeyBoardGUI(kb, _scripts);
                 obj.Visible = false;
                 MAIN_PANEL.Controls.Add(obj);
                 obj.Dock = DockStyle.Fill;
@@ -579,7 +579,7 @@ namespace MultiBoard
                     
                     _keyboards.Add(kb);
 
-                    KeyBoardGUI obj = new KeyBoardGUI(kb);
+                    KeyBoardGUI obj = new KeyBoardGUI(kb, _scripts);
                     obj.Visible = false;
                     MAIN_PANEL.Controls.Add(obj);
                     obj.Dock = DockStyle.Fill;
@@ -699,7 +699,7 @@ namespace MultiBoard
         }
 
         /// <summary>
-        /// User clicked on icon in task array
+        /// User clicked on icon in mTask array
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -756,7 +756,7 @@ namespace MultiBoard
         }
 
         /// <summary>
-        /// Start a keyboard scanner as background task
+        /// Start a keyboard scanner as background mTask
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -949,6 +949,8 @@ namespace MultiBoard
 
         private void LoadScript(string path)
         {
+            _scripts.Clear();
+
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -959,7 +961,7 @@ namespace MultiBoard
             {
                 Script script = new Script();
                 script.ScriptLabel = s;
-                script.LoadScript(path);
+                script.LoadScript(s);
                 _scripts.Add(script);
             }
 
@@ -992,10 +994,13 @@ namespace MultiBoard
             scp.LoadScript(path);
             _scripts.Add(scp);
 
+            UpdateScripts();
         }
 
         private void ScriptFileSystemWatcherOnChanged(object sender, FileSystemEventArgs e)
         {
+            Thread.Sleep(100);
+
             string path = e.FullPath;
             for (int i = 0; i < _scripts.Count; i++)
             {
@@ -1006,12 +1011,23 @@ namespace MultiBoard
                     return;
                 }
             }
+
+            UpdateScripts();
+        }
+
+        private void UpdateScripts()
+        {
+            foreach (Keyboard keyboard in _keyboards)
+            {
+                keyboard.UpdateScripts(_scripts);
+            }
         }
 
         private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ReadSaveFiles();
             LoadScript(MainDirectory + @"\scripts");
+            UpdateScripts();
             _loadOverlay.Hide();
         }
 

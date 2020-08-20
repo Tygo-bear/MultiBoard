@@ -64,10 +64,8 @@ namespace MultiBoard.overlays
             if (single)
             {
                 List<string> StartTemp = new List<string>();
-                StartTemp.Add("{");
 
                 List<string> EndTemp = new List<string>();
-                EndTemp.Add("}");
 
                 if (SecondKeySelectComboBox.Text == "NONE")
                 {

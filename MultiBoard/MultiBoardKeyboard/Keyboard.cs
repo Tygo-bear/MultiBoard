@@ -256,6 +256,14 @@ namespace MultiBoardKeyboard
 
         }
 
+        public void UpdateScripts(List<Script> scripts)
+        {
+            foreach (Key key in KeyboardKeyList)
+            {
+                key.KeyMTask.AssignScript(scripts);
+            }
+        }
+
 
         protected virtual void OnReceivedKeyUp(string e)
         {

@@ -195,6 +195,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="scripts\ScriptCallMenuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="scripts\ScriptCallMenuUC.Designer.cs">
+      <DependentUpon>ScriptCallMenuUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="scripts\ScriptListPanelUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -292,6 +298,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="scripts\ScriptCallMenuUC.resx">
+      <DependentUpon>ScriptCallMenuUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="scripts\ScriptListPanelUC.resx">
       <DependentUpon>ScriptListPanelUC.cs</DependentUpon>
     </EmbeddedResource>

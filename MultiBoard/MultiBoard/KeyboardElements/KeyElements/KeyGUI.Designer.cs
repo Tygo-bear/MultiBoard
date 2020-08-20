@@ -50,7 +50,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.TaskPanel = new System.Windows.Forms.Panel();
+            this.ScriptButton = new System.Windows.Forms.Button();
             this.HOT_KEY_BUTTON = new System.Windows.Forms.Button();
             this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.KEY_TASK_BUTTON = new System.Windows.Forms.Button();
@@ -67,7 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.KEY_UP_P)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.TaskPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -297,22 +298,38 @@
             this.panel1.Size = new System.Drawing.Size(632, 57);
             this.panel1.TabIndex = 13;
             // 
-            // panel2
+            // TaskPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Controls.Add(this.HOT_KEY_BUTTON);
-            this.panel2.Controls.Add(this.AHK_BUTTON);
-            this.panel2.Controls.Add(this.KEY_TASK_BUTTON);
-            this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.LOCATION_TEXTBOX);
-            this.panel2.Location = new System.Drawing.Point(14, 252);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(632, 120);
-            this.panel2.TabIndex = 14;
+            this.TaskPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.TaskPanel.Controls.Add(this.ScriptButton);
+            this.TaskPanel.Controls.Add(this.HOT_KEY_BUTTON);
+            this.TaskPanel.Controls.Add(this.AHK_BUTTON);
+            this.TaskPanel.Controls.Add(this.KEY_TASK_BUTTON);
+            this.TaskPanel.Controls.Add(this.OPEN_FILE_BUTTON);
+            this.TaskPanel.Controls.Add(this.label6);
+            this.TaskPanel.Controls.Add(this.LOCATION_TEXTBOX);
+            this.TaskPanel.Location = new System.Drawing.Point(14, 252);
+            this.TaskPanel.Name = "TaskPanel";
+            this.TaskPanel.Size = new System.Drawing.Size(632, 120);
+            this.TaskPanel.TabIndex = 14;
+            // 
+            // ScriptButton
+            // 
+            this.ScriptButton.BackColor = System.Drawing.Color.Transparent;
+            this.ScriptButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ScriptButton.BackgroundImage")));
+            this.ScriptButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ScriptButton.FlatAppearance.BorderSize = 0;
+            this.ScriptButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ScriptButton.Location = new System.Drawing.Point(314, 53);
+            this.ScriptButton.Name = "ScriptButton";
+            this.ScriptButton.Size = new System.Drawing.Size(76, 58);
+            this.ScriptButton.TabIndex = 9;
+            this.ScriptButton.UseVisualStyleBackColor = false;
+            this.ScriptButton.Click += new System.EventHandler(this.ScriptButton_Click);
             // 
             // HOT_KEY_BUTTON
             // 
+            this.HOT_KEY_BUTTON.BackColor = System.Drawing.Color.Transparent;
             this.HOT_KEY_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("HOT_KEY_BUTTON.BackgroundImage")));
             this.HOT_KEY_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.HOT_KEY_BUTTON.FlatAppearance.BorderSize = 0;
@@ -321,11 +338,12 @@
             this.HOT_KEY_BUTTON.Name = "HOT_KEY_BUTTON";
             this.HOT_KEY_BUTTON.Size = new System.Drawing.Size(56, 58);
             this.HOT_KEY_BUTTON.TabIndex = 8;
-            this.HOT_KEY_BUTTON.UseVisualStyleBackColor = true;
+            this.HOT_KEY_BUTTON.UseVisualStyleBackColor = false;
             this.HOT_KEY_BUTTON.Click += new System.EventHandler(this.HOT_KEY_BUTTON_Click);
             // 
             // AHK_BUTTON
             // 
+            this.AHK_BUTTON.BackColor = System.Drawing.Color.Transparent;
             this.AHK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AHK_BUTTON.BackgroundImage")));
             this.AHK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.AHK_BUTTON.FlatAppearance.BorderSize = 0;
@@ -334,11 +352,12 @@
             this.AHK_BUTTON.Name = "AHK_BUTTON";
             this.AHK_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.AHK_BUTTON.TabIndex = 7;
-            this.AHK_BUTTON.UseVisualStyleBackColor = true;
+            this.AHK_BUTTON.UseVisualStyleBackColor = false;
             this.AHK_BUTTON.Click += new System.EventHandler(this.AHK_BUTTON_Click);
             // 
             // KEY_TASK_BUTTON
             // 
+            this.KEY_TASK_BUTTON.BackColor = System.Drawing.Color.Transparent;
             this.KEY_TASK_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("KEY_TASK_BUTTON.BackgroundImage")));
             this.KEY_TASK_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.KEY_TASK_BUTTON.FlatAppearance.BorderSize = 0;
@@ -347,11 +366,12 @@
             this.KEY_TASK_BUTTON.Name = "KEY_TASK_BUTTON";
             this.KEY_TASK_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.KEY_TASK_BUTTON.TabIndex = 6;
-            this.KEY_TASK_BUTTON.UseVisualStyleBackColor = true;
+            this.KEY_TASK_BUTTON.UseVisualStyleBackColor = false;
             this.KEY_TASK_BUTTON.Click += new System.EventHandler(this.KEY_TASK_BUTTON_Click);
             // 
             // OPEN_FILE_BUTTON
             // 
+            this.OPEN_FILE_BUTTON.BackColor = System.Drawing.Color.Transparent;
             this.OPEN_FILE_BUTTON.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("OPEN_FILE_BUTTON.BackgroundImage")));
             this.OPEN_FILE_BUTTON.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.OPEN_FILE_BUTTON.FlatAppearance.BorderSize = 0;
@@ -360,7 +380,7 @@
             this.OPEN_FILE_BUTTON.Name = "OPEN_FILE_BUTTON";
             this.OPEN_FILE_BUTTON.Size = new System.Drawing.Size(76, 58);
             this.OPEN_FILE_BUTTON.TabIndex = 5;
-            this.OPEN_FILE_BUTTON.UseVisualStyleBackColor = true;
+            this.OPEN_FILE_BUTTON.UseVisualStyleBackColor = false;
             this.OPEN_FILE_BUTTON.Click += new System.EventHandler(this.OPEN_FILE_CLICKED);
             // 
             // label6
@@ -370,7 +390,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Task";
+            this.label6.Text = "MTask";
             // 
             // LOCATION_TEXTBOX
             // 
@@ -394,7 +414,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.TaskPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EVENT_PANEL);
             this.Controls.Add(this.BOTTEM_PANEL);
@@ -415,8 +435,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.TaskPanel.ResumeLayout(false);
+            this.TaskPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -446,7 +466,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel TaskPanel;
         private System.Windows.Forms.Button OPEN_FILE_BUTTON;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
@@ -454,5 +474,6 @@
         private System.Windows.Forms.Button KEY_TASK_BUTTON;
         private System.Windows.Forms.Button AHK_BUTTON;
         private System.Windows.Forms.Button HOT_KEY_BUTTON;
+        private System.Windows.Forms.Button ScriptButton;
     }
 }

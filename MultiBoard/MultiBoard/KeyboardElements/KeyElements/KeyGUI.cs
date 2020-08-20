@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MultiBoard.overlays;
+using MultiBoard.scripts;
 using MultiBoardKeyboard;
 
 namespace MultiBoard.KeyboardElements.KeyElements
@@ -26,31 +27,46 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private bool _recordingKey = false;
         private bool _enabled = true;
         private string _keyTag;
-        private string _executeLocation;
+        private MTask _keyMTask;
         private Key _connectedKey;
 
         private string _oldName;
 
         public List<string> NameAllKeys = new List<string>();
+        public List<Script> ScriptList;
 
         //user controls
         //=======================
         private SelectKeyTaskOverlay _keyTaskOverlay = new SelectKeyTaskOverlay();
         private HotKeyCreator _hotKeyCreatorOverlay;
+        private ScriptCallMenuUC _scriptCallMenu = new ScriptCallMenuUC();
 
         //events
         //=========================
         public event EventHandler UpdatedData;
         public event EventHandler<ObjKeyEventArgs> DeleteKey;
 
-        public KeyGui()
+        public KeyGui(List<Script> sList)
         {
             InitializeComponent();
+
+            ScriptList = sList;
 
             _keyTaskOverlay.UserMadeSelection += keyTaskOverlayOnUserMadeSelection;
             _keyTaskOverlay.Location = new Point((Width / 2) - (_keyTaskOverlay.Width / 2), (Height / 2) - (_keyTaskOverlay.Height / 2));
             Controls.Add(_keyTaskOverlay);
             _keyTaskOverlay.Hide();
+
+            this.Controls.Add(_scriptCallMenu);
+            _scriptCallMenu.Hide();
+            _scriptCallMenu.Dock = DockStyle.Fill;
+            _scriptCallMenu.ScriptCallingMade += ScriptCallMenuOnScriptCallingMade;
+        }
+
+        private void ScriptCallMenuOnScriptCallingMade(object sender, MTask e)
+        {
+            _keyMTask = e;
+            this.ShowTask(e);
         }
 
         /// <summary>
@@ -69,12 +85,12 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// Is the key enabled
         /// </param>
         /// <param name="executeLoc">
-        /// The task of the key
+        /// The mTask of the key
         /// </param>
         /// <param name="connectKey">
         /// the reference to the key class
         /// </param>
-        public void settings(string name ,int eventState, string key, bool enabledKey, string executeLoc, Key connectKey)
+        public void settings(string name ,int eventState, string key, bool enabledKey, MTask keyMTask, Key connectKey)
         {
             _keyName = name;
             _oldName = _keyName;
@@ -129,8 +145,44 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 ENABLE_BUTTON.BackgroundImage = _toggleOn;
             }
 
-            _executeLocation = executeLoc;
-            LOCATION_TEXTBOX.Text = executeLoc;
+            _keyMTask = keyMTask;
+            ShowTask(keyMTask);
+        }
+
+        private void ShowTask(MTask t)
+        {
+            Color selectedColor = Color.Gray;
+
+            foreach (Control c in TaskPanel.Controls)
+            {
+                if (c is Button)
+                {
+                    (c as Button).BackColor = Color.Transparent;
+                }
+            }
+
+            if (t.AhkScriptNameAndArgs != null)
+            {
+                ScriptButton.BackColor = selectedColor;
+            }
+            else if (t.OneLineAhkScript != null)
+            {
+                HOT_KEY_BUTTON.BackColor = selectedColor;
+            }
+            else if (t.StaticAhkScriptFromFile != null)
+            {
+                AHK_BUTTON.BackColor = selectedColor;
+            }
+            else if (t.PushKey != null)
+            {
+                KEY_TASK_BUTTON.BackColor = selectedColor;
+            }
+            else if (t.OpenFile != null)
+            {
+                OPEN_FILE_BUTTON.BackColor = selectedColor;
+            }
+
+            LOCATION_TEXTBOX.Text = t.ToString();
         }
 
         /// <summary>
@@ -269,13 +321,14 @@ namespace MultiBoard.KeyboardElements.KeyElements
                         using (myStream)
                         {
                             //file exists
-                            _executeLocation = theDialog.FileName;
+                            _keyMTask = new MTask();
+                            _keyMTask.OpenFile = theDialog.FileName;
                             LOCATION_TEXTBOX.Text = theDialog.FileName;
 
                             //save to "FileOpenLastLocation"
-                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string[] splits = _keyMTask.OpenFile.Split(new string[] { @"\" }, StringSplitOptions.None);
                             string remove = splits[splits.Length - 1];
-                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                            Properties.Settings.Default.FileOpen_LastLocation = _keyMTask.OpenFile.Split(new string[] { remove }, StringSplitOptions.None)[0];
                         }
                     }
                 }
@@ -311,8 +364,6 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         public bool KeyEnebled => _enabled;
 
-        public string ExecuteLocation => _executeLocation;
-
         /// <summary>
         /// Event for when data updated
         /// </summary>
@@ -346,7 +397,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _connectedKey.key_name = _keyName;
             _connectedKey.KeyEnabled = _enabled;
             _connectedKey.EventState = EventState;
-            _connectedKey.executeLoc = _executeLocation;
+            _connectedKey.KeyMTask = _keyMTask;
             _connectedKey.keyTag = _keyTag;
 
             OnUpdatedData();
@@ -414,7 +465,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         private void HotKeyCreatorOverlayOnUserMadeSelection(object sender, string e)
         {
-            _executeLocation = e;
+            _keyMTask = new MTask();
+            _keyMTask.OneLineAhkScript = e;
             LOCATION_TEXTBOX.Text = e;
         }
 
@@ -425,9 +477,9 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="e"></param>
         private void keyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
         {
-            string s = "<" + _keyTaskOverlay.SelectedKey + ">";
-            _executeLocation = s;
-            LOCATION_TEXTBOX.Text = s;
+            _keyMTask = new MTask();
+            _keyMTask.PushKey = _keyTaskOverlay.SelectedKey;
+            ShowTask(_keyMTask);
             _keyTaskOverlay.Dispose();
         }
 
@@ -452,14 +504,15 @@ namespace MultiBoard.KeyboardElements.KeyElements
                         using (myStream)
                         {
                             //file exists
-                            string loc = "?" + theDialog.FileName + "?";
-                            _executeLocation = loc;
-                            LOCATION_TEXTBOX.Text = loc;
+                            string loc = theDialog.FileName;
+                            _keyMTask = new MTask();
+                            _keyMTask.StaticAhkScriptFromFile = loc;
+                            ShowTask(_keyMTask);
 
                             //save to "FileOpenLastLocation"
-                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string[] splits = loc.Split(new string[] { @"\" }, StringSplitOptions.None);
                             string remove = splits[splits.Length - 1];
-                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                            Properties.Settings.Default.FileOpen_LastLocation = loc.Split(new string[] { remove }, StringSplitOptions.None)[0];
                         }
                     }
                 }
@@ -473,6 +526,14 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private void HOT_KEY_BUTTON_Click(object sender, EventArgs e)
         {
             CreateHotKeyCreatorOverlay();
+        }
+
+        private void ScriptButton_Click(object sender, EventArgs e)
+        {
+            _scriptCallMenu.Show();
+            _scriptCallMenu.BringToFront();
+            _scriptCallMenu.UpdateScriptList(ScriptList);
+            _scriptCallMenu.DrawTask(_keyMTask);
         }
     }
 

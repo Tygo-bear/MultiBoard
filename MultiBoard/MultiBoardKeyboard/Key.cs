@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Timers;
@@ -7,350 +8,183 @@ using MultiBoardKeyboard;
 
 namespace MultiBoard.KeyboardElements.KeyElements
 {
-    public class Key
+    public class MTask
     {
         [DllImport("user32.dll", SetLastError = true)]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-
-        public event EventHandler<string> Error; 
-
-        //variables
-        //===============================
         const int _KEYUP = 0x0002;
         const int _KEYDOWN = 0x0001;
-
         private AutoHotkeyEngine _ahk = AutoHotkeyEngine.Instance;
-        private string _ahkScript = "";
 
-        private bool _onKeyDownSelected = false;
-        private bool _onKeyUpSelected = false;
-        private bool _onKeyPressedSelected = false;
+        private Script AhkScript;
 
-        private string _keyName;
-        private bool _recordingKey = false;
-        private bool _enabled = true;
-        private string _keyTag;
-        private string _executeLocation;
+        public List<string> AhkScriptNameAndArgs;
+        public string OneLineAhkScript;
 
-        private Timer _timer = new Timer();
-        private int _keyPressCount = 0;
-        private const int _defInterval = 300;
+        private string _staticAhkScriptFromFile;
+        private string _staticAhkScriptFromFileCash;
 
-        /// <summary>
-        /// a key that is connected to a keyboard and handles key events
-        /// </summary>
-        /// <param name="name">
-        /// The name of the key shown to the user
-        /// </param>
-        /// <param name="eventStateAr">
-        /// On which event the key must react
-        /// </param>
-        /// <param name="key">
-        /// The key code
-        /// </param>
-        /// <param name="enabledKey">
-        /// Is the key enabled
-        /// </param>
-        /// <param name="executeLoc">
-        /// The action or location of file to open
-        /// </param>
-        public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
+        public string PushKey;
+        public string OpenFile;
+
+        public MTask()
         {
-            _keyName = name;
-            EventState = eventStateAr;
-            _keyTag = key;
-            _enabled = enabledKey;
-            _executeLocation = executeLoc;
 
-            UpdateExecuteLoc();
-            _timer.Interval = _defInterval;
-            _timer.Elapsed += TimerOnElapsed;
-            _timer.Stop();
         }
 
-        public Key(JKey jk)
+        public MTask(JTask j)
         {
-            _keyName = jk.KeyName;
-            EventState = jk.KeyState;
-            _keyTag = jk.KeyTag;
-            _enabled = jk.Enabled;
-            _executeLocation = jk.ExecuteLocation;
-
-            UpdateExecuteLoc();
-            _timer.Interval = _defInterval;
-            _timer.Elapsed += TimerOnElapsed;
-            _timer.Stop();
-        }
-
-        /// <summary>
-        /// Handles the key pressed event timing
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerOnElapsed(object sender, EventArgs e)
-        {
-            if (_timer.Interval == _defInterval)
+            if (j != null)
             {
-                _timer.Interval = 200;
+                AhkScriptNameAndArgs = j.AhkScriptNameAndArgs;
+                OneLineAhkScript = j.OneLineAhkScript;
+                StaticAhkScriptFromFile = j.StaticAhkScriptFromFile;
+                PushKey = j.PushKey;
+                OpenFile = j.OpenFile;
             }
+        }
 
-            if (_timer.Interval != _defInterval)
+        public JTask SaveTask()
+        {
+            JTask j = new JTask();
+            j.AhkScriptNameAndArgs = AhkScriptNameAndArgs;
+            j.OneLineAhkScript = OneLineAhkScript;
+            j.OpenFile = OpenFile;
+            j.PushKey = PushKey;
+            j.StaticAhkScriptFromFile = StaticAhkScriptFromFile;
+
+            return j;
+        }
+
+        public void AssignScript(List<Script> scripts)
+        {
+            if(AhkScriptNameAndArgs == null) { return;}
+            if(AhkScriptNameAndArgs.Count == 0) { return;}
+
+            foreach (Script script in scripts)
             {
-                _keyPressCount++;
-                int newInter = 200 - _keyPressCount * 20;
-                if (newInter > 50)
+                if (script.ScriptLabel.EndsWith(AhkScriptNameAndArgs[0]))
                 {
-                    _timer.Interval = newInter;
+                    AhkScript = script;
                 }
             }
-
-            ExecuteFile();
-
         }
 
-        /// <summary>
-        /// The name of the key shown to the user
-        /// </summary>
-        public string key_name
+        public string StaticAhkScriptFromFile
         {
-            get
-            {
-                return _keyName;
-            }
+            get { return _staticAhkScriptFromFile; }
             set
             {
-                _keyName = value;
-            }
-        }
-
-        /// <summary>
-        /// On which event the key must react
-        /// </summary>
-        public int EventState
-        {
-            get
-            {
-                if(_onKeyDownSelected == true)
+                _staticAhkScriptFromFile = value;
+                if (File.Exists(value))
                 {
-                    return 1;
-                }
-                else if(_onKeyUpSelected == true)
-                {
-                    return 2;
-                }
-                else if(_onKeyPressedSelected == true)
-                {
-                    return 3;
-                }
-                return 0;
-            }
-
-            set
-            {
-                _timer.Stop();
-                if(value == 1)
-                {
-                    _onKeyDownSelected = true;
-                    _onKeyUpSelected = false;
-                    _onKeyPressedSelected = false;
-                }
-                else if(value == 2)
-                {
-                    _onKeyDownSelected = false;
-                    _onKeyUpSelected = true;
-                    _onKeyPressedSelected = false;
+                    _staticAhkScriptFromFileCash = File.ReadAllText(value);
                 }
                 else
                 {
-                    _onKeyDownSelected = false;
-                    _onKeyUpSelected = false;
-                    _onKeyPressedSelected = true;
+                    //TODO report error
+                    //OnError("ahk read error, script not found --> " + value);
                 }
             }
         }
 
-        /// <summary>
-        /// Is the key enabled
-        /// </summary>
-        public bool KeyEnabled
+        public void ExecuteTask()
         {
-            get
+            if (AhkScriptNameAndArgs != null)
             {
-                return _enabled;
-            }
-            set
-            {
-                _enabled = value;
-            }
-        }
-
-        /// <summary>
-        /// The key code
-        /// </summary>
-        public string keyTag
-        {
-            get
-            {
-                return _keyTag;
-            }
-            set
-            {
-                _keyTag = value;
-            }
-        }
-
-        /// <summary>
-        /// The action or location of file to open
-        /// </summary>
-        public string executeLoc
-        {
-            get
-            {
-                return _executeLocation;
-            }
-            set
-            {
-                _executeLocation = value;
-                UpdateExecuteLoc();
-
-            }
-        }
-
-        /// <summary>
-        /// Update variables related to changing execute location
-        /// </summary>
-        private void UpdateExecuteLoc()
-        {
-            if (_executeLocation.Replace("?", "") != _executeLocation)
-            {
-                string loc = _executeLocation.Replace("?", "");
-                if (File.Exists(loc))
+                if (AhkScript != null)
                 {
-                    _ahkScript = File.ReadAllText(loc);
+                    List<string> args = new List<string>(AhkScriptNameAndArgs);
+                    args.RemoveAt(0);
+                    string funcName = args[0];
+                    args.RemoveAt(0);
+                    AhkScript.ExecuteFunction(funcName, args);
                 }
-                else
+            }
+            else if (OneLineAhkScript != null)
+            {
+                if (!String.IsNullOrEmpty(OneLineAhkScript))
                 {
-                    OnError("ahk read error, script not found --> " + loc);
+                    _ahk.ExecRaw(OneLineAhkScript);
                 }
             }
-            else if(_executeLocation.Replace("{", "") != _executeLocation)
+            else if (_staticAhkScriptFromFile != null)
             {
-                _ahkScript = "SendInput, " + _executeLocation.Remove(0,1);
-                _ahkScript = _ahkScript.Remove(_ahkScript.Length - 1, 1);
+                if (!String.IsNullOrEmpty(_staticAhkScriptFromFileCash))
+                {
+                    _ahk.ExecRaw(_staticAhkScriptFromFileCash);
+                }
             }
-        }
-
-        /// <summary>
-        /// Key down event
-        /// </summary>
-        /// <param name="key">
-        /// Key code
-        /// </param>
-        /// <param name="allEnebled">
-        /// Is key allowed to run
-        /// </param>
-        public void KeyDown(string key, bool allEnebled)
-        {
-            if (_recordingKey == false)
+            else if (PushKey != null)
             {
-                if (_keyTag == key && _enabled == true && _onKeyDownSelected && allEnebled)
+                keybd_event(getVkKey(PushKey), 0, _KEYDOWN, 0);
+                keybd_event(getVkKey(PushKey), 0, _KEYUP, 0);
+            }
+            else if (OpenFile != null)
+            {
+                if (File.Exists(OpenFile))
                 {
                     //execute
-                    ExecuteFile();
-                }
-                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
-                {
-                    ExecuteFile();
-                    _timer.Start();
-                }
-            }
-        }
-
-        /// <summary>
-        /// The key up event
-        /// </summary>
-        /// <param name="key">
-        /// Key code
-        /// </param>
-        /// <param name="allEnebled">
-        /// Is key allowed to run
-        /// </param>
-        public void KeyUp(string key, bool allEnebled)
-        {
-            if (_recordingKey == false)
-            {
-                if (_keyTag == key && _enabled == true && _onKeyUpSelected && allEnebled)
-                {
-                    ExecuteFile();
-                }
-                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
-                {
-                    _timer.Stop();
-                    _timer.Interval = _defInterval;
-                    _keyPressCount = 0;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Execute the task of the key
-        /// </summary>
-        private void ExecuteFile()
-        {
-            if (_executeLocation.Replace("<", "") != _executeLocation)
-            {
-                string key = executeLoc.Replace("<" , "").Replace(">", "");
-                keybd_event(getVkKey(key), 0, _KEYDOWN, 0);
-                keybd_event(getVkKey(key), 0, _KEYUP, 0);
-            }
-            else if (_executeLocation.Replace("?", "") != _executeLocation)
-            {
-                //AutoHotKey script
-                RunAhkScript();
-            }
-            else if (_executeLocation.Replace("{", "") != _executeLocation)
-            {
-                RunAhkScript();
-            }
-            else
-            {
-                if (File.Exists(_executeLocation))
-                {
-                    //execute
-                    System.Diagnostics.Process.Start(_executeLocation);
+                    System.Diagnostics.Process.Start(OpenFile);
                 }
                 else
                 {
-                    OnError("execute file not found --> " + _keyName);
+                    //TODO report error
+                    //OnError("execute file not found --> " + _keyName);
                 }
             }
-            
         }
 
-        /// <summary>
-        /// Runs AutoHotKey script
-        /// </summary>
-        private void RunAhkScript()
+        public override string ToString()
         {
-            if (!String.IsNullOrEmpty(_ahkScript))
+            if (AhkScriptNameAndArgs != null)
             {
-                _ahk.ExecRaw(_ahkScript);
+                if (AhkScriptNameAndArgs.Count >= 2)
+                {
+                    string ret = "In" + AhkScriptNameAndArgs[0] + ": ";
+                    ret += AhkScriptNameAndArgs[1] + "(";
+
+                    if (AhkScriptNameAndArgs.Count >= 3)
+                    {
+                        for (int i = 2; i < AhkScriptNameAndArgs.Count - 1; i++)
+                        {
+                            ret += AhkScriptNameAndArgs[i] + " ,";
+                        }
+
+                        ret += AhkScriptNameAndArgs[AhkScriptNameAndArgs.Count - 1] + ")";
+                    }
+                    else
+                    {
+                        ret += ")";
+                    }
+
+                    return ret;
+                }
             }
+            else if (OneLineAhkScript != null)
+            {
+                return OneLineAhkScript;
+            }
+            else if (_staticAhkScriptFromFile != null)
+            {
+                return StaticAhkScriptFromFile;
+            }
+            else if (PushKey != null)
+            {
+                return PushKey;
+            }
+            else if (OpenFile != null)
+            {
+                return OpenFile;
+            }
+
+            return "No Task selected";
         }
 
-        /// <summary>
-        /// Convert vk name to vk byte code
-        /// </summary>
-        /// <param name="keyCode">
-        /// Uuid of the key
-        /// </param>
-        /// <returns>
-        /// The byte of the key
-        /// </returns>
         private byte getVkKey(string keyCode)
         {
             //Numbers
-            if(keyCode == "0")
+            if (keyCode == "0")
             {
                 return 0x30;
             }
@@ -544,7 +378,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             {
                 return 0x7b;
             }
-            else if(keyCode =="F13")
+            else if (keyCode == "F13")
             {
                 return 0x7c;
             }
@@ -1083,6 +917,289 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
             return 0x00;
         }
+    }
+    public class Key
+    {
+        public event EventHandler<string> Error; 
+
+        //variables
+        //===============================
+
+        private bool _onKeyDownSelected = false;
+        private bool _onKeyUpSelected = false;
+        private bool _onKeyPressedSelected = false;
+
+        public MTask KeyMTask;
+
+        private string _keyName;
+        private bool _recordingKey = false;
+        private bool _enabled = true;
+        private string _keyTag;
+        private string _executeLocation;
+
+        private Timer _timer = new Timer();
+        private int _keyPressCount = 0;
+        private const int _defInterval = 300;
+
+        /// <summary>
+        /// a key that is connected to a keyboard and handles key events
+        /// </summary>
+        /// <param name="name">
+        /// The name of the key shown to the user
+        /// </param>
+        /// <param name="eventStateAr">
+        /// On which event the key must react
+        /// </param>
+        /// <param name="key">
+        /// The key code
+        /// </param>
+        /// <param name="enabledKey">
+        /// Is the key enabled
+        /// </param>
+        /// <param name="executeLoc">
+        /// The action or location of file to open
+        /// </param>
+        public Key(string name, int eventStateAr, string key, bool enabledKey, string executeLoc)
+        {
+            _keyName = name;
+            EventState = eventStateAr;
+            _keyTag = key;
+            _enabled = enabledKey;
+            _executeLocation = executeLoc;
+            KeyMTask = new MTask();
+
+            MigrateToTask();
+            _timer.Interval = _defInterval;
+            _timer.Elapsed += TimerOnElapsed;
+            _timer.Stop();
+        }
+
+        public Key(string name, int eventStateAr, string key, bool enabledKey, MTask keyMTask)
+        {
+            _keyName = name;
+            EventState = eventStateAr;
+            _keyTag = key;
+            _enabled = enabledKey;
+            KeyMTask = keyMTask;
+
+            _timer.Interval = _defInterval;
+            _timer.Elapsed += TimerOnElapsed;
+            _timer.Stop();
+        }
+
+        public Key(JKey jk)
+        {
+            _keyName = jk.KeyName;
+            EventState = jk.KeyState;
+            _keyTag = jk.KeyTag;
+            _enabled = jk.Enabled;
+            _executeLocation = jk.ExecuteLocation;
+            KeyMTask = new MTask(jk.Task);
+
+            if(jk.Task == null) {MigrateToTask();}
+
+            _timer.Interval = _defInterval;
+            _timer.Elapsed += TimerOnElapsed;
+            _timer.Stop();
+        }
+
+        /// <summary>
+        /// Handles the key pressed event timing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerOnElapsed(object sender, EventArgs e)
+        {
+            if (_timer.Interval == _defInterval)
+            {
+                _timer.Interval = 200;
+            }
+
+            if (_timer.Interval != _defInterval)
+            {
+                _keyPressCount++;
+                int newInter = 200 - _keyPressCount * 20;
+                if (newInter > 50)
+                {
+                    _timer.Interval = newInter;
+                }
+            }
+
+            ExecuteTask();
+
+        }
+
+        /// <summary>
+        /// The name of the key shown to the user
+        /// </summary>
+        public string key_name
+        {
+            get
+            {
+                return _keyName;
+            }
+            set
+            {
+                _keyName = value;
+            }
+        }
+
+        /// <summary>
+        /// On which event the key must react
+        /// </summary>
+        public int EventState
+        {
+            get
+            {
+                if(_onKeyDownSelected == true)
+                {
+                    return 1;
+                }
+                else if(_onKeyUpSelected == true)
+                {
+                    return 2;
+                }
+                else if(_onKeyPressedSelected == true)
+                {
+                    return 3;
+                }
+                return 0;
+            }
+
+            set
+            {
+                _timer.Stop();
+                if(value == 1)
+                {
+                    _onKeyDownSelected = true;
+                    _onKeyUpSelected = false;
+                    _onKeyPressedSelected = false;
+                }
+                else if(value == 2)
+                {
+                    _onKeyDownSelected = false;
+                    _onKeyUpSelected = true;
+                    _onKeyPressedSelected = false;
+                }
+                else
+                {
+                    _onKeyDownSelected = false;
+                    _onKeyUpSelected = false;
+                    _onKeyPressedSelected = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Is the key enabled
+        /// </summary>
+        public bool KeyEnabled
+        {
+            get
+            {
+                return _enabled;
+            }
+            set
+            {
+                _enabled = value;
+            }
+        }
+
+        /// <summary>
+        /// The key code
+        /// </summary>
+        public string keyTag
+        {
+            get
+            {
+                return _keyTag;
+            }
+            set
+            {
+                _keyTag = value;
+            }
+        }
+
+        private void MigrateToTask()
+        {
+            if (_executeLocation.Replace("<", "") != _executeLocation)
+            {
+                string key = _executeLocation.Replace("<", "").Replace(">", "");
+                KeyMTask.PushKey = key;
+            }
+            else if (_executeLocation.Replace("?", "") != _executeLocation)
+            {
+                string loc = _executeLocation.Replace("?", "");
+                KeyMTask.StaticAhkScriptFromFile = loc;
+            }
+            else if (_executeLocation.Replace("{", "") != _executeLocation)
+            {
+                string temp = "SendInput, " + _executeLocation.Remove(0, 1);
+                temp = temp.Remove(temp.Length - 1, 1);
+                KeyMTask.OneLineAhkScript = temp;
+            }
+            else
+            {
+                KeyMTask.OpenFile = _executeLocation;
+            }
+        }
+
+        public void ExecuteTask()
+        {
+            KeyMTask.ExecuteTask();
+        }
+
+        /// <summary>
+        /// Key down event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="allEnebled">
+        /// Is key allowed to run
+        /// </param>
+        public void KeyDown(string key, bool allEnebled)
+        {
+            if (_recordingKey == false)
+            {
+                if (_keyTag == key && _enabled == true && _onKeyDownSelected && allEnebled)
+                {
+                    //execute
+                    ExecuteTask();
+                }
+                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
+                {
+                    ExecuteTask();
+                    _timer.Start();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The key up event
+        /// </summary>
+        /// <param name="key">
+        /// Key code
+        /// </param>
+        /// <param name="allEnebled">
+        /// Is key allowed to run
+        /// </param>
+        public void KeyUp(string key, bool allEnebled)
+        {
+            if (_recordingKey == false)
+            {
+                if (_keyTag == key && _enabled == true && _onKeyUpSelected && allEnebled)
+                {
+                    ExecuteTask();
+                }
+                else if (_keyTag == key && _enabled == true && _onKeyPressedSelected && allEnebled)
+                {
+                    _timer.Stop();
+                    _timer.Interval = _defInterval;
+                    _keyPressCount = 0;
+                }
+            }
+        }
 
         protected virtual void OnError(string e)
         {
@@ -1097,6 +1214,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             jk.KeyTag = _keyTag;
             jk.ExecuteLocation = _executeLocation;
             jk.KeyState = EventState;
+            jk.Task = KeyMTask.SaveTask();
 
             return jk;
         }

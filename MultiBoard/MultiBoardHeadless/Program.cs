@@ -11,7 +11,7 @@ namespace MultiBoardHeadless
 {
     class Program
     {
-        private static AutoHotkeyEngine _ahk;
+        private static Script _ahk;
         static void Main(string[] args)
         {
             string _staticId = "86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1";
@@ -34,8 +34,9 @@ namespace MultiBoardHeadless
         private static void NewMethod()
         {
             AutoHotkeyEngine ahk = AutoHotkeyEngine.Instance;
-            ahk.LoadFile(@"CLIP TEST.ahk");
-            _ahk = ahk;
+            Script s = new Script();
+            s.LoadScript(@"test.ahk");
+            _ahk = s;
         }
 
         private static void KeyboardOnReceivedKeyDown(object sender, string e)
@@ -43,11 +44,11 @@ namespace MultiBoardHeadless
             Console.WriteLine(e);
             if (e == ">14<")
             {
-                _ahk.ExecFunction("Copy", "1");
+                _ahk.ExecuteFunction("Copy", new List<string>(new string[] {"1"}));
             }
             else if (e == ">04<")
             {
-                _ahk.ExecFunction("Paste", "1");
+                _ahk.ExecuteFunction("Paste", new List<string>(new string[] { "1" }));
             }
         }
     }

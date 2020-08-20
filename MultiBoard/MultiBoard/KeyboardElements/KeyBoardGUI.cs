@@ -17,19 +17,23 @@ namespace MultiBoard.KeyboardElements
         private bool _search = false;
 
         private string _saveFile;
-        private KeyGui _keyGui = new KeyGui();
+        private KeyGui _keyGui;
 
         private Keyboard _keyboard;
 
         private List<KeyListPanel> _keyPanelList = new List<KeyListPanel>();
+        public List<Script> ScriptList;
         private Point _nextKeyListPoint = new Point(3, 3);
 
         /// <summary>
         /// Initialize all elements
         /// </summary>
-        public KeyBoardGUI(Keyboard keyboard)
+        public KeyBoardGUI(Keyboard keyboard, List<Script> sList)
         {
             InitializeComponent();
+            ScriptList = sList;
+            _keyGui = new KeyGui(sList);
+
             _keyboard = keyboard;
             KeyboardUuid = _keyboard.KeyboardUuid;
             KeyboardName = _keyboard.KeyboardName;
@@ -82,7 +86,7 @@ namespace MultiBoard.KeyboardElements
         /// Is the key enabled
         /// </param>
         /// <param name="exeLoc">
-        /// The task of the key (open file/press key)
+        /// The mTask of the key (open file/press key)
         /// </param>
         /// <returns>
         /// Return the generated class
@@ -117,7 +121,7 @@ namespace MultiBoard.KeyboardElements
 
             //Create the key
             Key k = CreateKey(keyName, 1, "NONE", true, "");
-            _keyGui.settings(keyName, 1, "NONE", true, "", k);
+            _keyGui.settings(keyName, 1, "NONE", true, new MTask(), k);
 
             addKeyToListView(k);
             _keyboard.UpdateKeyNameList();
@@ -186,7 +190,8 @@ namespace MultiBoard.KeyboardElements
             {
                 Key k = _keyboard.KeyboardKeyList[0];
                 KEYLIST_PANEL.BackgroundImage = null;
-                _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.KeyEnabled, k.executeLoc, k);
+
+                _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.KeyEnabled, k.KeyMTask, k);
                 _keyGui.Show();
             }
 
@@ -200,7 +205,8 @@ namespace MultiBoard.KeyboardElements
             {
                 Key k = _keyboard.KeyboardKeyList[0];
                 KEYLIST_PANEL.BackgroundImage = null;
-                _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.KeyEnabled, k.executeLoc, k);
+
+                _keyGui.settings(k.key_name, k.EventState, k.keyTag, k.KeyEnabled, k.KeyMTask, k);
                 _keyGui.Show();
             }
             LoadListView();
@@ -342,7 +348,8 @@ namespace MultiBoard.KeyboardElements
             {
                 if(aKey == k.ConnectedKey)
                 {
-                    _keyGui.settings(aKey.key_name, aKey.EventState, aKey.keyTag, aKey.KeyEnabled, aKey.executeLoc, aKey);
+                    _keyGui.settings(aKey.key_name, aKey.EventState, aKey.keyTag,
+                        aKey.KeyEnabled, aKey.KeyMTask, aKey);
                 }
             }
         }
