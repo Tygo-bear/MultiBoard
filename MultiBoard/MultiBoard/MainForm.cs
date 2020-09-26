@@ -88,6 +88,9 @@ namespace MultiBoard
             Debug.WriteLine("--DEBUG STARTED--");
             Debug.AutoFlush = true;
 
+            Debug.WriteLine("MAIN DIR: " + MainDirectory);
+            Console.WriteLine("MAIN DIR: " + MainDirectory);
+
             //Clear error list
             //======================
             Properties.Settings.Default.ErrorList = "";
