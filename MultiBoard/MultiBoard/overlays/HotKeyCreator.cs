@@ -158,7 +158,9 @@ namespace MultiBoard.overlays
                     StartTemp.AddRange(EndTemp);
                     _selection = String.Join("", StartTemp.ToArray());
                 }
+
             }
+            _selection = "SendInput, " + _selection;
         }
 
         protected virtual void OnUserMadeSelection(string e)
