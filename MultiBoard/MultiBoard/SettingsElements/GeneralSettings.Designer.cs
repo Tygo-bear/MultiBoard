@@ -52,9 +52,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.SAFE_MODE_SCAN_CHECKBOX = new System.Windows.Forms.CheckBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.UPDATE_CHECK_COMBOBOX = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.UPDATE_CHECK_COMBOBOX = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.EXPERIMENTAL_FEATURES_CHECKBOX = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TOP_LEFT_LOGO_PICTUREBOX)).BeginInit();
             this.panel2.SuspendLayout();
@@ -64,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TIME_OUT_TRACKBAR)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -311,14 +316,14 @@
             this.panel6.Size = new System.Drawing.Size(249, 76);
             this.panel6.TabIndex = 5;
             // 
-            // label11
+            // label10
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 5);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Check for Updates";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 51);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(212, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "On startup check if new version is available";
             // 
             // UPDATE_CHECK_COMBOBOX
             // 
@@ -333,18 +338,58 @@
             this.UPDATE_CHECK_COMBOBOX.Size = new System.Drawing.Size(151, 21);
             this.UPDATE_CHECK_COMBOBOX.TabIndex = 3;
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 51);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(212, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "On startup check if new version is available";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 5);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Check for Updates";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel7.Controls.Add(this.label12);
+            this.panel7.Controls.Add(this.label13);
+            this.panel7.Controls.Add(this.EXPERIMENTAL_FEATURES_CHECKBOX);
+            this.panel7.Location = new System.Drawing.Point(261, 356);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(249, 67);
+            this.panel7.TabIndex = 5;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 44);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Restart required";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 27);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(107, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Experimental systems";
+            // 
+            // EXPERIMENTAL_FEATURES_CHECKBOX
+            // 
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.AutoSize = true;
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.Location = new System.Drawing.Point(7, 3);
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.Name = "EXPERIMENTAL_FEATURES_CHECKBOX";
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.Size = new System.Drawing.Size(127, 17);
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.TabIndex = 1;
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.Text = "Experimental features";
+            this.EXPERIMENTAL_FEATURES_CHECKBOX.UseVisualStyleBackColor = true;
             // 
             // GeneralSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.SAVE_BUTTON);
@@ -369,6 +414,8 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -401,5 +448,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox UPDATE_CHECK_COMBOBOX;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox EXPERIMENTAL_FEATURES_CHECKBOX;
     }
 }

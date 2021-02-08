@@ -157,14 +157,22 @@ namespace MultiBoard
             VERSION_LABEL.Text = Properties.Resources.Version;
 
             //Scripts
-            _scriptsMenu = new ScriptsMenuUC(_scripts);
-            _scriptsMenu.Hide();
-            MAIN_PANEL.Controls.Add(_scriptsMenu);
-            _scriptsMenu.Dock = DockStyle.Fill;
+            if (Properties.Settings.Default.ExperimentalFeatures)
+            {
+                _scriptsMenu = new ScriptsMenuUC(_scripts);
+                _scriptsMenu.Hide();
+                MAIN_PANEL.Controls.Add(_scriptsMenu);
+                _scriptsMenu.Dock = DockStyle.Fill;
 
-            _scriptFileSystemWatcher.Changed += ScriptFileSystemWatcherOnChanged;
-            _scriptFileSystemWatcher.Created += ScriptFileSystemWatcherOnCreated;
-            _scriptFileSystemWatcher.Deleted += ScriptFileSystemWatcherOnDeleted;
+                _scriptFileSystemWatcher.Filter = "*.ahk";
+
+                _scriptFileSystemWatcher.Changed += ScriptFileSystemWatcherOnChanged;
+                _scriptFileSystemWatcher.Created += ScriptFileSystemWatcherOnCreated;
+                _scriptFileSystemWatcher.Deleted += ScriptFileSystemWatcherOnDeleted;
+
+                ScriptsButton.Visible = true;
+
+            }
 
             Debug.WriteLine("Construction main done");
 
@@ -1029,7 +1037,8 @@ namespace MultiBoard
         private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             ReadSaveFiles();
-            LoadScript(MainDirectory + @"\scripts");
+            if(Properties.Settings.Default.ExperimentalFeatures) 
+                LoadScript(MainDirectory + @"\scripts");
             UpdateScripts();
             _loadOverlay.Hide();
         }

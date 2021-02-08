@@ -23,6 +23,7 @@ namespace MultiBoard.SettingsElements
             TIME_OUT_TRACKBAR.Value = Properties.Settings.Default.TimeOutDelay;
             SAFE_MODE_SCAN_CHECKBOX.Checked = Properties.Settings.Default.SafeModeScan;
             UPDATE_CHECK_COMBOBOX.SelectedIndex = Properties.Settings.Default.CheckForUpdates;
+            EXPERIMENTAL_FEATURES_CHECKBOX.Checked = Properties.Settings.Default.ExperimentalFeatures;
         }
 
         /// <summary>
@@ -70,6 +71,7 @@ namespace MultiBoard.SettingsElements
             Properties.Settings.Default.TimeOutDelay = TIME_OUT_TRACKBAR.Value;
             Properties.Settings.Default.SafeModeScan = SAFE_MODE_SCAN_CHECKBOX.Checked;
             Properties.Settings.Default.CheckForUpdates = UPDATE_CHECK_COMBOBOX.SelectedIndex;
+            Properties.Settings.Default.ExperimentalFeatures = EXPERIMENTAL_FEATURES_CHECKBOX.Checked;
             Properties.Settings.Default.Save();
 
             //show save overlay

@@ -36,6 +36,7 @@
             this.CLOSE_B = new System.Windows.Forms.Button();
             this.TOP_ICON_PANEL = new System.Windows.Forms.Panel();
             this.LEFT_PENEL = new System.Windows.Forms.Panel();
+            this.ScriptsButton = new System.Windows.Forms.Button();
             this.ERROR_MANAGE_BUTTON = new System.Windows.Forms.Button();
             this.ADD_KEYBOARD_BUTTON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,7 +54,6 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MAIN_PANEL = new System.Windows.Forms.Panel();
-            this.ScriptsButton = new System.Windows.Forms.Button();
             this.TOP_PANEL.SuspendLayout();
             this.LEFT_PENEL.SuspendLayout();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -145,6 +145,25 @@
             this.LEFT_PENEL.Name = "LEFT_PENEL";
             this.LEFT_PENEL.Size = new System.Drawing.Size(32, 542);
             this.LEFT_PENEL.TabIndex = 2;
+            // 
+            // ScriptsButton
+            // 
+            this.ScriptsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScriptsButton.BackColor = System.Drawing.Color.Transparent;
+            this.ScriptsButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ScriptsButton.BackgroundImage")));
+            this.ScriptsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ScriptsButton.FlatAppearance.BorderSize = 0;
+            this.ScriptsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ScriptsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ScriptsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ScriptsButton.Location = new System.Drawing.Point(0, 87);
+            this.ScriptsButton.Name = "ScriptsButton";
+            this.ScriptsButton.Size = new System.Drawing.Size(32, 34);
+            this.ScriptsButton.TabIndex = 9;
+            this.ScriptsButton.UseVisualStyleBackColor = false;
+            this.ScriptsButton.Visible = false;
+            this.ScriptsButton.Click += new System.EventHandler(this.ScriptsButton_Click);
             // 
             // ERROR_MANAGE_BUTTON
             // 
@@ -345,24 +364,6 @@
             this.MAIN_PANEL.Name = "MAIN_PANEL";
             this.MAIN_PANEL.Size = new System.Drawing.Size(857, 508);
             this.MAIN_PANEL.TabIndex = 4;
-            // 
-            // ScriptsButton
-            // 
-            this.ScriptsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScriptsButton.BackColor = System.Drawing.Color.Transparent;
-            this.ScriptsButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ScriptsButton.BackgroundImage")));
-            this.ScriptsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ScriptsButton.FlatAppearance.BorderSize = 0;
-            this.ScriptsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.ScriptsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ScriptsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ScriptsButton.Location = new System.Drawing.Point(0, 87);
-            this.ScriptsButton.Name = "ScriptsButton";
-            this.ScriptsButton.Size = new System.Drawing.Size(32, 34);
-            this.ScriptsButton.TabIndex = 9;
-            this.ScriptsButton.UseVisualStyleBackColor = false;
-            this.ScriptsButton.Click += new System.EventHandler(this.ScriptsButton_Click);
             // 
             // MultiBoard
             // 

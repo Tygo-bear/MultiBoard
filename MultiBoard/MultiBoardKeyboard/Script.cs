@@ -18,7 +18,6 @@ namespace MultiBoardKeyboard
         {
             if (File.Exists(path))
             {
-                _ahkEngine = AutoHotkeyEngine.Instance;
                 _ahkEngine.LoadFile(path);
                 IsRunning = true;
                 return true;
@@ -30,7 +29,14 @@ namespace MultiBoardKeyboard
         public void TerminateScript()
         {
             IsRunning = false;
-            //TODO Terminate?
+            try
+            {
+                _ahkEngine.Reset();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public string ExecuteFunction(string funcName, List<string> args)
