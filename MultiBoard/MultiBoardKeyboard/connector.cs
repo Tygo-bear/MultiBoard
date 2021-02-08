@@ -119,7 +119,7 @@ namespace MultiBoardKeyboard
         }
 
         /// <summary>
-        /// reconnect comport and valide conection
+        /// reconnect comport and validate connection
         /// </summary>
         public void ReConnect()
         {
