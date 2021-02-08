@@ -9,6 +9,10 @@
 const String dynamicID = "7fba9a6d-61d1-4973-a68e-41a26309b48e";
 //=================================================================
 
+const byte numChars = 32;
+char receivedChars[numChars];
+bool serialLock = false;
+
 class KbdRptParser : public KeyboardReportParser
 {
     void PrintKey(uint8_t mod, uint8_t key);
@@ -86,10 +90,32 @@ void setup()
 
 void serialEvent()
 {
-  if(Serial.readString() != "")
+  if(serialLock)
   {
-  //static ID: 86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1
-  Serial.println("ID:&86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1&" + dynamicID);
+    
+  }
+  else
+  {
+    serialLock = true;
+    int bufferStep = 0;
+    while (Serial.available() > 0)
+    {
+      char rc = Serial.read();
+      if(rc != '\n')
+      {
+        receivedChars[bufferStep] = rc;
+        bufferStep++;
+      }
+      else
+      {
+        serialLock = false;
+        Serial.println("close");
+      }
+    //static ID: 86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1
+    
+    }
+    Serial.println(receivedChars);
+    Serial.println("ID:&86ed8ce3-ee4c-4c27-b07d-cb563d7c3eb1&" + dynamicID);
   }
 }
 
