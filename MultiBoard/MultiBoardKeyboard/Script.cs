@@ -14,6 +14,11 @@ namespace MultiBoardKeyboard
         public bool IsRunning = false;
         public string ScriptLabel;
 
+        /// <summary>
+        /// Loads a script from file path into AHK env
+        /// </summary>
+        /// <param name="path">Path to script file</param>
+        /// <returns></returns>
         public bool LoadScript(string path)
         {
             if (File.Exists(path))
@@ -26,6 +31,9 @@ namespace MultiBoardKeyboard
             return false;
         }
 
+        /// <summary>
+        /// Terminates the script, resets AHK env
+        /// </summary>
         public void TerminateScript()
         {
             IsRunning = false;
@@ -39,6 +47,12 @@ namespace MultiBoardKeyboard
             }
         }
 
+        /// <summary>
+        /// Execute a declared function within the AHK env
+        /// </summary>
+        /// <param name="funcName">Name of the function</param>
+        /// <param name="args">function arguments, max 10</param>
+        /// <returns>return of the AHK function</returns>
         public string ExecuteFunction(string funcName, List<string> args)
         {
             switch (args.Count)
