@@ -11,6 +11,8 @@ namespace MultiBoardKeyboard
         public List<string> Ports = new List<string>();
         public List<string> Uuid = new List<string>();
 
+        public event EventHandler<string> DebugCallBack;
+
         private List<ScannerPort> _scanPorts = new List<ScannerPort>();
         private bool _safeMode;
         public int TimeOutDelay;
@@ -32,8 +34,7 @@ namespace MultiBoardKeyboard
         /// </param>
         public void LoadList(int bRate)
         {
-            GetSerialPort();
-
+            OnDebugCallBack("\nSettings\n Bitrate: " + bRate + "\n safemode: " + _safeMode + "\n timeout: " + TimeOutDelay);
             //Clear lists
             Ports.Clear();
             Uuid.Clear();
@@ -69,6 +70,7 @@ namespace MultiBoardKeyboard
             foreach (string s in availablePorts)
             {
                 ScannerPort sp = new ScannerPort(_staticId);
+                sp.DebugCallBack += ScannerOnDebugCallBack;
                 sp.Setup(s, bRate);
                 Thread t = new Thread(() => sp.Start());
                 t.Start();
@@ -100,11 +102,16 @@ namespace MultiBoardKeyboard
             return;
         }
 
+        private void ScannerOnDebugCallBack(object sender, string e)
+        {
+            OnDebugCallBack("\n" + (sender as ScannerPort).ComPort + ": " + e);
+        }
+
         /// <summary>
         /// Alternative way off searching for available comports
         /// </summary>
         /// <returns>List of all found COM ports</returns>
-        private List<string> GetSerialPort()
+        public List<string> GetSerialPort()
         {
             List<string> availablePorts = new List<string>();
 
@@ -132,6 +139,11 @@ namespace MultiBoardKeyboard
 
             return availablePorts;
 
+        }
+
+        protected virtual void OnDebugCallBack(string e)
+        {
+            DebugCallBack?.Invoke(this, e);
         }
     }
 

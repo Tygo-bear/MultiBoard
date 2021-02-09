@@ -10,6 +10,7 @@ namespace MultiBoardKeyboard
         private SerialPort _serialPort = new SerialPort();
 
         public event EventHandler BoardFound;
+        public event EventHandler<string> DebugCallBack; 
 
         public string ComPort;
         private int _baudRate;
@@ -85,6 +86,7 @@ namespace MultiBoardKeyboard
             try
             {
                 input = _serialPort.ReadExisting();
+                OnDebugCallBack("received: " + input );
 
 
                 Console.WriteLine("received: " + input);
@@ -95,6 +97,8 @@ namespace MultiBoardKeyboard
                     {
                         //MultiBoard valid
                         Uuid = input.Split('&')[2].Replace("\r\n", string.Empty);
+
+                        OnDebugCallBack("Valid board -> " + Uuid);
 
                         if (BoardFound != null)
                         {
@@ -112,8 +116,14 @@ namespace MultiBoardKeyboard
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                OnDebugCallBack(e.ToString());
             }
 
+        }
+
+        protected virtual void OnDebugCallBack(string e)
+        {
+            DebugCallBack?.Invoke(this, e);
         }
     }
 }
