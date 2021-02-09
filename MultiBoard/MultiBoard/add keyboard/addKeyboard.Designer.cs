@@ -38,6 +38,7 @@
             this.CANCEL_PANEL = new System.Windows.Forms.Panel();
             this.CANCEL_LABEL = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.CONNECTION_PROBLEMS_BUTTON = new System.Windows.Forms.Button();
             this.BACKGROUND_SCANNER = new System.ComponentModel.BackgroundWorker();
             this.AUTO_ADD_HOVER_TIMER = new System.Windows.Forms.Timer(this.components);
             this.MANUAL_ADD_HOVER_TIMER = new System.Windows.Forms.Timer(this.components);
@@ -97,9 +98,9 @@
             // 
             this.MANUAL_ADD_PANEL.BackColor = System.Drawing.Color.DarkGray;
             this.MANUAL_ADD_PANEL.Controls.Add(this.MANUALY_ADD_LABEL);
-            this.MANUAL_ADD_PANEL.Location = new System.Drawing.Point(258, 192);
+            this.MANUAL_ADD_PANEL.Location = new System.Drawing.Point(297, 226);
             this.MANUAL_ADD_PANEL.Name = "MANUAL_ADD_PANEL";
-            this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(353, 72);
+            this.MANUAL_ADD_PANEL.Size = new System.Drawing.Size(273, 53);
             this.MANUAL_ADD_PANEL.TabIndex = 1;
             this.MANUAL_ADD_PANEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
             this.MANUAL_ADD_PANEL.MouseEnter += new System.EventHandler(this.MANUAL_ADD_PANEL_MouseEnter);
@@ -108,11 +109,11 @@
             // MANUALY_ADD_LABEL
             // 
             this.MANUALY_ADD_LABEL.AutoSize = true;
-            this.MANUALY_ADD_LABEL.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MANUALY_ADD_LABEL.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MANUALY_ADD_LABEL.ForeColor = System.Drawing.Color.White;
-            this.MANUALY_ADD_LABEL.Location = new System.Drawing.Point(37, 23);
+            this.MANUALY_ADD_LABEL.Location = new System.Drawing.Point(15, 17);
             this.MANUALY_ADD_LABEL.Name = "MANUALY_ADD_LABEL";
-            this.MANUALY_ADD_LABEL.Size = new System.Drawing.Size(273, 26);
+            this.MANUALY_ADD_LABEL.Size = new System.Drawing.Size(236, 23);
             this.MANUALY_ADD_LABEL.TabIndex = 1;
             this.MANUALY_ADD_LABEL.Text = "Add keyboard manually";
             this.MANUALY_ADD_LABEL.Click += new System.EventHandler(this.MANUAL_ADD_PANEL_Click);
@@ -123,9 +124,9 @@
             // 
             this.CANCEL_PANEL.BackColor = System.Drawing.Color.DarkGray;
             this.CANCEL_PANEL.Controls.Add(this.CANCEL_LABEL);
-            this.CANCEL_PANEL.Location = new System.Drawing.Point(343, 324);
+            this.CANCEL_PANEL.Location = new System.Drawing.Point(358, 311);
             this.CANCEL_PANEL.Name = "CANCEL_PANEL";
-            this.CANCEL_PANEL.Size = new System.Drawing.Size(185, 56);
+            this.CANCEL_PANEL.Size = new System.Drawing.Size(138, 47);
             this.CANCEL_PANEL.TabIndex = 1;
             this.CANCEL_PANEL.Click += new System.EventHandler(this.CANCEL_PANEL_Click);
             this.CANCEL_PANEL.MouseEnter += new System.EventHandler(this.CANCEL_PANEL_MouseEnter);
@@ -136,7 +137,7 @@
             this.CANCEL_LABEL.AutoSize = true;
             this.CANCEL_LABEL.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CANCEL_LABEL.ForeColor = System.Drawing.Color.White;
-            this.CANCEL_LABEL.Location = new System.Drawing.Point(49, 17);
+            this.CANCEL_LABEL.Location = new System.Drawing.Point(25, 12);
             this.CANCEL_LABEL.Name = "CANCEL_LABEL";
             this.CANCEL_LABEL.Size = new System.Drawing.Size(84, 26);
             this.CANCEL_LABEL.TabIndex = 2;
@@ -147,6 +148,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.CONNECTION_PROBLEMS_BUTTON);
             this.panel4.Controls.Add(this.CANCEL_PANEL);
             this.panel4.Controls.Add(this.AUTO_ADD_PANEL);
             this.panel4.Controls.Add(this.MANUAL_ADD_PANEL);
@@ -155,6 +157,21 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(857, 508);
             this.panel4.TabIndex = 2;
+            // 
+            // CONNECTION_PROBLEMS_BUTTON
+            // 
+            this.CONNECTION_PROBLEMS_BUTTON.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.CONNECTION_PROBLEMS_BUTTON.FlatAppearance.BorderSize = 0;
+            this.CONNECTION_PROBLEMS_BUTTON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CONNECTION_PROBLEMS_BUTTON.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CONNECTION_PROBLEMS_BUTTON.ForeColor = System.Drawing.Color.White;
+            this.CONNECTION_PROBLEMS_BUTTON.Location = new System.Drawing.Point(348, 170);
+            this.CONNECTION_PROBLEMS_BUTTON.Name = "CONNECTION_PROBLEMS_BUTTON";
+            this.CONNECTION_PROBLEMS_BUTTON.Size = new System.Drawing.Size(167, 38);
+            this.CONNECTION_PROBLEMS_BUTTON.TabIndex = 5;
+            this.CONNECTION_PROBLEMS_BUTTON.Text = "Connection problems?";
+            this.CONNECTION_PROBLEMS_BUTTON.UseVisualStyleBackColor = false;
+            this.CONNECTION_PROBLEMS_BUTTON.Click += new System.EventHandler(this.CONNECTION_PROBLEMS_BUTTON_Click);
             // 
             // BACKGROUND_SCANNER
             // 
@@ -177,7 +194,6 @@
             // 
             // addKeyboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.panel4);
             this.Name = "addKeyboard";
@@ -207,5 +223,6 @@
         private System.Windows.Forms.Timer AUTO_ADD_HOVER_TIMER;
         private System.Windows.Forms.Timer MANUAL_ADD_HOVER_TIMER;
         private System.Windows.Forms.Timer CANCEL_HOVER_TIMER;
+        private System.Windows.Forms.Button CONNECTION_PROBLEMS_BUTTON;
     }
 }

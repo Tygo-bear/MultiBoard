@@ -84,6 +84,12 @@
     <Compile Include="add keyboard\AutoAddKeyboard.Designer.cs">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="add keyboard\KeyboardConnectDebugU.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="add keyboard\KeyboardConnectDebugU.Designer.cs">
+      <DependentUpon>KeyboardConnectDebugU.cs</DependentUpon>
+    </Compile>
     <Compile Include="GithubApi.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="add keyboard\AutoAddKeyboard.resx">
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add keyboard\KeyboardConnectDebugU.resx">
+      <DependentUpon>KeyboardConnectDebugU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="overlays\CheckForUpdatesOverlay.resx">
       <DependentUpon>CheckForUpdatesOverlay.cs</DependentUpon>

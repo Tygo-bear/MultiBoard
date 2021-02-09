@@ -16,6 +16,7 @@ namespace MultiBoard.add_keyboard
 
         private AutoAddKeyboard _autoAddKeyboard;
         private ManuallyAddKeyboard _manuallyAddKeyboard;
+        private KeyboardConnectDebugU _keyboardConnectDebug;
 
         public event EventHandler AddKeyboard;
         public string KeyboardName;
@@ -24,10 +25,18 @@ namespace MultiBoard.add_keyboard
 
         //List of keyboards to ignore
         private List<string> _IDsBlackList;
+        //user spams refresh button
+        private int _refreshClickCount = 0;
 
         public addKeyboard()
         {
             InitializeComponent();
+            _keyboardConnectDebug = new KeyboardConnectDebugU();
+            this.Controls.Add(_keyboardConnectDebug);
+            _keyboardConnectDebug.Location = new Point(0, 0);
+            _keyboardConnectDebug.Hide();
+            _keyboardConnectDebug.Dock = DockStyle.Fill;
+
         }
 
         /// <summary>
@@ -37,6 +46,8 @@ namespace MultiBoard.add_keyboard
         /// <param name="e"></param>
         private void REFRESH_BUTTON_Click(object sender, EventArgs e)
         {
+            if (_refreshClickCount > 1)
+                CONNECTION_PROBLEMS_BUTTON.Visible = true;
             //Check if it already started
             if(_refreshing == false)
             {
@@ -46,6 +57,7 @@ namespace MultiBoard.add_keyboard
                 REFRESH_BUTTON.Enabled = false;
 
                 refreshKeyboards();
+                _refreshClickCount++;
             }
             else
             {
@@ -365,6 +377,12 @@ namespace MultiBoard.add_keyboard
         private void CANCEL_PANEL_MouseLeave(object sender, EventArgs e)
         {
             CANCEL_HOVER_TIMER.Start();
+        }
+
+        private void CONNECTION_PROBLEMS_BUTTON_Click(object sender, EventArgs e)
+        {
+            _keyboardConnectDebug.Show();
+            _keyboardConnectDebug.BringToFront();
         }
     }
 }
