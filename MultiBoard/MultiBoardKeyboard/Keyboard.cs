@@ -48,48 +48,77 @@ namespace MultiBoardKeyboard
             }
         }
 
+        /// <summary>
+        /// List of keys declared in the keyboard
+        /// </summary>
         public List<Key> KeyboardKeyList
         {
             get { return _keyList; }
         }
 
+        /// <summary>
+        /// Name of the keyboard
+        /// </summary>
         public string KeyboardName
         {
             get { return _name; }
             set { _name = value; }
         }
 
+        /// <summary>
+        /// UUID of the keyboard
+        /// </summary>
         public string KeyboardUuid
         {
             get { return _id; }
             set { _id = value; }
         }
 
+        /// <summary>
+        /// COM port on which the keyboard is connected
+        /// </summary>
         public string KeyboardComPort
         {
             get { return _comPort; }
             set { _comPort = value; }
         }
 
+        /// <summary>
+        /// Total amount of declared keys
+        /// </summary>
         public int NumberOfKeys
         {
             get { return _numberOfKeys; }
             set { _numberOfKeys = value; }
         }
 
+        /// <summary>
+        /// Set connection timeout delay
+        /// </summary>
         public int ConnectTimeoutDelay
         {
             get { return _connectTimeoutDelay; }
             set { _connectTimeoutDelay = value; }
         }
 
+        /// <summary>
+        /// Keyboard enabled
+        /// </summary>
         public bool Enabled
         {
             get { return _enabled; }
             set { _enabled = value; }
         }
 
-
+        /// <summary>
+        /// Declare a new key in the keyboard
+        /// </summary>
+        /// <param name="keyName">Name of the key</param>
+        /// <param name="eventState">Which event to trigger on</param>
+        /// <param name="keyTag">Physical key tag</param>
+        /// <param name="keyEnabled">Key enabled</param>
+        /// <param name="exeLoc">Action (legacy)</param>
+        /// <returns></returns>
         public Key CreateKey(string keyName, int eventState, string keyTag, bool keyEnabled, string exeLoc)
         {
 
@@ -101,6 +130,11 @@ namespace MultiBoardKeyboard
             return obj;
         }
 
+        /// <summary>
+        /// Add key to declared keys
+        /// </summary>
+        /// <param name="k">Key to add</param>
+        /// <returns></returns>
         public Key AddKey(Key k)
         {
             _keyList.Add(k);
@@ -108,11 +142,20 @@ namespace MultiBoardKeyboard
             return k;
         }
 
+        /// <summary>
+        /// Remove key from declaration
+        /// </summary>
+        /// <param name="k">Key to remove</param>
+        /// <returns></returns>
         public bool RemoveKey(Key k)
         {
             return _keyList.Remove(k);
         }
 
+        /// <summary>
+        /// Correct connection param
+        /// </summary>
+        /// <returns>true/false</returns>
         public bool ConnectorReady()
         {
             if (!String.IsNullOrEmpty(_comPort))
@@ -124,6 +167,10 @@ namespace MultiBoardKeyboard
             return false;
         }
 
+        /// <summary>
+        /// Connect keyboard to COM
+        /// </summary>
+        /// <returns>Can connect</returns>
         public bool Connect()
         {
             if (_comConnector == null)
