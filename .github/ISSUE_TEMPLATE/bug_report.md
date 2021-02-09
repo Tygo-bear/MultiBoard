@@ -30,6 +30,7 @@ If applicable, add screenshots to help explain your problem.
 **Additional Info (please complete the following information):**
  - OS: [e.g. Windows 10]
  - MultiBoard detects keyboard: [YES/NO]
+ - MultiBoard version: [e.g v1.0.1.7]
 
 **Additional context**
 Add any other context about the problem here.
