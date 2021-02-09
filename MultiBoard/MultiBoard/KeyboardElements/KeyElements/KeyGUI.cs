@@ -61,6 +61,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _scriptCallMenu.Hide();
             _scriptCallMenu.Dock = DockStyle.Fill;
             _scriptCallMenu.ScriptCallingMade += ScriptCallMenuOnScriptCallingMade;
+            if (Properties.Settings.Default.ExperimentalFeatures)
+                ScriptButton.Visible = true;
         }
 
         private void ScriptCallMenuOnScriptCallingMade(object sender, MTask e)

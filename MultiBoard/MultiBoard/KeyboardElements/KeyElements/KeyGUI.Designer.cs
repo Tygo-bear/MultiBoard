@@ -325,6 +325,7 @@
             this.ScriptButton.Size = new System.Drawing.Size(76, 58);
             this.ScriptButton.TabIndex = 9;
             this.ScriptButton.UseVisualStyleBackColor = false;
+            this.ScriptButton.Visible = false;
             this.ScriptButton.Click += new System.EventHandler(this.ScriptButton_Click);
             // 
             // HOT_KEY_BUTTON
@@ -388,7 +389,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "MTask";
             // 
