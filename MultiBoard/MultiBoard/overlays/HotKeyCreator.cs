@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.overlays
 {
     public partial class HotKeyCreator : UserControl
     {
-        public event EventHandler<string> UserMadeSelection; 
+        public event EventHandler<KeyTask> UserMadeSelection; 
 
         private Random _random = new Random();
         private string _selection = "";
@@ -167,7 +168,7 @@ namespace MultiBoard.overlays
         {
             if (UserMadeSelection != null)
             {
-                UserMadeSelection?.Invoke(this, e);
+                UserMadeSelection?.Invoke(this, new KeyTask(){OneLineAhkScript = e});
             }
         }
 

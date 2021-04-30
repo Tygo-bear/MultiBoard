@@ -50,7 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.TaskPanel = new System.Windows.Forms.Panel();
             this.HOT_KEY_BUTTON = new System.Windows.Forms.Button();
             this.AHK_BUTTON = new System.Windows.Forms.Button();
             this.KEY_TASK_BUTTON = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.KEY_UP_P)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.TaskPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -297,19 +297,19 @@
             this.panel1.Size = new System.Drawing.Size(632, 57);
             this.panel1.TabIndex = 13;
             // 
-            // panel2
+            // TaskPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Controls.Add(this.HOT_KEY_BUTTON);
-            this.panel2.Controls.Add(this.AHK_BUTTON);
-            this.panel2.Controls.Add(this.KEY_TASK_BUTTON);
-            this.panel2.Controls.Add(this.OPEN_FILE_BUTTON);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.LOCATION_TEXTBOX);
-            this.panel2.Location = new System.Drawing.Point(14, 252);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(632, 120);
-            this.panel2.TabIndex = 14;
+            this.TaskPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.TaskPanel.Controls.Add(this.HOT_KEY_BUTTON);
+            this.TaskPanel.Controls.Add(this.AHK_BUTTON);
+            this.TaskPanel.Controls.Add(this.KEY_TASK_BUTTON);
+            this.TaskPanel.Controls.Add(this.OPEN_FILE_BUTTON);
+            this.TaskPanel.Controls.Add(this.label6);
+            this.TaskPanel.Controls.Add(this.LOCATION_TEXTBOX);
+            this.TaskPanel.Location = new System.Drawing.Point(14, 252);
+            this.TaskPanel.Name = "TaskPanel";
+            this.TaskPanel.Size = new System.Drawing.Size(632, 120);
+            this.TaskPanel.TabIndex = 14;
             // 
             // HOT_KEY_BUTTON
             // 
@@ -394,7 +394,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.TaskPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.EVENT_PANEL);
             this.Controls.Add(this.BOTTEM_PANEL);
@@ -415,8 +415,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.KEY_DOWN_P)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.TaskPanel.ResumeLayout(false);
+            this.TaskPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -446,7 +446,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel TaskPanel;
         private System.Windows.Forms.Button OPEN_FILE_BUTTON;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox LOCATION_TEXTBOX;
