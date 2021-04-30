@@ -26,6 +26,7 @@ namespace MultiBoardKeyboard
         private string _keyTag;
 
         private KeyTask _keyTask;
+        private string _executeLocation;
 
         private Timer _timer = new Timer();
         private int _keyPressCount = 0;
@@ -56,8 +57,22 @@ namespace MultiBoardKeyboard
             _keyTag = key;
             _enabled = enabledKey;
             _executeLocation = executeLoc;
+            _keyTask = new KeyTask();
 
-            UpdateExecuteLoc();
+            MigrateToTask();
+            _timer.Interval = _defInterval;
+            _timer.Elapsed += TimerOnElapsed;
+            _timer.Stop();
+        }
+
+        public Key(string name, int eventStateAr, string key, bool enabledKey, KeyTask task)
+        {
+            _keyName = name;
+            EventState = eventStateAr;
+            _keyTag = key;
+            _enabled = enabledKey;
+            _keyTask = task;
+
             _timer.Interval = _defInterval;
             _timer.Elapsed += TimerOnElapsed;
             _timer.Stop();
@@ -70,11 +85,38 @@ namespace MultiBoardKeyboard
             _keyTag = jk.KeyTag;
             _enabled = jk.Enabled;
             _executeLocation = jk.ExecuteLocation;
+            _keyTask = new KeyTask(jk.Task);
 
-            UpdateExecuteLoc();
+            if (jk.Task == null)
+                MigrateToTask();
+
             _timer.Interval = _defInterval;
             _timer.Elapsed += TimerOnElapsed;
             _timer.Stop();
+        }
+
+        private void MigrateToTask()
+        {
+            if (_executeLocation.Replace("<", "") != _executeLocation)
+            {
+                string key = _executeLocation.Replace("<", "").Replace(">", "");
+                _keyTask.PushKey = key;
+            }
+            else if (_executeLocation.Replace("?", "") != _executeLocation)
+            {
+                string loc = _executeLocation.Replace("?", "");
+                _keyTask.StaticAhkScriptFromFile = loc;
+            }
+            else if (_executeLocation.Replace("{", "") != _executeLocation)
+            {
+                string temp = "SendInput, " + _executeLocation.Remove(0, 1);
+                temp = temp.Remove(temp.Length - 1, 1);
+                _keyTask.OneLineAhkScript = temp;
+            }
+            else
+            {
+                _keyTask.OpenFile = _executeLocation;
+            }
         }
 
         /// <summary>
@@ -205,35 +247,11 @@ namespace MultiBoardKeyboard
             }
             set
             {
-                _executeLocation = value;
-                UpdateExecuteLoc();
+                _keyTask.StaticAhkScriptFromFile = value;
 
             }
         }
 
-        /// <summary>
-        /// Update variables related to changing execute location
-        /// </summary>
-        private void UpdateExecuteLoc()
-        {
-            if (_executeLocation.Replace("?", "") != _executeLocation)
-            {
-                string loc = _executeLocation.Replace("?", "");
-                if (File.Exists(loc))
-                {
-                    _ahkScript = File.ReadAllText(loc);
-                }
-                else
-                {
-                    OnError("ahk read error, script not found --> " + loc);
-                }
-            }
-            else if(_executeLocation.Replace("{", "") != _executeLocation)
-            {
-                _ahkScript = "SendInput, " + _executeLocation.Remove(0,1);
-                _ahkScript = _ahkScript.Remove(_ahkScript.Length - 1, 1);
-            }
-        }
 
         /// <summary>
         /// Key down event
@@ -329,6 +347,11 @@ namespace MultiBoardKeyboard
 
         public string PushKey;
         public string OpenFile;
+
+        public KeyTask()
+        {
+
+        }
 
         public KeyTask(JKeyTask j)
         {
