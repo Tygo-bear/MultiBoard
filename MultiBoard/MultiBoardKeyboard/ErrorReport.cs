@@ -33,6 +33,14 @@ namespace MultiBoardKeyboard
             return response;
         }
 
+        public static List<ErrorEvent> ErrorEvents
+        {
+            get
+            {
+                return _errorEvents;
+            }
+        }
+
     }
 
     public class ErrorEvent

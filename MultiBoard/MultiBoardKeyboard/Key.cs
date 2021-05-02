@@ -381,14 +381,21 @@ namespace MultiBoardKeyboard
             set
             {
                 _staticAhkScriptFromFile = value;
+                if(String.IsNullOrEmpty(value))
+                    return;
+
                 if (File.Exists(value))
                 {
                     _staticAhkScriptFromFileCash = File.ReadAllText(value);
                 }
                 else
                 {
-                    //TODO report error
-                    //OnError("ahk read error, script not found --> " + value);
+                    ErrorReport.AddEvent(new ErrorEvent
+                    {
+                        Title = "Ahk read error",
+                        Description = $"Script not found {value}",
+                        Type = ErrorType.Warning,
+                    });
                 }
             }
         }
@@ -426,8 +433,12 @@ namespace MultiBoardKeyboard
                 }
                 else
                 {
-                    //TODO report error
-                    //OnError("execute file not found --> " + _keyName);
+                    ErrorReport.AddEvent(new ErrorEvent
+                    {
+                        Title = "File not found",
+                        Description = $"Cannot run task because file was not found {OpenFile}",
+                        Type = ErrorType.Warning,
+                    });
                 }
             }
         }
