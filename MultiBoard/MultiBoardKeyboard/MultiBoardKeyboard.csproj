@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="connector.cs" />
+    <Compile Include="ErrorReport.cs" />
     <Compile Include="JsonSaveFileGenerator.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Keyboard.cs" />
