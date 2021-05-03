@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace MultiBoardKeyboard
 {
+    public class JKeyTask
+    {
+        public string OneLineAhkScript;
+        public string StaticAhkScriptFromFile;
+        public string PushKey;
+        public string OpenFile;
+    }
     public class JKey
     {
         public string KeyName;
@@ -13,6 +20,7 @@ namespace MultiBoardKeyboard
         public string KeyTag;
         public string ExecuteLocation;
         public int KeyState = 0;
+        public JKeyTask Task;
     }
     public class JKeyboard
     {
