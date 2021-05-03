@@ -162,13 +162,15 @@ namespace MultiBoard.overlays
                     _selection = String.Join("", StartTemp.ToArray());
                 }
             }
+
+            _selection = "SendInput, " + _selection;
         }
 
         protected virtual void OnUserMadeSelection(string e)
         {
             if (UserMadeSelection != null)
             {
-                UserMadeSelection?.Invoke(this, new KeyTask(){OneLineAhkScript = e});
+                UserMadeSelection?.Invoke(this, new KeyTask(){OneLineAhkScript = e });
             }
         }
 

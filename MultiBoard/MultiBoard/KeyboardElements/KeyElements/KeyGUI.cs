@@ -496,7 +496,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
             else if (t.PushKey != null)
                 KEY_TASK_BUTTON.BackColor = selectedColor;
 
-            else if (t.OpenFile != null)
+            else if (!String.IsNullOrEmpty(t.OpenFile))
                 OPEN_FILE_BUTTON.BackColor = selectedColor;
 
             LOCATION_TEXTBOX.Text = t.ToString();
