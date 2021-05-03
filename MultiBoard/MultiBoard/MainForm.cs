@@ -1,4 +1,4 @@
-using MultiBoard.overlays;
+﻿using MultiBoard.overlays;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,6 +84,9 @@ namespace MultiBoard
 
             Debug.WriteLine("--DEBUG STARTED--");
             Debug.AutoFlush = true;
+
+            Debug.WriteLine("MAIN DIR: " + MainDirectory);
+            Console.WriteLine("MAIN DIR: " + MainDirectory);
 
             //Clear error list
             //======================
