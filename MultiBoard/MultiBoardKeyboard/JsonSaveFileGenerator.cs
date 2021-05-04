@@ -12,6 +12,7 @@ namespace MultiBoardKeyboard
         public string StaticAhkScriptFromFile;
         public string PushKey;
         public string OpenFile;
+        public string OpenFileArgs;
     }
     public class JKey
     {
