@@ -346,7 +346,9 @@ namespace MultiBoardKeyboard
         private string _staticAhkScriptFromFileCash;
 
         public string PushKey;
+
         public string OpenFile;
+        public string OpenFileArgs;
 
         public KeyTask()
         {
@@ -361,6 +363,7 @@ namespace MultiBoardKeyboard
                 StaticAhkScriptFromFile = j.StaticAhkScriptFromFile;
                 PushKey = j.PushKey;
                 OpenFile = j.OpenFile;
+                OpenFileArgs = j.OpenFileArgs;
             }
         }
 
@@ -371,6 +374,7 @@ namespace MultiBoardKeyboard
             j.OpenFile = OpenFile;
             j.PushKey = PushKey;
             j.StaticAhkScriptFromFile = StaticAhkScriptFromFile;
+            j.OpenFileArgs = OpenFileArgs;
 
             return j;
         }
@@ -425,9 +429,10 @@ namespace MultiBoardKeyboard
             {
                 if (File.Exists(OpenFile))
                 {
-                    //TODO run args
-                    //execute
-                    System.Diagnostics.Process.Start(OpenFile);
+                    if(String.IsNullOrEmpty(OpenFileArgs))
+                        System.Diagnostics.Process.Start(OpenFile);
+                    else
+                        System.Diagnostics.Process.Start(OpenFile, OpenFileArgs);
                 }
                 else
                 {

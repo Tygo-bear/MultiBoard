@@ -58,6 +58,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.LOCATION_TEXTBOX = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.FileArgsPanel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.FileArgsTextBox = new System.Windows.Forms.TextBox();
             this.TOP_PANEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.BOTTEM_PANEL.SuspendLayout();
@@ -69,6 +72,7 @@
             this.panel1.SuspendLayout();
             this.TaskPanel.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.FileArgsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // TOP_PANEL
@@ -390,9 +394,37 @@
             this.panel3.Size = new System.Drawing.Size(153, 51);
             this.panel3.TabIndex = 15;
             // 
+            // FileArgsPanel
+            // 
+            this.FileArgsPanel.BackColor = System.Drawing.Color.Gainsboro;
+            this.FileArgsPanel.Controls.Add(this.FileArgsTextBox);
+            this.FileArgsPanel.Controls.Add(this.label8);
+            this.FileArgsPanel.Location = new System.Drawing.Point(173, 382);
+            this.FileArgsPanel.Name = "FileArgsPanel";
+            this.FileArgsPanel.Size = new System.Drawing.Size(473, 51);
+            this.FileArgsPanel.TabIndex = 16;
+            this.FileArgsPanel.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(14, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Args:";
+            // 
+            // FileArgsTextBox
+            // 
+            this.FileArgsTextBox.Location = new System.Drawing.Point(52, 18);
+            this.FileArgsTextBox.Name = "FileArgsTextBox";
+            this.FileArgsTextBox.Size = new System.Drawing.Size(406, 20);
+            this.FileArgsTextBox.TabIndex = 12;
+            // 
             // KeyGui
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.FileArgsPanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.TaskPanel);
             this.Controls.Add(this.panel1);
@@ -419,6 +451,8 @@
             this.TaskPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.FileArgsPanel.ResumeLayout(false);
+            this.FileArgsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -454,5 +488,8 @@
         private System.Windows.Forms.Button KEY_TASK_BUTTON;
         private System.Windows.Forms.Button AHK_BUTTON;
         private System.Windows.Forms.Button HOT_KEY_BUTTON;
+        private System.Windows.Forms.Panel FileArgsPanel;
+        private System.Windows.Forms.TextBox FileArgsTextBox;
+        private System.Windows.Forms.Label label8;
     }
 }

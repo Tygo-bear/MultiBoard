@@ -343,6 +343,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
 
+            _keyTask.OpenFileArgs = FileArgsTextBox.Text;
+
             _connectedKey.key_name = _keyName;
             _connectedKey.KeyEnabled = _enabled;
             _connectedKey.EventState = EventState;
@@ -478,6 +480,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private void ShowTask(KeyTask t)
         {
             Color selectedColor = Color.Gray;
+            FileArgsPanel.Visible = false;
 
             foreach (Control c in TaskPanel.Controls)
             {
@@ -497,8 +500,13 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 KEY_TASK_BUTTON.BackColor = selectedColor;
 
             else if (!String.IsNullOrEmpty(t.OpenFile))
+            {
                 OPEN_FILE_BUTTON.BackColor = selectedColor;
-
+                FileArgsPanel.Visible = true;
+                FileArgsTextBox.Text = t.OpenFileArgs;
+            }
+                
+            
             LOCATION_TEXTBOX.Text = t.ToString();
         }
     }
