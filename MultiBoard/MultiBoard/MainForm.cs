@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using AutoHotkey.Interop;
 using MultiBoard.add_keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
@@ -134,6 +135,15 @@ namespace MultiBoard
             MAIN_PANEL.Controls.Add(_addKeyboardContr);
             _addKeyboardContr.Dock = DockStyle.Fill;
             _addKeyboardContr.AddKeyboard += keyboardAdded;
+
+
+            //preload autoHotkey
+            string preloadAhkFile = MainDirectory + @"\preload.ahk";
+            if (File.Exists(preloadAhkFile)) 
+                AutoHotkeyEngine.Instance.ExecRaw(File.ReadAllText(preloadAhkFile));
+            else
+                File.Create(MainDirectory + @"\preload.ahk").Dispose();
+                
 
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
