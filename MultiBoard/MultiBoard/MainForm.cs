@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using AutoHotkey.Interop;
 using MultiBoard.add_keyboard;
 using MultiBoard.ErrorSystem;
 using MultiBoard.KeyboardElements;
@@ -29,7 +30,6 @@ namespace MultiBoard
         private bool _firstStartUp = true;
         private List<KeyBoardGUI> _keyboardGUIList = new List<KeyBoardGUI>();
         private List<string> _showErrorList = new List<string>();
-        private List<Keyboard> _keyboards = new List<Keyboard>();
 
 
         //classes and user controls
@@ -66,6 +66,8 @@ namespace MultiBoard
         {
             InitializeComponent();
 
+            MKeyboards.Keyboards = new List<Keyboard>();
+
             //Debug
             //=========================
 
@@ -83,6 +85,9 @@ namespace MultiBoard
 
             Debug.WriteLine("--DEBUG STARTED--");
             Debug.AutoFlush = true;
+
+            Debug.WriteLine("MAIN DIR: " + MainDirectory);
+            Console.WriteLine("MAIN DIR: " + MainDirectory);
 
             //Clear error list
             //======================
@@ -131,6 +136,15 @@ namespace MultiBoard
             _addKeyboardContr.Dock = DockStyle.Fill;
             _addKeyboardContr.AddKeyboard += keyboardAdded;
 
+
+            //preload autoHotkey
+            string preloadAhkFile = MainDirectory + @"\preload.ahk";
+            if (File.Exists(preloadAhkFile)) 
+                AutoHotkeyEngine.Instance.ExecRaw(File.ReadAllText(preloadAhkFile));
+            else
+                File.Create(MainDirectory + @"\preload.ahk").Dispose();
+                
+
             //loading keyboards
             backgroundWorker2.RunWorkerAsync();
 
@@ -168,7 +182,7 @@ namespace MultiBoard
                 {
                     //remove keyboard in args
                     e.Keyboard.Keyboard.DisConnect();
-                    _keyboards.Remove(e.Keyboard.Keyboard);
+                    MKeyboards.Keyboards.Remove(e.Keyboard.Keyboard);
 
                     _keyboardGUIList.Remove(e.Keyboard);
                     e.Keyboard.Dispose();
@@ -267,7 +281,7 @@ namespace MultiBoard
 
             //Create new keyboard class/userControl
             Keyboard kb = new Keyboard(Properties.Resources.KeyboardScanner__staticId);
-            _keyboards.Add(kb);
+            MKeyboards.Keyboards.Add(kb);
 
             kb.KeyboardName = name;
             kb.KeyboardComPort = port;
@@ -299,7 +313,7 @@ namespace MultiBoard
                 Directory.CreateDirectory(MainDirectory + @"\saves");
             }
 
-            foreach (Keyboard keyboard in _keyboards)
+            foreach (Keyboard keyboard in MKeyboards.Keyboards)
             {
                 JKeyboard jk = keyboard.SaveKeyboard(Properties.Resources.Version);
                 string output = JsonConvert.SerializeObject(jk, Formatting.Indented);
@@ -392,7 +406,7 @@ namespace MultiBoard
         {
             TOGGLE_B.BackgroundImage = TOGGLE_OFF;
             ToggleB = false;
-            foreach (Keyboard keyboard in _keyboards)
+            foreach (Keyboard keyboard in MKeyboards.Keyboards)
             {
                 keyboard.Enabled = false;
             }
@@ -405,7 +419,7 @@ namespace MultiBoard
         {
             TOGGLE_B.BackgroundImage = TOGGLE_ON;
             ToggleB = true;
-            foreach (Keyboard keyboard in _keyboards)
+            foreach (Keyboard keyboard in MKeyboards.Keyboards)
             {
                 keyboard.Enabled = true;
             }
@@ -471,7 +485,7 @@ namespace MultiBoard
                     kb.Connect();
                 }
 
-                _keyboards.Add(kb);
+                MKeyboards.Keyboards.Add(kb);
 
                 KeyBoardGUI obj = new KeyBoardGUI(kb);
                 obj.Visible = false;
@@ -561,8 +575,8 @@ namespace MultiBoard
                         kb.KeyboardComPort = com;
                         kb.Connect();
                     }
-                    
-                    _keyboards.Add(kb);
+
+                    MKeyboards.Keyboards.Add(kb);
 
                     KeyBoardGUI obj = new KeyBoardGUI(kb);
                     obj.Visible = false;
@@ -777,11 +791,11 @@ namespace MultiBoard
             }
             _keyboardGUIList.Clear();
 
-            foreach (Keyboard keyboard in _keyboards)
+            foreach (Keyboard keyboard in MKeyboards.Keyboards)
             {
                 keyboard.DisConnect();
             }
-            _keyboards.Clear();
+            MKeyboards.Keyboards.Clear();
 
 
             _listkeyboardElement.Dispose();

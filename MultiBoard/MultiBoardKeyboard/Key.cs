@@ -407,7 +407,6 @@ namespace MultiBoardKeyboard
                 if (!String.IsNullOrEmpty(OneLineAhkScript))
                 {
                     _ahk.ExecRaw(OneLineAhkScript);
-                    _ahk.Reset();
                 }
             }
             else if (_staticAhkScriptFromFile != null)
@@ -415,7 +414,6 @@ namespace MultiBoardKeyboard
                 if (!String.IsNullOrEmpty(_staticAhkScriptFromFileCash))
                 {
                     _ahk.ExecRaw(_staticAhkScriptFromFileCash);
-                    _ahk.Reset();
                 }
             }
             else if (PushKey != null)
