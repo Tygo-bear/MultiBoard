@@ -429,8 +429,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             _keyTask = new KeyTask();
             _keyTask.PushKey = _keyTaskOverlay.SelectedKey;
+            _keyTaskOverlay.Hide();
             ShowTask(_keyTask);
-            _keyTaskOverlay.Dispose();
         }
 
         /// <summary>

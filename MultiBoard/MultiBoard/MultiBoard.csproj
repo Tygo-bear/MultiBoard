@@ -85,6 +85,7 @@
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="GithubApi.cs" />
+    <Compile Include="MKeyboards.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
