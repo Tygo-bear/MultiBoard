@@ -26,7 +26,7 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private bool _recordingKey = false;
         private bool _enabled = true;
         private string _keyTag;
-        private string _executeLocation;
+        private KeyTask _keyTask;
         private Key _connectedKey;
 
         private string _oldName;
@@ -129,8 +129,8 @@ namespace MultiBoard.KeyboardElements.KeyElements
                 ENABLE_BUTTON.BackgroundImage = _toggleOn;
             }
 
-            _executeLocation = executeLoc;
-            LOCATION_TEXTBOX.Text = executeLoc;
+            _keyTask = connectKey.KeyTaskAction;
+            ShowTask(connectKey.KeyTaskAction);
         }
 
         /// <summary>
@@ -269,13 +269,14 @@ namespace MultiBoard.KeyboardElements.KeyElements
                         using (myStream)
                         {
                             //file exists
-                            _executeLocation = theDialog.FileName;
-                            LOCATION_TEXTBOX.Text = theDialog.FileName;
+                            _keyTask = new KeyTask();
+                            _keyTask.OpenFile = theDialog.FileName;
+                            ShowTask(_keyTask);
 
                             //save to "FileOpenLastLocation"
-                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string[] splits = theDialog.FileName.Split(new string[] { @"\" }, StringSplitOptions.None);
                             string remove = splits[splits.Length - 1];
-                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                            Properties.Settings.Default.FileOpen_LastLocation = theDialog.FileName.Split(new string[] { remove }, StringSplitOptions.None)[0];
                         }
                     }
                 }
@@ -311,7 +312,6 @@ namespace MultiBoard.KeyboardElements.KeyElements
 
         public bool KeyEnebled => _enabled;
 
-        public string ExecuteLocation => _executeLocation;
 
         /// <summary>
         /// Event for when data updated
@@ -343,10 +343,12 @@ namespace MultiBoard.KeyboardElements.KeyElements
         {
             KEY_NAME_TEXTBOX.BackColor = TOP_PANEL.BackColor;
 
+            _keyTask.OpenFileArgs = FileArgsTextBox.Text;
+
             _connectedKey.key_name = _keyName;
             _connectedKey.KeyEnabled = _enabled;
             _connectedKey.EventState = EventState;
-            _connectedKey.executeLoc = _executeLocation;
+            _connectedKey.KeyTaskAction = _keyTask;
             _connectedKey.keyTag = _keyTag;
 
             OnUpdatedData();
@@ -412,10 +414,10 @@ namespace MultiBoard.KeyboardElements.KeyElements
             _hotKeyCreatorOverlay.BringToFront();
         }
 
-        private void HotKeyCreatorOverlayOnUserMadeSelection(object sender, string e)
+        private void HotKeyCreatorOverlayOnUserMadeSelection(object sender, KeyTask e)
         {
-            _executeLocation = e;
-            LOCATION_TEXTBOX.Text = e;
+            _keyTask = e;
+            ShowTask(_keyTask);
         }
 
         /// <summary>
@@ -425,10 +427,10 @@ namespace MultiBoard.KeyboardElements.KeyElements
         /// <param name="e"></param>
         private void keyTaskOverlayOnUserMadeSelection(object sender, EventArgs e)
         {
-            string s = "<" + _keyTaskOverlay.SelectedKey + ">";
-            _executeLocation = s;
-            LOCATION_TEXTBOX.Text = s;
-            _keyTaskOverlay.Dispose();
+            _keyTask = new KeyTask();
+            _keyTask.PushKey = _keyTaskOverlay.SelectedKey;
+            _keyTaskOverlay.Hide();
+            ShowTask(_keyTask);
         }
 
         /// <summary>
@@ -452,14 +454,14 @@ namespace MultiBoard.KeyboardElements.KeyElements
                         using (myStream)
                         {
                             //file exists
-                            string loc = "?" + theDialog.FileName + "?";
-                            _executeLocation = loc;
-                            LOCATION_TEXTBOX.Text = loc;
+                            _keyTask = new KeyTask();
+                            _keyTask.StaticAhkScriptFromFile = theDialog.FileName;
+                            ShowTask(_keyTask);
 
                             //save to "FileOpenLastLocation"
-                            string[] splits = _executeLocation.Split(new string[] { @"\" }, StringSplitOptions.None);
+                            string[] splits = theDialog.FileName.Split(new string[] { @"\" }, StringSplitOptions.None);
                             string remove = splits[splits.Length - 1];
-                            Properties.Settings.Default.FileOpen_LastLocation = _executeLocation.Split(new string[] { remove }, StringSplitOptions.None)[0];
+                            Properties.Settings.Default.FileOpen_LastLocation = theDialog.FileName.Split(new string[] { remove }, StringSplitOptions.None)[0];
                         }
                     }
                 }
@@ -473,6 +475,39 @@ namespace MultiBoard.KeyboardElements.KeyElements
         private void HOT_KEY_BUTTON_Click(object sender, EventArgs e)
         {
             CreateHotKeyCreatorOverlay();
+        }
+
+        private void ShowTask(KeyTask t)
+        {
+            Color selectedColor = Color.Gray;
+            FileArgsPanel.Visible = false;
+
+            foreach (Control c in TaskPanel.Controls)
+            {
+                if (c is Button)
+                {
+                    (c as Button).BackColor = Color.Transparent;
+                }
+            }
+            
+            if (t.OneLineAhkScript != null)
+                HOT_KEY_BUTTON.BackColor = selectedColor;
+
+            else if (t.StaticAhkScriptFromFile != null)
+                AHK_BUTTON.BackColor = selectedColor;
+
+            else if (t.PushKey != null)
+                KEY_TASK_BUTTON.BackColor = selectedColor;
+
+            else if (!String.IsNullOrEmpty(t.OpenFile))
+            {
+                OPEN_FILE_BUTTON.BackColor = selectedColor;
+                FileArgsPanel.Visible = true;
+                FileArgsTextBox.Text = t.OpenFileArgs;
+            }
+                
+            
+            LOCATION_TEXTBOX.Text = t.ToString();
         }
     }
 

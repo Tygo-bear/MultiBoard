@@ -59,6 +59,12 @@ namespace MultiBoardKeyboard
         private void comPort_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             Debug.WriteLine("error from {0} gave: {1}", _comPort.PortName, e.ToString());
+            ErrorReport.AddEvent(new ErrorEvent
+            {
+                Title = "Com connection",
+                Description = $"error from {_comPort.PortName} gave: {e.ToString()}",
+                Type = ErrorType.Event,
+            });
         }
 
         /// <summary>
@@ -74,6 +80,13 @@ namespace MultiBoardKeyboard
             {
                 Debug.WriteLine(e);
                 OnError("com open failed:" + _comPort);
+
+                ErrorReport.AddEvent(new ErrorEvent
+                {
+                    Title = "Com connection",
+                    Description = $"com open failed {_comPort}",
+                    Type = ErrorType.Event,
+                });
                 return;
             }
             
@@ -113,6 +126,12 @@ namespace MultiBoardKeyboard
             if (_retryMax < 5)
             {
                 OnError("connection failed reconnecting:" + _retryMax + " --> " + _comPort);
+                ErrorReport.AddEvent(new ErrorEvent
+                {
+                    Title = "Com connection",
+                    Description = $"connection failed reconnecting at {_comPort} {_retryMax} attempts",
+                    Type = ErrorType.Event,
+                });
                 ReConnect();
             }
             return false;

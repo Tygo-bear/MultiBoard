@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MultiBoardKeyboard;
 
 namespace MultiBoard.ErrorSystem
 {
@@ -20,17 +21,13 @@ namespace MultiBoard.ErrorSystem
         {
             //clear list
             ERROR_LIST_LISTBOX.Items.Clear();
-            //Read settings
-            string input = Properties.Settings.Default.ErrorList;
-            List<string> l = input.Split(',').ToList();
+            List<ErrorEvent> l = ErrorReport.ErrorEvents;
+            
 
             //add to list view
-            foreach(string s in l)
+            foreach(ErrorEvent s in l)
             {
-                if (!String.IsNullOrEmpty(s))
-                {
-                    ERROR_LIST_LISTBOX.Items.Add(s);
-                }
+                ERROR_LIST_LISTBOX.Items.Add( s.ToString());
             }
 
         }
@@ -42,8 +39,7 @@ namespace MultiBoard.ErrorSystem
         /// <param name="e"></param>
         private void CLEAR_LIST_BUTTON_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ErrorList = "";
-            Properties.Settings.Default.Save();
+            ErrorReport.ClearEvents();
 
             updateErrorList();
         }

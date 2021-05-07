@@ -15,10 +15,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TimeOutDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6000</Value>
+      <Value Profile="(Default)">8000</Value>
     </Setting>
     <Setting Name="SafeModeScan" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CheckForUpdates" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>

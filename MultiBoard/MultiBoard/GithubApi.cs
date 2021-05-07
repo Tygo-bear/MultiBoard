@@ -22,12 +22,7 @@ namespace MultiBoard
             latestVersion = apiResponds.tag_name;
             downloadUri = apiResponds.assets[0].browser_download_url;
 
-            if (currentVersion.ToLower() != apiResponds.tag_name.ToLower() && !(currentVersion.ToLower().Contains("test") || currentVersion.ToLower().Contains("beta")))
-            {
-                return true;
-            }
-
-            return false;
+            return Version.IsVersionOlder(currentVersion, apiResponds.tag_name);
         }
 
         private string GetRequest()

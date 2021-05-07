@@ -85,6 +85,7 @@
       <DependentUpon>AutoAddKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="GithubApi.cs" />
+    <Compile Include="MKeyboards.cs" />
     <Compile Include="overlays\CheckForUpdatesOverlay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,6 +214,7 @@
     <Compile Include="SettingsElements\MainSettings.Designer.cs">
       <DependentUpon>MainSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Version.cs" />
     <EmbeddedResource Include="add keyboard\addKeyboard.resx">
       <DependentUpon>addKeyboard.cs</DependentUpon>
     </EmbeddedResource>
