@@ -31,6 +31,9 @@ namespace MultiBoardKeyboard
         private string _staticId;
         public string DynamicId;
 
+        private DateTime _lastPing = DateTime.Now;
+        public DateTime LastPing => _lastPing;
+
         public int ThreadPriority = 6;
         public int TimeoutDelay;
 
@@ -192,12 +195,12 @@ namespace MultiBoardKeyboard
             s = s.Replace("\r","");
 
             //Sort received data
-            if (s.Split('<')[0] != s)
+            if (s.Contains("<"))
             {
                 //normal input
                 NormalKey(s);
             }
-            else if(s.Split('_')[0] != s)
+            else if(s.Contains("_"))
             {
                 //alternative keys
                 AltKey(s);
@@ -283,6 +286,12 @@ namespace MultiBoardKeyboard
         /// </param>
         private void AltInput(string input)
         {
+            if (input.Contains("ping"))
+            {
+                _lastPing = DateTime.Now;
+                input = input.Replace("ping", "");
+            }
+
             //try to read as ID
             if(input.Split(new string[] { "ID:" }, StringSplitOptions.None)[0] != input && _connectioValid == false)
             {

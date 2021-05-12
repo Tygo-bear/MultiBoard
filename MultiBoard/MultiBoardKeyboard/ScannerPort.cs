@@ -71,7 +71,7 @@ namespace MultiBoardKeyboard
         /// <param name="e"></param>
         private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             CheckReceivedData();
         }
 
@@ -85,6 +85,8 @@ namespace MultiBoardKeyboard
             try
             {
                 input = _serialPort.ReadExisting();
+                if (input.Contains("ping"))
+                    input = input.Replace("ping", "");
 
 
                 Console.WriteLine("received: " + input);
