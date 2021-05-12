@@ -4,6 +4,9 @@
 #endif
 #include <SPI.h>
 
+int period = 10000;
+unsigned long time_now = 0;
+
 //=================================================================
 //    CHANGE TO YOUR KEYBOATD ID!!!!
 const String dynamicID = "7fba9a6d-61d1-4973-a68e-41a26309b48e";
@@ -95,5 +98,12 @@ void serialEvent()
 
 void loop()
 {
-  Usb.Task();
+  time_now = millis();
+   
+  Serial.println("ping");
+ 
+  while(millis() < time_now + period){
+      Usb.Task();
+  }
+    
 }
