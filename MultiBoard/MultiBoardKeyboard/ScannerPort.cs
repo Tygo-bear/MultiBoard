@@ -105,6 +105,9 @@ namespace MultiBoardKeyboard
         {
             try
             {
+                input = _serialPort.ReadExisting();
+                if (input.Contains("ping"))
+                    input = input.Replace("ping", "");
 
                 Console.WriteLine("received: " + input);
 
