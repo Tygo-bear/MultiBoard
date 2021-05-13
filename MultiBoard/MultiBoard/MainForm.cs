@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Timers;
 using System.Windows.Forms;
 using AutoHotkey.Interop;
 using MultiBoard.add_keyboard;
@@ -17,6 +18,7 @@ using MultiBoard.KeyboardElements;
 using MultiBoard.SettingsElements;
 using MultiBoardKeyboard;
 using Newtonsoft.Json;
+using Timer = System.Threading.Timer;
 
 namespace MultiBoard
 {
@@ -30,6 +32,7 @@ namespace MultiBoard
         private bool _firstStartUp = true;
         private List<KeyBoardGUI> _keyboardGUIList = new List<KeyBoardGUI>();
         private List<string> _showErrorList = new List<string>();
+        private System.Timers.Timer _disconnectTimer;
 
 
         //classes and user controls
@@ -163,8 +166,36 @@ namespace MultiBoard
             //Version updates
             VERSION_LABEL.Text = Properties.Resources.Version;
 
+            //disconnect timer
+            _disconnectTimer = new System.Timers.Timer();
+            _disconnectTimer.Elapsed += DisconnectTimerOnElapsed;
+            _disconnectTimer.Interval = 30000;
+            _disconnectTimer.Enabled = true;
+            
+
             Debug.WriteLine("Construction main done");
 
+        }
+
+        private void DisconnectTimerOnElapsed(object sender, ElapsedEventArgs e)
+        {
+            if(backgroundWorker2.IsBusy)
+                return;
+            checkForKeyboardDisconnect();
+        }
+
+        private void checkForKeyboardDisconnect()
+        {
+            Console.WriteLine("checking for disconnect");
+
+            foreach (Keyboard k in MKeyboards.Keyboards)
+            {
+                if ((DateTime.Now - k.LastPing).TotalMilliseconds > Properties.Settings.Default.KeyboardDisconnect)
+                {
+                    Console.WriteLine($"{k.KeyboardComPort} has disconnected");
+                    k.ReConnect();
+                }
+            }
         }
 
         /// <summary>

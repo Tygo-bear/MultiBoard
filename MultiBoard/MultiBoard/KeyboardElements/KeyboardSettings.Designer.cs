@@ -44,6 +44,7 @@
             this.SAVE_BUTTON = new System.Windows.Forms.Button();
             this.LOCK_BUTTON = new System.Windows.Forms.Button();
             this.LOCK_2_PICTURE = new System.Windows.Forms.PictureBox();
+            this.pingLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOCK_1_PICTURE)).BeginInit();
@@ -220,9 +221,18 @@
             this.LOCK_2_PICTURE.TabIndex = 13;
             this.LOCK_2_PICTURE.TabStop = false;
             // 
+            // pingLabel
+            // 
+            this.pingLabel.AutoSize = true;
+            this.pingLabel.Location = new System.Drawing.Point(128, 492);
+            this.pingLabel.Name = "pingLabel";
+            this.pingLabel.Size = new System.Drawing.Size(0, 13);
+            this.pingLabel.TabIndex = 14;
+            // 
             // KeyboardSettings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.Controls.Add(this.pingLabel);
             this.Controls.Add(this.LOCK_2_PICTURE);
             this.Controls.Add(this.LOCK_BUTTON);
             this.Controls.Add(this.SAVE_BUTTON);
@@ -242,6 +252,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOCK_2_PICTURE)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -262,5 +273,6 @@
         private System.Windows.Forms.PictureBox LOCK_1_PICTURE;
         private System.Windows.Forms.Button LOCK_BUTTON;
         private System.Windows.Forms.PictureBox LOCK_2_PICTURE;
+        private System.Windows.Forms.Label pingLabel;
     }
 }
