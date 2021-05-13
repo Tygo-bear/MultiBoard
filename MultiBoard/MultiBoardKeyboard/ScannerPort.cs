@@ -16,6 +16,8 @@ namespace MultiBoardKeyboard
         public string Uuid = "NONE";
         public string bufferInput = "";
 
+        private string input = "";
+
         public ScannerPort(string staticId)
         {
             _staticId = staticId;
@@ -62,7 +64,15 @@ namespace MultiBoardKeyboard
         /// </summary>
         public void Close()
         {
-            _serialPort.Close();
+            try
+            {
+                _serialPort.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
         }
 
         /// <summary>
