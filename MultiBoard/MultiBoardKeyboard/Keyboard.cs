@@ -178,6 +178,16 @@ namespace MultiBoardKeyboard
             return true;
         }
 
+        public DateTime LastPing
+        {
+            get
+            {
+                if (_comConnector == null)
+                    return DateTime.MinValue;
+                return _comConnector.LastPing;
+            }
+        }
+
 
         public bool CheckNameAvailable(string s)
         {
