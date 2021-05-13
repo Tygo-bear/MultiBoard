@@ -47,6 +47,7 @@ namespace MultiBoard.KeyboardElements
             KEYBOARD_NAME_TEXTBOX.Text = kName;
             KEYBOARD_UUID_TEXTBOX.Text = kId;
             KEYBOARD_COMP_TEXTBOX.Text = kCom;
+            pingLabel.Text = "Last ping: " + boardGui.Keyboard.LastPing.ToLongTimeString();
 
         }
 

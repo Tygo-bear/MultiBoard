@@ -106,5 +106,17 @@ namespace MultiBoard.Properties {
                 this["CheckForUpdates"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40000")]
+        public int KeyboardDisconnect {
+            get {
+                return ((int)(this["KeyboardDisconnect"]));
+            }
+            set {
+                this["KeyboardDisconnect"] = value;
+            }
+        }
     }
 }
