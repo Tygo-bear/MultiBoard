@@ -15,6 +15,8 @@ namespace MultiBoardKeyboard
         private int _baudRate;
         public string Uuid = "NONE";
 
+        private string input = "";
+
         public ScannerPort(string staticId)
         {
             _staticId = staticId;
@@ -61,7 +63,15 @@ namespace MultiBoardKeyboard
         /// </summary>
         public void Close()
         {
-            _serialPort.Close();
+            try
+            {
+                _serialPort.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
         }
 
         /// <summary>
@@ -81,12 +91,13 @@ namespace MultiBoardKeyboard
         /// </summary>
         private void CheckReceivedData()
         {
-            string input = "";
             try
             {
                 input = _serialPort.ReadExisting();
                 if (input.Contains("ping"))
                     input = input.Replace("ping", "");
+
+                input = input.Replace("\r\n", string.Empty);
 
 
                 Console.WriteLine("received: " + input);
