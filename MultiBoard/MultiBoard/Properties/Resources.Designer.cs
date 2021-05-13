@@ -168,7 +168,7 @@ namespace MultiBoard.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v1.0.1.8.
+        ///   Looks up a localized string similar to v1.0.1.9-disconnect-detect-beta.
         /// </summary>
         internal static string Version {
             get {
