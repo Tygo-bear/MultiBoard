@@ -14,6 +14,7 @@ namespace MultiBoardKeyboard
         public string ComPort;
         private int _baudRate;
         public string Uuid = "NONE";
+        public string bufferInput = "";
 
         public ScannerPort(string staticId)
         {
@@ -72,20 +73,38 @@ namespace MultiBoardKeyboard
         private void SerialPortOnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Thread.Sleep(100);
-            CheckReceivedData();
+            readData();
+        }
+
+
+        private void readData()
+        {
+            if (!_serialPort.IsOpen)
+                return;
+
+            string input = _serialPort.ReadExisting();
+            input = input.Replace("\r", "");
+            bufferInput += input;
+            string[] split = bufferInput.Split('\n');
+            if (split.Length == 1)
+                return;
+
+            for(int i = 0; i < split.Length - 1; i++)
+            {
+                CheckReceivedData(split[i]);
+            }
+
+            bufferInput = split[split.Length - 1];
         }
 
         /// <summary>
         /// Processes received data
         /// Validate static id and collect dynamic id
         /// </summary>
-        private void CheckReceivedData()
+        private void CheckReceivedData(string input)
         {
-            string input = "";
             try
             {
-                input = _serialPort.ReadExisting();
-
 
                 Console.WriteLine("received: " + input);
 

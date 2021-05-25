@@ -29,6 +29,7 @@ namespace MultiBoardKeyboard
         private int _retryMax = 0;
         private bool _connectioValid;
         private string _staticId;
+        private string bufferInput = "";
         public string DynamicId;
 
         public int ThreadPriority = 6;
@@ -175,21 +176,29 @@ namespace MultiBoardKeyboard
                     System.Diagnostics.Process.GetCurrentProcess().PriorityClass = System.Diagnostics.ProcessPriorityClass.RealTime;
                     break;
             }
-            
-            //Read received data
-            string s = _comPort.ReadExisting();
-            if(s.Contains("ID:"))
-            {
-                Thread.Sleep(10);
-                if (_comPort.IsOpen)
-                {
-                    s += _comPort.ReadExisting();
-                }
-            }
-            //Console.WriteLine("Data: " + s);
 
+            if (!_comPort.IsOpen)
+                return;
+
+            string input = _comPort.ReadExisting();
+            input = input.Replace("\r", "");
+            bufferInput += input;
+            string[] split = bufferInput.Split('\n');
+            if (split.Length == 1)
+                return;
+
+            for (int i = 0; i < split.Length - 1; i++)
+            {
+                CheckReceivedData(split[i]);
+            }
+
+            bufferInput = split[split.Length - 1];
+        }
+
+        private void CheckReceivedData(string s)
+        {
             s = s.Replace("\n", "");
-            s = s.Replace("\r","");
+            s = s.Replace("\r", "");
 
             //Sort received data
             if (s.Split('<')[0] != s)
@@ -197,7 +206,7 @@ namespace MultiBoardKeyboard
                 //normal input
                 NormalKey(s);
             }
-            else if(s.Split('_')[0] != s)
+            else if (s.Split('_')[0] != s)
             {
                 //alternative keys
                 AltKey(s);
