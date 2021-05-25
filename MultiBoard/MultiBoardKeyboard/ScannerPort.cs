@@ -16,8 +16,6 @@ namespace MultiBoardKeyboard
         public string Uuid = "NONE";
         public string bufferInput = "";
 
-        private string input = "";
-
         public ScannerPort(string staticId)
         {
             _staticId = staticId;
@@ -117,6 +115,7 @@ namespace MultiBoardKeyboard
             {
                 if (input.Contains("ping"))
                     return;
+
 
                 Console.WriteLine("received: " + input);
 
