@@ -4,7 +4,7 @@
 #endif
 #include <SPI.h>
 
-int period = 10000;
+int period = 5000;
 unsigned long time_now = 0;
 
 //=================================================================
